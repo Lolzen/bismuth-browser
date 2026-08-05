@@ -1,0 +1,32 @@
+From d9e1831beb86be155cf494b139e11eba593b0020 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 05:12:37 +0300
+Subject: [PATCH 072/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 77402f9e..728c41b4 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -1,4 +1,4 @@
+-name: Rebase on new Chromium VERSION
++name: Rebase on new Chromium version
+ 
+ on:
+   workflow_dispatch:
+@@ -14,8 +14,11 @@ jobs:
+     steps:
+       - uses: actions/checkout@v2
+ 
++      - name: Loading settings from CHROMIUM_VERSION
++        run: source CHROMIUM_VERSION; export $(cut -d= -f1 CHROMIUM_VERSION)
++        
+       - name: Downloading files
+-        run: source CHROMIUM_VERSION; wget "https://chromium.googlesource.com/chromium/src/+/refs/tags/${CHROMIUM_MAJOR}.${CHROMIUM_MINOR}.${CHROMIUM_BUILD}.${CHROMIUM_PATCH}/chrome/browser/resources/extensions/extensions.html?format=TEXT' -O chrome/browser/resources/extensions/extensions.html
++        run: wget "https://chromium.googlesource.com/chromium/src/+/refs/tags/${CHROMIUM_MAJOR}.${CHROMIUM_MINOR}.${CHROMIUM_BUILD}.${CHROMIUM_PATCH}/chrome/browser/resources/extensions/extensions.html?format=TEXT' -O chrome/browser/resources/extensions/extensions.html
+         
+       - name: Outputting file
+         run: cat chrome/browser/resources/extensions/extensions.html | base64 --decode

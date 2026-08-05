@@ -1,0 +1,64 @@
+From 2d8e87a476f33f9b2953c307ce3f7a6bdb864cc8 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Tue, 20 Jul 2021 19:49:07 +0300
+Subject: [PATCH 038/506] Push APKs for Next (com.kiwibrowser.browser.dev)
+
+---
+ .github/workflows/build_apk.yml | 44 +++++++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index cd7d7996..1095ffbc 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -292,6 +292,50 @@ jobs:
+           asset_name: com.kiwibrowser.browser-${{ github.run_id }}-x64-github.apk
+           asset_content_type: application/vnd.android.package-archive
+ 
++      - name: Uploading dev asset (arm-signed)
++        if: ${{ github.repository_owner == 'kiwibrowser' }}
++        uses: actions/upload-release-asset@v1
++        env:
++          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
++        with:
++          upload_url: ${{ steps.create_release.outputs.upload_url }}
++          asset_path: ./apk-arm/ChromePublic-Next-DevSigned.apk
++          asset_name: com.kiwibrowser.browser.dev-${{ github.run_id }}-arm-github.apk
++          asset_content_type: application/vnd.android.package-archive
++
++      - name: Uploading dev asset (arm64-signed)
++        if: ${{ github.repository_owner == 'kiwibrowser' }}
++        uses: actions/upload-release-asset@v1
++        env:
++          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
++        with:
++          upload_url: ${{ steps.create_release.outputs.upload_url }}
++          asset_path: ./apk-arm64/ChromePublic-Next-DevSigned.apk
++          asset_name: com.kiwibrowser.browser.dev-${{ github.run_id }}-arm64-github.apk
++          asset_content_type: application/vnd.android.package-archive
++
++      - name: Uploading dev asset (x86-signed)
++        if: ${{ github.repository_owner == 'kiwibrowser' }}
++        uses: actions/upload-release-asset@v1
++        env:
++          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
++        with:
++          upload_url: ${{ steps.create_release.outputs.upload_url }}
++          asset_path: ./apk-x86/ChromePublic-Next-DevSigned.apk
++          asset_name: com.kiwibrowser.browser.dev-${{ github.run_id }}-x86-github.apk
++          asset_content_type: application/vnd.android.package-archive
++
++      - name: Uploading dev asset (x64-signed)
++        if: ${{ github.repository_owner == 'kiwibrowser' }}
++        uses: actions/upload-release-asset@v1
++        env:
++          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
++        with:
++          upload_url: ${{ steps.create_release.outputs.upload_url }}
++          asset_path: ./apk-x64/ChromePublic-Next-DevSigned.apk
++          asset_name: com.kiwibrowser.browser.dev-${{ github.run_id }}-x64-github.apk
++          asset_content_type: application/vnd.android.package-archive
++
+       - name: Send announcement on Discord
+         run: |
+           curl -H 'Content-Type: application/json' -X POST -d '{"username": "Kiwi Builder (Next)", "content": "A new build of Kiwi Browser Next (preview version) is available. This version will replace your currently installed Kiwi Browser (com.kiwibrowser.browser) - https://github.com/kiwibrowser/src.next/releases/tag/${{ github.run_id }}"}' ${{ secrets.DISCORD_WEBHOOK }}

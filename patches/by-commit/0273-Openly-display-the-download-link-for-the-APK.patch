@@ -1,0 +1,20 @@
+From ea950ac41e86b5a25899f4ce14404902bd3c1746 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 15:50:45 +0300
+Subject: [PATCH 273/506] Openly display the download link for the APK
+
+---
+ .github/workflows/build_apk.yml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index 4b5be9b5..9f27150a 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -59,3 +59,6 @@ jobs:
+           asset_path: ./out.apk
+           asset_name: ${{ github.repository_owner }}.${{ github.event.repository.name }}.${{ steps.branch-name.outputs.current_branch }}.${{ github.run_id }}-unofficial-arm64.apk
+           asset_content_type: application/vnd.android.package-archive
++
++      - name: Displaying download link
++        run: echo "Build can be downloaded at: https://build.find.kiwi/apks/${{ github.run_id }}/out.apk"

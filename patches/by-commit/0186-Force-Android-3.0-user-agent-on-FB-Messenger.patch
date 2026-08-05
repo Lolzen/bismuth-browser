@@ -1,0 +1,24 @@
+From 929323135583e02e583daab95b4e8c9de627438f Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 8 Aug 2021 01:16:53 +0300
+Subject: [PATCH 186/506] Force Android 3.0 user-agent on FB Messenger
+
+---
+ net/url_request/url_request_http_job.cc | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/net/url_request/url_request_http_job.cc b/net/url_request/url_request_http_job.cc
+index 8cb63581..b8c4f53b 100644
+--- a/net/url_request/url_request_http_job.cc
++++ b/net/url_request/url_request_http_job.cc
+@@ -335,6 +335,10 @@ void URLRequestHttpJob::OnGotFirstPartySetMetadata(
+   {
+      request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Safari/537.36");
+   }
++  else if (request_info_.url.host().find("facebook.com") != std::string::npos || request_info_.url.host().find("fbcdn") != std::string::npos || request_info_.url.host().find("fbcdn.net") != std::string::npos)
++  {
++     request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (Linux; Android 3.0; ONEPLUS A6003) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.25 Mobile Safari/537.36");
++  }
+   else if (request_info_.url.host().find("news.google.com") != std::string::npos && request_info_.url.path().find("CAAqJggKIiBDQkFTRWdvSUwyMHZNRFZxYUdjU0FtVnVHZ0pWVXlnQVAB") != std::string::npos)
+   {
+      request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (Linux; Android 9; ONEPLUS A6003) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.99 Mobile Safari/537.36");

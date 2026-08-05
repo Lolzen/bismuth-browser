@@ -1,0 +1,35 @@
+From 5c49187ff0a80ff2d7286bcc2737085a3fc7b67d Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 15 Aug 2021 21:14:49 +0300
+Subject: [PATCH 408/506] Update delete_committed_file.yml
+
+---
+ .github/workflows/delete_committed_file.yml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/.github/workflows/delete_committed_file.yml b/.github/workflows/delete_committed_file.yml
+index c9d8b12f..6c31af31 100644
+--- a/.github/workflows/delete_committed_file.yml
++++ b/.github/workflows/delete_committed_file.yml
+@@ -11,9 +11,6 @@ jobs:
+   rename:
+     runs-on: ubuntu-latest
+     steps:
+-      - name: Installing BFG
+-        run: wget https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.jar
+-    
+       - uses: actions/checkout@v2
+         with:
+           fetch-depth: 0
+@@ -22,7 +19,10 @@ jobs:
+         run: |
+           git config --global user.email "github@actions"
+           git config --global user.name "Repository manager"
+-            
++
++      - name: Installing BFG
++        run: wget https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.jar
++    
+       - run: java -jar bfg-1.14.0.jar --delete-files ${{ github.event.inputs.filename }} .
+       
+       - run: git push

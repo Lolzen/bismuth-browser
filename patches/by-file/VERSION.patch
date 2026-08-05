@@ -1,0 +1,12 @@
+diff --git a/VERSION b/VERSION
+new file mode 100644
+index 00000000..6753eaa1
+--- /dev/null
++++ b/VERSION
+@@ -0,0 +1,6 @@
++# The version to use for Kiwi Browser
++
++MAJOR=93
++MINOR=0
++BUILD=4577
++PATCH=21

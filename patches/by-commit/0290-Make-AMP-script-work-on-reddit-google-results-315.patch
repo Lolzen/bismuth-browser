@@ -1,0 +1,29 @@
+From f9fe763beb2009f044745260d3d11d9c9935ed90 Mon Sep 17 00:00:00 2001
+From: Delphox <smugleaf@live.com>
+Date: Thu, 12 Aug 2021 13:32:29 -0300
+Subject: [PATCH 290/506] Make AMP script work on reddit google results (#315)
+
+* Make AMP script work on reddit google results
+
+* almost forgot i have to comment backslashes lol
+
+* again
+---
+ .../src/org/chromium/chrome/browser/PersonalizeResults.java   | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+index 8b6b504d..62676de6 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+@@ -139,8 +139,8 @@ public class PersonalizeResults {
+ +"  document.querySelectorAll('span[aria-label=\"AMP logo\"]').forEach(function(a) {"
+ +"     a.style.display='none';"
+ +"  });"
+-+"  if (document.getElementsByClassName('amp-cantxt').length >= 1 && document.location.href.indexOf('/amp/') != -1) { document.location.replace(document.getElementsByClassName('amp-cantxt')[0].innerText); }"
+-+"  if (document.location.href.indexOf('/amp/') != -1 && document.querySelector('head > link[rel=\"canonical\"]') != null && document.querySelector('head > link[rel=\"canonical\"]').href != document.location.href) { document.location.replace(document.querySelector('head > link[rel=\"canonical\"]').href); };"
+++"  if (document.getElementsByClassName('amp-cantxt').length >= 1 && document.location.href.match(/\\/amp[\\/|\\.]/)) { document.location.replace(document.getElementsByClassName('amp-cantxt')[0].innerText); }"
+++"  if (document.location.href.match(/\\/amp[\\/|\\.]/) && document.querySelector('head > link[rel=\"canonical\"]') != null && document.querySelector('head > link[rel=\"canonical\"]').href != document.location.href) { document.location.replace(document.querySelector('head > link[rel=\"canonical\"]').href); };"
+ +"}"
+ +""
+ +"document.addEventListener('DOMNodeInserted', _cleanupAmp);"

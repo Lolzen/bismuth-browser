@@ -1,0 +1,22 @@
+From 4fff15d8740b0d840e43cd521ce5da094002bf58 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 23:05:06 +0300
+Subject: [PATCH 143/506] Update import_file_from_chromium.yml
+
+---
+ .github/workflows/import_file_from_chromium.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/import_file_from_chromium.yml b/.github/workflows/import_file_from_chromium.yml
+index 1d2d7d8c..3f888ac1 100644
+--- a/.github/workflows/import_file_from_chromium.yml
++++ b/.github/workflows/import_file_from_chromium.yml
+@@ -29,7 +29,7 @@ jobs:
+           git config --global user.name "Repository manager"
+ 
+       - name: Preparing local Chromium branch
+-        run: git git switch chromium
++        run: git switch chromium
+ 
+       - name: Loading settings from CHROMIUM_VERSION
+         run: |

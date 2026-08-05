@@ -1,0 +1,36 @@
+From 28bdbefeffe60729e3e503c1edfe2ffc1a88af8a Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Tue, 14 Dec 2021 00:53:24 +0000
+Subject: [PATCH 473/506] Push early-update of the status bar control (may not
+ be necessary)
+
+---
+ .../src/org/chromium/chrome/browser/app/ChromeActivity.java    | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
+index 910b8f52..0a53b0c5 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
+@@ -859,18 +859,21 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+             @Override
+             public void onLoadStopped(Tab tab, boolean toDifferentDocument) {
+                 postDeferredStartupIfNeeded();
++                mRootUiCoordinator.getStatusBarColorController().updateStatusBarColor();
+             }
+ 
+             @Override
+             public void onPageLoadFinished(Tab tab, GURL url) {
+                 postDeferredStartupIfNeeded();
+                 OfflinePageUtils.showOfflineSnackbarIfNecessary(tab);
++                mRootUiCoordinator.getStatusBarColorController().updateStatusBarColor();
+             }
+ 
+             @Override
+             public void onUrlUpdated(Tab tab){
+               FixDevToolsWindow.Execute(tab);
+               PersonalizeResults.Execute(tab);
++              mRootUiCoordinator.getStatusBarColorController().updateStatusBarColor();
+             }
+ 
+             @Override

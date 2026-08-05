@@ -1,0 +1,49 @@
+From d6e675e346600a17096a2a078b15392161eae8a9 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 20 Jan 2025 13:03:17 +0200
+Subject: [PATCH 498/506] Migrate to download/upload-artifact@v4
+
+---
+ .github/workflows/build_and_sign_release_apk.yml | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index f91c9b39..a25f555f 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -138,7 +138,7 @@ jobs:
+           ls -la $HOME/kiwibrowser-next-builds-${{ matrix.platform }}
+ 
+       - name: Uploading APK
+-        uses: actions/upload-artifact@v1
++        uses: actions/upload-artifact@v4
+         with:
+           name: apk-${{ matrix.platform }}
+           path: /home/runner/kiwibrowser-next-builds-${{ matrix.platform }}/
+@@ -162,22 +162,22 @@ jobs:
+ 
+ 
+       - name: Downloading artifact (arm)
+-        uses: actions/download-artifact@v1
++        uses: actions/download-artifact@v4
+         with:
+           name: apk-arm
+ 
+       - name: Downloading artifact (arm64)
+-        uses: actions/download-artifact@v1
++        uses: actions/download-artifact@v4
+         with:
+           name: apk-arm64
+ 
+       - name: Downloading artifact (x86)
+-        uses: actions/download-artifact@v1
++        uses: actions/download-artifact@v4
+         with:
+           name: apk-x86
+ 
+       - name: Downloading artifact (x64)
+-        uses: actions/download-artifact@v1
++        uses: actions/download-artifact@v4
+         with:
+           name: apk-x64
+ 

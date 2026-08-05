@@ -1,0 +1,18 @@
+From 1d3334248fd297113122fb7d751d97a9207791e0 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Tue, 10 Aug 2021 05:15:33 +0300
+Subject: [PATCH 219/506] Create generate_ccache_build.sh
+
+---
+ generate_ccache_build.sh | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 generate_ccache_build.sh
+
+diff --git a/generate_ccache_build.sh b/generate_ccache_build.sh
+new file mode 100644
+index 00000000..34bb3949
+--- /dev/null
++++ b/generate_ccache_build.sh
+@@ -0,0 +1,2 @@
++#!/bin/sh
++gn gen out/public_arm64 --args='cc_wrapper="ccache"'

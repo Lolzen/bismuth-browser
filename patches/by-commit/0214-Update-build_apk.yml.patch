@@ -1,0 +1,22 @@
+From f4ff450519e2ce583056632ad0ed4c376d17ce1c Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Tue, 10 Aug 2021 03:49:41 +0300
+Subject: [PATCH 214/506] Update build_apk.yml
+
+---
+ .github/workflows/build_apk.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index 280f52fb..f631b543 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -35,7 +35,7 @@ jobs:
+           draft: true
+           prerelease: true
+           body: |
+-            This is a test build initiated by ${{ github.actor }} to test the build system. Do not install.
++            This is a test build initiated by ${{ github.actor }}.
+ 
+       - name: Uploading test apk (arm64)
+         uses: actions/upload-release-asset@v1

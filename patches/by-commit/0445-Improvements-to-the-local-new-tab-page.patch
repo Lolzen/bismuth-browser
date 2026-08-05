@@ -1,0 +1,95 @@
+From 8d2bcc1bf1c34fe5e487e03bc583a226dd4fd1b5 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:14:21 +0000
+Subject: [PATCH 445/506] Improvements to the local new tab page
+
+---
+ .../resources/new_tab_page_instant/local_ntp.css  | 15 ++++++++++++++-
+ .../resources/new_tab_page_instant/local_ntp.html | 15 +++++++++++----
+ 2 files changed, 25 insertions(+), 5 deletions(-)
+
+diff --git a/chrome/browser/resources/new_tab_page_instant/local_ntp.css b/chrome/browser/resources/new_tab_page_instant/local_ntp.css
+index 6878b9c8..336a2dd6 100644
+--- a/chrome/browser/resources/new_tab_page_instant/local_ntp.css
++++ b/chrome/browser/resources/new_tab_page_instant/local_ntp.css
+@@ -103,7 +103,7 @@ body {
+   min-height: 100%;
+   overflow-x: hidden;
+   -webkit-text-size-adjust: 100%;
+-  background: white; /* this is to force night mode to trigger */
++  background: white;
+ }
+ 
+ body.inited {
+@@ -784,9 +784,22 @@ input:checked + .toggle::before {
+ 
+ #bookmarks-grid, #fake-bookmarks-grid, #ideas-grid {
+     margin: 2%;
++    margin-top: 0px;
+     position: relative;
+ }
+ 
++@media (max-width: 450px) {
++  #bookmarks-grid, #fake-bookmarks-grid, #ideas-grid {
++    min-height: 208px;
++  }
++}
++
++@media (min-width: 450px) {
++  #bookmarks-grid, #fake-bookmarks-grid, #ideas-grid {
++    min-height: 104px;
++  }
++}
++
+ #fake-bookmarks-grid {
+     z-index: -99999;
+ }
+diff --git a/chrome/browser/resources/new_tab_page_instant/local_ntp.html b/chrome/browser/resources/new_tab_page_instant/local_ntp.html
+index 5ac60881..1b3e8963 100644
+--- a/chrome/browser/resources/new_tab_page_instant/local_ntp.html
++++ b/chrome/browser/resources/new_tab_page_instant/local_ntp.html
+@@ -1,6 +1,6 @@
+ <!doctype html>
+ <html>
+-<!-- Copyright 2018-2021 Kiwi Browser -->
++<!-- Copyright 2018-2022 Kiwi Browser -->
+ <head>
+   <title>New Tab</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+@@ -329,6 +329,9 @@ function render_news_loading()
+ function add_gnews(is_primary, title, news_time, source, source_logo, link, image)
+ {
+   var innerDiv = document.createElement('div');
++  // never display images
++  if (!image)
++    image = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+   var creationTime = new Date(news_time * 1000);
+   var timeagoInstance = timeago();
+   innerDiv.className = 'newsItem';
+@@ -358,10 +361,12 @@ function render_gnews(answer, start_offset, n)
+           var el = document.createElement('div');
+           el.style.display = 'none';
+           el.baseURI = 'https://news.google.com/';
+-          el.innerHTML = answer.replace(new RegExp('<img', 'gi'), '<source');
++          simplifiedAnswer = '<article' + answer.split('<article').slice(1).join('<article').split('<\/script>')[0];
++          el.innerHTML = simplifiedAnswer.replace(new RegExp('<img', 'gi'), '<source');
+           var articles = el.getElementsByTagName('article');
+ //          console.log(articles);
+-          for (var i = start_offset; i < articles.length && i < (n + start_offset); i++) {
++          var added = start_offset;
++          for (var i = start_offset; i < articles.length && added < (n + start_offset); i++) {
+               var article = articles[i];
+               var children = article.childNodes;
+               var title = null;
+@@ -531,8 +536,10 @@ function render_gnews(answer, start_offset, n)
+               if (link && image && title) {
+ //                  console.log('Title: ' + title);
+                   add_gnews(is_primary, title, news_time, source, source_logo, link, image);
++                  added++;
++                  news_are_already_onscreen = true;
++                  localStorage.needFetch = false;
+               }
+-             news_are_already_onscreen = true;
+              if (articles.length > (i + 1) && i <= 29)
+              {
+                  document.getElementById('newsMore').innerHTML='<div style="color: #8AB4F8; font-size: 24px; width: 100%; text-align: center"><b>...</b></div><br />&nbsp;<br />';

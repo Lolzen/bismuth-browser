@@ -1,0 +1,22 @@
+From 4bd206927af89e0da36c3024c2c97b15414f0853 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 29 Nov 2021 04:30:21 +0200
+Subject: [PATCH 433/506] Notify build hunter role
+
+---
+ .github/workflows/build_and_sign_release_apk.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index e631ec4d..b5649863 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -344,7 +344,7 @@ jobs:
+         continue-on-error: true
+         if: contains(github.event.inputs.announceOnDiscord, 'yes')
+         run: |
+-          curl -H 'Content-Type: application/json' -X POST -d '{"username": "Kiwi Builder (Next)", "content": "A new build of Kiwi Browser Next (preview version) is available. This version will replace your currently installed Kiwi Browser (com.kiwibrowser.browser) - https://github.com/kiwibrowser/src.next/releases/tag/${{ github.run_id }}"}' ${{ secrets.DISCORD_WEBHOOK }}
++          curl -H 'Content-Type: application/json' -X POST -d '{"username": "Kiwi Builder (Next)", "content": "A new build of Kiwi Browser Next (preview version) is available. This version will replace your currently installed Kiwi Browser (com.kiwibrowser.browser) {Build Hunter} <@&914702266630561852> - https://github.com/kiwibrowser/src.next/releases/tag/${{ github.run_id }}"}' ${{ secrets.DISCORD_WEBHOOK }}
+       
+       - name: Send announcement on Telegram
+         continue-on-error: true

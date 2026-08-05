@@ -1,0 +1,22 @@
+From 7f01eb5560cba61961019e1c18fe23f6e7ef0764 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Tue, 3 Aug 2021 15:59:37 +0300
+Subject: [PATCH 109/506] Update build_and_sign_apk.yml
+
+---
+ .github/workflows/build_and_sign_apk.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_and_sign_apk.yml b/.github/workflows/build_and_sign_apk.yml
+index 681d9815..4acfa191 100644
+--- a/.github/workflows/build_and_sign_apk.yml
++++ b/.github/workflows/build_and_sign_apk.yml
+@@ -41,7 +41,7 @@ jobs:
+         run: sudo apt-get update
+ 
+       - name: Installing rclone
+-        run: sudo apt-get install rclone
++        run: curl https://rclone.org/install.sh | sudo bash
+ 
+       - name: Installing Python and OpenJDK
+         run: sudo apt-get install -y python openjdk-8-jdk-headless libncurses5 ccache

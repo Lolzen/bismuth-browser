@@ -1,0 +1,23 @@
+From 7b9df650a3010caa21cf311c0b59b0635ac9b9f0 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 26 Jun 2021 19:52:44 +0300
+Subject: [PATCH 022/506] Update build_apk.yml
+
+---
+ .github/workflows/build_apk.yml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index 5ecb080f..2a37ac88 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -130,6 +130,9 @@ jobs:
+       - name: Downloading binary objects cache to $HOME/cache
+         run: rclone copy --fast-list --transfers=128 cache:kiwibrowser-next-builds-${{ matrix.platform }}/ $HOME/kiwibrowser-next-builds-${{ matrix.platform }}
+ 
++      - name: Transferring build to the standard Kiwi Browser run ID
++        run: rclone copy --fast-list --transfers=128 cache:kiwibrowser-next-builds-${{ matrix.platform }}/ cache:kiwibrowser-builds/${{ github.run_id }}/${{ matrix.platform }}
++
+       - name: Listing files
+         run: |
+           echo $HOME

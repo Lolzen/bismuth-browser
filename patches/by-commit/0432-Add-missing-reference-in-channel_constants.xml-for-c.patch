@@ -1,0 +1,20 @@
+From ec692286ac3577f5a47a62fca91842464c7728f5 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 25 Sep 2021 22:43:54 +0300
+Subject: [PATCH 432/506] Add missing reference in channel_constants.xml for
+ contributor builds
+
+---
+ .../java/res_chromium_contributor/values/channel_constants.xml   | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/chrome/android/java/res_chromium_contributor/values/channel_constants.xml b/chrome/android/java/res_chromium_contributor/values/channel_constants.xml
+index 2a07fb1f..a9d08060 100644
+--- a/chrome/android/java/res_chromium_contributor/values/channel_constants.xml
++++ b/chrome/android/java/res_chromium_contributor/values/channel_constants.xml
+@@ -9,4 +9,5 @@
+     <string name="bookmark_widget_title" translatable="false">Wiki Browser bookmarks</string>
+     <string name="search_widget_title" translatable="false">Wiki Browser search</string>
+     <string name="quick_action_search_widget_title" translatable="false">Wiki Browser quick action search</string>
++    <string name="dino_widget_title" translatable="false">Wiki Browser bird</string>
+ </resources>

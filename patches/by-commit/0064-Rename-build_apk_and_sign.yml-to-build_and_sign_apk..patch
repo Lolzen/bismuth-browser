@@ -1,0 +1,15 @@
+From fa988f324a9204970f5bae98d38d7912958bdca5 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 04:32:10 +0300
+Subject: [PATCH 064/506] Rename build_apk_and_sign.yml to
+ build_and_sign_apk.yml
+
+---
+ .../workflows/{build_apk_and_sign.yml => build_and_sign_apk.yml}  | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename .github/workflows/{build_apk_and_sign.yml => build_and_sign_apk.yml} (100%)
+
+diff --git a/.github/workflows/build_apk_and_sign.yml b/.github/workflows/build_and_sign_apk.yml
+similarity index 100%
+rename from .github/workflows/build_apk_and_sign.yml
+rename to .github/workflows/build_and_sign_apk.yml

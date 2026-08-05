@@ -1,0 +1,49 @@
+From 5c51fe9e0829ac0c11a3adc301f891cb5bf08a3d Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 03:07:55 +0300
+Subject: [PATCH 049/506] Create rebase_and_build_apk
+
+---
+ .github/workflows/rebase_and_build_apk | 33 ++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+ create mode 100644 .github/workflows/rebase_and_build_apk
+
+diff --git a/.github/workflows/rebase_and_build_apk b/.github/workflows/rebase_and_build_apk
+new file mode 100644
+index 00000000..dfcb17c6
+--- /dev/null
++++ b/.github/workflows/rebase_and_build_apk
+@@ -0,0 +1,33 @@
++name: rebase and build APK
++
++on:
++  workflow_dispatch:
++
++on:
++  push:
++    paths:
++      - 'upstream'
++
++jobs:
++  build:
++    # The type of runner that the job will run on
++    runs-on: ubuntu-latest
++
++    strategy:
++      fail-fast: false
++      max-parallel: 4
++      matrix:
++        platform: [arm, arm64, x86, x64]
++
++    steps:
++      - name: Initializing build
++        run: echo Initializing build for platform ${{ matrix.platform }}
++
++  sign_and_upload:
++    runs-on: ubuntu-latest
++    needs: build
++
++    steps:
++      - name: Installing rclone
++        run: curl https://rclone.org/install.sh | sudo bash -s beta
++ 

@@ -1,0 +1,27 @@
+From 19940cc4a8c034c4bcd0bc1f8a8089adb114781d Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 05:45:20 +0300
+Subject: [PATCH 080/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index d4434d3e..3312c09d 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -21,11 +21,10 @@ jobs:
+ 
+       - name: Checking out Chromium
+         run: |
+-          git clone https://github.com/chromium/chromium.git --no-checkout chromium
++          git clone --filter=blob:none --no-checkout https://github.com/chromium/chromium.git chromium
+           cd chromium
+-          git sparse-checkout init --cone
+-          git sparse-checkout set chrome/android
+           git checkout ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}
++          git sparse-checkout set chrome/android
+           
+       - name: Listing files
+         run: ls -laR

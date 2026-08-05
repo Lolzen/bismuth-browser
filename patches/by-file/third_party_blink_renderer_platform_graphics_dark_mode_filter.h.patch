@@ -1,0 +1,14 @@
+diff --git a/third_party/blink/renderer/platform/graphics/dark_mode_filter.h b/third_party/blink/renderer/platform/graphics/dark_mode_filter.h
+index 1e5cb9f6..c3f71117 100644
+--- a/third_party/blink/renderer/platform/graphics/dark_mode_filter.h
++++ b/third_party/blink/renderer/platform/graphics/dark_mode_filter.h
+@@ -34,9 +34,6 @@ class PLATFORM_EXPORT DarkModeFilter {
+   enum class ElementRole { kForeground, kListSymbol, kBackground, kSVG };
+   enum class ImageType { kNone, kIcon, kSeparator, kPhoto };
+ 
+-  static ElementRole BorderElementRole(SkColor border_color,
+-                                       SkColor background_color);
+-
+   SkColor InvertColorIfNeeded(SkColor color, ElementRole element_role);
+ 
+   absl::optional<cc::PaintFlags> ApplyToFlagsIfNeeded(

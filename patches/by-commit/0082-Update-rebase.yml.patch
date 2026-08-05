@@ -1,0 +1,35 @@
+From 189a8a61b864ba43c72f6b6470714e77ea0f025a Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 06:03:08 +0300
+Subject: [PATCH 082/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 5b6b4c79..5d4f697e 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -23,11 +23,16 @@ jobs:
+       # git clone --filter=tree:0 <url> creates a treeless clone.
+       # These clones download all reachable commits while fetching trees and blobs on-demand. These clones are best for build environments where the repository will be deleted after a single build, but you still need access to commit history
+       - name: Checking out Chromium
+-        run: |
+-          git clone --filter=tree:0 --no-checkout https://github.com/chromium/chromium.git chromium
+-          cd chromium
+-          git checkout ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}
+-          git sparse-checkout set chrome/android
++        run: git clone --filter=tree:0 https://github.com/chromium/chromium.git chromium
++
++      - name: Switching Chromium base branch
++        run: cd chromium && git checkout ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}
++
++      - name: Showing history for one file
++        run: cd chromium && git log --no-pager log --decorate=short --pretty=oneline -n1 chrome/browser/resources/extensions/extensions.html
++
++      - name: Displaying one file
++        run: cd chromium && cat chrome/browser/resources/extensions/extensions.html
+ 
+       - name: Listing files
+         run: ls -laR

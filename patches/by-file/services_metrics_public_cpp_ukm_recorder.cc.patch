@@ -1,0 +1,13 @@
+diff --git a/services/metrics/public/cpp/ukm_recorder.cc b/services/metrics/public/cpp/ukm_recorder.cc
+index c2ac19b6..fd483a6c 100644
+--- a/services/metrics/public/cpp/ukm_recorder.cc
++++ b/services/metrics/public/cpp/ukm_recorder.cc
+@@ -13,7 +13,7 @@
+ 
+ namespace ukm {
+ 
+-const base::Feature kUkmFeature = {"Ukm", base::FEATURE_ENABLED_BY_DEFAULT};
++const base::Feature kUkmFeature = {"Ukm", base::FEATURE_DISABLED_BY_DEFAULT};
+ 
+ UkmRecorder::UkmRecorder() = default;
+ 

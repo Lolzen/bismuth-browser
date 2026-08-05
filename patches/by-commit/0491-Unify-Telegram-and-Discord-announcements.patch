@@ -1,0 +1,41 @@
+From 0b5a42267d2c5ad571802d8aea5191f88e4c3c0b Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 13 Aug 2023 11:59:41 +0300
+Subject: [PATCH 491/506] Unify Telegram and Discord announcements
+
+---
+ .github/workflows/build_and_sign_release_apk.yml | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index 2d44d0bc..a8707e96 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -9,8 +9,8 @@ on:
+         description: 'Create a draft release in Google Play Store'     
+         required: true
+         default: 'no'
+-      announceOnDiscord:
+-        description: 'Announce new release on Discord channel'     
++      announceOnMessengers:
++        description: 'Announce new release on Discord and Telegram channel'     
+         required: true
+         default: 'yes'
+ 
+@@ -352,7 +352,7 @@ jobs:
+ 
+       - name: Send announcement on Discord
+         continue-on-error: true
+-        if: contains(github.event.inputs.announceOnDiscord, 'yes')
++        if: contains(github.event.inputs.announceOnMessengers, 'yes')
+         run: |
+           COMMIT_MSG=$(<./apk-arm/last_commits.txt)
+           PAYLOAD=$(jq -n \
+@@ -363,6 +363,7 @@ jobs:
+       
+       - name: Send announcement on Telegram
+         continue-on-error: true
++        if: contains(github.event.inputs.announceOnMessengers, 'yes')
+         run: |
+           COMMIT_MSG=$(<./apk-arm/last_commits.txt)
+           PAYLOAD=$(jq -n \

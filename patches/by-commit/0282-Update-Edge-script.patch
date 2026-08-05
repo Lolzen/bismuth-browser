@@ -1,0 +1,29 @@
+From 87454a3ea41710bedcb4cf4aceb1afe6b42cc4bf Mon Sep 17 00:00:00 2001
+From: Delphox <smugleaf@live.com>
+Date: Wed, 11 Aug 2021 12:53:35 -0300
+Subject: [PATCH 282/506] Update Edge script
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+• Changed cursor to 'pointer' so the whole button gets highlighted when selected.
+• Changed method to setAttribute because the previous method didn't set the '!important' attribute for some reason (which coincidentally wasn't a problem for color, but was a problem for the cursor cuz it otherwise gets overridden)
+---
+ .../src/org/chromium/chrome/browser/PersonalizeResults.java   | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+index 667d1c4c..8b6b504d 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+@@ -164,9 +164,7 @@ public class PersonalizeResults {
+ +"            return result;"
+ +"        };"
+ +"        xpath(\"//button[contains(@id,'getOrRemoveButton')]\").forEach(function(individualButton) {"
+-+"            individualButton.style.opacity = '1';"
+-+"            individualButton.style.background = 'rgb(0, 120, 212) !important';"
+-+"            individualButton.style.height = '60px';"
+++"            individualButton.setAttribute('style', 'opacity: 1; background: rgb(0, 120, 212) !important; height: 60px; cursor: pointer !important;');"
+ +"            individualButton.removeAttribute('disabled');"
+ +"            individualButton.innerHTML = \"<a href=https://edge.microsoft.com/extensionwebstorebase/v1/crx?response=redirect&acceptformat=crx3&x=id%3D\" + individualButton.id.split('-')[1] + \"%26installsource%3Dondemand%26uc target='_blank' style='color: white; text-decoration: none'><b>Get CRX</b><br>(Hold and tap<br>Download Link)</a>\";"
+ +"        });"

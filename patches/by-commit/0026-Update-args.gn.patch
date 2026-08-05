@@ -1,0 +1,22 @@
+From 488dbfbc526ab600c9b83ae8a3cf25265d3caa10 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 26 Jun 2021 21:43:56 +0300
+Subject: [PATCH 026/506] Update args.gn
+
+---
+ .build/android_arm/args.gn | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.build/android_arm/args.gn b/.build/android_arm/args.gn
+index a3e3d910..2785a496 100644
+--- a/.build/android_arm/args.gn
++++ b/.build/android_arm/args.gn
+@@ -3,7 +3,7 @@ target_cpu = "arm"
+ is_debug = false
+ is_java_debug = false
+ 
+-android_channel = "stable"
++android_channel = "dev"
+ is_official_build = true
+ is_component_build = false
+ is_chrome_branded = false

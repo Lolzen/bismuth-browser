@@ -1,0 +1,23 @@
+From f4d22694a9bfa06533771dc67f03268382a81592 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 04:15:01 +0300
+Subject: [PATCH 242/506] Revert "Clear url in address bar in New Tab Page"
+
+This reverts commit 3dd89a0de20ca46777231241a592044d08520648.
+---
+ .../omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java
+index c61d37cb..0e1d0d1d 100644
+--- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java
++++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java
+@@ -88,7 +88,7 @@ public class EditUrlSuggestionProcessor extends BaseSuggestionViewProcessor {
+ 
+         if (!mHasClearedOmniboxForFocus) {
+             mHasClearedOmniboxForFocus = true;
+-            if (ContextUtils.getAppSharedPreferences().getBoolean("keep_address_bar_content", false) && !activeTab.getUrl().startsWith("chrome-search://")) {
++            if (ContextUtils.getAppSharedPreferences().getBoolean("keep_address_bar_content", false)) {
+             UrlBarData parsedToolbar = UrlBarData.forUrlAndText(suggestion.getUrl().getSpec(), suggestion.getUrl().getSpec(), null);
+             mUrlBarDelegate.setOmniboxEditingText(parsedToolbar.getEditingOrDisplayText().toString());
+             } else {

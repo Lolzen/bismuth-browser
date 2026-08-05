@@ -1,0 +1,34 @@
+From c655867e43fa19738033e0fa905897aa1d05b0e5 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:32:26 +0000
+Subject: [PATCH 458/506] Fix certain windows getting blocked (false positive)
+ by Kiwi. OAID is the typical marker for an adserver but it can yield false
+ positives. In real-life, the X-XSS-Protection header is often not present on
+ adservers so we use this header as an heuristic / best-guess.
+
+---
+ net/http/http_network_transaction.cc | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/net/http/http_network_transaction.cc b/net/http/http_network_transaction.cc
+index 1fd990d4..a2e3e7db 100644
+--- a/net/http/http_network_transaction.cc
++++ b/net/http/http_network_transaction.cc
+@@ -1890,12 +1890,16 @@ bool HttpNetworkTransaction::ContentEncodingsValid() const {
+     return false;
+   }
+ 
++  std::string special_xss_header;
++  headers->GetNormalizedHeader("X-XSS-Protection", &special_xss_header);
++
+   std::string special_unknown_adserver_header;
+   headers->GetNormalizedHeader("Set-Cookie", &special_unknown_adserver_header);
+-  if (special_unknown_adserver_header.length() > 0 && special_unknown_adserver_header.rfind("OAID=", 0) == 0) {
++  if (special_unknown_adserver_header.length() > 0 && special_unknown_adserver_header.rfind("OAID=", 0) == 0 && special_xss_header.length() == 0) {
+     return false;
+   }
+ 
++  if (!(url_.spec().find("?path=")))
+   if ((url_.spec().find("&sw=") != std::string::npos && url_.spec().find("&sh=") != std::string::npos && url_.spec().find("&sah=") != std::string::npos && url_.spec().find("&ww=") != std::string::npos && url_.spec().find("&wh=") != std::string::npos && url_.spec().find("&pl="))
+        || url_.spec().find("&zone_id=") != std::string::npos
+        || url_.spec().find("&zoneid=") != std::string::npos

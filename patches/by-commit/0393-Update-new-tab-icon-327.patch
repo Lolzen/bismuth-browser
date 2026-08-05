@@ -1,0 +1,84 @@
+From 43fab343c526a899939bc131257eabcbad040729 Mon Sep 17 00:00:00 2001
+From: Eduard Ursu <eduardursu78@gmail.com>
+Date: Sat, 14 Aug 2021 01:32:39 +0200
+Subject: [PATCH 393/506] Update new tab icon (#327)
+
+* Update README.md
+
+* Update new tab icon
+
+Rename the png files + edit build.gn + change main_menu.xml
+
+Co-authored-by: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+---
+ .../{ic_new_window_r.png => ic_new_tab.png}         | Bin
+ .../{ic_new_window_r.png => ic_new_tab.png}         | Bin
+ .../{ic_new_window_r.png => ic_new_tab.png}         | Bin
+ .../{ic_new_window_r.png => ic_new_tab.png}         | Bin
+ .../{ic_new_window_r.png => ic_new_tab.png}         | Bin
+ chrome/android/java/res/menu/main_menu.xml          |   8 ++++----
+ 6 files changed, 4 insertions(+), 4 deletions(-)
+ rename chrome/android/java/res/drawable-hdpi/{ic_new_window_r.png => ic_new_tab.png} (100%)
+ rename chrome/android/java/res/drawable-mdpi/{ic_new_window_r.png => ic_new_tab.png} (100%)
+ rename chrome/android/java/res/drawable-xhdpi/{ic_new_window_r.png => ic_new_tab.png} (100%)
+ rename chrome/android/java/res/drawable-xxhdpi/{ic_new_window_r.png => ic_new_tab.png} (100%)
+ rename chrome/android/java/res/drawable-xxxhdpi/{ic_new_window_r.png => ic_new_tab.png} (100%)
+
+diff --git a/chrome/android/java/res/drawable-hdpi/ic_new_window_r.png b/chrome/android/java/res/drawable-hdpi/ic_new_tab.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-hdpi/ic_new_window_r.png
+rename to chrome/android/java/res/drawable-hdpi/ic_new_tab.png
+diff --git a/chrome/android/java/res/drawable-mdpi/ic_new_window_r.png b/chrome/android/java/res/drawable-mdpi/ic_new_tab.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-mdpi/ic_new_window_r.png
+rename to chrome/android/java/res/drawable-mdpi/ic_new_tab.png
+diff --git a/chrome/android/java/res/drawable-xhdpi/ic_new_window_r.png b/chrome/android/java/res/drawable-xhdpi/ic_new_tab.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xhdpi/ic_new_window_r.png
+rename to chrome/android/java/res/drawable-xhdpi/ic_new_tab.png
+diff --git a/chrome/android/java/res/drawable-xxhdpi/ic_new_window_r.png b/chrome/android/java/res/drawable-xxhdpi/ic_new_tab.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxhdpi/ic_new_window_r.png
+rename to chrome/android/java/res/drawable-xxhdpi/ic_new_tab.png
+diff --git a/chrome/android/java/res/drawable-xxxhdpi/ic_new_window_r.png b/chrome/android/java/res/drawable-xxxhdpi/ic_new_tab.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxxhdpi/ic_new_window_r.png
+rename to chrome/android/java/res/drawable-xxxhdpi/ic_new_tab.png
+diff --git a/chrome/android/java/res/menu/main_menu.xml b/chrome/android/java/res/menu/main_menu.xml
+index b8f12fe1..b737469b 100644
+--- a/chrome/android/java/res/menu/main_menu.xml
++++ b/chrome/android/java/res/menu/main_menu.xml
+@@ -40,13 +40,13 @@
+             android:icon="@drawable/menu_update" />
+         <item android:id="@+id/new_tab_menu_id"
+             android:title="@string/menu_new_tab"
+-            android:icon="@drawable/ic_add_box_rounded_corner" />
++            android:icon="@drawable/ic_new_tab" />
+         <item android:id="@+id/new_incognito_tab_menu_id"
+             android:title="@string/menu_new_incognito_tab"
+             android:icon="@drawable/ic_incognito" />
+         <item android:id="@+id/new_window_menu_id"
+             android:title="@string/menu_new_window"
+-            android:icon="@drawable/ic_new_window_r" />
++            android:icon="@drawable/ic_new_tab" />
+         <item android:id="@+id/move_to_other_window_menu_id"
+             android:title="@string/menu_move_to_other_window"
+             android:icon="@drawable/ic_open_in_browser" />
+@@ -174,7 +174,7 @@
+         android:visible="false">
+         <item android:id="@id/new_tab_menu_id"
+             android:title="@string/menu_new_tab"
+-            android:icon="@drawable/ic_add_box_rounded_corner" />
++            android:icon="@drawable/ic_new_tab" />
+         <item android:id="@id/new_incognito_tab_menu_id"
+             android:title="@string/menu_new_incognito_tab"
+             android:icon="@drawable/ic_incognito" />
+@@ -200,7 +200,7 @@
+         android:visible="false">
+         <item android:id="@id/new_tab_menu_id"
+             android:title="@string/menu_new_tab"
+-            android:icon="@drawable/ic_add_box_rounded_corner" />
++            android:icon="@drawable/ic_new_tab" />
+         <item android:id="@id/new_incognito_tab_menu_id"
+             android:title="@string/menu_new_incognito_tab"
+             android:icon="@drawable/ic_incognito" />

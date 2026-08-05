@@ -1,0 +1,19 @@
+From 47e7703adc75f9d64729d8669a289906ea3da527 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 15 Aug 2021 21:25:06 +0300
+Subject: [PATCH 413/506] Update delete_committed_file.yml
+
+---
+ .github/workflows/delete_committed_file.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/delete_committed_file.yml b/.github/workflows/delete_committed_file.yml
+index ce08e120..9427e27a 100644
+--- a/.github/workflows/delete_committed_file.yml
++++ b/.github/workflows/delete_committed_file.yml
+@@ -24,4 +24,4 @@ jobs:
+         run: |
+           git filter-branch --force --index-filter "git rm --cached --ignore-unmatch ${{ github.event.inputs.filename }}" --prune-empty --tag-name-filter cat -- --all
+       
+-      - run: git push
++      - run: git push --force --all

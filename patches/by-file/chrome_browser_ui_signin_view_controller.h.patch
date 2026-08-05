@@ -1,0 +1,16 @@
+diff --git a/chrome/browser/ui/signin_view_controller.h b/chrome/browser/ui/signin_view_controller.h
+index 10a682bf..2a3385f8 100644
+--- a/chrome/browser/ui/signin_view_controller.h
++++ b/chrome/browser/ui/signin_view_controller.h
+@@ -24,9 +24,11 @@
+ #include "chrome/browser/ui/webui/signin/signin_email_confirmation_dialog.h"
+ #endif
+ 
++#if 0
+ #if BUILDFLAG(IS_ANDROID)
+ #error This file should only be included on desktop.
+ #endif
++#endif
+ 
+ class Browser;
+ struct AccountInfo;

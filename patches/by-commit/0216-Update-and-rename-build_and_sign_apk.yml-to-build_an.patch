@@ -1,0 +1,25 @@
+From 59153589f8a92bd3f02f0fa58afb47b7525355e8 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Tue, 10 Aug 2021 04:05:12 +0300
+Subject: [PATCH 216/506] Update and rename build_and_sign_apk.yml to
+ build_and_sign_release_apk.yml
+
+---
+ .../{build_and_sign_apk.yml => build_and_sign_release_apk.yml}  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename .github/workflows/{build_and_sign_apk.yml => build_and_sign_release_apk.yml} (99%)
+
+diff --git a/.github/workflows/build_and_sign_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+similarity index 99%
+rename from .github/workflows/build_and_sign_apk.yml
+rename to .github/workflows/build_and_sign_release_apk.yml
+index 84dd2666..e5881f83 100644
+--- a/.github/workflows/build_and_sign_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -1,5 +1,5 @@
+ # Build APKs for Kiwi Browser Next
+-name: 'Kiwi: Build and sign apk'
++name: 'Kiwi: Build and sign release apk'
+ 
+ # Controls when the action will run. Triggers the workflow on push or pull request events
+ on:

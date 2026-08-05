@@ -1,0 +1,38 @@
+From d319e1c117d5e1e4a39c8ed24ba794486c14dcf4 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 26 Jun 2021 19:24:46 +0300
+Subject: [PATCH 019/506] Update build_apk.yml
+
+---
+ .github/workflows/build_apk.yml | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index ea3f5fb3..50c7af42 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -124,19 +124,22 @@ jobs:
+         run: rclone copy --fast-list --transfers=128 secondary_disk/out/android_${{ matrix.platform }}/args.gn cache:kiwibrowser-next-builds-${{ matrix.platform }}/
+ 
+       - name: Calling buildbot
++        if: false
+         run: curl ipinfo.io
+ 
+       - name: Downloading binary objects cache to $HOME/cache
+         run: rclone copy --fast-list --transfers=128 cache:kiwibrowser-next-builds-${{ matrix.platform }}/ $HOME/kiwibrowser-next-builds-${{ matrix.platform }}
+ 
+       - name: Listing files
+-        run: ls -la $HOME/kiwibrowser-next-builds-${{ matrix.platform }}
++        run: |
++          echo $HOME
++          ls -la $HOME/kiwibrowser-next-builds-${{ matrix.platform }}
+ 
+       - name: Uploading APK
+         uses: actions/upload-artifact@v1
+         with:
+           name: apk-${{ matrix.platform }}
+-          path: $HOME/kiwibrowser-next-builds-${{ matrix.platform }}/
++          path: ../kiwibrowser-next-builds-${{ matrix.platform }}/
+ 
+   sign_and_upload:
+     runs-on: ubuntu-latest

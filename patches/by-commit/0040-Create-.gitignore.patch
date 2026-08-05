@@ -1,0 +1,48 @@
+From a6581675339955032f7484629d066dff72bc6b90 Mon Sep 17 00:00:00 2001
+From: Eduard Ursu <eduardursu78@gmail.com>
+Date: Thu, 22 Jul 2021 12:49:58 +0200
+Subject: [PATCH 040/506] Create .gitignore
+
+---
+ .gitignore | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+ create mode 100644 .gitignore
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 00000000..ea5c2bbd
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,32 @@
++### Node ###
++# Logs
++logs
++*.log
++npm-debug.log*
++
++# node-waf configuration
++.lock-wscript
++
++# Compiled binary addons (https://nodejs.org/api/addons.html)
++build/Release
++
++# Dependency directories
++node_modules/
++jspm_packages/
++
++# Optional npm cache directory
++.npm
++
++# Optional REPL history
++.node_repl_history
++
++# Output of 'npm pack'
++*.tgz
++
++# environment variables file
++.env
++.env.test
++.env.production
++
++# Stores VSCode versions used for testing VSCode extensions
++.vscode-test

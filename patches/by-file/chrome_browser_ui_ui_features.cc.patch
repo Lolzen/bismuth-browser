@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/ui_features.cc b/chrome/browser/ui/ui_features.cc
+index 359620dc..9bc06e7e 100644
+--- a/chrome/browser/ui/ui_features.cc
++++ b/chrome/browser/ui/ui_features.cc
+@@ -47,7 +47,7 @@ const base::Feature kChromeWhatsNewInMainMenuNewBadge{
+     "ChromeWhatsNewInMainMenuNewBadge", base::FEATURE_DISABLED_BY_DEFAULT};
+ #endif
+ 
+-#if !defined(ANDROID)
++#if !defined(ANDROID) || true
+ // Enables "Access Code Cast" UI.
+ const base::Feature kAccessCodeCastUI{"AccessCodeCastUI",
+                                       base::FEATURE_ENABLED_BY_DEFAULT};

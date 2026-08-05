@@ -1,0 +1,15 @@
+From cde4ef9be0581eebcb0908c32c5274795c26cfe5 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 02:06:19 +0300
+Subject: [PATCH 046/506] Rename iconUpdateScript.sh to
+ toolbox/icon_update_script.sh
+
+---
+ iconUpdateScript.sh => toolbox/icon_update_script.sh | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename iconUpdateScript.sh => toolbox/icon_update_script.sh (100%)
+
+diff --git a/iconUpdateScript.sh b/toolbox/icon_update_script.sh
+similarity index 100%
+rename from iconUpdateScript.sh
+rename to toolbox/icon_update_script.sh

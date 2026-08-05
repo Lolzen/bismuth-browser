@@ -1,0 +1,14 @@
+diff --git a/base/android/sys_utils.h b/base/android/sys_utils.h
+index c5e057b6..47ba86eb 100644
+--- a/base/android/sys_utils.h
++++ b/base/android/sys_utils.h
+@@ -12,6 +12,9 @@ namespace android {
+ 
+ class BASE_EXPORT SysUtils {
+  public:
++  static long FirstInstallDateFromJni();
++  static std::string ReferrerStringFromJni();
++  static std::string NightModeSettingsFromJni();
+   // Returns true iff this is a low-end device.
+   static bool IsLowEndDeviceFromJni();
+   // Returns true if system has low available memory.

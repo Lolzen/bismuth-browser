@@ -1,0 +1,33 @@
+From 43f1647952501f9e980c9bb5dc1a4bfda3a7e64a Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 19:45:15 +0300
+Subject: [PATCH 129/506] Update and rename rebase.yml to
+ download_new_version_of_chromium.yml
+
+---
+ .../{rebase.yml => download_new_version_of_chromium.yml}      | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename .github/workflows/{rebase.yml => download_new_version_of_chromium.yml} (98%)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/download_new_version_of_chromium.yml
+similarity index 98%
+rename from .github/workflows/rebase.yml
+rename to .github/workflows/download_new_version_of_chromium.yml
+index d4a758c1..c327bcbd 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/download_new_version_of_chromium.yml
+@@ -1,4 +1,4 @@
+-name: Rebase on new Chromium version
++name: Download a new version of Chromium to chromium branch
+ 
+ on:
+   workflow_dispatch:
+@@ -79,7 +79,7 @@ jobs:
+         uses: peter-evans/create-pull-request@v3
+         with:
+           branch: chromium_${{ github.event.inputs.NEW_CHROMIUM_MAJOR }}.${{ github.event.inputs.NEW_CHROMIUM_MINOR }}.${{ github.event.inputs.NEW_CHROMIUM_BUILD }}.${{ github.event.inputs.NEW_CHROMIUM_PATCH }}
+-          base: master
++          base: chromium
+           delete-branch: true
+           signoff: true
+         

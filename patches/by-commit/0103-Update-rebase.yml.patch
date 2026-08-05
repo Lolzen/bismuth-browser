@@ -1,0 +1,29 @@
+From 61af344902fc3ff9d0542146901ccf71f6ff39f1 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 08:06:25 +0300
+Subject: [PATCH 103/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 1f831f02..19783631 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -22,6 +22,9 @@ jobs:
+         run: |
+           git config --global user.email "github@geometry.ee"
+           git config --global user.name "Repository manager"
++          
++      - name: Disabling Git pager (e.g. for git log)
++        run: git config --global core.pager 'cat'
+ 
+       - name: Loading settings from CHROMIUM_VERSION
+         run: |
+@@ -53,4 +56,4 @@ jobs:
+         run: cat chromium/chrome/browser/resources/extensions/extensions.html
+ 
+       - name: Displaying log
+-        run: cd chromium && git --no-pager log chrome/browser/resources/extensions/extensions.html
++        run: cd chromium && git log -- chrome/browser/resources/extensions/extensions.html

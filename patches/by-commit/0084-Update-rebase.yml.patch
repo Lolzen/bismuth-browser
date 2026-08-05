@@ -1,0 +1,29 @@
+From 33046783a2de39930ac56ae17e99fc228ad90645 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 06:16:58 +0300
+Subject: [PATCH 084/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index afa84319..c9cb3b49 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -26,13 +26,13 @@ jobs:
+         run: git clone --filter=tree:0 --no-checkout https://github.com/chromium/chromium.git chromium
+ 
+       - name: Limiting the list of files to checkout
+-        run: cd chromium && git sparse-checkout set chrome/android
++        run: cd chromium && git sparse-checkout set chrome/browser/resources/extensions
+ 
+       - name: Switching Chromium base branch
+         run: cd chromium && git read-tree -mu ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}
+ 
+       - name: Showing history for one file
+-        run: cd chromium && git log --no-pager log --decorate=short --pretty=oneline -n1 chrome/browser/resources/extensions/extensions.html
++        run: cd chromium && git --no-pager log --decorate=short --pretty=oneline -n1 chrome/browser/resources/extensions/extensions.html
+ 
+       - name: Displaying one file
+         run: cd chromium && cat chrome/browser/resources/extensions/extensions.html

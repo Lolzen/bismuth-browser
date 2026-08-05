@@ -1,0 +1,22 @@
+From cade229f25676a1146887aba73db6de04b3c9be7 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 26 Jun 2021 03:26:15 +0300
+Subject: [PATCH 015/506] Update args.gn
+
+---
+ .build/android_arm/args.gn | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.build/android_arm/args.gn b/.build/android_arm/args.gn
+index ba4de203..b4e62324 100644
+--- a/.build/android_arm/args.gn
++++ b/.build/android_arm/args.gn
+@@ -40,7 +40,7 @@ update_android_aar_prebuilts = true
+ 
+ enable_extensions = true
+ enable_pdf = false
+-enable_plugins = true
++enable_plugins = false
+ 
+ disable_android_lint = true
+ treat_warnings_as_errors = false

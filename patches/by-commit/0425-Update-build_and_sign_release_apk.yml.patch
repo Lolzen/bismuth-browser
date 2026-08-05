@@ -1,0 +1,33 @@
+From b33f4b92f8a1c87fd18a3851eaabb9052d64cae1 Mon Sep 17 00:00:00 2001
+From: Eduard Ursu <eduardursu78@gmail.com>
+Date: Fri, 20 Aug 2021 21:54:03 +0200
+Subject: [PATCH 425/506] Update build_and_sign_release_apk.yml
+
+Add input for announce on discord
+---
+ .github/workflows/build_and_sign_release_apk.yml | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index bd0c3f1e..8d6047bf 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -9,6 +9,10 @@ on:
+         description: 'Create a draft release in Google Play Store'     
+         required: true
+         default: 'no'
++      announceOnDiscord:
++        description: 'Announce new release on Discord channel'     
++        required: true
++        default: 'yes'
+ 
+ # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+ jobs:
+@@ -338,6 +342,7 @@ jobs:
+ 
+       - name: Send announcement on Discord
+         continue-on-error: true
++        if: contains(github.event.inputs.announceOnDiscord, 'yes')
+         run: |
+           curl -H 'Content-Type: application/json' -X POST -d '{"username": "Kiwi Builder (Next)", "content": "A new build of Kiwi Browser Next (preview version) is available. This version will replace your currently installed Kiwi Browser (com.kiwibrowser.browser) - https://github.com/kiwibrowser/src.next/releases/tag/${{ github.run_id }}"}' ${{ secrets.DISCORD_WEBHOOK }}
+       

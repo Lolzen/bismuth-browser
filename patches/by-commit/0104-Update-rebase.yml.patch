@@ -1,0 +1,28 @@
+From f59240b354c0610b2a9d1015697db4afc54676f2 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 08:13:24 +0300
+Subject: [PATCH 104/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 19783631..c310b8fd 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -50,10 +50,10 @@ jobs:
+         run: cat chromium/chrome/browser/resources/extensions/extensions.html
+ 
+       - name: Updating one file
+-        run: cp chrome/browser/resources/extensions/extensions.html chromium/chrome/browser/resources/extensions/extensions.html
++        run: diff -Naur chrome/browser/resources/extensions/extensions.html chromium/chrome/browser/resources/extensions/extensions.html > patch.txt
+ 
+       - name: Displaying one file
+-        run: cat chromium/chrome/browser/resources/extensions/extensions.html
++        run: cat patch.txt
+ 
+-      - name: Displaying log
+-        run: cd chromium && git log -- chrome/browser/resources/extensions/extensions.html
++      - name: Switching Chromium base branch
++        run: cd chromium && git read-tree -mu ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.21

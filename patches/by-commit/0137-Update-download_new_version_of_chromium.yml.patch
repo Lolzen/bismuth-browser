@@ -1,0 +1,33 @@
+From 96e124d8828b61f145b25fb9dee4ab44a6870a36 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 22:11:40 +0300
+Subject: [PATCH 137/506] Update download_new_version_of_chromium.yml
+
+---
+ .github/workflows/download_new_version_of_chromium.yml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/.github/workflows/download_new_version_of_chromium.yml b/.github/workflows/download_new_version_of_chromium.yml
+index 4d56e479..3b9f4b10 100644
+--- a/.github/workflows/download_new_version_of_chromium.yml
++++ b/.github/workflows/download_new_version_of_chromium.yml
+@@ -50,6 +50,9 @@ jobs:
+             env | grep -F CHROMIUM_ >> $GITHUB_ENV
+           fi; 
+ 
++      - name: Preparing local Chromium branch
++        run: git switch chromium
++
+       - name: Listing source files
+         run: find . -type f | sed 's#\./##g' | grep -vFi README | grep -vFi LICENSE | grep -vFi '.gitignore' > /tmp/source_files.txt
+         
+@@ -65,9 +68,6 @@ jobs:
+       - name: Switching Chromium to new version
+         run: cd /tmp/chromium_new && git read-tree -mu ${{ github.event.inputs.NEW_CHROMIUM_MAJOR }}.${{ github.event.inputs.NEW_CHROMIUM_MINOR }}.${{ github.event.inputs.NEW_CHROMIUM_BUILD }}.${{ github.event.inputs.NEW_CHROMIUM_PATCH }}
+ 
+-      - name: Preparing local Chromium branch
+-        run: git switch chromium
+-
+       - name: Copying files to local Chromium branch
+         run: rsync -avz --progress --exclude=".git" /tmp/chromium_new/* .
+ 

@@ -1,0 +1,28 @@
+From 1348eec18cb8b3a219fcdc08275c52f216ccbca2 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 20 Jan 2025 14:05:34 +0200
+Subject: [PATCH 503/506] For debugging purposes, list all files in $HOME
+ folder while deploying
+
+---
+ .github/workflows/build_and_sign_release_apk.yml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index 8182322d..809c2d2b 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -181,11 +181,11 @@ jobs:
+         with:
+           name: apk-x64
+ 
+-      - name: Listing files under apk-arm
++      - name: Listing files under $HOME
+         run: |
+           pwd
+           echo $HOME
+-          ls -la apk-arm
++          ls -laR $HOME
+ 
+       - name: Prepare release notes
+         run: |

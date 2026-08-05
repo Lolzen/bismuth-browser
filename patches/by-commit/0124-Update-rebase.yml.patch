@@ -1,0 +1,22 @@
+From a8af0482a99176524ccd611d3a74f91eb6538807 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 08:10:11 +0300
+Subject: [PATCH 124/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 88c68d61..3f618232 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -48,7 +48,7 @@ jobs:
+           env | grep -F CHROMIUM_ >> $GITHUB_ENV
+ 
+       - name: Listing source files
+-        run: find . -type f | sed 's#\./##g' | grep -vFi README | grep -vFi LICENSE > /tmp/source_files.txt
++        run: find . -type f | sed 's#\./##g' | grep -vFi README | grep -vFi LICENSE | grep -vFi '.gitignore' > /tmp/source_files.txt
+         
+       # https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
+       # git clone --filter=tree:0 <url> creates a treeless clone.

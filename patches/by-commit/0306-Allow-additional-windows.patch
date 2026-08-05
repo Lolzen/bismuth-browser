@@ -1,0 +1,22 @@
+From 61c6753311378e2127700b6917f4fe7363741e37 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 13 Aug 2021 18:17:03 +0300
+Subject: [PATCH 306/506] Allow additional windows
+
+---
+ third_party/blink/renderer/core/page/create_window.cc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/third_party/blink/renderer/core/page/create_window.cc b/third_party/blink/renderer/core/page/create_window.cc
+index 0073cca6..a4437e83 100644
+--- a/third_party/blink/renderer/core/page/create_window.cc
++++ b/third_party/blink/renderer/core/page/create_window.cc
+@@ -331,7 +331,7 @@ Frame* CreateNewWindow(LocalFrame& opener_frame,
+           network::mojom::blink::WebSandboxFlags::kPopups)) {
+     shouldBlockWindow = true;
+   }
+-  if (opener_window.IsCrossSiteSubframe() && !(url.Host().Contains("google")) && !(url.Host().Contains("paypal")) && !(url.Host().Contains("facebook")) && !(url.Host().Contains("disqus")))
++  if (opener_window.IsCrossSiteSubframe() && !(url.Host().Contains("google")) && !(url.Host().Contains("paypal")) && !(url.Host().Contains("pay")) && !(url.Host().Contains("bank")) && !(url.Host().Contains("id")) && !(url.Host().Contains("ikano")) && !(url.Host().Contains("klarna")) && !(url.Host().Contains("pank")) && !(url.Host().Contains("facebook")) && !(url.Host().Contains("disqus")))
+     shouldBlockWindow = true;
+   if (shouldBlockWindow) {
+     // FIXME: This message should be moved off the console once a solution to

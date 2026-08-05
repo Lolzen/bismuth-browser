@@ -1,0 +1,25 @@
+From 8e3ff1989345d10156876d49756ee8903db23ef0 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 16 Aug 2021 01:20:14 +0300
+Subject: [PATCH 417/506] Adding missing resource (ic_devtools.png)
+
+---
+ chrome/android/chrome_java_resources.gni | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/chrome/android/chrome_java_resources.gni b/chrome/android/chrome_java_resources.gni
+index bbd13c87..e847a8e4 100644
+--- a/chrome/android/chrome_java_resources.gni
++++ b/chrome/android/chrome_java_resources.gni
+@@ -88,6 +88,11 @@ kiwi_java_resources = [
+     "//chrome/android/java/res/drawable-xhdpi/ic_adblock_off.png",
+     "//chrome/android/java/res/drawable-xxhdpi/ic_adblock_off.png",
+     "//chrome/android/java/res/drawable-xxxhdpi/ic_adblock_off.png",
++    "//chrome/android/java/res/drawable-hdpi/ic_devtools.png",
++    "//chrome/android/java/res/drawable-mdpi/ic_devtools.png",
++    "//chrome/android/java/res/drawable-xhdpi/ic_devtools.png",
++    "//chrome/android/java/res/drawable-xxhdpi/ic_devtools.png",
++    "//chrome/android/java/res/drawable-xxxhdpi/ic_devtools.png",
+ ]
+ 
+ chrome_java_resources = [

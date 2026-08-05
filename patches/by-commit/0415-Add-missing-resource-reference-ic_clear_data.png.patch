@@ -1,0 +1,25 @@
+From 78f10f8eebdd3fb32fd2a712a5f9bb610ddb6195 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 15 Aug 2021 22:25:38 +0300
+Subject: [PATCH 415/506] Add missing resource reference (ic_clear_data.png)
+
+---
+ chrome/android/chrome_java_resources.gni | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/chrome/android/chrome_java_resources.gni b/chrome/android/chrome_java_resources.gni
+index 8153b3b1..bbd13c87 100644
+--- a/chrome/android/chrome_java_resources.gni
++++ b/chrome/android/chrome_java_resources.gni
+@@ -8,6 +8,11 @@
+ # git cl format
+ 
+ kiwi_java_resources = [
++    "//chrome/android/java/res/drawable-hdpi/ic_clear_data.png",
++    "//chrome/android/java/res/drawable-mdpi/ic_clear_data.png",
++    "//chrome/android/java/res/drawable-xhdpi/ic_clear_data.png",
++    "//chrome/android/java/res/drawable-xxhdpi/ic_clear_data.png",
++    "//chrome/android/java/res/drawable-xxxhdpi/ic_clear_data.png",
+     "//chrome/android/java/res/drawable-hdpi/ic_share.png",
+     "//chrome/android/java/res/drawable-mdpi/ic_share.png",
+     "//chrome/android/java/res/drawable-xhdpi/ic_share.png",

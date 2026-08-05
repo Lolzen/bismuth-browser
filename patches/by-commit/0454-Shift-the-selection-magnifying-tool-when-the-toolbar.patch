@@ -1,0 +1,23 @@
+From 6e8bd57149729b9d43b966ed085a9493d6182888 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:26:52 +0000
+Subject: [PATCH 454/506] Shift the selection / magnifying tool when the
+ toolbar is set to be displayed at the bottom
+
+---
+ .../content/browser/selection/SelectionPopupControllerImpl.java | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java b/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java
+index 0784c02c..6e58366d 100644
+--- a/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java
++++ b/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java
+@@ -1399,6 +1399,8 @@ public class SelectionPopupControllerImpl extends ActionModeCallbackHelper
+             // The selection coordinates are relative to the content viewport, but we need
+             // coordinates relative to the containing View, so adding getContentOffsetYPix().
+             y = y * deviceScale + mWebContents.getRenderCoordinates().getContentOffsetYPix();
++            if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false))
++              y = y - (int) (60 * deviceScale);
+             mHandleObserver.handleDragStartedOrMoved(x, y);
+         }
+     }

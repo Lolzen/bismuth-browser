@@ -1,0 +1,31 @@
+From b5057a0f9e059a51433cf41b86564e8df894f20d Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 05:48:32 +0300
+Subject: [PATCH 081/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 3312c09d..5b6b4c79 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -19,12 +19,15 @@ jobs:
+           source CHROMIUM_VERSION; export $(cut -d= -f1 CHROMIUM_VERSION | grep -vF '#')
+           env | grep -F CHROMIUM_ >> $GITHUB_ENV
+ 
++      # https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
++      # git clone --filter=tree:0 <url> creates a treeless clone.
++      # These clones download all reachable commits while fetching trees and blobs on-demand. These clones are best for build environments where the repository will be deleted after a single build, but you still need access to commit history
+       - name: Checking out Chromium
+         run: |
+-          git clone --filter=blob:none --no-checkout https://github.com/chromium/chromium.git chromium
++          git clone --filter=tree:0 --no-checkout https://github.com/chromium/chromium.git chromium
+           cd chromium
+           git checkout ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}
+           git sparse-checkout set chrome/android
+-          
++
+       - name: Listing files
+         run: ls -laR

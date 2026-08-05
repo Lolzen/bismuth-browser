@@ -1,0 +1,34 @@
+From 77467f445eee0851345acd125c523f3381d9a2bb Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:36:09 +0000
+Subject: [PATCH 464/506] Only display light and dark in theme settings
+
+---
+ .../browser/night_mode/settings/ThemeSettingsFragment.java     | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
+index 6b9d60b1..fc2cd20c 100644
+--- a/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
++++ b/chrome/browser/ui/android/night_mode/java/src/org/chromium/chrome/browser/night_mode/settings/ThemeSettingsFragment.java
+@@ -43,10 +43,12 @@ public class ThemeSettingsFragment extends PreferenceFragmentCompat {
+                 (RadioButtonGroupThemePreference) findPreference(PREF_UI_THEME_PREF);
+         mWebContentsDarkModeEnabled = WebContentsDarkModeController.isGlobalUserSettingsEnabled(
+                 Profile.getLastUsedRegularProfile());
++        mWebContentsDarkModeEnabled = false;
+         radioButtonGroupThemePreference.initialize(
+                 NightModeUtils.getThemeSetting(), mWebContentsDarkModeEnabled);
+ 
+         radioButtonGroupThemePreference.setOnPreferenceChangeListener((preference, newValue) -> {
++            if (false)
+             if (ChromeFeatureList.isEnabled(
+                         ChromeFeatureList.DARKEN_WEBSITES_CHECKBOX_IN_THEMES_SETTING)) {
+                 if (radioButtonGroupThemePreference.isDarkenWebsitesEnabled()
+@@ -72,6 +74,7 @@ public class ThemeSettingsFragment extends PreferenceFragmentCompat {
+                     getArguments().getInt(KEY_THEME_SETTINGS_ENTRY));
+         }
+ 
++        if (false)
+         if (ChromeFeatureList.isEnabled(
+                     ChromeFeatureList.DARKEN_WEBSITES_CHECKBOX_IN_THEMES_SETTING)) {
+             WebContentsDarkModeMessageController.notifyEventSettingsOpened(

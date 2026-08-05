@@ -1,0 +1,25 @@
+From 2424cf51702552bb4562ce36fe3cab6010080c0f Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 22:26:24 +0300
+Subject: [PATCH 139/506] Update download_new_version_of_chromium.yml
+
+---
+ .github/workflows/download_new_version_of_chromium.yml | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/.github/workflows/download_new_version_of_chromium.yml b/.github/workflows/download_new_version_of_chromium.yml
+index b5e578ee..b60a449d 100644
+--- a/.github/workflows/download_new_version_of_chromium.yml
++++ b/.github/workflows/download_new_version_of_chromium.yml
+@@ -89,8 +89,9 @@ jobs:
+           base: chromium
+           delete-branch: true
+           signoff: true
+-          title: "[Chromium] Update Chromium VERSION from ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }} to ${{ github.event.inputs.NEW_CHROMIUM_MAJOR }}.${{ github.event.inputs.NEW_CHROMIUM_MINOR }}.${{ github.event.inputs.NEW_CHROMIUM_BUILD }}.${{ github.event.inputs.NEW_CHROMIUM_PATCH }}"
+-        
++          title: "Update Chromium version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }} to ${{ github.event.inputs.NEW_CHROMIUM_MAJOR }}.${{ github.event.inputs.NEW_CHROMIUM_MINOR }}.${{ github.event.inputs.NEW_CHROMIUM_BUILD }}.${{ github.event.inputs.NEW_CHROMIUM_PATCH }}"
++          commit-message: "[Chromium] Update version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }} to ${{ github.event.inputs.NEW_CHROMIUM_MAJOR }}.${{ github.event.inputs.NEW_CHROMIUM_MINOR }}.${{ github.event.inputs.NEW_CHROMIUM_BUILD }}.${{ github.event.inputs.NEW_CHROMIUM_PATCH }}"
++
+       - name: Getting pull request URL
+         run: |
+           echo "Pull request number - ${{ steps.pullrequest.outputs.pull-request-number }}"

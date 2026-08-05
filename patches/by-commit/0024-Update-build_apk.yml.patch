@@ -1,0 +1,34 @@
+From 92245b01137cdeaeb8171391c3d54f181fdf7ac4 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 26 Jun 2021 20:01:07 +0300
+Subject: [PATCH 024/506] Update build_apk.yml
+
+---
+ .github/workflows/build_apk.yml | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index d2f756db..a69325c7 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -1,19 +1,9 @@
+ # Build APKs for Kiwi Browser Next
+-name: automatic build of apk
++name: build and sign apk
+ 
+ # Controls when the action will run. Triggers the workflow on push or pull request events
+ on:
+   workflow_dispatch:
+-  push:
+-    paths-ignore:
+-      - '*.md'
+-      - '*.yml'
+-    branches: [ master ]
+-  pull_request:
+-    paths-ignore:
+-      - '*.md'
+-      - '*.yml'
+-    branches: [ master ]
+ 
+ # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+ jobs:

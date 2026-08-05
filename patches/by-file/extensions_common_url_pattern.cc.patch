@@ -1,0 +1,20 @@
+diff --git a/extensions/common/url_pattern.cc b/extensions/common/url_pattern.cc
+index 40333911..de767977 100644
+--- a/extensions/common/url_pattern.cc
++++ b/extensions/common/url_pattern.cc
+@@ -34,6 +34,7 @@ const char* const kValidSchemes[] = {
+     url::kFileSystemScheme,    url::kWsScheme,
+     url::kWssScheme,           url::kDataScheme,
+     url::kUuidInPackageScheme,
++    content::kChromeSearchScheme
+ };
+ 
+ const int kValidSchemeMasks[] = {
+@@ -48,6 +49,7 @@ const int kValidSchemeMasks[] = {
+     URLPattern::SCHEME_WSS,
+     URLPattern::SCHEME_DATA,
+     URLPattern::SCHEME_UUID_IN_PACKAGE,
++    URLPattern::SCHEME_CHROMESEARCH
+ };
+ 
+ static_assert(std::size(kValidSchemes) == std::size(kValidSchemeMasks),

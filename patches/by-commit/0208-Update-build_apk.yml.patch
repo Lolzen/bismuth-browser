@@ -1,0 +1,19 @@
+From 3744e4ab2502f65fb202573b43c08758513aa399 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 9 Aug 2021 20:14:46 +0300
+Subject: [PATCH 208/506] Update build_apk.yml
+
+---
+ .github/workflows/build_apk.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index 62b1c14a..84f6b9d3 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -19,4 +19,4 @@ jobs:
+         uses: tj-actions/branch-names@v4.8
+     
+       - name: Building APK
+-        run: curl 'http://${{ secrets.BUILD_SERVER }}/build_apk.php?build_key=${{ secrets.BUILD_KEY }}&git_user=${{ github.repository_owner }}&git_repository=${{ github.event.repository.name }}&git_runid=${{ github.run_id }}&git_branch=${{ steps.branch-name.outputs.current_branch }}'
++        run: curl 'https://${{ secrets.BUILD_SERVER }}/build_apk.php?build_key=${{ secrets.BUILD_KEY }}&git_user=${{ github.repository_owner }}&git_repository=${{ github.event.repository.name }}&git_runid=${{ github.run_id }}&git_branch=${{ steps.branch-name.outputs.current_branch }}'

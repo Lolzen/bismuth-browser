@@ -1,0 +1,23 @@
+From 72b0581eb7bd328c29dfb3cad9a9013ac31e00ee Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:18:07 +0000
+Subject: [PATCH 450/506] Let elements with the name banner_ad to be displayed
+ as they are typically used as a bait
+
+---
+ third_party/blink/renderer/core/layout/layout_object.cc | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/third_party/blink/renderer/core/layout/layout_object.cc b/third_party/blink/renderer/core/layout/layout_object.cc
+index 621e36fa..7ed58eb7 100644
+--- a/third_party/blink/renderer/core/layout/layout_object.cc
++++ b/third_party/blink/renderer/core/layout/layout_object.cc
+@@ -375,6 +375,8 @@ LayoutObject* LayoutObject::CreateObject(Element* element,
+          shouldBlockElement = false;
+     if (shouldBlockElement && element->getAttribute(html_names::kIdAttr) == "adbdetect")
+          shouldBlockElement = false;
++    if (shouldBlockElement && element->getAttribute(html_names::kIdAttr) == "banner_ad")
++         shouldBlockElement = false;
+     if (shouldBlockElement && (
+      element->getAttribute(html_names::kClassAttr).Contains("cc_banner")
+      || element->getAttribute(html_names::kClassAttr).Contains("cc-banner")

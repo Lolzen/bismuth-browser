@@ -1,0 +1,22 @@
+From bba0869c4937a1b6ba61b6abfa0f837e64ea2d10 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 13 Mar 2023 17:39:25 +0200
+Subject: [PATCH 484/506] Upgrade deployment workflows to python3
+
+---
+ .github/workflows/build_and_sign_release_apk.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index 7eeb1877..e84a40f8 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -48,7 +48,7 @@ jobs:
+         run: curl https://rclone.org/install.sh | sudo bash
+ 
+       - name: Installing Python and OpenJDK
+-        run: sudo apt-get install -y python openjdk-8-jdk-headless libncurses5 ccache
++        run: sudo apt-get install -y 2to3 python2-minimal python2 dh-python python-is-python3 openjdk-8-jdk-headless libncurses5 ccache
+ 
+       - name: Reclaiming disk space on / by disabling swap partition
+         run: |

@@ -1,0 +1,22 @@
+From 21b39277b908e45a61431e9469f59ce75d799ba0 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 05:39:26 +0300
+Subject: [PATCH 253/506] Fix incorrect Super-Linter slim image
+
+---
+ .github/workflows/linter.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/linter.yml b/.github/workflows/linter.yml
+index 3a98c2da..e1abb4aa 100644
+--- a/.github/workflows/linter.yml
++++ b/.github/workflows/linter.yml
+@@ -36,7 +36,7 @@ jobs:
+       # Run Linter against code base #
+       ################################
+       - name: Running Super-Linter
+-        uses: github/super-linter:slim-v4
++        uses: docker://ghcr.io/github/super-linter:slim-v4
+         env:
+           VALIDATE_ALL_CODEBASE: false
+           DEFAULT_BRANCH: kiwi

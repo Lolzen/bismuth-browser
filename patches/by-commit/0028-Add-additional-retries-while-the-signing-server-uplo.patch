@@ -1,0 +1,29 @@
+From 9cb7a644d3c71399fac86f9674205b7f7b6612d9 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 1 Jul 2021 07:17:25 +0300
+Subject: [PATCH 028/506] Add additional retries while the signing server
+ uploads the APK
+
+---
+ .github/workflows/build_apk.yml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index 46a41313..45be5afc 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -327,10 +327,10 @@ jobs:
+       - name: Downloading artifacts from storage
+         if: ${{ github.repository_owner == 'kiwibrowser' }}
+         run: |
+-          rclone copy --fast-list --transfers=128 --retries=10 cache:kiwibrowser-builds/${{ github.run_id }}/arm/ ./apk-arm 
+-          rclone copy --fast-list --transfers=128 --retries=10 cache:kiwibrowser-builds/${{ github.run_id }}/arm64/ ./apk-arm64
+-          rclone copy --fast-list --transfers=128 --retries=10 cache:kiwibrowser-builds/${{ github.run_id }}/x86/ ./apk-x86
+-          rclone copy --fast-list --transfers=128 --retries=10 cache:kiwibrowser-builds/${{ github.run_id }}/x64/ ./apk-x64
++          rclone copy --fast-list --transfers=128 --retries=50 cache:kiwibrowser-builds/${{ github.run_id }}/arm/ ./apk-arm 
++          rclone copy --fast-list --transfers=128 --retries=50 cache:kiwibrowser-builds/${{ github.run_id }}/arm64/ ./apk-arm64
++          rclone copy --fast-list --transfers=128 --retries=50 cache:kiwibrowser-builds/${{ github.run_id }}/x86/ ./apk-x86
++          rclone copy --fast-list --transfers=128 --retries=50 cache:kiwibrowser-builds/${{ github.run_id }}/x64/ ./apk-x64
+ 
+       - name: Uploading release asset (arm-signed)
+         if: ${{ github.repository_owner == 'kiwibrowser' }}

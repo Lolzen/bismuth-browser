@@ -1,0 +1,19 @@
+From d0b3feb2a7547a472b5954d66566616709595964 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 14 Aug 2021 02:06:53 +0300
+Subject: [PATCH 387/506] Update rebase_kiwi_on_top_of_kiwi.yml
+
+---
+ .github/workflows/rebase_kiwi_on_top_of_kiwi.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase_kiwi_on_top_of_kiwi.yml b/.github/workflows/rebase_kiwi_on_top_of_kiwi.yml
+index 3f115525..eb6ec059 100644
+--- a/.github/workflows/rebase_kiwi_on_top_of_kiwi.yml
++++ b/.github/workflows/rebase_kiwi_on_top_of_kiwi.yml
+@@ -1,4 +1,4 @@
+-name: 'Kiwi: Rebase on top of kiwibrowser:kiwi branch'
++name: 'Forked kiwi: Rebase on top of kiwibrowser:kiwi branch'
+ 
+ on:
+   workflow_dispatch:

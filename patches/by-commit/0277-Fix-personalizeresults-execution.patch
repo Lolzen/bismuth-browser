@@ -1,0 +1,22 @@
+From 053cf636bfb66a9248adf7267f0020e2397dfa78 Mon Sep 17 00:00:00 2001
+From: Delphox <smugleaf@live.com>
+Date: Wed, 11 Aug 2021 10:16:30 -0300
+Subject: [PATCH 277/506] Fix personalizeresults execution
+
+---
+ .../src/org/chromium/chrome/browser/app/ChromeActivity.java     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
+index ca8023c2..94250bd4 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
+@@ -867,7 +867,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+             }
+ 
+             @Override
+-            public void onPageLoadStarted(Tab tab, GURL url){
++            public void onUrlUpdated(Tab tab){
+               FixDevToolsWindow.Execute(tab);
+               PersonalizeResults.Execute(tab);
+             }

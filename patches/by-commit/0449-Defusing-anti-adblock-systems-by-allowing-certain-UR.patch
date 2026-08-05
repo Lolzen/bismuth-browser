@@ -1,0 +1,86 @@
+From 982ce8f8801cf49deba2e6c2e5532dd03ec8f60d Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:17:48 +0000
+Subject: [PATCH 449/506] Defusing anti-adblock systems by allowing certain
+ URLs that are used as a typical anti-adblock bait
+
+---
+ .../core/loader/base_fetch_context.cc         | 37 ++++++++++++++++++-
+ 1 file changed, 35 insertions(+), 2 deletions(-)
+
+diff --git a/third_party/blink/renderer/core/loader/base_fetch_context.cc b/third_party/blink/renderer/core/loader/base_fetch_context.cc
+index 9cd5bbe2..5afb193f 100644
+--- a/third_party/blink/renderer/core/loader/base_fetch_context.cc
++++ b/third_party/blink/renderer/core/loader/base_fetch_context.cc
+@@ -574,6 +574,10 @@ BaseFetchContext::CanRequestInternal(
+   if (url.GetString().Contains("serve.popads.net/c") || url.GetPath().Contains("watch.xml") || url.Query().Contains("&vastref=") || (url.Host().Contains("flashx") && url.GetPath().length() == 45 && url.GetPath().Contains(".js")))
+       return ResourceRequestBlockedReason::kInspector;
+ 
++  if (!(url.IsNull()) && !(url.Host().IsNull()) && !(url.GetPath()).IsNull() && !(url.GetString().IsNull()))
++  if (url.GetPath().Contains("ds2/js/1.min.js")) // anti-adblock
++      return ResourceRequestBlockedReason::kInspector;
++
+   if (!(url.IsNull()) && !(url.Host().IsNull()))
+   if (url.Host().Contains("dev-nano.com"))
+       return ResourceRequestBlockedReason::kInspector;
+@@ -586,6 +590,10 @@ BaseFetchContext::CanRequestInternal(
+     {
+        return absl::nullopt;
+     }
++    if (url.GetPath().Contains(".ico"))
++    {
++       return absl::nullopt;
++    }
+     if (url.GetPath().Contains("adblock.js"))
+     {
+        return absl::nullopt;
+@@ -606,7 +614,7 @@ BaseFetchContext::CanRequestInternal(
+      return absl::nullopt;
+   }
+ 
+-  if (!(url.IsNull()) && !(url.Host().IsNull()))
++  if (!(url.IsNull()) && !(url.Host().IsNull()) && !(url.GetPath()).IsNull())
+   if (url.Host() == "zoover.adnetasia.com"
+ /*
+    || url.Host() == "zoover.adtrackers.net"
+@@ -648,7 +656,7 @@ BaseFetchContext::CanRequestInternal(
+      return absl::nullopt;
+   }
+ 
+-  if (url.Host().Contains("www.google-analytics.com")) {
++  if (url.Host().Contains(".google-analytics.com")) {
+      return absl::nullopt;
+   }
+   }
+@@ -662,6 +670,31 @@ BaseFetchContext::CanRequestInternal(
+     }
+   }
+ 
++  // Anti-Anti-Adblock
++  if (type == ResourceType::kImage)
++  {
++    if (!(url.IsNull()) && !(url.Host().IsNull())) {
++    if (url.Host().Contains("adn.ebay.com")
++     || url.Host().Contains("ad.mail.ru")
++     || url.Host().Contains("juicyads.com")
++     || url.Host().Contains("ad.foxnetworks.com")
++     || url.Host().Contains("partnerads.ysm.yahoo.com")
++     || url.Host().Contains("a.livesportmedia.eu")
++     || url.Host().Contains("agoda.net")
++     || url.Host().Contains("advertising.aol.com")
++     || url.Host().Contains("cas.clickability.com")
++     || url.Host().Contains("promote.pair.com")
++     || url.Host().Contains("ads.yahoo.com")
++     || url.Host().Contains("ads.zynga.com")
++     || url.Host().Contains("adsatt.abcnews.starwave.com")
++     || url.Host().Contains("adsatt.espn.starwave.com")
++     || url.Host().Contains("as.inbox.com")
++     || url.Host().Contains("partnerads.ysm.yahoo.com")
++     )
++     return absl::nullopt;
++    }
++  }
++
+   if (!(url.IsNull()) && !(Url().Host().IsNull()) && (
+          Url().Host().Contains("google.")
+       || Url().Host().Contains("kiwibrowser.org")

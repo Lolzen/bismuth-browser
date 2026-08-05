@@ -1,0 +1,22 @@
+From 63138a1bcd9cd784e7dbe3c0be827288d4da26b2 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Tue, 22 Jun 2021 04:23:34 +0300
+Subject: [PATCH 014/506] Update args.gn
+
+---
+ .build/android_arm/args.gn | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.build/android_arm/args.gn b/.build/android_arm/args.gn
+index f4100143..ba4de203 100644
+--- a/.build/android_arm/args.gn
++++ b/.build/android_arm/args.gn
+@@ -25,7 +25,7 @@ enable_iterator_debugging = false
+ google_api_key = "KIWIBROWSER"
+ google_default_client_id = "42.apps.kiwibrowser.com"
+ google_default_client_secret = "KIWIBROWSER_NOT_SO_SECRET"
+-use_official_google_api_keys = true
++use_official_google_api_keys = false
+ 
+ ffmpeg_branding = "Chrome"
+ proprietary_codecs = true

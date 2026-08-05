@@ -1,0 +1,22 @@
+From b1bb6c27ca77a4fa6fc165e37e7b7645b3bb42f0 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:30:10 +0000
+Subject: [PATCH 457/506] Let the night mode decide which color scheme to apply
+
+---
+ third_party/blink/renderer/core/css/style_engine.cc | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/third_party/blink/renderer/core/css/style_engine.cc b/third_party/blink/renderer/core/css/style_engine.cc
+index 63fdaf92..8300a187 100644
+--- a/third_party/blink/renderer/core/css/style_engine.cc
++++ b/third_party/blink/renderer/core/css/style_engine.cc
+@@ -3190,8 +3190,6 @@ void StyleEngine::UpdateColorSchemeBackground(bool color_scheme_changed) {
+     // https://drafts.csswg.org/css-color-adjust/#color-scheme-effect
+     mojom::blink::ColorScheme root_color_scheme =
+         mojom::blink::ColorScheme::kLight;
+-    auto* settings = GetDocument().GetSettings();
+-    bool force_dark_enabled = settings && settings->GetForceDarkModeEnabled();
+     if (auto* root_element = GetDocument().documentElement()) {
+       if (const ComputedStyle* style = root_element->GetComputedStyle())
+         root_color_scheme = style->UsedColorScheme();

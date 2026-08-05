@@ -1,0 +1,22 @@
+From 4f4fe91e2ebddc9d253bf8a725e1af73d997d123 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 14 Aug 2021 03:44:08 +0300
+Subject: [PATCH 398/506] Update rebase_kiwi_on_top_of_chromium.yml
+
+---
+ .github/workflows/rebase_kiwi_on_top_of_chromium.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase_kiwi_on_top_of_chromium.yml b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+index 1a5418eb..588cc933 100644
+--- a/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
++++ b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+@@ -40,7 +40,7 @@ jobs:
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           PULL_REQUEST_BRANCH: "kiwi"
+-          PULL_REQUEST_FROM_BRANCH: "upstream/chromium"
++          PULL_REQUEST_FROM_BRANCH: "chromium"
+           PULL_REQUEST_DRAFT: true
+           PULL_REQUEST_TITLE: "[Rebase] Rebase Kiwi to Chromium version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}"
+           PULL_REQUEST_BODY: |

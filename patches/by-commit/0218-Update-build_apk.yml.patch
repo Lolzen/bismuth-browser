@@ -1,0 +1,20 @@
+From 5a4b4c48b8ab73059927bae2c32dd86827a07911 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Tue, 10 Aug 2021 04:19:39 +0300
+Subject: [PATCH 218/506] Update build_apk.yml
+
+---
+ .github/workflows/build_apk.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index ed7ecb64..2ffe0f39 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -44,5 +44,5 @@ jobs:
+         with:
+           upload_url: ${{ steps.create_release.outputs.upload_url }}
+           asset_path: ./out.apk
+-          asset_name: ${{ github.repository_owner }}.${{ github.event.repository.name }}.${{ steps.branch-name.outputs.current_branch }}.${{ github.run_id }}-unofficial-${{ github.repository_owner }}-arm64.apk
++          asset_name: ${{ github.repository_owner }}.${{ github.event.repository.name }}.${{ steps.branch-name.outputs.current_branch }}.${{ github.run_id }}-unofficial-arm64.apk
+           asset_content_type: application/vnd.android.package-archive

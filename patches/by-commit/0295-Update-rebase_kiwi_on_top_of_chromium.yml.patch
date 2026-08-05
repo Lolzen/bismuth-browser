@@ -1,0 +1,23 @@
+From f236ab8547970a22fed5bb685fec2e4c8f0ab422 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 13 Aug 2021 17:07:09 +0300
+Subject: [PATCH 295/506] Update rebase_kiwi_on_top_of_chromium.yml
+
+---
+ .github/workflows/rebase_kiwi_on_top_of_chromium.yml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/.github/workflows/rebase_kiwi_on_top_of_chromium.yml b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+index 9337f49f..834be19c 100644
+--- a/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
++++ b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+@@ -25,6 +25,9 @@ jobs:
+         run: git fetch upstream
+ 
+       - name: Switching to Chromium
++        run: git switch chromium
++
++      - name Rebasing on top of kiwibrowser Chromium
+         run: git rebase upstream/chromium --committer-date-is-author-date
+ 
+       - name: Pushing Chromium branch

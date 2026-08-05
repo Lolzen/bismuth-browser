@@ -1,0 +1,26 @@
+From ba5e49d38e277c20ca8722c084f839594c8f089b Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 04:22:22 +0300
+Subject: [PATCH 243/506] Trigger the build APK workflow on pull request
+
+---
+ .github/workflows/build_apk.yml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index 7b5c9261..a8bde50a 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -1,8 +1,11 @@
+ # Build APKs for Kiwi Browser Next
+ name: 'Any branch: Build apk'
+ 
+-# Controls when the action will run. Triggers the workflow on push or pull request events
++# Controls when the action will run. Triggers the workflow on pull request events or manual trigger
+ on:
++  pull_request:
++    branches:
++      - kiwi
+   workflow_dispatch:
+ 
+ concurrency: build_test_apk

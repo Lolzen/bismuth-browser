@@ -1,0 +1,24 @@
+From 30cc45e5690a5a2d3fed67827b59f7000ede9cad Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Tue, 14 Dec 2021 00:54:24 +0000
+Subject: [PATCH 474/506] The bottom Android navigation bar should follow
+ colors when switching context in the tab switcher (from normal profile to
+ incognito, and vice-versa)
+
+---
+ .../browser/tabbed_mode/TabbedNavigationBarColorController.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
+index cbc17929..4e1c27ce 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedNavigationBarColorController.java
+@@ -186,7 +186,7 @@ class TabbedNavigationBarColorController implements VrModeObserver {
+     private void updateNavigationBarColor() {
+         boolean forceDarkNavigation;
+         if (DeviceClassManager.enableAccessibilityLayout(mRootView.getContext())
+-                || TabUiFeatureUtilities.isGridTabSwitcherEnabled(mRootView.getContext())) {
++                || TabUiFeatureUtilities.isGridTabSwitcherEnabled(mRootView.getContext()) || true) {
+             forceDarkNavigation = mTabModelSelector.isIncognitoSelected();
+         } else {
+             boolean overviewVisible = mLayoutManager != null

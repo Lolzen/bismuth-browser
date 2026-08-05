@@ -1,0 +1,22 @@
+From d8a2a63b6c3dd1a7147f2006fdc216c8979798f9 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 8 Aug 2021 01:54:35 +0300
+Subject: [PATCH 187/506] Change default user-agent to Safari on Facebook
+
+---
+ net/url_request/url_request_http_job.cc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/net/url_request/url_request_http_job.cc b/net/url_request/url_request_http_job.cc
+index b8c4f53b..cb302364 100644
+--- a/net/url_request/url_request_http_job.cc
++++ b/net/url_request/url_request_http_job.cc
+@@ -337,7 +337,7 @@ void URLRequestHttpJob::OnGotFirstPartySetMetadata(
+   }
+   else if (request_info_.url.host().find("facebook.com") != std::string::npos || request_info_.url.host().find("fbcdn") != std::string::npos || request_info_.url.host().find("fbcdn.net") != std::string::npos)
+   {
+-     request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (Linux; Android 3.0; ONEPLUS A6003) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.25 Mobile Safari/537.36");
++     request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15");
+   }
+   else if (request_info_.url.host().find("news.google.com") != std::string::npos && request_info_.url.path().find("CAAqJggKIiBDQkFTRWdvSUwyMHZNRFZxYUdjU0FtVnVHZ0pWVXlnQVAB") != std::string::npos)
+   {

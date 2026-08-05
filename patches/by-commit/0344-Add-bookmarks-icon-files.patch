@@ -1,0 +1,152 @@
+From fe77349e30abf69317271d34da2cf7855d5553ca Mon Sep 17 00:00:00 2001
+From: Eduar Ursu <eduardursu78@gmail.com>
+Date: Thu, 12 Aug 2021 16:14:18 +0200
+Subject: [PATCH 344/506] Add bookmarks icon files
+
+---
+ .../java/res/drawable-hdpi/ic_bookmarks.png      | Bin 0 -> 678 bytes
+ .../java/res/drawable-mdpi/ic_bookmarks.png      | Bin 0 -> 390 bytes
+ .../java/res/drawable-xhdpi/ic_bookmarks.png     | Bin 0 -> 1095 bytes
+ .../java/res/drawable-xxhdpi/ic_bookmarks.png    | Bin 0 -> 749 bytes
+ .../java/res/drawable-xxxhdpi/ic_bookmarks.png   | Bin 0 -> 910 bytes
+ chrome/android/java/res/menu/main_menu.xml       |   2 +-
+ 6 files changed, 1 insertion(+), 1 deletion(-)
+ create mode 100644 chrome/android/java/res/drawable-hdpi/ic_bookmarks.png
+ create mode 100644 chrome/android/java/res/drawable-mdpi/ic_bookmarks.png
+ create mode 100644 chrome/android/java/res/drawable-xhdpi/ic_bookmarks.png
+ create mode 100644 chrome/android/java/res/drawable-xxhdpi/ic_bookmarks.png
+ create mode 100644 chrome/android/java/res/drawable-xxxhdpi/ic_bookmarks.png
+
+diff --git a/chrome/android/java/res/drawable-hdpi/ic_bookmarks.png b/chrome/android/java/res/drawable-hdpi/ic_bookmarks.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..3f46287cf8e02fcb83a08f0f84e991aa9e9ba5df
+GIT binary patch
+literal 678
+zcmeAS@N?(olHy`uVBq!ia0vp^Dj>|k0wldT1B8JTOS+@4BLl<6e(pbstU$g(vPY0F
+z14ES>14Ba#1H&(%P{RubhEf9thF1v;3|2E37{m+a><Y92N-!mPySp$jtm;)Z0`k~P
+zJbhi+pK@@Esj6Glg~>B8Fs}1-aSZV|{`BhpY>_|#_7DD(OeI_dn;cstRJB$ntro};
+zVQN~Mke;lr@$!rQhD}>0h-8Xbb2|obL`ev7ySf~7IxinSLnKbn@uSDLd1vqL+Fo8g
+zJ(i>6oXO{X`Oi<++<!Csczx3IJ(mT9)>l7CD4g~9mFA>r`%U*ueX>wRs^Gq2P2k2`
+zUt-IoKA+yK^fg9^CH}2vqOnxde7^7g{d3rx^BRt)-TroehS{TSl^Y&*zOM{fIN|=u
+z#gaNVCQPi!+#ch0b+6pZ!_PLP+3i>2<7irL`}&41N1RExuwA)FU$<AYu$ooB#wmu!
+z>vq0Wo>6+Mw9x$$Gxsv%2wUy9s}j~p>T~s#OuTk=)1^fsW=kBxPtUpdO~_TXh%Lrs
+zYSeMLC_U$rYffxClj0>av(1c8n9okts>)oIyTN3Smb;6qD)-;oxA)B!$*)i?%-QRG
+zZioNbhaatMAKun~%cnkheu>G>$8V>9bIRhIn{_c|_qIgU&TP-zx7VbU4|YAZ|FA;g
+z$AqefR&Qr0M7%0>n>g!x->i_WvwmMyS(0^jqwynM8<)`P--3pZE3cRDfBO2}t^4zz
+z$#1>?SayGjOW~t3U}UP6xJHzuB$lLFB^RXvDF!10BST#S3tdCQ5F;ZiV{<EGOKk%K
+lD+7aD2e?n8Xvob^$xN%ntzq@t&E-H144$rjF6*2UngBl`4Z#2a
+
+literal 0
+HcmV?d00001
+
+diff --git a/chrome/android/java/res/drawable-mdpi/ic_bookmarks.png b/chrome/android/java/res/drawable-mdpi/ic_bookmarks.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..6b5b1a24653977ceb66b977ead8cf241758e1f87
+GIT binary patch
+literal 390
+zcmeAS@N?(olHy`uVBq!ia0vp^5+KaM0wlfaz7_*1mUKs7M+SzC{oH>NS%G|oWRD<U
+z28Jp%28M<f28Lfip@tU>45bDP46hOx7_4S6Fo+k-*%fF5lweBoc6VW5Sk<d+1mv-o
+zc>21sKjq*Svr@^?<+KJ0^?ABDhFF|VPLTN3Ai2Cpy;<gPZBWmz10VVo=Zo+*^4LrK
+zGd7vH=xF0Z<-_%DnLIv6vJDd}j((V*D9Nn-G0H?z&hStAjY9`K_lQ-t&F1+p$!GY%
+zc}Gvc!?QfsEVgbiE-*AOkV)T=l#tL+{lZ>zq2r{<9E`k|Y;t{~HcXNzWL%=gJ4txH
+ze6z6Tsdga-2JX|UsmIgIy?`!LEpd$~Nl7e8wMs5Z1yT$~21bUu1{S)8h9O2qR;CtK
+q#%9_E237_Jre?3+plHa=PsvQH#I3<4J179Cfx*+&&t;ucLK6T8adoNy
+
+literal 0
+HcmV?d00001
+
+diff --git a/chrome/android/java/res/drawable-xhdpi/ic_bookmarks.png b/chrome/android/java/res/drawable-xhdpi/ic_bookmarks.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..9a28c26a6beedeea35c934d14c7bd5742af27f62
+GIT binary patch
+literal 1095
+zcmeAS@N?(olHy`uVBq!ia0vp^1|ZDA0wn)(8}a}tmUKs7M+SzC{oH>NS%G|oWRD<U
+z28Jp%28M<f28Lfip@tU>45dJguM!v-tY$DUh!@P+6=(yLU`q0KcVS>y)vIg-<gu4{
+z`ns||<=_@IF=GyVy@Y{*+27N}F(l&f+v(@MLjpyP+dt;tw6f!r*wVmdsk1k2lE0<K
+z{fk>^%B`sZyKlKlPuEK9ULoV^sbMfNDpFHYG*H<^>*SUIj+1Ln)Cp$vo_UgOnEq~0
+z<@<Z)=T&a~sO>(!`+4=g=l6=w?|g3?apb?-0e1D-wK9w5<gQ7!G&sxdCiz5Ae@65R
+z7PAW{RHi+wa%XO>*WWiSEUov^$?RzYKkJq2=d9;jnd!zMoYs=r{*>GFv+(()XP?O}
+zpB_AAiQ%>YZ}~#$)vYo6KRLeB-Y#)A$H=HVLvh)T?;O8o*Lu}Wkd^$I%A@%&)_%2z
+z>hig&`@-h9w}0YHRhl1grF&nMN+W~ssr9$IcZ7xd{kC}`tT<`)k26xnYeS#jn>pue
+zOj=Ct3mN&BDa(}u4=3$Sn{;0xSF|`cmo?r*SL|_$RQB{KxmT{-?R|9PjYRxeb!YM8
+zH|8Jn5%XyFvx`1AXUFPyuaD@SGXC{)`TXT)PDJ=i6>naX*rZe5;8pmtG;*HjJ^mZV
+z%#2!FkM=bGb_n^V${sY4@8sWY+6S~4j&a^TcJEa1g+RXYCv`Vu7sR~tk73-!uw$Ot
+zwz<s=HA!Z<e>OUwZR?mbW7n_s3l4qT(qdJ&Qdv(na+9@k-b9yf*Ap$uJu9_-t+V8a
+z_ujp8!i&b|^B!rx*d+RLd&sg}4)3FqOf9y|ceb3oZ!Yur7(-pq7q=t#i_e@eTy`RR
+z@??prW>J|bJIpLkKjYcZlhn^}m!agt;S(AYx8GWEyTox?{Og%Zv{u=?O?P>^=XQwV
+zGCQ%Ry1<*OPv5h)eACtQZt9&y!OwLxo|%h@<(Ib0nn>(2?p%9mzwxo!Eb-Q=y*mT;
+z7M$Aht#}ptxvaNOU$q7&L?wB!w4JydksZ>oSn739T<6y=!`3IO!;{;W$rtTtZ*|?S
+zc9=1*<GIM{j}BSWd}j$Tdfi;~k*mP-r>rt_l*m@+*&4A$c^dOq&wROa5(js8Vp-~w
+z_hCD?zfe4WzNcxMK;f+$IVob7^L`(C_woD3*%7WDJ0p)&9?0Bw>zj&$W_pE2?o^+?
+z^*5IXoJ~I-e!*Xf$H1XwKHuq(XKSw}@?P(dvfCLHK1KUp>&spysTl@c{sH;#Zl#zR
+zD|g$<ESnR=^~Ahvl40DZj)SfLkLf+S|Cs+KBbSk`gug#9x2cx6MwFx^mZVxG7o`Fz
+z1|tI_LtO(4T|>hVBSR}wBP&xAZ36=<1A}vVe6A=Oa`RI%(<*Um*k8QuCr|@}r>mdK
+II;Vst03vAK#Q*>R
+
+literal 0
+HcmV?d00001
+
+diff --git a/chrome/android/java/res/drawable-xxhdpi/ic_bookmarks.png b/chrome/android/java/res/drawable-xxhdpi/ic_bookmarks.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..30f8da9e0079de56948fd8fd594f5aa0b980f7a8
+GIT binary patch
+literal 749
+zcmeAS@N?(olHy`uVBq!ia0vp^9w5xY0wn)GsXhawSkfJR9T^xl_H+M9WCijSl0AZa
+z85pY67#JE_7#My5g&JNkFq9fFFuY1&V6d9Oz#v{QXIG#NP=YDR+uenMVO6iP5s=4T
+z;_2(k{*;4T%t|Fkm(!Yof$^)Si(^Q}y|*{ddy5oG9RK+J+!3|t4O<m7Sl&8z@HuLS
+zwA-whzBeLZHM_N@$j;@5-rZdKLSI8<i9<eX)nv0>F70L)n&oUHL{zr9p1h<K_U>K9
+z#v9MAm32+t8MnVr&to>ef4%1Ub>s65y<p(GqR{znc%P2FW~TfV`E%YjHd%Mnm-RAA
+z9QwW6=Get&2j;R(IL_0)#ZhuqlgaVK+(~nk`<dLgcqU(AS?S?5yQEjvF=|ol?2^u0
+z$Ec?*W-I%<6lxcE&%WXuIl->jZT6M3;f}w~RpwsGyvDlnjB9SttnW=*T*GExIoYM~
+zS82JgSD?reE#+HFRPtF?p3}_@Y7##d{cfF^=DFhLF9EZkd^)0F%cb|I>9j_>O}K@a
+z*2#myOLOO$<ppHtJ+3}>QRa%#LwTzmGWQo4U%7cxU-iGmuA@7i$BXjJ$`Z`Dv|sDT
+z6w4<&y^O9LOit;!IIn2$&2FndJABN`Z*NyCoag%T;EaTa_qSKSE}9Y^ShZ8``P#s`
+zo~$CP2s5rNj=twSuPq8WH1E;m2O%%6KS}waWHCGD!jn0Vqo>%3RR2`8kT11g%D(7o
+zj>NO_DYp#Gd)uyB-)*~^`zkQ&<y_NQ^FH75Jzscm=GA=e=Ta6EGv@3T`F5(C{r~4|
+z#WVYb^rm}$p5^*>=SB#~JfSE4GP`*7Tjj&RG@)AJ8c~vxSdwa$T$Bo=7>o>z40R1G
+zbPWwdjEt;IEv$^qv<(cb3=B-oUcEulkei>9nO2EggG+W$08j&ir>mdKI;Vst08(5y
+At^fc4
+
+literal 0
+HcmV?d00001
+
+diff --git a/chrome/android/java/res/drawable-xxxhdpi/ic_bookmarks.png b/chrome/android/java/res/drawable-xxxhdpi/ic_bookmarks.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..b41bf4e763ba19f1e291611514c96744677e4e3a
+GIT binary patch
+literal 910
+zcmeAS@N?(olHy`uVBq!ia0vp^2_VeD0wg^q?%xcgSkfJR9T^xl_H+M9WCijSl0AZa
+z85pY67#JE_7#My5g&JNkFq9fFFuY1&V6d9Oz#v{QXIG#NP=YDR+uenMVO6iP5s=4T
+z;_2(k{*;4T%t|Fkm(v<3Kh4v{F{I+w+gZLHy@3+P>#slU3p7q^Q8ZPWv~kvq$P?~a
+zIVv|bG`Y1?6HSFrNB+_}dCbXc;{=h`N#|WW?SwS-CVwmx|5TXncBaR0J?~`6^LH$t
+zhkl>we*XQNcW<w~ufO+w-+RmRl?MuCjziGT`phR>u{O!(mbp_+)-39Oa(&0qkleWy
+z>-b-)tK3Q6wJkvBXd<J~JcH<H&AvY!44krOu21Vq{2$LK6t~eKT6>OH9+x1O&P6fq
+zbgt<w9P=}-iE*nRmsE6``1DrN!xT$Bmmi0sayQQ4aBt<<n{x#ydDv0WNq+X0qe&U!
+zN<15UqqW;&omw2rva*kEXqI<s3Cmq8vCT*!rrq{dlwr=Y_>O`ZJ=-EIUjI~cu{gw%
+zyRqQf1!WhDlP*A3*d<jL3-?x_toKg^mmLmEfh=B;77p_jmw?U@%x~c+pSes|>|9LZ
+z<Cz~CB!TWZ^Jt^ML(SqXM-R<B>8yBY25ZBm{C!$cnMpx2m9A{?`LSiPSlp7ilcyh=
+zGo^mdV!PM|;a9KrA76P<)%&i~-N(-&?>K+Wh@To|rF!e0;uNlexaho&?w568?(M(s
+z&YuvV@l{>!wc#x{<C{iji?>FsuJ+~rX(ahac<UX{&q~tzS3aKj6trmG^J(J6pO2XD
+zoB8xh(mk$UX=Wz9d&Iw-&C#6wL*vEln^)E^i@snU92R*z-0{9oVm9;MrhPLnJrdi;
+z{VT0&_wC&2*KbRRd^syq;PKozt#5{rjKG)QYh^yATBy93ZJBnq$mfE2@rAjMw=BqC
+zc6CA1W}xP@{*y7H=C9Ij<$mM(HCN}#HLl||r*A$N{Pk?szjeHq_vf#FTXa;ucm4L2
+z7q5AWKQwav^k(y>%cZasQt0%9Gr#$X`;pej)xbonTH+c}l9E`GYL#4+3Zxi}42%qQ
+z4J>pG4MU8KtV}JejLozS46F<cOwC@sLD7(#pOTqYiCcq9c2EFN1B0ilpUXO@geCwQ
+Cf`fGc
+
+literal 0
+HcmV?d00001
+
+diff --git a/chrome/android/java/res/menu/main_menu.xml b/chrome/android/java/res/menu/main_menu.xml
+index 39bd70c3..4829160d 100644
+--- a/chrome/android/java/res/menu/main_menu.xml
++++ b/chrome/android/java/res/menu/main_menu.xml
+@@ -63,7 +63,7 @@
+             android:icon="@drawable/infobar_download_complete" />
+         <item android:id="@+id/all_bookmarks_menu_id"
+             android:title="@string/menu_bookmarks"
+-            android:icon="@drawable/btn_star_filled" />
++            android:icon="@drawable/ic_bookmakrs" />
+         <item android:id="@+id/recent_tabs_menu_id"
+             android:title="@string/menu_recent_tabs"
+             android:icon="@drawable/devices_black_24dp" />

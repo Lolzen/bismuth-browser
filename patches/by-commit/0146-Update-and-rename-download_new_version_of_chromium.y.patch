@@ -1,0 +1,24 @@
+From c4ebb3a2acee12760bb67bef53af56668899d384 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 6 Aug 2021 00:18:58 +0300
+Subject: [PATCH 146/506] Update and rename
+ download_new_version_of_chromium.yml to update_chromium_files.yml
+
+---
+ ...ad_new_version_of_chromium.yml => update_chromium_files.yml} | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename .github/workflows/{download_new_version_of_chromium.yml => update_chromium_files.yml} (98%)
+
+diff --git a/.github/workflows/download_new_version_of_chromium.yml b/.github/workflows/update_chromium_files.yml
+similarity index 98%
+rename from .github/workflows/download_new_version_of_chromium.yml
+rename to .github/workflows/update_chromium_files.yml
+index 8542a298..a31f8482 100644
+--- a/.github/workflows/download_new_version_of_chromium.yml
++++ b/.github/workflows/update_chromium_files.yml
+@@ -1,4 +1,4 @@
+-name: Download a new version of Chromium to chromium branch
++name: Update Chromium files in chromium branch
+ 
+ on:
+   workflow_dispatch:

@@ -1,0 +1,19 @@
+From 12510b4cdb3c5f6595668f31da300dfcea3a8035 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 14 Aug 2021 02:08:49 +0300
+Subject: [PATCH 391/506] Update linter.yml
+
+---
+ .github/workflows/linter.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/linter.yml b/.github/workflows/linter.yml
+index 1f1a7a6b..dc334edb 100644
+--- a/.github/workflows/linter.yml
++++ b/.github/workflows/linter.yml
+@@ -1,4 +1,4 @@
+-name: "Any: Lint codebase"
++name: "Any branch: Lint codebase"
+ 
+ #############################
+ # Start the job on all push #

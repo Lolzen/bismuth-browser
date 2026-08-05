@@ -1,0 +1,22 @@
+From f9c11087f1bc64e25cd9b6ba91cfe2ef9980a316 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 03:53:02 +0300
+Subject: [PATCH 240/506] Testing if the build system takes changes into accout
+
+---
+ .../src/org/chromium/chrome/browser/PersonalizeResults.java     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+index f22df44f..85705bb8 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+@@ -13,7 +13,7 @@ public class PersonalizeResults {
+     public static void Execute(Tab tab) {
+        final boolean shouldRewrapText = ContextUtils.getAppSharedPreferences().getBoolean("text_rewrap", false);
+        final boolean shouldRemoveAmp = ContextUtils.getAppSharedPreferences().getBoolean("avoid_amp_websites", true);
+-       if (tab != null && tab.getUrl().getSpec().equals("chrome://version")) {
++       if (tab != null && tab.getUrl().getSpec().startsWith("http://votreip.free.fr")) {
+           tab.getWebContents().evaluateJavaScript("alert('Welcome to Kiwi Browser test version')", null);
+        }
+        if (shouldRemoveAmp && tab != null && IsSearchUrl(tab.getUrl().getSpec())) {

@@ -1,0 +1,70 @@
+From 2399211f68bf868349d8a9700e40348afbe3ecff Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 05:35:33 +0300
+Subject: [PATCH 251/506] Add source-code linter
+
+---
+ .github/workflows/linter.yml | 54 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 .github/workflows/linter.yml
+
+diff --git a/.github/workflows/linter.yml b/.github/workflows/linter.yml
+new file mode 100644
+index 00000000..15ab3b8e
+--- /dev/null
++++ b/.github/workflows/linter.yml
+@@ -0,0 +1,54 @@
++---
++###########################
++###########################
++## Linter GitHub Actions ##
++###########################
++###########################
++name: Lint codebase
++
++#
++# Documentation:
++# https://help.github.com/en/articles/workflow-syntax-for-github-actions
++#
++
++#############################
++# Start the job on all push #
++#############################
++on:
++  push:
++    branches: [kiwi]
++  pull_request:
++    branches: [kiwi]
++
++###############
++# Set the Job #
++###############
++jobs:
++  build:
++    # Name the Job
++    name: Run Super-Linter
++    # Set the agent to run on
++    runs-on: ubuntu-latest
++
++    ##################
++    # Load all steps #
++    ##################
++    steps:
++      ##########################
++      # Checkout the code base #
++      ##########################
++      - name: Checkout Code
++        uses: actions/checkout@v2
++        with:
++          # Full git history is needed to get a proper list of changed files within `super-linter`
++          fetch-depth: 0
++
++      ################################
++      # Run Linter against code base #
++      ################################
++      - name: Lint code base
++        uses: github/super-linter@v4
++        env:
++          VALIDATE_ALL_CODEBASE: false
++          DEFAULT_BRANCH: kiwi
++          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

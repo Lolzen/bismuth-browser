@@ -1,0 +1,100 @@
+From 8641581d4eb092631943d0d3449701864ed3a28f Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:19:32 +0000
+Subject: [PATCH 452/506] Move the download manager settings to its own
+ dedicated screen
+
+---
+ .../android/download_dialog_bridge.cc         |  3 ++-
+ .../download/android/download_dialog_bridge.h |  3 ++-
+ .../java/res/xml/download_preferences.xml     |  5 ++++
+ .../download/settings/DownloadSettings.java   | 27 +++++++++++++++++++
+ 4 files changed, 36 insertions(+), 2 deletions(-)
+
+diff --git a/chrome/browser/download/android/download_dialog_bridge.cc b/chrome/browser/download/android/download_dialog_bridge.cc
+index cd068421..a23e61f8 100644
+--- a/chrome/browser/download/android/download_dialog_bridge.cc
++++ b/chrome/browser/download/android/download_dialog_bridge.cc
+@@ -52,7 +52,8 @@ void DownloadDialogBridge::ShowDialog(
+     DownloadLocationDialogType dialog_type,
+     const base::FilePath& suggested_path,
+     bool is_incognito,
+-    DialogCallback dialog_callback) {
++    DialogCallback dialog_callback,
++    download::DownloadItem* download) {
+   if (!native_window)
+     return;
+ 
+diff --git a/chrome/browser/download/android/download_dialog_bridge.h b/chrome/browser/download/android/download_dialog_bridge.h
+index 4f0c4685..69d86fdf 100644
+--- a/chrome/browser/download/android/download_dialog_bridge.h
++++ b/chrome/browser/download/android/download_dialog_bridge.h
+@@ -56,7 +56,8 @@ class DownloadDialogBridge {
+       DownloadLocationDialogType dialog_type,
+       const base::FilePath& suggested_path,
+       bool is_incognito,
+-      DialogCallback dialog_callback);
++      DialogCallback dialog_callback,
++      download::DownloadItem* download);
+ 
+   void OnComplete(JNIEnv* env,
+                   const base::android::JavaParamRef<jobject>& obj,
+diff --git a/chrome/browser/download/android/java/res/xml/download_preferences.xml b/chrome/browser/download/android/java/res/xml/download_preferences.xml
+index 2d42d3e2..6e9f948f 100644
+--- a/chrome/browser/download/android/java/res/xml/download_preferences.xml
++++ b/chrome/browser/download/android/java/res/xml/download_preferences.xml
+@@ -21,4 +21,9 @@
+         android:title="@string/download_location_prompt_enabled_title"
+         android:summaryOn="@string/text_on"
+         android:summaryOff="@string/text_off" />
++
++    <org.chromium.components.browser_ui.settings.ChromeBaseCheckBoxPreference
++        android:key="enable_external_download_manager"
++        android:summary="@string/download_preferences_enable_external_download_manager_summary"
++        android:title="@string/download_preferences_enable_external_download_manager_title" />
+ </PreferenceScreen>
+diff --git a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java
+index 8a0b0bcb..4c10c992 100644
+--- a/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java
++++ b/chrome/browser/download/android/java/src/org/chromium/chrome/browser/download/settings/DownloadSettings.java
+@@ -79,6 +79,8 @@ public class DownloadSettings
+         };
+         mLocationPromptEnabledPref.setManagedPreferenceDelegate(mLocationPromptEnabledPrefDelegate);
+         mLocationChangePref = (DownloadLocationPreference) findPreference(PREF_LOCATION_CHANGE);
++
++        mExternalDownloadManager = (ChromeBaseCheckBoxPreference) findPreference("enable_external_download_manager");
+     }
+ 
+     @Override
+@@ -114,6 +116,31 @@ public class DownloadSettings
+             mLocationPromptEnabledPref.setChecked(isLocationPromptEnabled);
+             mLocationPromptEnabledPref.setEnabled(true);
+         }
++
++        if (mExternalDownloadManager != null) {
++            mExternalDownloadManager.setOnPreferenceChangeListener(this);
++            mExternalDownloadManager.setChecked(ContextUtils.getAppSharedPreferences().getBoolean("enable_external_download_manager", false));
++            if (ContextUtils.getAppSharedPreferences().getBoolean("enable_external_download_manager", false)
++                  && !TextUtils.isEmpty(ContextUtils.getAppSharedPreferences().getString("selected_external_download_manager_package_name", ""))) {
++                mExternalDownloadManager.setSummary(ContextUtils.getAppSharedPreferences().getString("selected_external_download_manager_package_name", ""));
++            }
++        }
++    }
++
++    @Override
++    public void onActivityResult(int requestCode, int resultCode, Intent data) {
++            Log.i("Kiwi", "[DownloadPreferences] Received activity result, RQ: " + requestCode);
++            if (requestCode == 4242 && resultCode == Activity.RESULT_OK && data != null) {
++                 ComponentName componentName = data.getComponent();
++                 final String packageName = componentName.getPackageName();
++                 final String activityName = componentName.getClassName();
++                 Log.i("Kiwi", "[DownloadPreferences] Received activity result, PN: " + packageName + " - AN: " + activityName);
++                 SharedPreferences.Editor sharedPreferencesEditor = ContextUtils.getAppSharedPreferences().edit();
++                 sharedPreferencesEditor.putString("selected_external_download_manager_package_name", packageName);
++                 sharedPreferencesEditor.putString("selected_external_download_manager_activity_name", activityName);
++                 sharedPreferencesEditor.apply();
++                 updateDownloadSettings();
++            }
+     }
+ 
+     // Preference.OnPreferenceChangeListener implementation.

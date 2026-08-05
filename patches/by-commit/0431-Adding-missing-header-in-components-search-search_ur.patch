@@ -1,0 +1,23 @@
+From 4b7639b4c54d6d275a5fe4c4e94b64a26c9a37de Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Fri, 24 Sep 2021 21:17:22 +0000
+Subject: [PATCH 431/506] Adding missing header in
+ components/search/search_url_fetcher.cc in Chromium 94.0.4606.56
+
+---
+ components/search/search_url_fetcher.cc | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/components/search/search_url_fetcher.cc b/components/search/search_url_fetcher.cc
+index 577d7e7a..b317842f 100644
+--- a/components/search/search_url_fetcher.cc
++++ b/components/search/search_url_fetcher.cc
+@@ -25,6 +25,8 @@
+ #include "components/search_engines/template_url_service.h"
+ #include "components/search_engines/template_url_data_util.h"
+ 
++#include "services/network/public/mojom/url_response_head.mojom.h"
++
+ const char SearchURLFetcher::kSearchDomainCheckURL[] =
+     "https://settings.kiwibrowser.com/search/getrecommendedsearch?format=domain&serie=next&type=chrome&version=" PRODUCT_VERSION "&release_name=" RELEASE_NAME "&release_version=" RELEASE_VERSION;
+ 

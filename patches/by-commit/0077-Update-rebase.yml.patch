@@ -1,0 +1,19 @@
+From 50a3aa0d5ce260d06d2fd7354b817e284c24c21f Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 05:21:47 +0300
+Subject: [PATCH 077/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index cdf29418..8575d979 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -28,4 +28,4 @@ jobs:
+       - uses: actions/checkout@v2
+         with:
+           repository: 'chromium/chromium'
+-          ref: 'tags/${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}'
++          ref: '${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}'

@@ -1,0 +1,21 @@
+From fc4ba1de8e848300929808399bfec706bfeed9af Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 6 Aug 2021 02:40:25 +0300
+Subject: [PATCH 167/506] Adapt extensions HTML page to mobile viewport
+
+---
+ chrome/browser/resources/extensions/extensions.html | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/chrome/browser/resources/extensions/extensions.html b/chrome/browser/resources/extensions/extensions.html
+index 37865c83..1afdddfb 100644
+--- a/chrome/browser/resources/extensions/extensions.html
++++ b/chrome/browser/resources/extensions/extensions.html
+@@ -5,6 +5,7 @@
+   <meta charset="utf8">
+   <meta name="color-scheme" content="light dark">
+   <title>$i18n{title}</title>
++  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <base href="chrome://extensions">
+   <link rel="stylesheet" href="chrome://resources/css/md_colors.css">
+   <style>

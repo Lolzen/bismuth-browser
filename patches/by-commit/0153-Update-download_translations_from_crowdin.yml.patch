@@ -1,0 +1,19 @@
+From a9423e9c3b3c312b36c9c4ea2ca570ce3fa08449 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 6 Aug 2021 00:56:15 +0300
+Subject: [PATCH 153/506] Update download_translations_from_crowdin.yml
+
+---
+ .github/workflows/download_translations_from_crowdin.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/download_translations_from_crowdin.yml b/.github/workflows/download_translations_from_crowdin.yml
+index 4eb63334..5e4bd407 100644
+--- a/.github/workflows/download_translations_from_crowdin.yml
++++ b/.github/workflows/download_translations_from_crowdin.yml
+@@ -1,4 +1,4 @@
+-name: Download translations from Crowdin
++name: 'Kiwi: Download translations from Crowdin'
+ 
+ on:
+   workflow_dispatch

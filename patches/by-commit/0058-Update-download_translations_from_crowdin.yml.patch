@@ -1,0 +1,25 @@
+From 9c97ce7b5e9d7368cc9b8daf18cbe1e68615dc49 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 04:05:15 +0300
+Subject: [PATCH 058/506] Update download_translations_from_crowdin.yml
+
+---
+ .github/workflows/download_translations_from_crowdin.yml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/.github/workflows/download_translations_from_crowdin.yml b/.github/workflows/download_translations_from_crowdin.yml
+index 0e541511..4eb63334 100644
+--- a/.github/workflows/download_translations_from_crowdin.yml
++++ b/.github/workflows/download_translations_from_crowdin.yml
+@@ -9,7 +9,10 @@ jobs:
+     steps:
+       - name: Checkout repository
+         uses: actions/checkout@v2.3.4
+-          
++      
++      - name: Downloading translations
++        run: php toolbox/download_translations_from_crowdin.php ${{ secrets.CROWDIN_APIKEY }}
++
+       - name: Git auto-commit
+         uses: stefanzweifel/git-auto-commit-action@v4.11.0
+         with:

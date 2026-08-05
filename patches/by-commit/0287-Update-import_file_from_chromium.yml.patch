@@ -1,0 +1,22 @@
+From cbc7264de003649adff71fd839bb0f0584828873 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 12 Aug 2021 03:14:55 +0300
+Subject: [PATCH 287/506] Update import_file_from_chromium.yml
+
+---
+ .github/workflows/import_file_from_chromium.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/import_file_from_chromium.yml b/.github/workflows/import_file_from_chromium.yml
+index 4993e916..aeda918e 100644
+--- a/.github/workflows/import_file_from_chromium.yml
++++ b/.github/workflows/import_file_from_chromium.yml
+@@ -50,7 +50,7 @@ jobs:
+         run: git add ${{ github.event.inputs.path }}
+ 
+       - name: Importing assets from adjacent folders (if it's an image)
+-        if: contains('${{ github.event.inputs.path }}', 'drawable-') || contains('${{ github.event.inputs.path }}', 'mipmap-')
++        if: contains(github.event.inputs.path, 'drawable-') || contains(github.event.inputs.path, 'mipmap-')
+         continue-on-error: true
+         run: |
+           for image_folder in drawable mipmap

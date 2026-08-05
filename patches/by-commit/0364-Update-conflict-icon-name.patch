@@ -1,0 +1,124 @@
+From edb371342e20f029b969f7b3db0f599f95743cf9 Mon Sep 17 00:00:00 2001
+From: Eduar Ursu <eduardursu78@gmail.com>
+Date: Fri, 13 Aug 2021 03:15:58 +0200
+Subject: [PATCH 364/506] Update conflict icon name
+
+---
+ ..._home_screen.png => ic_add_to_home_screen_r.png} | Bin
+ .../{ic_find_in_page.png => ic_find_in_page_r.png}  | Bin
+ .../{ic_translate.png => ic_translate_r.png}        | Bin
+ ..._home_screen.png => ic_add_to_home_screen_r.png} | Bin
+ .../{ic_find_in_page.png => ic_find_in_page_r.png}  | Bin
+ .../{ic_translate.png => ic_translate_r.png}        | Bin
+ ..._home_screen.png => ic_add_to_home_screen_r.png} | Bin
+ .../{ic_find_in_page.png => ic_find_in_page_r.png}  | Bin
+ .../{ic_translate.png => ic_translate_r.png}        | Bin
+ ..._home_screen.png => ic_add_to_home_screen_r.png} | Bin
+ .../{ic_find_in_page.png => ic_find_in_page_r.png}  | Bin
+ .../{ic_translate.png => ic_translate_r.png}        | Bin
+ ..._home_screen.png => ic_add_to_home_screen_r.png} | Bin
+ .../{ic_find_in_page.png => ic_find_in_page_r.png}  | Bin
+ .../{ic_translate.png => ic_translate_r.png}        | Bin
+ chrome/android/java/res/menu/main_menu.xml          |   8 ++++----
+ 16 files changed, 4 insertions(+), 4 deletions(-)
+ rename chrome/android/java/res/drawable-hdpi/{ic_add_to_home_screen.png => ic_add_to_home_screen_r.png} (100%)
+ rename chrome/android/java/res/drawable-hdpi/{ic_find_in_page.png => ic_find_in_page_r.png} (100%)
+ rename chrome/android/java/res/drawable-hdpi/{ic_translate.png => ic_translate_r.png} (100%)
+ rename chrome/android/java/res/drawable-mdpi/{ic_add_to_home_screen.png => ic_add_to_home_screen_r.png} (100%)
+ rename chrome/android/java/res/drawable-mdpi/{ic_find_in_page.png => ic_find_in_page_r.png} (100%)
+ rename chrome/android/java/res/drawable-mdpi/{ic_translate.png => ic_translate_r.png} (100%)
+ rename chrome/android/java/res/drawable-xhdpi/{ic_add_to_home_screen.png => ic_add_to_home_screen_r.png} (100%)
+ rename chrome/android/java/res/drawable-xhdpi/{ic_find_in_page.png => ic_find_in_page_r.png} (100%)
+ rename chrome/android/java/res/drawable-xhdpi/{ic_translate.png => ic_translate_r.png} (100%)
+ rename chrome/android/java/res/drawable-xxhdpi/{ic_add_to_home_screen.png => ic_add_to_home_screen_r.png} (100%)
+ rename chrome/android/java/res/drawable-xxhdpi/{ic_find_in_page.png => ic_find_in_page_r.png} (100%)
+ rename chrome/android/java/res/drawable-xxhdpi/{ic_translate.png => ic_translate_r.png} (100%)
+ rename chrome/android/java/res/drawable-xxxhdpi/{ic_add_to_home_screen.png => ic_add_to_home_screen_r.png} (100%)
+ rename chrome/android/java/res/drawable-xxxhdpi/{ic_find_in_page.png => ic_find_in_page_r.png} (100%)
+ rename chrome/android/java/res/drawable-xxxhdpi/{ic_translate.png => ic_translate_r.png} (100%)
+
+diff --git a/chrome/android/java/res/drawable-hdpi/ic_add_to_home_screen.png b/chrome/android/java/res/drawable-hdpi/ic_add_to_home_screen_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-hdpi/ic_add_to_home_screen.png
+rename to chrome/android/java/res/drawable-hdpi/ic_add_to_home_screen_r.png
+diff --git a/chrome/android/java/res/drawable-hdpi/ic_find_in_page.png b/chrome/android/java/res/drawable-hdpi/ic_find_in_page_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-hdpi/ic_find_in_page.png
+rename to chrome/android/java/res/drawable-hdpi/ic_find_in_page_r.png
+diff --git a/chrome/android/java/res/drawable-hdpi/ic_translate.png b/chrome/android/java/res/drawable-hdpi/ic_translate_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-hdpi/ic_translate.png
+rename to chrome/android/java/res/drawable-hdpi/ic_translate_r.png
+diff --git a/chrome/android/java/res/drawable-mdpi/ic_add_to_home_screen.png b/chrome/android/java/res/drawable-mdpi/ic_add_to_home_screen_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-mdpi/ic_add_to_home_screen.png
+rename to chrome/android/java/res/drawable-mdpi/ic_add_to_home_screen_r.png
+diff --git a/chrome/android/java/res/drawable-mdpi/ic_find_in_page.png b/chrome/android/java/res/drawable-mdpi/ic_find_in_page_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-mdpi/ic_find_in_page.png
+rename to chrome/android/java/res/drawable-mdpi/ic_find_in_page_r.png
+diff --git a/chrome/android/java/res/drawable-mdpi/ic_translate.png b/chrome/android/java/res/drawable-mdpi/ic_translate_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-mdpi/ic_translate.png
+rename to chrome/android/java/res/drawable-mdpi/ic_translate_r.png
+diff --git a/chrome/android/java/res/drawable-xhdpi/ic_add_to_home_screen.png b/chrome/android/java/res/drawable-xhdpi/ic_add_to_home_screen_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xhdpi/ic_add_to_home_screen.png
+rename to chrome/android/java/res/drawable-xhdpi/ic_add_to_home_screen_r.png
+diff --git a/chrome/android/java/res/drawable-xhdpi/ic_find_in_page.png b/chrome/android/java/res/drawable-xhdpi/ic_find_in_page_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xhdpi/ic_find_in_page.png
+rename to chrome/android/java/res/drawable-xhdpi/ic_find_in_page_r.png
+diff --git a/chrome/android/java/res/drawable-xhdpi/ic_translate.png b/chrome/android/java/res/drawable-xhdpi/ic_translate_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xhdpi/ic_translate.png
+rename to chrome/android/java/res/drawable-xhdpi/ic_translate_r.png
+diff --git a/chrome/android/java/res/drawable-xxhdpi/ic_add_to_home_screen.png b/chrome/android/java/res/drawable-xxhdpi/ic_add_to_home_screen_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxhdpi/ic_add_to_home_screen.png
+rename to chrome/android/java/res/drawable-xxhdpi/ic_add_to_home_screen_r.png
+diff --git a/chrome/android/java/res/drawable-xxhdpi/ic_find_in_page.png b/chrome/android/java/res/drawable-xxhdpi/ic_find_in_page_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxhdpi/ic_find_in_page.png
+rename to chrome/android/java/res/drawable-xxhdpi/ic_find_in_page_r.png
+diff --git a/chrome/android/java/res/drawable-xxhdpi/ic_translate.png b/chrome/android/java/res/drawable-xxhdpi/ic_translate_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxhdpi/ic_translate.png
+rename to chrome/android/java/res/drawable-xxhdpi/ic_translate_r.png
+diff --git a/chrome/android/java/res/drawable-xxxhdpi/ic_add_to_home_screen.png b/chrome/android/java/res/drawable-xxxhdpi/ic_add_to_home_screen_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxxhdpi/ic_add_to_home_screen.png
+rename to chrome/android/java/res/drawable-xxxhdpi/ic_add_to_home_screen_r.png
+diff --git a/chrome/android/java/res/drawable-xxxhdpi/ic_find_in_page.png b/chrome/android/java/res/drawable-xxxhdpi/ic_find_in_page_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxxhdpi/ic_find_in_page.png
+rename to chrome/android/java/res/drawable-xxxhdpi/ic_find_in_page_r.png
+diff --git a/chrome/android/java/res/drawable-xxxhdpi/ic_translate.png b/chrome/android/java/res/drawable-xxxhdpi/ic_translate_r.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxxhdpi/ic_translate.png
+rename to chrome/android/java/res/drawable-xxxhdpi/ic_translate_r.png
+diff --git a/chrome/android/java/res/menu/main_menu.xml b/chrome/android/java/res/menu/main_menu.xml
+index 7acfc8e7..6f17129d 100644
+--- a/chrome/android/java/res/menu/main_menu.xml
++++ b/chrome/android/java/res/menu/main_menu.xml
+@@ -102,16 +102,16 @@
+             android:icon="@drawable/price_tracking_enabled_filled" />
+         <item android:id="@+id/find_in_page_id"
+             android:title="@string/menu_find_in_page"
+-            android:icon="@drawable/ic_find_in_page" />
++            android:icon="@drawable/ic_find_in_page_r" />
+         <item android:id="@+id/translate_id"
+             android:title="@string/menu_translate"
+-            android:icon="@drawable/ic_translate" />
++            android:icon="@drawable/ic_translate_r" />
+         <item android:id="@+id/add_to_homescreen_id"
+             android:title="@string/menu_add_to_homescreen"
+-            android:icon="@drawable/ic_add_to_home_screen" />
++            android:icon="@drawable/ic_add_to_home_screen_r" />
+         <item android:id="@+id/open_webapk_id"
+             android:title="@string/menu_open_webapk"
+-            android:icon="@drawable/ic_add_to_home_screen" />
++            android:icon="@drawable/ic_add_to_home_screen_r" />
+         <item android:id="@+id/request_desktop_site_row_menu_id"
+             android:title="@null">
+           <menu>

@@ -1,0 +1,120 @@
+From 59c48ba540e5aa3acede4169e2bded976f0cc22a Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:07:43 +0000
+Subject: [PATCH 435/506] Update night mode parameters
+
+---
+ .../renderer/platform/graphics/dark_mode_color_filter.cc | 6 +++---
+ .../blink/renderer/platform/graphics/dark_mode_filter.cc | 8 ++++++--
+ .../platform/graphics/dark_mode_image_classifier.cc      | 2 +-
+ .../platform/graphics/dark_mode_settings_builder.cc      | 9 +++++++--
+ 4 files changed, 17 insertions(+), 8 deletions(-)
+
+diff --git a/third_party/blink/renderer/platform/graphics/dark_mode_color_filter.cc b/third_party/blink/renderer/platform/graphics/dark_mode_color_filter.cc
+index 566b3fcc..f13d0058 100644
+--- a/third_party/blink/renderer/platform/graphics/dark_mode_color_filter.cc
++++ b/third_party/blink/renderer/platform/graphics/dark_mode_color_filter.cc
+@@ -28,7 +28,7 @@ class SkColorFilterWrapper : public DarkModeColorFilter {
+       const DarkModeSettings& settings) {
+     SkHighContrastConfig config;
+     config.fInvertStyle = invert_style;
+-    config.fGrayscale = false;
++    config.fGrayscale = settings.grayscale;
+     config.fContrast = settings.contrast;
+ 
+     return std::unique_ptr<SkColorFilterWrapper>(
+@@ -58,7 +58,7 @@ class LABColorFilter : public DarkModeColorFilter {
+     SkHighContrastConfig config;
+     config.fInvertStyle = SkHighContrastConfig::InvertStyle::kInvertLightness;
+     config.fGrayscale = settings.grayscale;
+-    config.fContrast = 0.0;
++    config.fContrast = settings.contrast;
+     filter_ = SkHighContrastFilter::Make(config);
+     settings_ = settings;
+   }
+@@ -96,7 +96,7 @@ class LABColorFilter : public DarkModeColorFilter {
+   // TODO(gilmanmh): Consider adding a more general way to adjust colors after
+   // applying the main filter.
+   SkColor AdjustGray(SkColor color) const {
+-    static const uint8_t kBrightnessThreshold = 32;
++    static const uint8_t kBrightnessThreshold = 0;
+     static const uint8_t kAdjustedBrightness = 0;
+ 
+     uint8_t r = SkColorGetR(color);
+diff --git a/third_party/blink/renderer/platform/graphics/dark_mode_filter.cc b/third_party/blink/renderer/platform/graphics/dark_mode_filter.cc
+index d79015a4..690759fa 100644
+--- a/third_party/blink/renderer/platform/graphics/dark_mode_filter.cc
++++ b/third_party/blink/renderer/platform/graphics/dark_mode_filter.cc
+@@ -21,6 +21,8 @@
+ #include "third_party/blink/renderer/platform/wtf/hash_functions.h"
+ #include "third_party/skia/include/core/SkColorFilter.h"
+ 
++#include "third_party/skia/include/effects/SkColorMatrix.h"
++
+ namespace blink {
+ 
+ namespace {
+@@ -121,8 +123,10 @@ DarkModeFilter::ImmutableData::ImmutableData(const DarkModeSettings& settings)
+   if (!color_filter)
+     return;
+ 
+-  image_filter = color_filter->ToSkColorFilter();
+-
++  if (settings.image_grayscale_percent > 0.0f)
++    image_filter = MakeGrayscaleFilter(settings.image_grayscale_percent);
++  else
++    image_filter = color_filter->ToSkColorFilter();
+   foreground_classifier =
+       DarkModeColorClassifier::MakeForegroundColorClassifier(settings);
+   background_classifier =
+diff --git a/third_party/blink/renderer/platform/graphics/dark_mode_image_classifier.cc b/third_party/blink/renderer/platform/graphics/dark_mode_image_classifier.cc
+index 9bcbe19c..d03fd059 100644
+--- a/third_party/blink/renderer/platform/graphics/dark_mode_image_classifier.cc
++++ b/third_party/blink/renderer/platform/graphics/dark_mode_image_classifier.cc
+@@ -15,7 +15,7 @@ namespace blink {
+ namespace {
+ 
+ // Decision tree lower and upper thresholds for grayscale and color images.
+-const float kLowColorCountThreshold[2] = {0.3125, 0.015137};
++const float kLowColorCountThreshold[2] = {0.8125, 0.015137};
+ const float kHighColorCountThreshold[2] = {1, 0.025635};
+ 
+ bool IsColorGray(const SkColor& color) {
+diff --git a/third_party/blink/renderer/platform/graphics/dark_mode_settings_builder.cc b/third_party/blink/renderer/platform/graphics/dark_mode_settings_builder.cc
+index dce3d354..6b82817f 100644
+--- a/third_party/blink/renderer/platform/graphics/dark_mode_settings_builder.cc
++++ b/third_party/blink/renderer/platform/graphics/dark_mode_settings_builder.cc
+@@ -27,6 +27,7 @@ const constexpr DarkModeImagePolicy kDefaultDarkModeImagePolicy =
+ const constexpr int kDefaultForegroundBrightnessThreshold = 150;
+ const constexpr int kDefaultBackgroundBrightnessThreshold = 205;
+ const constexpr float kDefaultDarkModeContrastPercent = 0.0f;
++const constexpr float kDefaultDarkModeImageGrayscalePercent = 0.0f;
+ 
+ typedef std::unordered_map<std::string, std::string> SwitchParams;
+ 
+@@ -98,8 +99,6 @@ DarkModeInversionAlgorithm GetMode(const SwitchParams& switch_params) {
+ }
+ 
+ DarkModeImagePolicy GetImagePolicy(const SwitchParams& switch_params) {
+-  if (true)
+-    return DarkModeImagePolicy::kFilterSmart;
+   switch (features::kForceDarkImageBehaviorParam.Get()) {
+     case ForceDarkImageBehavior::kUseBlinkSettings:
+       return GetIntegerSwitchParamValue<DarkModeImagePolicy>(
+@@ -163,10 +162,16 @@ DarkModeSettings BuildDarkModeSettings() {
+       Clamp<int>(GetForegroundBrightnessThreshold(switch_params), 0, 255);
+   settings.background_brightness_threshold =
+       Clamp<int>(GetBackgroundBrightnessThreshold(switch_params), 0, 255);
++  settings.grayscale = GetIntegerSwitchParamValue<bool>(
++      switch_params, "IsGrayScale", kDefaultDarkModeIsGrayscale);
+   settings.contrast =
+       Clamp<float>(GetFloatSwitchParamValue(switch_params, "ContrastPercent",
+                                             kDefaultDarkModeContrastPercent),
+                    -1.0f, 1.0f);
++  settings.image_grayscale_percent = Clamp<float>(
++      GetFloatSwitchParamValue(switch_params, "ImageGrayScalePercent",
++                               kDefaultDarkModeImageGrayscalePercent),
++      0.0f, 1.0f);
+ 
+   settings.increase_text_contrast = GetIncreaseTextContrast(switch_params);
+   if (settings.contrast > 0)

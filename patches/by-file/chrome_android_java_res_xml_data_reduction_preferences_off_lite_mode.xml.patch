@@ -1,0 +1,20 @@
+diff --git a/chrome/android/java/res/xml/data_reduction_preferences_off_lite_mode.xml b/chrome/android/java/res/xml/data_reduction_preferences_off_lite_mode.xml
+index 91992a78..f0fdcb1d 100644
+--- a/chrome/android/java/res/xml/data_reduction_preferences_off_lite_mode.xml
++++ b/chrome/android/java/res/xml/data_reduction_preferences_off_lite_mode.xml
+@@ -9,12 +9,12 @@
+     <org.chromium.components.browser_ui.settings.TextMessagePreference
+         android:title="@string/data_reduction_benefits_description_lite_mode"
+         app:allowDividerBelow="false" />
+-
+     <org.chromium.components.browser_ui.settings.TextMessagePreference
+-        android:title="@string/data_reduction_description_lite_mode"
++        android:title="@string/data_reduction_description_lite_mode_kiwi"
+         app:allowDividerBelow="false" />
+-
++<!--
+     <org.chromium.components.browser_ui.settings.LearnMorePreference
+         android:key="data_reduction_learn_more"
+         app:allowDividerBelow="false" />
++-->
+ </PreferenceScreen>

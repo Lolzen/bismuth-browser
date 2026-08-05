@@ -1,0 +1,21 @@
+From c9f00d132536d8db27c2737d4c36866d2964eee7 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 04:06:39 +0300
+Subject: [PATCH 059/506] Update download_translations_from_crowdin.php
+
+---
+ toolbox/download_translations_from_crowdin.php | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/toolbox/download_translations_from_crowdin.php b/toolbox/download_translations_from_crowdin.php
+index 1b7977e9..39a027ee 100644
+--- a/toolbox/download_translations_from_crowdin.php
++++ b/toolbox/download_translations_from_crowdin.php
+@@ -38,6 +38,7 @@ foreach ($files as $file)
+   passthru("sed -i '/homepage_preferences_enable_news_title/d' " . $file);
+   passthru("sed -i '/homepage_preferences_enable_news_summary/d' " . $file);
+ }
++passthru('mkdir -p chrome/android/java/res/');
+ passthru('cp -rf ../translations_tmp/* chrome/android/java/res/');
+ passthru('mkdir -p chrome/android/java/res/values-es-rUS');
+ passthru('cp -rf chrome/android/java/res/values-es-rES/* chrome/android/java/res/values-es-rUS/');

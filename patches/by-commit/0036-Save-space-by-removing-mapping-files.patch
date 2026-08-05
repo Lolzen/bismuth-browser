@@ -1,0 +1,31 @@
+From 78519b5bcfe113bbf6c33b7c494c9acc102b844c Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 19 Jul 2021 02:30:27 +0300
+Subject: [PATCH 036/506] Save space by removing mapping files
+
+---
+ .github/workflows/build_apk.yml | 11 -----------
+ 1 file changed, 11 deletions(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index b8a2738b..a38d68d7 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -235,17 +235,6 @@ jobs:
+         with:
+           name: apk-x64
+ 
+-      - name: Uploading mapping file into GitHub release (arm)
+-        uses: actions/upload-release-asset@v1
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        with:
+-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+-          asset_path: ./apk-arm/ChromePublic.apk.mapping
+-          asset_name: Kiwi-${{ github.run_id }}-arm.map
+-          asset_content_type: application/vnd.android.package-archive
+-
+-
+       - name: Signing and uploading release to GitHub and send to the Play Store
+         if: ${{ github.repository_owner == 'kiwibrowser' && contains(github.event.inputs.prepareRelease, 'yes') }}
+         run: |

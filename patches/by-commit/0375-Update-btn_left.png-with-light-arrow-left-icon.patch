@@ -1,0 +1,138 @@
+From 4324bf5fa7c17a9826ab2e173fabd311a7e60f8e Mon Sep 17 00:00:00 2001
+From: d3ward <d3ward@users.noreply.github.com>
+Date: Fri, 13 Aug 2021 11:01:06 +0000
+Subject: [PATCH 375/506] Update btn_left.png with light/arrow-left icon
+
+---
+ .../android/java/res/drawable-hdpi/btn_left.png | Bin 496 -> 453 bytes
+ .../android/java/res/drawable-mdpi/btn_left.png | Bin 383 -> 383 bytes
+ .../java/res/drawable-xhdpi/btn_left.png        | Bin 572 -> 523 bytes
+ .../java/res/drawable-xxhdpi/btn_left.png       | Bin 715 -> 685 bytes
+ .../java/res/drawable-xxxhdpi/btn_left.png      | Bin 940 -> 692 bytes
+ 5 files changed, 0 insertions(+), 0 deletions(-)
+
+diff --git a/chrome/android/java/res/drawable-hdpi/btn_left.png b/chrome/android/java/res/drawable-hdpi/btn_left.png
+index 0464babc6c3691ac0f751b61c3bdea62fbaa33b8..96ae08bca1aa67cabf4bb220a9a94cc642a15c96 100644
+GIT binary patch
+delta 344
+zcmeyse3W@YSv@Z|Bdc!m%tZ_g3}-!E978;gzrCX9-5e;w_8|RKgy9YajWZ9r6f(@E
+z&WbHwUG`V-mvYNbd6RY0TP4H9dFH1Yu$224bt}vhcKNo9TmJdOPj{>1r~Ryd`6|>v
+zdfwisvqsr+Ew^<pm+AME6#1O){g7e1dwzCej`8U^-1=pk&#bI34{ncqcH+$J$2!Fe
+z49lmb{!%-1G~X>c{+jl@Hw%A${Bq)ClEvg7?+*8M7R>zXykWhe`HBTyee*YQd)^do
+z)K1LN=AU|%Bez`i=&|&xe4hg%e>z_;W8Hk_{u%b*e<nYkoLk5U^qFdjYeY#(Vo9o1
+za#1RfVlXl=GSoG&&@~J+4ly*eG5{h|Z36=<0|Q41nH&@yx%nxXX_W{a=o$=Mms|j9
+OVDNPHb6Mw<&;$SjEsWp*
+
+delta 339
+zcmX@g{DFBwSv|Knqa>&40aXSDh990Tjv*e$-(EedeI!ui*vIo{*n|_CZ&q}Q26~+m
+ztDn8!UCc>rilFq;H4{AI(wbSd3v=pHFX{NCi(RrQFMeIJ?{4+H>T^pM|6jg|)wa@S
+zJMY42M?>ClJhW?nxmmx(e6{4624}@RQRfoaWVs*S3}Q2W6T(sNFJ?Srm9e7Dtg{Kn
+zV#NH;rWgpXYbnUxboENm;ksMvwCvXI{OkIzUAO!!)AL0~OFzwx$zyOmz4S-M`K$MG
+zSDEwoiXYu)c=glEx{NEW0&+#)4tso5c>QeCiiO{{aPU|O9r9k6xiEgMgtB&I$ojoy
+zJZ39y=*jr3KE1180(+p*{XV|;D;Doxsox-<Gi{RmvD=fw8D&KbLyU~A3=FM|OtlRR
+jtPBihELitwatEWV0=mS@zhZH~aAWXv^>bP0l+XkKe4CTF
+
+diff --git a/chrome/android/java/res/drawable-mdpi/btn_left.png b/chrome/android/java/res/drawable-mdpi/btn_left.png
+index 33d20c239f13ef2607e95ea6da09b00f795f7539..32132159039563334188b1c83867c8a5540763d0 100644
+GIT binary patch
+delta 249
+zcmey*^q*-$Sv@Z|Bdc!m%tZ_g4DFsSjv*GO?_OHVdniGG?EyQBv;m`-f33Jf!z1?q
+zZZ=+~gG?KkPj6t=4!O``cJzwSzR4eEomM@ct#^EXTBgK9b^pgD`+{dL{k-*<+Fbv=
+zZ!TA^EAn_g^U_o6*QLcz@*XVvt08~x!uxAs7Q#!j*GyV1lRWi-Ol0EHz$04GTPxQH
+z)!0QGx%d0}C$^_orJC!$3jCie$S50V9Aao_WdKB`+6D$z1_q82GC4rUs+PD$l%yn<
+oq*~?Xr(~v8G8h>c8R{BX=o+GHFmPRR0jPn&)78&qol`;+08z4HH~;_u
+
+delta 249
+zcmey*^q*-$Sv|Knqa>&40aXSDhIUUE#}JFtcQ0)ebPN<|eaPSFBA&#$=L@SxuhW$U
+zjH()r%uF+lS`LXzIzQsdOFMRB>c`{%&&{#j{YQIkrCWUEi$}kr3O9G0w3R-3)MOcd
+zj_6#qW&CeN(kIWb+Y~;h$A0-b8PgrR_M7rgyTHHwds3Tn?Oqd^mr>cQD-VYTtq=6H
+zli!lIv+@2T&O=vJXWQJ?6Pql^C>v-PVq|P(U}$Azs%>CkWneI4!MaC4$EudNMwFx^
+pmZVzc=BH$)RWcYE7#ZpsSm+v}Yk2urEDorF!PC{xWt~$(69Bi0Us3=7
+
+diff --git a/chrome/android/java/res/drawable-xhdpi/btn_left.png b/chrome/android/java/res/drawable-xhdpi/btn_left.png
+index 1e2a0b95d537010674fa83fd2fbe99b941ea19dc..7e8a232a1b4ec96358a2b518a69d5aefcc581caa 100644
+GIT binary patch
+delta 366
+zcmdnP(#<lVte%&fkyST&<{}0LMqy7E$B>A_Z?D<vvjmE?f4t8%YpRBd)TS)6g?HRm
+z2CrOM!@fFveU$rC<qI8I!V3k?-f~jE=;h+_`00w2lU1H&b6gD1mrOocoPKWaXZ!X^
+zlP1->_=X>^m{#W$&hb^I_UcN3ZN*=d`C2#RYdFVmRBusUZ27+azR;nW8)g136Ikc-
+z?8WsxT;^#-Urx_!vHooNtBw8P#iYJ{@4_m!O<Fv^Om|Pz`HTCHA37F)qV4y)5ZM{7
+zw_BGo_UNCx`~S;<K8=dGHCMha_ZC@qO5OQsw~%c1g4}F{zw1?B<rZ!Ju)XGV$UDQ<
+zop<DWzpPjwUdCPNz2@05Q<Gv%X}*`ble_NTSvKEp+Xd-8QIXtB`uhSd7tS>QGi}Ng
+zkq5l;?v1<Oaq-`se2!68#5lyz(8>UaOtlRRtPBhsC1i3Y|7Vm{K$kFZU2=f|2s~Z=
+KT-G@yGywqNuBKK1
+
+delta 415
+zcmV;Q0bu@%1iS>0c7F>O0T~H3z$E|x0YpheK~z}7?bba@!%!5)@xNNcLdCa1r$WcB
+zf}5a&;;2HcbB9iXDEJ}7O}jYy0Xpd5%jBlePU5JvP*6Hlp<1B|(zsj>p`d7b4mjK=
+zOTtZlCpWpdH{j#r^N$kafEE`F+wg-F2?z+-u;AmIIX)n(&wnSl6#j@lZGMz1;ScH8
+z=Eo@uzo&oqQ``!_tBpgFdxv+}(dScCh2PZY(>yx<lbk+3O~dgYWc2x2nvQ>GS)ZTh
+z)$wmE^v-pU>?MvFa{DbB5yU69x&FSnCgVQ(b`u8GKYgGRK8STS<~ix{5!KoH`GmR9
+zOI|eSA27qS3|i9_n-bv<ZOx`cng`3N0w6`ja<T(Ra%VYR15Da3H~?dmq(nh~$pjd&
+zUG%~Hw*?^1sgzj%+oiwja+_6(Zhyj}2LJ=?^TIg^s{%egK9TbU{g<uqOb(UDlbrz_
+z6fsmXGdeIaIx;mYFfckWFqojO;*-t+9Uw7OGBY|bF*-6eD=;uRFfi%;7G3}V002ov
+JPDHLkV1n0-z@h*E
+
+diff --git a/chrome/android/java/res/drawable-xxhdpi/btn_left.png b/chrome/android/java/res/drawable-xxhdpi/btn_left.png
+index 2ac4144b98f5215c8b4cdf20497ddbed65ff70dc..0cd5172c17bc691719ee4c468408a1d7491bd7a6 100644
+GIT binary patch
+delta 529
+zcmV+s0`C3G1+4{;c7F{E0R=5%nW6vy0kug)K~!ko?b)$!jA0zW@y|IyLtJ8z>R@28
+zbTXN2Oe~_Cg;=i}%736@!B!?r_y<f(O^3FFMS`INi6#b#sHnaj-ltES$Tbzt?-`!&
+zZTH@r``r89z0dnRN3B+?)oQhWTK6yaA9KY)@1sA)M#p^AXn$OYhO~`(r_pHKjix})
+zV&beg8I57YtHk+bA{s;2^TcWNqcL>MWX`Q<3`}RvgJ=p|&zvWAMPs;REpcAj6OG}#
+zpNTVTe>8^Ez9-HbhoUiz`;s_Ijz(iR?o;9{I}wdx%!kDJTEZ~VvyeDHoQcLT;&tMz
+zx)_b2>qX+Mxqljsq2p1$F5ig8z@5yw7fpeine+Jnjar?7TP~Z)TbHa3;k}pj&F%EX
+z`+UpCXLyg<-`{xfsc439Om@)j0ne}K5B-#VHu+~eOhtUDw{P=je?OYi*6}ctrlK)z
+zn-iWQh7O7wT%l*aq}vZT>}^RmXcTt~OK~^(a4L^)MNCYC;M|sp;(=&P+t#V{-e^qQ
+zwS4V<TFMA_yR7Ay0vD|4dREes9>pzsQrxmI#Vwpu++PcD#H6#)h+3^ytJP}Tv<^&&
+z2M$se?3j~X0v!}HR539+FflqXH7hVMIxsLn7#wVqjshJZGgL7#IxsOhFf}VMFgh?W
+TFh!)$00000NkvXXu0mjfXzBu+
+
+delta 559
+zcmV+~0?_@f1<M7Hc7F>O0T~H3z$E|x0n<rDK~!ko?b$sjMPVGr@$b3UTV9e|ic%KE
+zA}@u}%VM!HFfy=E7#IyQGD*26L>U-NUShFOk}QgWD584@BoX%*ymX&)(W!f!|1&(l
+zXFJ`_^EvmNd!PUFKVV{FVq#)q;%S0OpP_~h3OT`+z7zn9F@Iv%*lc=mX-Ox*6!!OM
+zmFA={AIGs7kmaPaqHtcRkmO{su5fGyB{{k5D3}=ilAI8`j+@mf$tmDS;XKnO$tmVk
+z;XKkT$tmMf;XKeJ$*JO2;Y6vE<kS*XIM<X*avHf;IOmi|a$0y&IL8!8ayocXI0xiQ
+za(Z}EID3R7Ie$Z+)y~)0CP$Jp>{vio$&kZXOgK0Tr1~@QPYE*PSTb!6iFrEn9ZSr(
+zt;9zh-_C!HUbp%ypFsPGQwM$o`L(5aa|@dG2^3B|^xH!nrb{{E{X-pLjz#w$w-}fC
+z+5Z)-{un>fr`OT}(5=_v3ec`s`2pG$XaEg*m9PLcL~3*@@&T&2(P<k5P|Af)8%5A=
+zD-GH;8vye3YR3R%v!#%P8&&|BtT`55(Uu-S8q1CwS1C;jGOLh;+rj`AlW`#N#`#A^
+zKg*L1uU;)!NuQybdd^t&xZ*Z3F)=YQG4U$zu*0SH7ynT3lRp9-6fsmXGdeIaIx;mY
+xFfckWFqojO;*)R!9Uw7OGBY|bF*-6eD=;uRFfi%;7G3}V002ovPDHLkV1ns-_=Nxf
+
+diff --git a/chrome/android/java/res/drawable-xxxhdpi/btn_left.png b/chrome/android/java/res/drawable-xxxhdpi/btn_left.png
+index 72358cd54682a7667acb551a844ad71a97e156ac..5c96f635dd555ee5dd275a83103e0be683940f99 100644
+GIT binary patch
+delta 536
+zcmV+z0_Xj#2ebu{c7F{E0R=5%nW6vy0lY~>K~#9!?b^>OL}47p@$V=pDT&z3!k)4u
+z!yT}(k+PAkKgGhh2v#htSh)l?vr-ee02Wq~v7sc*2Its__k{GmnBRG)=QArcqwh>J
+zJm<^-5fKp)5fNz~%haf`V4V@FOiD^hLdiNM#2m@n6G&OHj(_nt$<up&%BXdYuM%}9
+zf73e0*8q1;{yr_%L4Jx{I{6jatb_dYaPH)v(qSFsr=6;ke?hNxke^l#o&0P1t%Lj&
+z*mLsl8L|%Ywc+H~8Mn^yweI9UGi9CQYu1?!3G>!Dz9urWVa+<n*9ebJ{+4x)FU<x^
+znhlmT8*FJdSbx%Nu$1fBQ26m4gB;QI{?jd+Bn>Tmp~`Xi!#lZhUVWQe!u0onKh3Zi
+ziVc0ezfxc^{0Zbk8vfASzlD51#1HH=_(S|ig_Ga?is8(k(d~xj|B>uJva)qfh{&e|
+ze0+5j>6nA)=QI@9jr)KGS~-aMkP<#0)c08j`RnE^=2O!u5dDcQi2l?fXkO%l=0zT8
+zUf65Gc@f!n2B3M74^1#HvX`7~Sm%VuUi26JWtXegF=0OD#h7(Us70>1VaYl}L_|bH
+zL`44AD+3em<XqJGSd%^j9TYQEF)=zYF*-0cD=;uRFfc(F9Bh+s105hUR539+FflqX
+aH7hVMIxsLWMWoOG0000<MNUMnLSTZ2tpfc3
+
+delta 811
+zcmV+`1JwMq1*`{<c7F>O0T~H3z$E|x0<=j)K~#9!?b=O<jBy;m@$VXIUu<66Wy?#}
+z9%K)alw#F7kkTHU<ly4vz=e||IjwAQS*1AOpp+B`Z-YpUw1sv{mQb`I?6B>!voDXs
+zGT8mi^m``ew}1UU&uylezQ3ntdj9|C0q2}^&N=6tbN`PDT7P*?nj5UKPASB6?h*Ys
+zGBjG}#5J4tY<@(<ZR?<T=F;&;eni?jDUJnnjmeLAY8|Cl&#Q6y5r?g_w3gB><lmvf
+zI!tFd?}hwZR9T1VtmLDRf0=UYFrBr05%SMbY8|Gtk$xfn3<>Knoo2oX`E5+H4%6An
+zppf5Uou##lVSge2fOVGE9!AE+kFeJ|OKZPy?uXcJouze1%-?36rBlK&A%B3))?qpc
+zP6_#athWx+DdoJ7-^)7dFr6|k3i+Q{WgVtd$#o(BEz7LKbbeo`|2n#9unyCi$$cUJ
+zC5x@Ybms6_$bZ5->o6T@p&s#&YU{9{O7gy2Pm+bg>woP<+b$U*MJxS<eYl!8!r3qW
+z(ZST*k@;3mCnm_=W(~u+clh$Hotmx7vzl_h6~^K(&+byb0j^kgXI(1nWAk}!{sWGP
+zNKuwMGXLLb9Z41muNUucbbusn3>N+cwR8&Sq?6hr4e%G#@F?U<34j@-LcW*-sN!bG
+zm(u{1Tz?ftco)io24D&ogb{i|SyBQdI34n$esqMB!U%nAunyBJ;ixb|FdJK=4hka#
+zv$Z%%-rU_`ofXG!;qJf)`>eC#*ctW>4uCCWgb{+d#RRa4ufhn&16k(*&_u5=!dWI;
+zhv_x)Sr{Rh8{Gga_#liB%%cVX4dSyZ!945%uzy6{#S7+f8-O}q2qPS^&Wc0Y0C;8{
+z70>v432E!3xMuNS%nvy@)3}?>&rFd0?U>4Gp^F}_vD!MtIp>^n&N=7Yzw;f%@}%jG
+zK*1OQ001R)MObuXVRU6WV{&C-bY%cCFfuVMFgPtSF;p@$IxsOhGBqnOFgh?Wn4qrW
+p0F!tE93U}NGBY|bF*-6eD=;uRFfi%;7G3}V002ovPDHLkV1hVsh{FH?
+

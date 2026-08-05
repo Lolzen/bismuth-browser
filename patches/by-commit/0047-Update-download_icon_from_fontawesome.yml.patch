@@ -1,0 +1,22 @@
+From d556459823acd9ff06495360d9db6e3ce5c60256 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 02:08:19 +0300
+Subject: [PATCH 047/506] Update download_icon_from_fontawesome.yml
+
+---
+ .github/workflows/download_icon_from_fontawesome.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/download_icon_from_fontawesome.yml b/.github/workflows/download_icon_from_fontawesome.yml
+index e66f9847..e7119cc2 100644
+--- a/.github/workflows/download_icon_from_fontawesome.yml
++++ b/.github/workflows/download_icon_from_fontawesome.yml
+@@ -44,7 +44,7 @@ jobs:
+         run: sudo apt-get install imagemagick
+         
+       - name: Execute Script - Replace icons with new FA ones
+-        run: bash iconUpdateScript.sh "./node_modules/@fortawesome/fontawesome-pro/svgs/${{ github.event.inputs.iconTypeFA }}/${{ github.event.inputs.iconNameFA }}.svg" "${{ github.event.inputs.fileNameInChromium }}" "${{ github.event.inputs.fillColor }}"
++        run: bash ./toolbox/icon_update_script.sh "./node_modules/@fortawesome/fontawesome-pro/svgs/${{ github.event.inputs.iconTypeFA }}/${{ github.event.inputs.iconNameFA }}.svg" "${{ github.event.inputs.fileNameInChromium }}" "${{ github.event.inputs.fillColor }}"
+       
+       - name: Git Auto Commit
+         uses: stefanzweifel/git-auto-commit-action@v4.11.0

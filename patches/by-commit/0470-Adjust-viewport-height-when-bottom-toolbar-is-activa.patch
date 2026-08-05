@@ -1,0 +1,29 @@
+From 376946a5293e997655e6216258b673afbfb05132 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Mon, 13 Dec 2021 00:29:38 +0000
+Subject: [PATCH 470/506] Adjust viewport height when bottom toolbar is
+ activated
+
+---
+ .../omnibox/suggestions/OmniboxSuggestionsDropdown.java   | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
+index 6b183f45..18e58844 100644
+--- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
++++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/OmniboxSuggestionsDropdown.java
+@@ -322,8 +322,12 @@ public class OmniboxSuggestionsDropdown extends RecyclerView {
+ 
+             int availableViewportHeight =
+                     calculateAvailableViewportHeight(anchorBottomRelativeToContent);
+-            if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false))
+-                availableViewportHeight = availableViewportHeight / 2;
++            if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false)) {
++                int displayableSuggestions = 0;
++                int suggestionHeightPx = getResources().getDimensionPixelSize(R.dimen.omnibox_suggestion_semicompact_height);
++                for (int spaceTakenBySuggestions = 0; (spaceTakenBySuggestions + suggestionHeightPx) < (availableViewportHeight / 2); spaceTakenBySuggestions += suggestionHeightPx, displayableSuggestions++);
++                availableViewportHeight = displayableSuggestions * suggestionHeightPx;
++            }
+             int desiredWidth = mAnchorView.getMeasuredWidth();
+             // Suppress the initial requests to shrink the viewport of the omnibox suggestion
+             // dropdown. The viewport will decrease when the keyboard is triggered, but the request

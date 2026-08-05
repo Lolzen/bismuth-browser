@@ -1,0 +1,57 @@
+From 8a9bb1229352598dab6684355250a32f088b78d2 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:43:04 +0000
+Subject: [PATCH 467/506] Sync minor changes with internal repository
+
+---
+ .../chrome/browser/gesturenav/HistoryNavigationLayout.java  | 2 --
+ .../src/org/chromium/chrome/browser/theme/ThemeUtils.java   | 2 +-
+ .../chrome/browser/toolbar/top/TopToolbarCoordinator.java   | 6 +++++-
+ 3 files changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/HistoryNavigationLayout.java b/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/HistoryNavigationLayout.java
+index a22d9ff1..7023fd62 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/HistoryNavigationLayout.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/gesturenav/HistoryNavigationLayout.java
+@@ -16,8 +16,6 @@ import org.chromium.base.Callback;
+ import org.chromium.base.supplier.Supplier;
+ import org.chromium.chrome.browser.gesturenav.NavigationBubble.CloseTarget;
+ 
+-import org.chromium.base.ContextUtils;
+-
+ /**
+  * FrameLayout that supports side-wise slide gesture for history navigation.
+  */
+diff --git a/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java b/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java
+index 1190c35b..0968eddb 100644
+--- a/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java
++++ b/chrome/browser/ui/android/theme/java/src/org/chromium/chrome/browser/theme/ThemeUtils.java
+@@ -48,10 +48,10 @@ public class ThemeUtils {
+      */
+     public static int getBackgroundColor(Tab tab) {
+         if (tab.isNativePage()) return tab.getNativePage().getBackgroundColor();
+-
+         boolean isIncognito = tab != null && tab.isIncognito();
+         boolean isLocalNTP = tab != null && tab.getUrl().getSpec().contains("/local-ntp/");
+         if (isIncognito && isLocalNTP) return Color.BLACK;
++
+         WebContents tabWebContents = tab.getWebContents();
+         RenderWidgetHostView rwhv =
+                 tabWebContents == null ? null : tabWebContents.getRenderWidgetHostView();
+diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
+index 5a2bf184..e349b609 100644
+--- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
++++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
+@@ -406,7 +406,11 @@ public class TopToolbarCoordinator implements Toolbar {
+         mToolbarLayout.updateForwardButtonVisibility(canGoForward);
+     }
+ 
+-    @Override
++    /**
++     * Gives inheriting classes the chance to update the visibility of the
++     * reload button.
++     * @param isReloading Whether or not the current tab is loading.
++     */
+     public void updateReloadButtonVisibility(boolean isReloading) {
+         mToolbarLayout.updateReloadButtonVisibility(isReloading);
+     }

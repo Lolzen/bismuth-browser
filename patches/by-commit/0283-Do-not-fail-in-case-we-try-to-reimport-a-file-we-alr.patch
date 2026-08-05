@@ -1,0 +1,32 @@
+From d3ca067951eb862b5f8ed54f0092a1d58c32ff26 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 19:20:01 +0300
+Subject: [PATCH 283/506] Do not fail in case we try to reimport a file we
+ already have
+
+---
+ .github/workflows/import_file_from_chromium.yml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/.github/workflows/import_file_from_chromium.yml b/.github/workflows/import_file_from_chromium.yml
+index 79b4bc88..9e3e083c 100644
+--- a/.github/workflows/import_file_from_chromium.yml
++++ b/.github/workflows/import_file_from_chromium.yml
+@@ -50,7 +50,7 @@ jobs:
+         run: git add ${{ github.event.inputs.path }}
+ 
+       - name: Committing file
+-        run: git commit -a -m '[Chromium] Importing ${{ github.event.inputs.path }} from version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}'
++        run: git commit --allow-empty -a -m '[Chromium] Importing ${{ github.event.inputs.path }} from version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}'
+ 
+       - name: Importing assets from adjacent folders (if it's an image)
+         if: contains('${{ github.event.inputs.path }}', 'drawable-') || contains('${{ github.event.inputs.path }}', 'mipmap-')
+@@ -67,7 +67,7 @@ jobs:
+               mkdir -p $(dirname "${adjacent_target_file}") &&
+               cat /tmp/file.txt | base64 --decode > ${adjacent_target_file} &&
+               git add ${adjacent_target_file} &&
+-              git commit -a -m "[Chromium] Importing ${adjacent_target_file} from version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }} (automatic import because we imported ${{ github.event.inputs.path }})"
++              git commit --allow-empty -a -m "[Chromium] Importing ${adjacent_target_file} from version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }} (automatic import because we imported ${{ github.event.inputs.path }})"
+             done
+           done
+ 

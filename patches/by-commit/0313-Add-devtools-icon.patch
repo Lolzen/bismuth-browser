@@ -1,0 +1,91 @@
+From 1df1cd1fcdefd1aef1c3eb8864578696aabec12a Mon Sep 17 00:00:00 2001
+From: Eduar Ursu <eduardursu78@gmail.com>
+Date: Wed, 11 Aug 2021 23:48:25 +0200
+Subject: [PATCH 313/506] Add devtools icon
+
+---
+ chrome/android/java/res/menu/main_menu.xml        |   2 +-
+ .../java/res/drawable-hdpi/settings_all_sites.png | Bin 137 -> 0 bytes
+ .../java/res/drawable-mdpi/settings_all_sites.png | Bin 101 -> 0 bytes
+ .../res/drawable-xhdpi/settings_all_sites.png     | Bin 134 -> 0 bytes
+ .../res/drawable-xxhdpi/settings_all_sites.png    | Bin 159 -> 0 bytes
+ .../res/drawable-xxxhdpi/settings_all_sites.png   | Bin 165 -> 0 bytes
+ 6 files changed, 1 insertion(+), 1 deletion(-)
+ delete mode 100644 components/browser_ui/styles/android/java/res/drawable-hdpi/settings_all_sites.png
+ delete mode 100644 components/browser_ui/styles/android/java/res/drawable-mdpi/settings_all_sites.png
+ delete mode 100644 components/browser_ui/styles/android/java/res/drawable-xhdpi/settings_all_sites.png
+ delete mode 100644 components/browser_ui/styles/android/java/res/drawable-xxhdpi/settings_all_sites.png
+ delete mode 100644 components/browser_ui/styles/android/java/res/drawable-xxxhdpi/settings_all_sites.png
+
+diff --git a/chrome/android/java/res/menu/main_menu.xml b/chrome/android/java/res/menu/main_menu.xml
+index 7ffff015..39bd70c3 100644
+--- a/chrome/android/java/res/menu/main_menu.xml
++++ b/chrome/android/java/res/menu/main_menu.xml
+@@ -152,7 +152,7 @@
+             android:title="@string/main_menu_turn_on_night_mode" />
+         <item android:id="@+id/developer_tools_id"
+             android:title="@string/main_menu_developer_tools"
+-            android:icon="@drawable/settings_all_sites" />
++            android:icon="@drawable/ic_devtools" />
+         <item android:id="@+id/preferences_id"
+             android:title="@string/menu_settings"
+             android:icon="@drawable/settings_cog" />
+diff --git a/components/browser_ui/styles/android/java/res/drawable-hdpi/settings_all_sites.png b/components/browser_ui/styles/android/java/res/drawable-hdpi/settings_all_sites.png
+deleted file mode 100644
+index e126f9923a15d875112d1552e2bc1a5d72ba4875..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 137
+zcmeAS@N?(olHy`uVBq!ia0vp^Dj>|k0wldT1B8K8fTxRNNCji^4}Vn)3tlPHj4KN?
+z+E=hCd}-L&*&-*w#>o1g`5}wMY!8dZHnvI^Uxq^tK#qh*NrJmz!xf{98OLsAtm!>=
+h>w{jFJ5W0ZL*L7<-z&Zx`~ftZ!PC{xWt~$(697icD+&Mr
+
+diff --git a/components/browser_ui/styles/android/java/res/drawable-mdpi/settings_all_sites.png b/components/browser_ui/styles/android/java/res/drawable-mdpi/settings_all_sites.png
+deleted file mode 100644
+index b47b5b5eab46c417bee2cbfb867565fa50c05025..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 101
+zcmeAS@N?(olHy`uVBq!ia0vp^5+KaM0wlfaz7_*19Zwg>kP61+AO1=zjxSfVt@!Vt
+y!LX>%nah-eK~cHm7;omI_CWg!2D-gj3=Ac?9+vlVtonia7(8A5T-G@yGywpzoEwn<
+
+diff --git a/components/browser_ui/styles/android/java/res/drawable-xhdpi/settings_all_sites.png b/components/browser_ui/styles/android/java/res/drawable-xhdpi/settings_all_sites.png
+deleted file mode 100644
+index bb432cac2f71ec5bfff521f2ce0c19e095e49cd2..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 134
+zcmeAS@N?(olHy`uVBq!ia0vp^1|ZDA0wn)(8}a}tUr!gukczms*9^HB6gV6%?rMDg
+z`QP^qt_4%3aJ>4gzI?le#hZfvj6jtPS@Vv>tYl>9Fi&2$WvlC~6wiEy@7p;VtRL_(
+d{Q4*kQlj%MLRcl^r1(paa!*%3mvv4FO#odOECc`m
+
+diff --git a/components/browser_ui/styles/android/java/res/drawable-xxhdpi/settings_all_sites.png b/components/browser_ui/styles/android/java/res/drawable-xxhdpi/settings_all_sites.png
+deleted file mode 100644
+index 9d1bc618dbe019493f0f6f953e67c68dab804fbb..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 159
+zcmeAS@N?(olHy`uVBq!ia0vp^9w5xY0wn)GsXhaw(mY)pLn`9l-q^@_z<|fqF`fDR
+z^1t5$b}g_9O8oFqY{$F9@s$w{4i1kQp}=)o*_!op-UkT?T+p*+-SYgmq3p%g*0K%`
+w;yIE66LdGHIyfw2<~T9U^wR>E7DmRsKOJ9H>lVEe0@}#n>FVdQ&MBb@0K)w=m;e9(
+
+diff --git a/components/browser_ui/styles/android/java/res/drawable-xxxhdpi/settings_all_sites.png b/components/browser_ui/styles/android/java/res/drawable-xxxhdpi/settings_all_sites.png
+deleted file mode 100644
+index 0c6f15e29ddfda4b5b10a0d1180b962b6795aefc..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 165
+zcmeAS@N?(olHy`uVBq!ia0vp^2_VeE3?v1%WpM*3{s5m4*Z=?jM<Ib@D{{^NrC3UW
+z{DOfB8T-OqVu5@|PZ!6KinzCz7YZ^Ma2yQ?`=LCA_eSI2bS)-d(Q?sBJELu^3=^Ju
+zoH|(N@IY1N=Ygop&8AH!+wBEDFxw00Ffzo1@A&m{R%OabpkWN2u6{1-oD!M<`(!m@
+

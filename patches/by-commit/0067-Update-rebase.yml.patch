@@ -1,0 +1,22 @@
+From bdb041d07329ff391c036da067b1b59437fdd43c Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 05:02:13 +0300
+Subject: [PATCH 067/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 952538d7..5f10d429 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -18,7 +18,7 @@ jobs:
+         run: echo Rebasing files
+ 
+       - name: Downloading files
+-        run: wget 'https://chromium.googlesource.com/chromium/src/+blame/93.0.4577.20/chrome/browser/resources/extensions/extensions.html?format=TEXT' -O chrome/browser/resources/extensions/extensions.html
++        run: wget 'https://chromium.googlesource.com/chromium/src/+/refs/tags/93.0.4577.20/chrome/browser/resources/extensions/extensions.html?format=TEXT' -O chrome/browser/resources/extensions/extensions.html
+         
+       - name: Outputing file
+         run: cat chrome/browser/resources/extensions/extensions.html

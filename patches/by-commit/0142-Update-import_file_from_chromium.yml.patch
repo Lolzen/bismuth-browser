@@ -1,0 +1,35 @@
+From 134c147d6f7cc29864a4f23d5ae8df8bd09bd059 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 22:57:56 +0300
+Subject: [PATCH 142/506] Update import_file_from_chromium.yml
+
+---
+ .github/workflows/import_file_from_chromium.yml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/.github/workflows/import_file_from_chromium.yml b/.github/workflows/import_file_from_chromium.yml
+index 849b62ea..1d2d7d8c 100644
+--- a/.github/workflows/import_file_from_chromium.yml
++++ b/.github/workflows/import_file_from_chromium.yml
+@@ -27,7 +27,10 @@ jobs:
+         run: |
+           git config --global user.email "github@actions"
+           git config --global user.name "Repository manager"
+-          
++
++      - name: Preparing local Chromium branch
++        run: git git switch chromium
++
+       - name: Loading settings from CHROMIUM_VERSION
+         run: |
+           source CHROMIUM_VERSION; export $(cut -d= -f1 CHROMIUM_VERSION | grep -vF '#')
+@@ -42,9 +45,6 @@ jobs:
+       - name: Decoding file
+         run: cat /tmp/file.txt | base64 --decode > ${{ github.event.inputs.path }}
+ 
+-      - name: Preparing local Chromium branch
+-        run: git switch -c chromium f5d797deec3b570e0e4a8b77caaf6d51520dfbfa || git switch chromium
+-
+       - name: Adding file to Git repository
+         run: git add ${{ github.event.inputs.path }}
+ 

@@ -1,0 +1,18 @@
+From 2efee8652e2818a1aafebfab472c30f38e763eae Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Tue, 10 Aug 2021 05:17:36 +0300
+Subject: [PATCH 220/506] Delete generate_ccache_build.sh
+
+---
+ generate_ccache_build.sh | 2 --
+ 1 file changed, 2 deletions(-)
+ delete mode 100644 generate_ccache_build.sh
+
+diff --git a/generate_ccache_build.sh b/generate_ccache_build.sh
+deleted file mode 100644
+index 34bb3949..00000000
+--- a/generate_ccache_build.sh
++++ /dev/null
+@@ -1,2 +0,0 @@
+-#!/bin/sh
+-gn gen out/public_arm64 --args='cc_wrapper="ccache"'

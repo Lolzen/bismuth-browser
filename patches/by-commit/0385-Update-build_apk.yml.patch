@@ -1,0 +1,20 @@
+From 06caaf2c127061fd76f24dcc54f7e595ebfdc36b Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 14 Aug 2021 01:57:11 +0300
+Subject: [PATCH 385/506] Update build_apk.yml
+
+---
+ .github/workflows/build_apk.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index e8dd9908..e7d92826 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -1,5 +1,5 @@
+ # Build APKs for Kiwi Browser Next
+-name: 'Any branch: Build apk'
++name: 'Any branch: Build APK'
+ 
+ # Controls when the action will run. Triggers the workflow on pull request events or manual trigger
+ on:

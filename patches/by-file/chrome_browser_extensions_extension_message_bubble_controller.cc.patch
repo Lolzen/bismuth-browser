@@ -1,0 +1,15 @@
+diff --git a/chrome/browser/extensions/extension_message_bubble_controller.cc b/chrome/browser/extensions/extension_message_bubble_controller.cc
+index 8c2e7d0a..7b2cc5de 100644
+--- a/chrome/browser/extensions/extension_message_bubble_controller.cc
++++ b/chrome/browser/extensions/extension_message_bubble_controller.cc
+@@ -316,8 +316,10 @@ ExtensionIdList* ExtensionMessageBubbleController::GetOrCreateExtensionList() {
+         all_extensions ? *all_extensions : registry->enabled_extensions();
+     for (const scoped_refptr<const Extension>& extension :
+          extensions_to_check) {
++#if 0
+       if (delegate_->ShouldIncludeExtension(extension.get()))
+         extension_list_.push_back(extension->id());
++#endif
+     }
+ 
+     initialized_ = true;

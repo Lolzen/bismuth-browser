@@ -1,0 +1,21 @@
+From f2557c6fbecb7a8d6ffeb1ed3cfca5d474498ada Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Tue, 10 Aug 2021 05:18:17 +0300
+Subject: [PATCH 221/506] Update args.gn
+
+---
+ .build/production_build_reference/args.gn | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/.build/production_build_reference/args.gn b/.build/production_build_reference/args.gn
+index 70642b3d..0d4d1ca8 100644
+--- a/.build/production_build_reference/args.gn
++++ b/.build/production_build_reference/args.gn
+@@ -44,3 +44,7 @@ enable_plugins = false
+ 
+ disable_android_lint = true
+ treat_warnings_as_errors = false
++
++# Fast APK
++cc_wrapper = "ccache"
++use_jumbo_build = true

@@ -1,0 +1,19 @@
+From 29d1ad205b3bc097cf093e2916bac5c343cdd5d4 Mon Sep 17 00:00:00 2001
+From: Eduard Ursu <eduardursu78@gmail.com>
+Date: Thu, 12 Aug 2021 00:12:33 +0200
+Subject: [PATCH 319/506] Update download_icon_from_fontawesome.yml
+
+---
+ .github/workflows/download_icon_from_fontawesome.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/download_icon_from_fontawesome.yml b/.github/workflows/download_icon_from_fontawesome.yml
+index bda841fe..be85bd2e 100644
+--- a/.github/workflows/download_icon_from_fontawesome.yml
++++ b/.github/workflows/download_icon_from_fontawesome.yml
+@@ -51,4 +51,4 @@ jobs:
+         with:
+           # Commit message
+           commit_message: Update ${{ github.event.inputs.fileNameInChromium }} with ${{ github.event.inputs.iconTypeFA }}/${{ github.event.inputs.iconNameFA }} icon
+-          file_pattern: */*/*.png
++          file_pattern: ./*.png

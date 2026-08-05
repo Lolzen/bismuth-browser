@@ -1,0 +1,22 @@
+From 6b46cc4988ddd316a5401a1b7b9281ebed7a9430 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 05:51:18 +0300
+Subject: [PATCH 258/506] Test to verify if the linter accepts the file
+
+---
+ .../content/browser/selection/SelectionPopupControllerImpl.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java b/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java
+index 0784c02c..c255b9b3 100644
+--- a/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java
++++ b/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java
+@@ -93,7 +93,7 @@ public class SelectionPopupControllerImpl extends ActionModeCallbackHelper
+     // stops dragging a selection handle, in turn showing the ActionMode, the
+     // selection change response will be asynchronous. 300ms should accomodate
+     // most such trailing, async delays.
+-    private static final int SHOW_DELAY_MS = 300;
++    private static final int SHOW_DELAY_MS = 310;
+ 
+     // A large value to force text processing menu items to be at the end of the
+     // context menu. Chosen to be bigger than the order of possible items in the

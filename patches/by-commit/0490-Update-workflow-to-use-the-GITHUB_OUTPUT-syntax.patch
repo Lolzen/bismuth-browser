@@ -1,0 +1,23 @@
+From 3af25614c6ad88ce5700393ed3f5247519d1aa07 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 13 Aug 2023 11:56:53 +0300
+Subject: [PATCH 490/506] Update workflow to use the GITHUB_OUTPUT syntax
+
+---
+ .github/workflows/build_and_sign_release_apk.yml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index 6c56b95a..2d44d0bc 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -163,7 +163,8 @@ jobs:
+       - name: Read last commits
+         id: read_commits
+         run: |
+-          echo "::set-output name=commits::$(cat ./apk-arm/last_commits.txt)"
++          COMMIT_MSG=$(cat ./apk-arm/last_commits.txt)
++          echo "commits=$COMMIT_MSG" >> $GITHUB_OUTPUT
+ 
+       - name: Creating release
+         id: create_release

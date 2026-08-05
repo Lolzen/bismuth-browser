@@ -1,0 +1,29 @@
+From c4d62818eed6d75438cdc3160f19ea98ba97f6ed Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:10:25 +0000
+Subject: [PATCH 439/506] Add missing reference to source
+
+---
+ chrome/android/chrome_java_sources.gni | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chrome/android/chrome_java_sources.gni b/chrome/android/chrome_java_sources.gni
+index 3f116368..f9b13033 100644
+--- a/chrome/android/chrome_java_sources.gni
++++ b/chrome/android/chrome_java_sources.gni
+@@ -19,6 +19,7 @@ kiwi_java_sources = [
+   "java/src/org/chromium/chrome/browser/translate/settings/RadioButtonGroupTranslatePreference.java",
+   "java/src/org/chromium/chrome/browser/settings/TabSwitcherSettings.java",
+   "java/src/org/chromium/chrome/browser/settings/RadioButtonGroupTabSwitcherPreference.java",
++  "java/src/org/chromium/chrome/browser/settings/ToolbarSettings.java",
+   "java/src/org/chromium/chrome/browser/settings/NightModeSettings.java",
+   "java/src/org/chromium/chrome/browser/settings/RadioButtonGroupNightModePreference.java",
+   "java/src/org/chromium/chrome/browser/init/ChromeBrowserReferrer.java",
+@@ -381,7 +382,6 @@ chrome_java_sources = [
+   "java/src/org/chromium/chrome/browser/compositor/scene_layer/StaticTabSceneLayer.java",
+   "java/src/org/chromium/chrome/browser/compositor/scene_layer/TabListSceneLayer.java",
+   "java/src/org/chromium/chrome/browser/compositor/scene_layer/TabStripSceneLayer.java",
+-#  "java/src/org/chromium/chrome/browser/compositor/scene_layer/ToolbarSwipeSceneLayer.java",
+   "java/src/org/chromium/chrome/browser/contacts_picker/ChromePickerAdapter.java",
+   "java/src/org/chromium/chrome/browser/content/ContentUtils.java",
+   "java/src/org/chromium/chrome/browser/content_capture/ContentCaptureHistoryDeletionObserver.java",

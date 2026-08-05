@@ -1,0 +1,35 @@
+(base) gee src.nextgit merge-base kiwi chromium
+89dfe1810669b4004227186436a2a0f856c75244
+(base) gee src.nextgit diff --shortstat chromium..kiwi
+ 8776 files changed, 425531 insertions(+), 887852 deletions(-)
+(base) gee src.nextgit diff --name-only chromium..kiwi | wc -l
+8776
+(base) gee src.nextgit log --oneline chromium..kiwi | wc -l
+507
+
+(base) gee src.nextcat CHROMIUM_VERSION
+CHROMIUM_MAJOR=132
+CHROMIUM_MINOR=0
+CHROMIUM_BUILD=6834
+CHROMIUM_PATCH=83
+
+(base) gee src.nextcat VERSION
+# The version to use for Kiwi Browser
+
+MAJOR=93
+MINOR=0
+BUILD=4577
+PATCH=21
+(base) gee src.nextcat KIWI_VERSION
+# The version to use for Kiwi Browser
+
+MAJOR=105
+MINOR=0
+BUILD=5195
+PATCH=33
+
+
+(base) gee scripts./verify_base.sh 105.0.5195.24 40
+--- 105.0.5195.24 ---
+     31 DIFF     base/android/jni_registrar.h
+      9 MISSING  base/not_fatal_until.h

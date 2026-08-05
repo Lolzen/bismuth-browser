@@ -1,0 +1,91 @@
+From 992669c0210ff5ee7d60051039b8495ac54515f8 Mon Sep 17 00:00:00 2001
+From: Eduard Ursu <eduardursu78@gmail.com>
+Date: Wed, 28 Jul 2021 18:29:51 +0200
+Subject: [PATCH 044/506] Update issue templates
+
+---
+ .github/ISSUE_TEMPLATE/bug_report.md      | 29 +++++++++++++++++++++++
+ .github/ISSUE_TEMPLATE/feature_request.md | 20 ++++++++++++++++
+ .github/ISSUE_TEMPLATE/general-issue.md   | 10 ++++++++
+ 3 files changed, 59 insertions(+)
+ create mode 100644 .github/ISSUE_TEMPLATE/bug_report.md
+ create mode 100644 .github/ISSUE_TEMPLATE/feature_request.md
+ create mode 100644 .github/ISSUE_TEMPLATE/general-issue.md
+
+diff --git a/.github/ISSUE_TEMPLATE/bug_report.md b/.github/ISSUE_TEMPLATE/bug_report.md
+new file mode 100644
+index 00000000..578afc2e
+--- /dev/null
++++ b/.github/ISSUE_TEMPLATE/bug_report.md
+@@ -0,0 +1,29 @@
++---
++name: Bug report
++about: Create a report to help us improve Kiwi Browser
++title: ''
++labels: bug
++assignees: ''
++
++---
++
++**Describe the bug**
++A clear and concise description of what the bug is.
++
++**To Reproduce**
++Steps to reproduce the behavior:
++
++
++**Expected behavior**
++A clear and concise description of what you expected to happen.
++
++**Screenshots**
++If applicable, add screenshots to help explain your problem.
++
++**Smartphone (please complete the following information):**
++ - Device: [e.g. OnePlus 7]
++ - Android Version : [e.g. A11 ]
++ - Kiwi Browser Version [ e.g. 90.0.4577.17 ]
++
++**Additional context**
++Add any other context about the problem here.
+diff --git a/.github/ISSUE_TEMPLATE/feature_request.md b/.github/ISSUE_TEMPLATE/feature_request.md
+new file mode 100644
+index 00000000..7863bf0d
+--- /dev/null
++++ b/.github/ISSUE_TEMPLATE/feature_request.md
+@@ -0,0 +1,20 @@
++---
++name: Feature request
++about: Suggest an idea or improvements for Kiwi Browser
++title: ''
++labels: enhancement
++assignees: ''
++
++---
++
++**Is your feature request related to a problem? Please describe.**
++A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
++
++**Describe the solution you'd like**
++A clear and concise description of what you want to happen.
++
++**Describe alternatives you've considered**
++A clear and concise description of any alternative solutions or features you've considered.
++
++**Additional context**
++Add any other context or screenshots about the feature request here.
+diff --git a/.github/ISSUE_TEMPLATE/general-issue.md b/.github/ISSUE_TEMPLATE/general-issue.md
+new file mode 100644
+index 00000000..1fd2cd9d
+--- /dev/null
++++ b/.github/ISSUE_TEMPLATE/general-issue.md
+@@ -0,0 +1,10 @@
++---
++name: General Issue
++about: General purpose issue , for discussion , questions etc.
++title: ''
++labels: ''
++assignees: ''
++
++---
++
++

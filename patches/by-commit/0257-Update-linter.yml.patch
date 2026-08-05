@@ -1,0 +1,18 @@
+From 85f5728ac939f7d75a579452294a6f2afd9ab36e Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 05:49:56 +0300
+Subject: [PATCH 257/506] Update linter.yml
+
+---
+ .github/workflows/linter.yml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/.github/workflows/linter.yml b/.github/workflows/linter.yml
+index e1abb4aa..940ac064 100644
+--- a/.github/workflows/linter.yml
++++ b/.github/workflows/linter.yml
+@@ -41,3 +41,4 @@ jobs:
+           VALIDATE_ALL_CODEBASE: false
+           DEFAULT_BRANCH: kiwi
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
++          JAVA_FILE_NAME: java_kiwi.xml

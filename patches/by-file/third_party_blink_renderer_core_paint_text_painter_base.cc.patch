@@ -1,0 +1,14 @@
+diff --git a/third_party/blink/renderer/core/paint/text_painter_base.cc b/third_party/blink/renderer/core/paint/text_painter_base.cc
+index 8fcb1d9f..3310cf10 100644
+--- a/third_party/blink/renderer/core/paint/text_painter_base.cc
++++ b/third_party/blink/renderer/core/paint/text_painter_base.cc
+@@ -181,6 +181,9 @@ TextPaintStyle TextPainterBase::TextPaintingStyle(const Document& document,
+     }
+   }
+ 
++  if (style.DarkColorScheme())
++    text_style.shadow = nullptr;
++
+   return text_style;
+ }
+ 

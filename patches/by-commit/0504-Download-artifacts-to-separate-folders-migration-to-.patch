@@ -1,0 +1,40 @@
+From aa79eb02371e2fed148fb47fee3b33bd53d41385 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 20 Jan 2025 14:14:46 +0200
+Subject: [PATCH 504/506] Download artifacts to separate folders (migration to
+ download-artifact@v4)
+
+---
+ .github/workflows/build_and_sign_release_apk.yml | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index 809c2d2b..0102faff 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -165,21 +165,25 @@ jobs:
+         uses: actions/download-artifact@v4
+         with:
+           name: apk-arm
++          path: apk-arm
+ 
+       - name: Downloading artifact (arm64)
+         uses: actions/download-artifact@v4
+         with:
+           name: apk-arm64
++          path: apk-arm64
+ 
+       - name: Downloading artifact (x86)
+         uses: actions/download-artifact@v4
+         with:
+           name: apk-x86
++          path: apk-x86
+ 
+       - name: Downloading artifact (x64)
+         uses: actions/download-artifact@v4
+         with:
+           name: apk-x64
++          path: apk-x64
+ 
+       - name: Listing files under $HOME
+         run: |

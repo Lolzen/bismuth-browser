@@ -1,0 +1,29 @@
+From baa35f5af77eff058b847f55b5b36f18f2a288dc Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 15 Aug 2021 23:08:28 +0300
+Subject: [PATCH 416/506] Update chrome_java_sources.gni
+
+---
+ chrome/android/chrome_java_sources.gni | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/chrome/android/chrome_java_sources.gni b/chrome/android/chrome_java_sources.gni
+index 93a2c426..95421482 100644
+--- a/chrome/android/chrome_java_sources.gni
++++ b/chrome/android/chrome_java_sources.gni
+@@ -2,6 +2,9 @@
+ # Use of this source code is governed by a BSD - style license that can be
+ # found in the LICENSE file.
+ 
++kiwi_java_sources = [
++]
++
+ chrome_java_sources = [
+   "java/src/com/google/android/apps/chrome/appwidget/bookmarks/BookmarkThumbnailWidgetProvider.java",
+   "java/src/org/chromium/chrome/browser/ActivityTabProvider.java",
+@@ -1220,3 +1223,5 @@ chrome_java_sources = [
+   "java/src/org/chromium/chrome/browser/webauth/authenticator/CableAuthenticatorUSBActivity.java",
+   "java/src/org/chromium/chrome/browser/webshare/ShareServiceImplementationFactory.java",
+ ]
++
++chrome_java_sources += kiwi_java_sources

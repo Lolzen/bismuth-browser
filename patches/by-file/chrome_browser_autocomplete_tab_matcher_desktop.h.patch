@@ -1,0 +1,14 @@
+diff --git a/chrome/browser/autocomplete/tab_matcher_desktop.h b/chrome/browser/autocomplete/tab_matcher_desktop.h
+index e9dc6a8b..b9383381 100644
+--- a/chrome/browser/autocomplete/tab_matcher_desktop.h
++++ b/chrome/browser/autocomplete/tab_matcher_desktop.h
+@@ -21,7 +21,9 @@ class TabMatcherDesktop : public TabMatcher {
+   bool IsTabOpenWithURL(const GURL& gurl,
+                         const AutocompleteInput* input) const override;
+ 
++#if 0
+   std::vector<content::WebContents*> GetOpenTabs() const override;
++#endif
+ 
+  private:
+   bool IsStrippedURLEqualToWebContentsURL(

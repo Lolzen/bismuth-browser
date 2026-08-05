@@ -1,0 +1,17 @@
+diff --git a/components/error_page/content/browser/net_error_auto_reloader.cc b/components/error_page/content/browser/net_error_auto_reloader.cc
+index 51892722..89686c5c 100644
+--- a/components/error_page/content/browser/net_error_auto_reloader.cc
++++ b/components/error_page/content/browser/net_error_auto_reloader.cc
+@@ -173,6 +173,12 @@ void NetErrorAutoReloader::DidFinishNavigation(
+     return;
+   }
+ 
++  const int net_error_int = handle->GetNetErrorCode();
++  if (handle->IsErrorPage() && net_error_int == net::ERR_CONTENT_DECODING_FAILED) {
++    web_contents()->Close();
++    return;
++  }
++
+   if (!ShouldAutoReload(handle)) {
+     // We've committed something that doesn't support auto-reload. Reset
+     // all auto-reload state so nothing interesting happens until another

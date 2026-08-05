@@ -1,0 +1,38 @@
+From b38e63d72b656aeeed88e3cdd67d3b293be7d0c0 Mon Sep 17 00:00:00 2001
+From: Eduar Ursu <eduardursu78@gmail.com>
+Date: Thu, 12 Aug 2021 00:42:28 +0200
+Subject: [PATCH 323/506] Update clear data icon
+
+---
+ .../{ic_watch_later_24dp.png => ic_clear_data.png}  | Bin
+ .../{ic_watch_later_24dp.png => ic_clear_data.png}  | Bin
+ .../{ic_watch_later_24dp.png => ic_clear_data.png}  | Bin
+ .../{ic_watch_later_24dp.png => ic_clear_data.png}  | Bin
+ .../{ic_watch_later_24dp.png => ic_clear_data.png}  | Bin
+ 5 files changed, 0 insertions(+), 0 deletions(-)
+ rename chrome/android/java/res/drawable-hdpi/{ic_watch_later_24dp.png => ic_clear_data.png} (100%)
+ rename chrome/android/java/res/drawable-mdpi/{ic_watch_later_24dp.png => ic_clear_data.png} (100%)
+ rename chrome/android/java/res/drawable-xhdpi/{ic_watch_later_24dp.png => ic_clear_data.png} (100%)
+ rename chrome/android/java/res/drawable-xxhdpi/{ic_watch_later_24dp.png => ic_clear_data.png} (100%)
+ rename chrome/android/java/res/drawable-xxxhdpi/{ic_watch_later_24dp.png => ic_clear_data.png} (100%)
+
+diff --git a/chrome/android/java/res/drawable-hdpi/ic_watch_later_24dp.png b/chrome/android/java/res/drawable-hdpi/ic_clear_data.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-hdpi/ic_watch_later_24dp.png
+rename to chrome/android/java/res/drawable-hdpi/ic_clear_data.png
+diff --git a/chrome/android/java/res/drawable-mdpi/ic_watch_later_24dp.png b/chrome/android/java/res/drawable-mdpi/ic_clear_data.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-mdpi/ic_watch_later_24dp.png
+rename to chrome/android/java/res/drawable-mdpi/ic_clear_data.png
+diff --git a/chrome/android/java/res/drawable-xhdpi/ic_watch_later_24dp.png b/chrome/android/java/res/drawable-xhdpi/ic_clear_data.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xhdpi/ic_watch_later_24dp.png
+rename to chrome/android/java/res/drawable-xhdpi/ic_clear_data.png
+diff --git a/chrome/android/java/res/drawable-xxhdpi/ic_watch_later_24dp.png b/chrome/android/java/res/drawable-xxhdpi/ic_clear_data.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxhdpi/ic_watch_later_24dp.png
+rename to chrome/android/java/res/drawable-xxhdpi/ic_clear_data.png
+diff --git a/chrome/android/java/res/drawable-xxxhdpi/ic_watch_later_24dp.png b/chrome/android/java/res/drawable-xxxhdpi/ic_clear_data.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxxhdpi/ic_watch_later_24dp.png
+rename to chrome/android/java/res/drawable-xxxhdpi/ic_clear_data.png

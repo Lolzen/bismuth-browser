@@ -1,0 +1,16 @@
+diff --git a/.github/ISSUE_TEMPLATE/general-issue.md b/.github/ISSUE_TEMPLATE/general-issue.md
+new file mode 100644
+index 00000000..1fd2cd9d
+--- /dev/null
++++ b/.github/ISSUE_TEMPLATE/general-issue.md
+@@ -0,0 +1,10 @@
++---
++name: General Issue
++about: General purpose issue , for discussion , questions etc.
++title: ''
++labels: ''
++assignees: ''
++
++---
++
++

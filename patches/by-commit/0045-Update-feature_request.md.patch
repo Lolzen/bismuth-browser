@@ -1,0 +1,31 @@
+From 5237d114dd01f9872c8ac4477888399e7926be8f Mon Sep 17 00:00:00 2001
+From: Eduard Ursu <eduardursu78@gmail.com>
+Date: Sat, 31 Jul 2021 12:47:46 +0200
+Subject: [PATCH 045/506] Update feature_request.md
+
+---
+ .github/ISSUE_TEMPLATE/feature_request.md | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/.github/ISSUE_TEMPLATE/feature_request.md b/.github/ISSUE_TEMPLATE/feature_request.md
+index 7863bf0d..eebefc7d 100644
+--- a/.github/ISSUE_TEMPLATE/feature_request.md
++++ b/.github/ISSUE_TEMPLATE/feature_request.md
+@@ -8,13 +8,13 @@ assignees: ''
+ ---
+ 
+ **Is your feature request related to a problem? Please describe.**
+-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
++<!--- A clear and concise description of what the problem is. Ex. I'm always frustrated when [...] --->
+ 
+ **Describe the solution you'd like**
+-A clear and concise description of what you want to happen.
++<!--- A clear and concise description of what you want to happen. --->
+ 
+ **Describe alternatives you've considered**
+-A clear and concise description of any alternative solutions or features you've considered.
++<!--- A clear and concise description of any alternative solutions or features you've considered. --->
+ 
+ **Additional context**
+-Add any other context or screenshots about the feature request here.
++<!--- Add any other context or screenshots about the feature request here. --->

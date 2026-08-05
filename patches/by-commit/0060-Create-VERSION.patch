@@ -1,0 +1,22 @@
+From 4c3fbf74ad21e5fa61944751fea97427ab3c039d Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 04:09:13 +0300
+Subject: [PATCH 060/506] Create VERSION
+
+---
+ VERSION | 6 ++++++
+ 1 file changed, 6 insertions(+)
+ create mode 100644 VERSION
+
+diff --git a/VERSION b/VERSION
+new file mode 100644
+index 00000000..6753eaa1
+--- /dev/null
++++ b/VERSION
+@@ -0,0 +1,6 @@
++# The version to use for Kiwi Browser
++
++MAJOR=93
++MINOR=0
++BUILD=4577
++PATCH=21

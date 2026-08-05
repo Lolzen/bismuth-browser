@@ -1,0 +1,22 @@
+From 630565d1b434f0742f3aa42c9bfffe7134ab0ca8 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 06:47:37 +0300
+Subject: [PATCH 096/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index bf5b0c30..03a4aae6 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -30,7 +30,7 @@ jobs:
+         run: git clone --filter=tree:0 --no-checkout https://github.com/chromium/chromium.git chromium
+ 
+       - name: Listing folders
+-        run: find . -type d | tr "\n" ' ' | sed 's#\./##g' > folders.txt ; cat folders.txt
++        run: find . -type d | sed 's#\./##g' > folders.txt ; cat folders.txt
+ 
+       - name: Limiting the list of files to checkout
+         run: cd chromium && cat ../folders.txt | git sparse-checkout set --stdin

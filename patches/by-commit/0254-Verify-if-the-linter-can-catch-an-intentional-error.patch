@@ -1,0 +1,22 @@
+From bdce37f0160fe7f9f4fcca4fad74cb21eeab34e2 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 05:41:01 +0300
+Subject: [PATCH 254/506] Verify if the linter can catch an intentional error
+
+---
+ .../content/browser/selection/SelectionPopupControllerImpl.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java b/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java
+index 0784c02c..b3545b8e 100644
+--- a/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java
++++ b/content/public/android/java/src/org/chromium/content/browser/selection/SelectionPopupControllerImpl.java
+@@ -80,7 +80,7 @@ public class SelectionPopupControllerImpl extends ActionModeCallbackHelper
+                    ContainerViewObserver, UserData {
+     private static final String TAG = "SelectionPopupCtlr"; // 20 char limit
+     private static final boolean DEBUG = false;
+-
++INTENTIONAL_ERROR
+     /**
+      * Android Intent size limitations prevent sending over a megabyte of data. Limit
+      * query lengths to 100kB because other things may be added to the Intent.

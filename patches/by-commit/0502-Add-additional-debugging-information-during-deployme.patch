@@ -1,0 +1,27 @@
+From e3aecfdfbd672cdd07d683702215321b908a032d Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 20 Jan 2025 13:57:32 +0200
+Subject: [PATCH 502/506] Add additional debugging information during
+ deployment
+
+---
+ .github/workflows/build_and_sign_release_apk.yml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index 6a6c79cf..8182322d 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -181,6 +181,12 @@ jobs:
+         with:
+           name: apk-x64
+ 
++      - name: Listing files under apk-arm
++        run: |
++          pwd
++          echo $HOME
++          ls -la apk-arm
++
+       - name: Prepare release notes
+         run: |
+           cat ./apk-arm/last_commits.txt > release_notes.txt

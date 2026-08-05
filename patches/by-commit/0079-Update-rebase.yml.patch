@@ -1,0 +1,42 @@
+From 676f02248bf29e68504a30651b95ef87ba402b44 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 05:40:34 +0300
+Subject: [PATCH 079/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 22 ++++++++--------------
+ 1 file changed, 8 insertions(+), 14 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 0f438d00..d4434d3e 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -18,20 +18,14 @@ jobs:
+         run: |
+           source CHROMIUM_VERSION; export $(cut -d= -f1 CHROMIUM_VERSION | grep -vF '#')
+           env | grep -F CHROMIUM_ >> $GITHUB_ENV
+-        
+-      - name: Downloading files
+-        run: wget "https://chromium.googlesource.com/chromium/src/+/refs/tags/${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}/chrome/browser/resources/extensions/extensions.html?format=TEXT" -O chrome/browser/resources/extensions/extensions.html
+-        
+-      - name: Outputting file
+-        run: cat chrome/browser/resources/extensions/extensions.html | base64 --decode
+ 
+-      - uses: actions/checkout@v2
+-        with:
+-          repository: 'chromium/chromium'
+-          ref: '${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}'
+-
+-          # Number of commits to fetch. 0 indicates all history for all branches and tags.
+-          fetch-depth: '0'
++      - name: Checking out Chromium
++        run: |
++          git clone https://github.com/chromium/chromium.git --no-checkout chromium
++          cd chromium
++          git sparse-checkout init --cone
++          git sparse-checkout set chrome/android
++          git checkout ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}
+           
+       - name: Listing files
+-        run: ls -la
++        run: ls -laR

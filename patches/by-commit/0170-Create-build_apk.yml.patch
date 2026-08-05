@@ -1,0 +1,32 @@
+From 535f30befb46414b6f380b146e66cf288158f48d Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 6 Aug 2021 23:03:59 +0300
+Subject: [PATCH 170/506] Create build_apk.yml
+
+---
+ .github/workflows/build_apk.yml | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 .github/workflows/build_apk.yml
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+new file mode 100644
+index 00000000..2ed0a113
+--- /dev/null
++++ b/.github/workflows/build_apk.yml
+@@ -0,0 +1,16 @@
++# Build APKs for Kiwi Browser Next
++name: 'Kiwi: Build test apk'
++
++# Controls when the action will run. Triggers the workflow on push or pull request events
++on:
++  workflow_dispatch:
++
++# A workflow run is made up of one or more jobs that can run sequentially or in parallel
++jobs:
++  build:
++    # The type of runner that the job will run on
++    runs-on: ubuntu-latest
++
++    steps:
++      - name: Updating APT repository
++        run: sudo apt-get update

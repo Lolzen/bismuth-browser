@@ -1,0 +1,27 @@
+From 55b6cd8960579f02082931bd64449a06437b69d2 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 21:25:47 +0300
+Subject: [PATCH 136/506] Update download_new_version_of_chromium.yml
+
+---
+ .github/workflows/download_new_version_of_chromium.yml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/.github/workflows/download_new_version_of_chromium.yml b/.github/workflows/download_new_version_of_chromium.yml
+index 082c5b8b..4d56e479 100644
+--- a/.github/workflows/download_new_version_of_chromium.yml
++++ b/.github/workflows/download_new_version_of_chromium.yml
+@@ -45,10 +45,10 @@ jobs:
+       - name: Loading settings from CHROMIUM_VERSION
+         run: |
+           if [ -f "CHROMIUM_VERSION" ]; then
+-             source CHROMIUM_VERSION;
+-             export $(cut -d= -f1 CHROMIUM_VERSION | grep -vF '#');
++            source CHROMIUM_VERSION;
++            export $(cut -d= -f1 CHROMIUM_VERSION | grep -vF '#');
++            env | grep -F CHROMIUM_ >> $GITHUB_ENV
+           fi; 
+-          env | grep -F CHROMIUM_ >> $GITHUB_ENV
+ 
+       - name: Listing source files
+         run: find . -type f | sed 's#\./##g' | grep -vFi README | grep -vFi LICENSE | grep -vFi '.gitignore' > /tmp/source_files.txt

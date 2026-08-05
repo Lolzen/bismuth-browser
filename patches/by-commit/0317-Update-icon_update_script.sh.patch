@@ -1,0 +1,20 @@
+From 5cb1c4f3382b66185d6edfa2a8570011142ba5e6 Mon Sep 17 00:00:00 2001
+From: Eduard Ursu <eduardursu78@gmail.com>
+Date: Thu, 12 Aug 2021 00:06:46 +0200
+Subject: [PATCH 317/506] Update icon_update_script.sh
+
+---
+ toolbox/icon_update_script.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/toolbox/icon_update_script.sh b/toolbox/icon_update_script.sh
+index 4f0cf3c1..c55acb5f 100644
+--- a/toolbox/icon_update_script.sh
++++ b/toolbox/icon_update_script.sh
+@@ -1,5 +1,5 @@
+ 
+-find ./chrome -name $2 | while read filename
++find ./* -name $2 | while read filename
+ do
+   width=`identify -format '%w' $filename`;
+   height=`identify -format '%w' $filename`;

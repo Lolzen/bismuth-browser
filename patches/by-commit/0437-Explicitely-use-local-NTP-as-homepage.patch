@@ -1,0 +1,22 @@
+From b3955b53d466c26bc69345d3fdc1437b5b2101b2 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:09:29 +0000
+Subject: [PATCH 437/506] Explicitely use local NTP as homepage
+
+---
+ .../org/chromium/chrome/browser/homepage/HomepageManager.java   | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
+index 9b47b109..1f554dfb 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/homepage/HomepageManager.java
+@@ -165,7 +165,7 @@ public class HomepageManager implements HomepagePolicyManager.HomepagePolicyStat
+         }
+         if (!homepagePartnerDefaultUri.equals("")) return homepagePartnerDefaultUri;
+ 
+-        return UrlConstants.NTP_NON_NATIVE_URL;
++        return "chrome-search://local-ntp/local-ntp.html";
+     }
+ 
+     /**

@@ -1,0 +1,507 @@
+7be7edd1532148f22103cb4c5a1964d96297836f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2025-04-08 10:28:14 +0300	Update README.md to point to the latest release of Kiwi
+32dfc33c10e6b7b2d56c36922577ec26f8ebebb3	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2025-01-23 12:49:46 +0200	Add deprecation message
+aa79eb02371e2fed148fb47fee3b33bd53d41385	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2025-01-20 14:14:46 +0200	Download artifacts to separate folders (migration to download-artifact@v4)
+1348eec18cb8b3a219fcdc08275c52f216ccbca2	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2025-01-20 14:05:34 +0200	For debugging purposes, list all files in $HOME folder while deploying
+e3aecfdfbd672cdd07d683702215321b908a032d	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2025-01-20 13:57:32 +0200	Add additional debugging information during deployment
+5b83175eff87335393bb0b38b12c49b008e022ce	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2025-01-20 13:52:06 +0200	Remove fast-list argument from rclone calls used during deployment
+a848bd1ce7c64ff6ee49dbe23fcb75d5c53894e0	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2025-01-20 13:09:26 +0200	Remove explicit dependency on libncurses
+b1c4a4433ed05b34954c76e533c62d83d91fdbdd	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2025-01-20 13:05:45 +0200	Update deployment script to more recent version of Python
+d6e675e346600a17096a2a078b15392161eae8a9	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2025-01-20 13:03:17 +0200	Migrate to download/upload-artifact@v4
+64f705f0f92204892c61ac769d12c21a60e327cf	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-08-13 21:10:15 +0300	Resolve issue with new lines in message posted to Discord and Telegram
+36ffae9dc799e420a2c9b8c5723592e7b9b7789a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-08-13 20:01:49 +0300	Improve deployment messages
+9d2a722a8141ba453024aa73f6eef01ea573f7dc	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-08-13 17:02:10 +0300	Add release notes at the beginning of the newly created release on GitHub
+895082755a5effcddafb24ea1a84b3cb4cc8757b	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-08-13 16:03:34 +0300	Update new lines in deployment messages
+209058626ef146dee424a560a359a21a5ba75b62	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-08-13 12:42:24 +0300	Downgrade to previous syntax for GitHub Workflow
+7cf0e8608bda5bbb0e9ad9930c18cf6d8bd11be1	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-08-13 12:07:38 +0300	Download artifacts before creating the release so there is less waiting time before the assets can appear on a release
+0b5a42267d2c5ad571802d8aea5191f88e4c3c0b	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-08-13 11:59:41 +0300	Unify Telegram and Discord announcements
+3af25614c6ad88ce5700393ed3f5247519d1aa07	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-08-13 11:56:53 +0300	Update workflow to use the GITHUB_OUTPUT syntax
+e8ee4e88a81ebbc9ef9b3b835240751f546d0217	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-08-13 11:38:35 +0300	Add information about latest changes in the deployment script
+534f637609d5ebc59c39f79a9c00cbf3c95c786a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-07-28 14:37:38 +0300	Update build_and_sign_release_apk.yml
+92b44c64907148ba068ac0811e1623e0e6ef4449	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-07-28 14:31:54 +0300	Force using http1.1 when installing rclone
+4bbc307c5ece5403784448f820c7d3ce842936ee	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-07-28 13:11:46 +0300	Switch rclone installation to http1.1 due to http2 issues on their server
+44220460097eb8916e5cea928911d808e7ff9384	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-07-17 21:02:02 +0300	Update build_and_sign_release_apk.yml
+bba0869c4937a1b6ba61b6abfa0f837e64ea2d10	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2023-03-13 17:39:25 +0200	Upgrade deployment workflows to python3
+79e50a6edd38957759c97004b7e4aa4a7cdba0f0	Eduard Ursu	eduardursu78@gmail.com	2022-10-12 19:32:46 +0200	Fix Telegram APK urls for direct download
+0be411da59a32da00316f276540faa144a60e5ca	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2022-10-12 15:52:00 +0300	Clarify APK naming conventions in release notes
+098efc41cde1427d71c2257ead331b7948ecfebf	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2022-10-11 03:26:18 +0300	Move the architecture earlier in the name of APK assets
+543d5c3b5be0dd6bd84b7f2fb05618093d0494f8	Arnaud GRANAL	arnaud@geometry.ee	2022-08-29 18:33:42 +0000	Apply Kiwi changes to Chromium version 105.0.5195.24
+ade59a58717cffc8e0bcbca72f706010a90d44a3	Delphox	smugleaf@live.com	2022-03-12 04:13:25 -0300	Change FB useragent (#537)
+037078189f0d568bd33363fc3e536c08a6a8dc2d	d3ward	d3ward@users.noreply.github.com	2022-03-04 10:49:56 +0000	Update translation files from Crowdin
+2130bed58bfed5ba4da1e24294be0b70e6d79a9a	d3ward	d3ward@users.noreply.github.com	2022-02-03 10:49:17 +0000	Update translation files from Crowdin
+341e4da98722df2a38e19a89d8cfe3d2ce172a7e	kiwibrowser	kiwibrowser@users.noreply.github.com	2022-01-31 07:00:23 +0000	Update translation files from Crowdin
+849e7afdff3fbd5ce9e19569cd1e0817f63fa78c	d3ward	d3ward@users.noreply.github.com	2022-01-22 11:38:39 +0000	Update translation files from Crowdin
+30cc45e5690a5a2d3fed67827b59f7000ede9cad	Arnaud GRANAL	arnaud@geometry.ee	2021-12-14 00:54:24 +0000	The bottom Android navigation bar should follow colors when switching context in the tab switcher (from normal profile to incognito, and vice-versa)
+28bdbefeffe60729e3e503c1edfe2ffc1a88af8a	Arnaud GRANAL	arnaud@geometry.ee	2021-12-14 00:53:24 +0000	Push early-update of the status bar control (may not be necessary)
+730417c97570d7140f6b59ae0cd8705bd3292583	Arnaud GRANAL	arnaud@geometry.ee	2021-12-13 09:06:06 +0000	Faster tab transition
+3fee1acbe71a329b327ae7e87500521097be0e5f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-12-13 00:24:31 +0200	Remove unused file
+376946a5293e997655e6216258b673afbfb05132	Arnaud GRANAL	arnaud@geometry.ee	2021-12-13 00:29:38 +0000	Adjust viewport height when bottom toolbar is activated
+2abff00471014356135d245da2ca0f421c9bab98	Delphox	smugleaf@live.com	2021-12-11 09:36:25 -0300	Update @Build Hunter role id
+b31f5ba0d9b5c8e19ae1029ad2e0eba6e8df197e	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 10:01:28 +0000	Add the possibility to show extensions first in the main menu
+8a9bb1229352598dab6684355250a32f088b78d2	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:43:04 +0000	Sync minor changes with internal repository
+908366103e0382b00964e9e766b619087b5ba923	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:41:36 +0000	Omnibox suggestions should take only half of the screen height when bottom toolbar is enabled
+cbbf3e176ae728ede233498197697fc108b4bd09	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:36:26 +0000	Readjust indentation (code style only)
+77467f445eee0851345acd125c523f3381d9a2bb	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:36:09 +0000	Only display light and dark in theme settings
+556cda664dfb849c223af0277462ca1dbbddd697	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:35:48 +0000	Update night mode to take into consideration the new settings
+2a9853b97a20c8e92360207728e1fd563f3e2825	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:34:15 +0000	Update controller for accessibility settings
+48be0be96e9303e34a8b2e9395cd9ae15cf2e410	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:33:59 +0000	When history is automatically deleted, use a 60 days default
+44eff106edb45c1a8f5dafb7d85ddbdfd63af3a4	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:33:34 +0000	Directly use the frame URL
+50cf39f61e756f3cdb59640a96b5e665297dd2a9	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:32:48 +0000	Add debugging information when fetching the list of searche engines
+c655867e43fa19738033e0fa905897aa1d05b0e5	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:32:26 +0000	Fix certain windows getting blocked (false positive) by Kiwi. OAID is the typical marker for an adserver but it can yield false positives. In real-life, the X-XSS-Protection header is often not present on adservers so we use this header as an heuristic / best-guess.
+b1bb6c27ca77a4fa6fc165e37e7b7645b3bb42f0	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:30:10 +0000	Let the night mode decide which color scheme to apply
+cfd3fe9704d72c776bf86117b9517d61e2e738e7	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:29:38 +0000	Declare user-agent as Windows on specific websites that forces users to download native app despite being compatible with Kiwi
+c87978cc1ea2cbcd3d388b135fc85e6e6d5f2e44	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:28:42 +0000	Support for advanced Kiwi functionalities in the main menu (including extensions)
+6e8bd57149729b9d43b966ed085a9493d6182888	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:26:52 +0000	Shift the selection / magnifying tool when the toolbar is set to be displayed at the bottom
+4fc2357cf4787359c3e788be2d088362b62fcf05	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:20:33 +0000	Resolve an issue with the new tab page tiles (top visited websites) not getting initialized properly
+8641581d4eb092631943d0d3449701864ed3a28f	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:19:32 +0000	Move the download manager settings to its own dedicated screen
+dcb83c14f2263adc90e28c27881c8f5feefbde63	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:18:27 +0000	Set the canvas to black when we are running in night mode
+72b0581eb7bd328c29dfb3cad9a9013ac31e00ee	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:18:07 +0000	Let elements with the name banner_ad to be displayed as they are typically used as a bait
+982ce8f8801cf49deba2e6c2e5532dd03ec8f60d	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:17:48 +0000	Defusing anti-adblock systems by allowing certain URLs that are used as a typical anti-adblock bait
+836dc64d4657a3afe76df521c4166e2582493084	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:17:02 +0000	Automatically reload the new tab page in case the first initialization of the new tab page is failing (this issue is technically resolved, but this is a fail-safe)
+a99c5c9e6041ac6ff7425a5eef81e648c1949439	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:16:07 +0000	Let the user use chrome://newtab if the user wants to
+0082b265a0477cd5205e3ef92cfa064464eca66f	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:15:35 +0000	Add reference to potentially unused resources (has to be double-checked)
+8d2bcc1bf1c34fe5e487e03bc583a226dd4fd1b5	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:14:21 +0000	Improvements to the local new tab page
+77094a880c5b731b02ff6cfecc1724cc649bfb7a	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:13:18 +0000	Add script that redresses the user interface of the extensions store (in order to make it more practical and beautiful on mobile)
+ca3f5346c01f89ffaa4f14b0c4413404ae2bfa80	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:12:36 +0000	Simplify the accessibility preferences layout
+2b60c92ecdb090947364586427bd06b8fe882d9d	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:12:07 +0000	Add new strings in resources that are displayed in preferences screens
+645913ea1ea57821c9abf8350e6f60bc64934568	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:11:39 +0000	Adjust keyboard accessory height in order to avoid a gap when displaying the password helper toolbar next to the keyboard (56 - 48 corresponds to the height of the shadow that is normally there)
+0a00f6eb2f7bea17eb71f14419199972d32af0a6	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:10:49 +0000	Rearrange main preferences
+c4d62818eed6d75438cdc3160f19ea98ba97f6ed	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:10:25 +0000	Add missing reference to source
+dd7b7156140362bb045469cda004556c20cd1694	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:10:01 +0000	Take into account the new dark mode (invisible) menu
+b3955b53d466c26bc69345d3fdc1437b5b2101b2	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:09:29 +0000	Explicitely use local NTP as homepage
+62d8ffac4a00c5bf596de2260ec3ec3f922b25ae	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:08:29 +0000	Update night mode handling of textboxes and divs
+59c48ba540e5aa3acede4169e2bded976f0cc22a	Arnaud GRANAL	arnaud@geometry.ee	2021-12-11 06:07:43 +0000	Update night mode parameters
+2a5b762ae58a091494b8736f18d693f5da04d22e	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-12-11 07:50:22 +0200	Create force_rebase_kiwi_on_top_of_local_chromium.yml
+4bd206927af89e0da36c3024c2c97b15414f0853	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-11-29 04:30:21 +0200	Notify build hunter role
+ec692286ac3577f5a47a62fca91842464c7728f5	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-09-25 22:43:54 +0300	Add missing reference in channel_constants.xml for contributor builds
+4b7639b4c54d6d275a5fe4c4e94b64a26c9a37de	Arnaud GRANAL	arnaud@geometry.ee	2021-09-24 21:17:22 +0000	Adding missing header in components/search/search_url_fetcher.cc in Chromium 94.0.4606.56
+3409b04e3ec6d7dcf091b0ab850f5546e4d756bd	Arnaud GRANAL	arnaud@geometry.ee	2021-09-24 20:40:19 +0000	Remove unused method in Chromium 94.0.4606.56
+2298e1d7d2c6ff7dbad629bc5d0dfc2f263e0fb5	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-27 00:41:03 +0300	Widen popup blocker rules
+880f27c1a66bf701e7bf3da9875556856aada994	Arnaud GRANAL	arnaud@geometry.ee	2021-08-25 20:27:36 +0000	Revert "Add Google Play Services integration"
+0d9107c14f474f5a09ca1c81f6cd1beee8f5f462	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-21 17:54:36 +0300	Add Google Play Services integration
+8ad34f7cee3a2e78e1771491dc30229216233cd9	Eduard Ursu	eduardursu78@gmail.com	2021-08-21 13:51:32 +0200	Update build_and_sign_release_apk.yml
+b33f4b92f8a1c87fd18a3851eaabb9052d64cae1	Eduard Ursu	eduardursu78@gmail.com	2021-08-20 21:54:03 +0200	Update build_and_sign_release_apk.yml
+7adb9649b71bc33ceb4c410e710bc18681437c55	Eduard Ursu	eduardursu78@gmail.com	2021-08-20 21:43:25 +0200	Update build_and_sign_release_apk.yml
+e41c3efeaf7e45401708d3531ea35342ae6cbaeb	Eduard Ursu	eduardursu78@gmail.com	2021-08-20 21:23:20 +0200	Update build_and_sign_release_apk.yml
+3053c0bd36cd688f43ea5464d4ddba195bd6e5fb	Arnaud GRANAL	arnaud@geometry.ee	2021-08-16 16:32:22 +0000	Add TranslateSettings file to repository
+8e2df5603bef97e553e614b8568d19efb22a2f68	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-16 03:02:36 +0300	Remove unused ToolbarSwipeSceneLayer.java
+0baa5663fee78eb5ffb04ec9ee9f2cdbaccfdefc	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-16 02:18:43 +0300	Move Kiwi assets from chrome_java_resources to kiwi_java_resources
+bd6d39c2ca83a8f1b7396673dbc2b3496b734dfa	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-16 02:15:18 +0300	Build additional files specific to Kiwi
+6d775d50d57d16cea291162822722da98b1b63b3	Arnaud GRANAL	arnaud@geometry.ee	2021-08-15 22:43:49 +0000	Add missing resource (ic_devtools icon)
+8e3ff1989345d10156876d49756ee8903db23ef0	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-16 01:20:14 +0300	Adding missing resource (ic_devtools.png)
+baa35f5af77eff058b847f55b5b36f18f2a288dc	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 23:08:28 +0300	Update chrome_java_sources.gni
+78f10f8eebdd3fb32fd2a712a5f9bb610ddb6195	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 22:25:38 +0300	Add missing resource reference (ic_clear_data.png)
+e8933e2d15c2904ec431cd6d78227dae6a857c0b	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 22:22:27 +0300	Move Kiwi resources from BUILD.gn to chrome_java_resources
+47e7703adc75f9d64729d8669a289906ea3da527	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 21:25:06 +0300	Update delete_committed_file.yml
+9dcdf55714b7fd48724713ca0de8296c5c5212d1	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 21:23:23 +0300	Update delete_committed_file.yml
+e86cd155405d1c1baaef66a3ab0d3a2c10fc41b3	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 21:22:48 +0300	Update delete_committed_file.yml
+6201ec4acb496fdd6bec635ca9ed0e59cd4089b1	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 21:20:23 +0300	Update delete_committed_file.yml
+c1f7808b5430a4fdc9633f5524587544e3954162	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 21:14:59 +0300	Update delete_committed_file.yml
+5c49187ff0a80ff2d7286bcc2737085a3fc7b67d	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 21:14:49 +0300	Update delete_committed_file.yml
+cbcb4c5c6fc3e768e3a083914bead69a1d9fd36a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 21:11:38 +0300	Update delete_committed_file.yml
+575246f717d2be22b55102c67d08d1441b37054e	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 21:10:07 +0300	Update delete_committed_file.yml
+6a937d6bf97a907242e54c226a84d952263b059c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 21:01:11 +0300	Create delete_committed_file.yml
+f40daeda7a68130c63f6f84cf02f86272e558898	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-15 19:49:58 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+fa730d5e3890eac7245eb1f768a7f9629528cfcd	Arnaud GRANAL	arnaud@geometry.ee	2021-08-14 23:05:28 +0000	Adding chrome/android/java/src/org/chromium/chrome/browser/settings/TabSwitcherSettings.java
+ab6cb90cb5711a6f3f17c4145b145b2c84b4006c	Arnaud GRANAL	arnaud@geometry.ee	2021-08-14 18:51:58 +0000	Revert old style for the home button
+7124ab6a63465137626482e8be63b427d8185df2	Arnaud GRANAL	arnaud@geometry.ee	2021-08-14 18:40:51 +0000	Add Kiwi setting specific files
+cf39408eca6d6692c8befa72ee2df654a45c10f5	Arnaud GRANAL	arnaud@geometry.ee	2021-08-14 17:14:44 +0000	Add files specific to Kiwi
+855886b990b52ce4877a56e0e97b65c03079af3d	Arnaud GRANAL	arnaud@geometry.ee	2021-08-14 17:12:54 +0000	Add files specific to Kiwi
+4f4fe91e2ebddc9d253bf8a725e1af73d997d123	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 03:44:08 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+0efbf2f015478ff13f0dc54727986b2e0a4c81db	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 03:42:46 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+41729b8cc4e2b78a7535d78a8dbe03dea589fc2a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 03:34:52 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+8d56a6535ba8e90ecfab01f539fcbe97cc825ff1	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 03:23:13 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+def033f80f0b7a27e529d96f7fc0e00f431a4f03	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 03:13:26 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+43fab343c526a899939bc131257eabcbad040729	Eduard Ursu	eduardursu78@gmail.com	2021-08-14 01:32:39 +0200	Update new tab icon (#327)
+ee942cf474b0429d9b80305d2bde5211fbc7da15	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 02:09:33 +0300	Update rebase_kiwi_on_top_of_kiwi.yml
+12510b4cdb3c5f6595668f31da300dfcea3a8035	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 02:08:49 +0300	Update linter.yml
+e9eb4c4f49df472b730a8f3d407cffe4916228aa	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 02:08:31 +0300	Update linter.yml
+8f404d05031012dc86389101f46d7ce81ca805b4	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 02:07:58 +0300	Update linter.yml
+ae82d08cdb2ab714f4f229cece46fa128873aab8	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 02:07:34 +0300	Update rebase_kiwi_on_top_of_kiwi.yml
+d0b3feb2a7547a472b5954d66566616709595964	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 02:06:53 +0300	Update rebase_kiwi_on_top_of_kiwi.yml
+d71a9d51719751e3ceff4eade55a6831a51ddb36	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 02:06:27 +0300	Create rebase_kiwi_on_top_of_kiwi.yml
+06caaf2c127061fd76f24dcc54f7e595ebfdc36b	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 01:57:11 +0300	Update build_apk.yml
+6ab82ad1abf3074edf1a7ccdde57f2f7cb1a1bb6	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 01:50:16 +0300	Remove unused icon files (#323)
+9d778ac7034c04966ddbd3eaa2692c439824e981	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 01:46:56 +0300	Add Twitter to the list of allowed websites and reorganize it
+2505f09471d15f1e3043fa5d1b84ee863090e672	d3ward	d3ward@users.noreply.github.com	2021-08-13 15:16:22 +0000	Update ic_clear_data.png with light/trash-xmark icon
+2537e4517e409a15563f846a0d6e8092bf2dbba4	d3ward	d3ward@users.noreply.github.com	2021-08-13 15:15:06 +0000	Update ic_exit_to_app_white_24dp.png with light/octagon-xmark icon
+cafeccc8db2462ac1122a3fa28ade153106e35ae	d3ward	d3ward@users.noreply.github.com	2021-08-13 15:11:13 +0000	Update btn_close_white.png with light/xmark icon
+6ac51ea24e8d7ab2536fbd3dcdfa6eb8747da6d3	Eduar Ursu	eduardursu78@gmail.com	2021-08-13 02:46:48 +0200	Update icons to light style
+6df900cc86236bd457fbd4577e773ba9d80470ac	Eduar Ursu	eduardursu78@gmail.com	2021-08-13 01:55:42 +0200	Add home screen shortcut icon files
+4e1585bf423bce6aca83de0609361fafc392acd4	Eduar Ursu	eduardursu78@gmail.com	2021-08-13 01:53:17 +0200	Add translate icon files
+1a91c8c9f799163df92f430b64b37a558ae4eab7	Eduar Ursu	eduardursu78@gmail.com	2021-08-13 01:50:31 +0200	Add find in page icon files
+4324bf5fa7c17a9826ab2e173fabd311a7e60f8e	d3ward	d3ward@users.noreply.github.com	2021-08-13 11:01:06 +0000	Update btn_left.png with light/arrow-left icon
+92c56159ae148946c4323a1757c8773a949e159d	d3ward	d3ward@users.noreply.github.com	2021-08-13 11:00:17 +0000	Update btn_star.png with light/star icon
+6ca5519f30ca612bde510e8692e8b642141eaa36	d3ward	d3ward@users.noreply.github.com	2021-08-13 10:58:54 +0000	Update btn_right.png with light/arrow-right icon
+e5fff61aa0d7169011bdc25764c383a16933d6f8	d3ward	d3ward@users.noreply.github.com	2021-08-13 10:58:10 +0000	Update btn_toolbar_reload.png with light/rotate-right icon
+e6f7c0c200c92c126074a9c5539a1d7d96f6b0c4	d3ward	d3ward@users.noreply.github.com	2021-08-13 10:57:12 +0000	Update btn_info.png with light/circle-info icon
+3463d091d6d64a1e9b151cbae0deea449e963972	d3ward	d3ward@users.noreply.github.com	2021-08-13 10:56:31 +0000	Update ic_file_download_white_24dp.png with light/download icon
+b461b34f5512dec52156094851eb5c0164e485b4	d3ward	d3ward@users.noreply.github.com	2021-08-13 10:55:31 +0000	Update ic_new_window_r.png with light/square-plus icon
+429e4c9a65cc8c4cc0b80511605e8af9c0530b64	d3ward	d3ward@users.noreply.github.com	2021-08-13 10:53:35 +0000	Update help_outline.png with light/circle-question icon
+c9209593ebf55557824664edf1ba5856c5bce6e3	d3ward	d3ward@users.noreply.github.com	2021-08-13 10:51:54 +0000	Update ic_incognito.png with light/user-secret icon
+94969b25ce5bd1358216e8d21188e1146edd0acf	Eduar Ursu	eduardursu78@gmail.com	2021-08-13 12:47:01 +0200	Add new window icon files
+1d04b7918b292147009ddd4a0ba96b8e9d5c7da3	Eduar Ursu	eduardursu78@gmail.com	2021-08-13 12:28:36 +0200	Add incognito icon files
+edb371342e20f029b969f7b3db0f599f95743cf9	Eduar Ursu	eduardursu78@gmail.com	2021-08-13 03:15:58 +0200	Update conflict icon name
+860ec84059e9275e0e06ecdb7926fd0c80d29380	Eduar Ursu	eduardursu78@gmail.com	2021-08-13 02:46:48 +0200	Update icons to light style
+ede6af6b0910062d92452182986e96b72b7f02c6	Eduar Ursu	eduardursu78@gmail.com	2021-08-13 01:55:42 +0200	Add home screen shortcut icon files
+402f02592f305b349d8c97db38f6ae9366ffef4b	Eduar Ursu	eduardursu78@gmail.com	2021-08-13 01:53:17 +0200	Add translate icon files
+4eb95ed7ef0bbfd8a55025499da8530af50944cb	Eduar Ursu	eduardursu78@gmail.com	2021-08-13 01:50:31 +0200	Add find in page icon files
+8a9475c781d95eb097ac517bcc9e26b7b0a9dc66	d3ward	d3ward@users.noreply.github.com	2021-08-12 16:33:14 +0000	Update ic_clear_data.png with regular/trash-can icon
+819b91530ff4bd7529a517956b77909d472d51cb	d3ward	d3ward@users.noreply.github.com	2021-08-12 16:28:32 +0000	Update ic_desktop_mode.png with regular/display icon
+067be58dfb782090fe287adc94294d8c69e257a7	d3ward	d3ward@users.noreply.github.com	2021-08-12 15:36:39 +0000	Update ic_downloads.png with regular/folder-arrow-down icon
+f95dd8be87d0be5c469d7b4bc64eada935cd0823	Eduar Ursu	eduardursu78@gmail.com	2021-08-12 17:33:20 +0200	Add downloads icon files
+dc58ebd34022ca16e924a5b8bc0cef8377d247f1	d3ward	d3ward@users.noreply.github.com	2021-08-12 15:20:35 +0000	Update ic_recent_tabs.png with regular/rectangle-vertical-history icon
+1e20e4a32dd88c6e5d9cc165139c3186b6e129ed	d3ward	d3ward@users.noreply.github.com	2021-08-12 15:15:33 +0000	Update ic_share.png with regular/share-nodes icon
+a93d55a35b696beaf0811a87a3f7ae0431d6eb96	Eduar Ursu	eduardursu78@gmail.com	2021-08-12 17:12:02 +0200	Add recent tabs icon files
+345d6d95104d0bb94e95d428ab4eebe12409ecaf	Eduar Ursu	eduardursu78@gmail.com	2021-08-12 17:08:41 +0200	Add share icon files
+6a139dd64bd294c97f61fd6c726d9236f4fa9668	d3ward	d3ward@users.noreply.github.com	2021-08-12 15:03:38 +0000	Update ic_desktop_mode.png with regular/desktop icon
+38b973178f5be35f0b46f1ae766f231ff37c4e9e	Eduar Ursu	eduardursu78@gmail.com	2021-08-12 17:02:22 +0200	Add desktop mode icon files
+b8f08e006ab31efb0b280ae741f4ca3e8507da09	d3ward	d3ward@users.noreply.github.com	2021-08-12 14:58:48 +0000	Update ic_adblock_on.png with regular/shield-check icon
+2460cf358e45abab854f93cef969fccb40f55a13	d3ward	d3ward@users.noreply.github.com	2021-08-12 14:55:17 +0000	Update ic_adblock_off.png with regular/shield-xmark icon
+5dbeb7ff56de6bdc7a425fd84d5f70ce90b1b980	Eduar Ursu	eduardursu78@gmail.com	2021-08-12 16:51:52 +0200	Add adblock icon files + edit AppMenuProperties*.java
+8a83a3f8903afa30d89e8e4d5e6f6664fe8e7fa7	Eduar Ursu	eduardursu78@gmail.com	2021-08-12 16:17:53 +0200	Fix typo on icon name for bookmarks folder
+87faf21ee793613e164a209bdf7ff0727c903100	d3ward	d3ward@users.noreply.github.com	2021-08-12 14:16:03 +0000	Update ic_bookmarks.png with regular/folder-bookmark icon
+fe77349e30abf69317271d34da2cf7855d5553ca	Eduar Ursu	eduardursu78@gmail.com	2021-08-12 16:14:18 +0200	Add bookmarks icon files
+ba57faacb216709c8864679155d2f064c6ef405d	d3ward	d3ward@users.noreply.github.com	2021-08-12 14:06:16 +0000	Update ic_extensions.png with regular/puzzle-piece icon
+f925e5414748d5f9c401a4ea950378f8f038a877	d3ward	d3ward@users.noreply.github.com	2021-08-12 13:56:38 +0000	Update ic_night_mode_on.png with regular/moon icon
+c3661e75c92619af0d8cd2949d749bfd70678dc2	d3ward	d3ward@users.noreply.github.com	2021-08-12 13:54:59 +0000	Update ic_night_mode_off.png with regular/sun-bright icon
+86f39b793bc217b472562c80f6cf8e69e2f15670	Eduar Ursu	eduardursu78@gmail.com	2021-08-12 15:53:20 +0200	Update night mode files and make icon for on/off
+1ecec5c045931356d8f01514e81540abdce3adad	d3ward	d3ward@users.noreply.github.com	2021-08-12 13:23:00 +0000	Update btn_toolbar_hand.png with light/hand icon
+d465639aad5a26dc4c166860221b01560878d273	d3ward	d3ward@users.noreply.github.com	2021-08-12 13:18:53 +0000	Update btn_toolbar_home.png with light/house icon
+8d3ff1c5adb80ee426a039495bcdae10cfa48982	d3ward	d3ward@users.noreply.github.com	2021-08-12 13:08:45 +0000	Update btn_toolbar_home.png with light/hand icon
+1eb4d642fb1e2fcefa9bfd9fc31beb4e21449334	d3ward	d3ward@users.noreply.github.com	2021-08-12 13:07:04 +0000	Update btn_tabswitcher_modern.png with light/square icon
+53265c331c5339e2b4067187d33606178e759a54	d3ward	d3ward@users.noreply.github.com	2021-08-12 13:06:11 +0000	Update btn_toolbar_home.png with light/house icon
+9a3d6283baa20693f549c1d68381307fb89b5062	d3ward	d3ward@users.noreply.github.com	2021-08-12 10:37:38 +0000	Update ic_night_mode.png with regular/moon-stars icon
+13a4ed3be78d39d92b5ccbc3306825b0f424285c	Eduar Ursu	eduardursu78@gmail.com	2021-08-12 12:34:33 +0200	Add night mode icon
+2fa954c9fdc93e2925b48c6f61f3608c430433c0	d3ward	d3ward@users.noreply.github.com	2021-08-12 10:18:43 +0000	Update ic_history_googblue_24dp.png with regular/clock-rotate-left icon
+0167383b2b009681247a13e41bd9802d4f10d90d	d3ward	d3ward@users.noreply.github.com	2021-08-11 23:06:09 +0000	Update btn_star_filled.png with solid/star icon
+7a38568240b508237d5a08d58de2f231a7a49381	d3ward	d3ward@users.noreply.github.com	2021-08-11 23:02:37 +0000	Update btn_tabswitcher_modern.png with regular/square icon
+b18f7b570584810df9c988a90595efcf9990922d	d3ward	d3ward@users.noreply.github.com	2021-08-11 23:01:26 +0000	Update btn_left.png with regular/arrow-left icon
+1a6e56b91b80b3225e92985350dc66239d527032	d3ward	d3ward@users.noreply.github.com	2021-08-11 22:58:37 +0000	Update btn_right.png with regular/arrow-right icon
+23bf382963d778307ec7a655112d7c7562c1cb35	d3ward	d3ward@users.noreply.github.com	2021-08-11 22:56:46 +0000	Update btn_star.png with regular/star icon
+7cc029f0da9eb75e2a0400427cf820ace175373d	d3ward	d3ward@users.noreply.github.com	2021-08-11 22:56:06 +0000	Update btn_info.png with regular/circle-info icon
+421fd770d9b3625f2c38950091f8eb3616d389c5	d3ward	d3ward@users.noreply.github.com	2021-08-11 22:55:04 +0000	Update ic_file_download_white_24dp.png with regular/download icon
+4b106183eaca82e860f7315cba2bf6aeb9d26c59	d3ward	d3ward@users.noreply.github.com	2021-08-11 22:52:27 +0000	Update ic_history_googblue_24dp.png with solid/clock-rotate-left icon
+b38e63d72b656aeeed88e3cdd67d3b293be7d0c0	Eduar Ursu	eduardursu78@gmail.com	2021-08-12 00:42:28 +0200	Update clear data icon
+69461ea75289052b09ea821f8863125dc6c4fd9f	d3ward	d3ward@users.noreply.github.com	2021-08-11 22:37:40 +0000	Update ic_watch_later_24dp.png with regular/trash-can-list icon
+947de8755d57b5fc0d026681655744f110390250	d3ward	d3ward@users.noreply.github.com	2021-08-11 22:32:47 +0000	Update settings_cog.png with regular/gear icon
+3e139252b9e18e97f4fe07b39057feb5b57b4852	Eduard Ursu	eduardursu78@gmail.com	2021-08-12 00:22:05 +0200	Update icon_update_script.sh
+29d1ad205b3bc097cf093e2916bac5c343cdd5d4	Eduard Ursu	eduardursu78@gmail.com	2021-08-12 00:12:33 +0200	Update download_icon_from_fontawesome.yml
+2cc49e7c5f89cfbbcee352205234f02612d5dc42	Eduard Ursu	eduardursu78@gmail.com	2021-08-12 00:10:25 +0200	Update icon_update_script.sh
+5cb1c4f3382b66185d6edfa2a8570011142ba5e6	Eduard Ursu	eduardursu78@gmail.com	2021-08-12 00:06:46 +0200	Update icon_update_script.sh
+8c04d17d2381a90925b6d025a85bdf1b96867c9a	Eduard Ursu	eduardursu78@gmail.com	2021-08-12 00:04:24 +0200	Update download_icon_from_fontawesome.yml
+5b5f23f4aff466f0b248401fb0c2876b3e286a69	d3ward	d3ward@users.noreply.github.com	2021-08-11 21:55:55 +0000	Update ic_exit_to_app_white_24dp.png with regular/right-from-bracket icon
+d6691e04d13c779d3f06f9e5ebd4c23500e3fa3f	d3ward	d3ward@users.noreply.github.com	2021-08-11 21:52:55 +0000	Update help_outline.png with regular/circle-question icon
+1df1cd1fcdefd1aef1c3eb8864578696aabec12a	Eduar Ursu	eduardursu78@gmail.com	2021-08-11 23:48:25 +0200	Add devtools icon
+043d6dd1803b79350001f8ddb88953f64ae70f7c	Eduar Ursu	eduardursu78@gmail.com	2021-08-11 20:44:13 +0200	Add extensions icon + edit main_menu.xml
+0bf697e74e8d1c03d8024a9d62c921cb407b9145	d3ward	d3ward@users.noreply.github.com	2021-08-11 18:41:10 +0000	Update ic_mobile_friendly_grey600_24dp.png with solid/puzzle-piece icon
+7bb325e7b2c1d3ad4704e331ad6b7395cbc1852c	d3ward	d3ward@users.noreply.github.com	2021-08-11 14:46:10 +0000	Update btn_toolbar_reload.png with regular/rotate-right icon
+c2eb653de62c01c73af2201f28c4cc697f76e6d1	d3ward	d3ward@users.noreply.github.com	2021-08-11 14:42:52 +0000	Update btn_toolbar_hand.png with regular/hand icon
+d6d7585ec4c7e22bfe069fe7490532242c19de62	d3ward	d3ward@users.noreply.github.com	2021-08-11 14:41:23 +0000	Update btn_toolbar_home.png with regular/house icon
+abff5396d4e842ed6dfea2d02b16f50f16610bda	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-14 00:25:54 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+61c6753311378e2127700b6917f4fe7363741e37	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 18:17:03 +0300	Allow additional windows
+1bf8a221b384dab773c2b50d6fd05170ae04ccae	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:33:18 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+382c81f4674f5cedefd5a9e3ce3335f772139107	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:30:28 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+5279611e383aa7107cf57c0f4ad66f506fdb86cf	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:29:02 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+2bcdb42a9bc645512c92527cd134ce25d08c6e79	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:27:33 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+1470f850f451ae74e8c7e7a97ccc7f1808bfcc63	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:26:07 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+25fc93ebfba0f3e626e1cd54c018fedc44fef19e	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:24:23 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+27806815222d3b0018e158142542a65204bf4e2e	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:15:27 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+015b64d8e2d3dd261049d35bda29c0db2eb65621	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:13:45 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+0bbdb6b3cdb4811ae10ee14c5fd0e250856cb5a7	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:10:48 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+159825d2b52e3bd52d48b9751c9eee782ee16d2b	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:09:07 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+f236ab8547970a22fed5bb685fec2e4c8f0ab422	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:07:09 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+b09b84e589b36b8c6be755043553abe9d719db71	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 17:00:33 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+d0b6de27d18e5245904144b1b3a4737d019df75c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 03:57:56 +0300	Additional FB Messenger improvements
+e3f62294231bc4325b5732f3858f621e62325c0f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-13 00:50:49 +0300	Fix script injection (fixes double-injection) and force retry on MS Edge store
+e1132d148bc34b89f2824316edc0b021590debf5	Delphox	smugleaf@live.com	2021-08-12 14:11:47 -0300	Change method back to indexOf
+f9fe763beb2009f044745260d3d11d9c9935ed90	Delphox	smugleaf@live.com	2021-08-12 13:32:29 -0300	Make AMP script work on reddit google results (#315)
+659b733de8d68ee5f0a3b851972e2784cda21006	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-12 04:44:40 +0300	Remove unnecessary optimization
+74b081d4dbc9c822ab16d3367d3cf4551d1e92cb	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-12 04:02:46 +0300	Revert to previous rebase strategy
+cbc7264de003649adff71fd839bb0f0584828873	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-12 03:14:55 +0300	Update import_file_from_chromium.yml
+b3a2fccf99ede986dcef9780dfb5f22b9f6946d6	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-12 01:50:54 +0300	Test alternative rebase strategy
+981873472307add273fab4450f5ede1932d66422	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 20:13:34 +0300	Clarify workflow name
+947d4ecbf1d93eefea9107c67f2ff30f26b0a5f3	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 19:22:35 +0300	Commit only once per import from Chromium
+d3ca067951eb862b5f8ed54f0092a1d58c32ff26	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 19:20:01 +0300	Do not fail in case we try to reimport a file we already have
+87454a3ea41710bedcb4cf4aceb1afe6b42cc4bf	Delphox	smugleaf@live.com	2021-08-11 12:53:35 -0300	Update Edge script
+552b7eea2bfb6a3713ad9ea6b547e61ccb5dd80d	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 19:14:25 +0300	Update import_file_from_chromium.yml
+50042d83958cf2b90a8c48eb73185391da653aca	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 19:11:47 +0300	Update import_file_from_chromium.yml
+eb054cc88d22ec1b32c32a14017f52ff5bd31c5f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 19:08:22 +0300	Automatically import adjacent files when importing Chromium's asset files
+e37bf086088ae1d2edf17f837bc2847e076f4bee	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 16:50:55 +0300	Use head ref in pull requests for build apk workflow
+053cf636bfb66a9248adf7267f0020e2397dfa78	Delphox	smugleaf@live.com	2021-08-11 10:16:30 -0300	Fix personalizeresults execution
+a33c7494dafe6d18149c4ce2b9dad52aeb155da3	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 16:10:51 +0300	Update build_apk.yml
+feea14d2831ffb67f2eaf958259468bc6627d3e1	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 15:59:35 +0300	Fix syntax error in build_apk
+ca6a12c369293f895dd6646944d304d89f0113dd	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 15:52:02 +0300	Hostname of the build server is now public
+ea950ac41e86b5a25899f4ce14404902bd3c1746	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 15:50:45 +0300	Openly display the download link for the APK
+38cce00d244443b69fd8f1655b40b5ef5679bacb	Delphox	smugleaf@live.com	2021-08-11 09:43:21 -0300	Change cursor attribute on KaiOS FB to default
+88038c1a28d6ffea84e9976c22d4c88581e11744	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 15:39:49 +0300	Test executing user scripts onPageLoad instead of onUrlUpdated
+5790369bcb07c0a9f6781c5127b18e1f72900550	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 15:15:28 +0300	Fix error in Messenger script
+f4213ba36aff3f6d132ee50c02f649e9f4de29ba	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 15:12:29 +0300	Fix indentation of Messenger script
+664b0b4b68b21bf5ce483e5562c0a8d60cf261af	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 15:11:35 +0300	Update script for Messenger
+7d1700dc8be4621d6c1c52ccf68d72db2ad268b4	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 14:53:59 +0300	Simplify PersonalizeResults and remove protection against double-triggering of JavaScript events
+67a14d8e8ebf85651cb8d5e97fc7dbebf948da01	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 13:41:45 +0300	Alternative user-agent on Facebook
+5e273cb20bb5ad74a39edda6ec27c1b77ba8d721	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 13:31:05 +0300	Always allow new windows from PayPal
+08ee6d63e05597d4943dd5a59778591f9cba3270	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 06:26:11 +0300	Update linter.yml
+6204a3198f558c10c0f3db0144bb73b1328154b1	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 06:24:01 +0300	Create google_checks.xml
+5266caaa149d3e0f69a7b98ac1c423bad6cd4b20	Delphox	smugleaf@live.com	2021-08-10 23:56:43 -0300	Add link to navigate to www.messenger.com under the Go To Messenger prompt
+c022f269cf4f5cc9e89995165d23aea64dfcee20	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 06:01:08 +0300	Delete java_kiwi.xml
+82a2fdf01bd20ac389884daa923a807987f8b6e8	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 05:59:23 +0300	Update linter.yml
+d5cb2894c753f53c907e2bea0d8a27726d67ad9d	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 05:51:50 +0300	Revert Test to verify if the linter accepts the file
+6b46cc4988ddd316a5401a1b7b9281ebed7a9430	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 05:51:18 +0300	Test to verify if the linter accepts the file
+85f5728ac939f7d75a579452294a6f2afd9ab36e	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 05:49:56 +0300	Update linter.yml
+66b53cda79fae073c4dcd168cb74451b0d5ed893	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 05:49:49 +0300	Create java_kiwi.xml
+7b6e74b8cd59c0b9fc04aa20e4b4161bb1e8a982	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 05:42:20 +0300	Revert an intentional syntax error that was used for testing
+bdce37f0160fe7f9f4fcca4fad74cb21eeab34e2	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 05:41:01 +0300	Verify if the linter can catch an intentional error
+21b39277b908e45a61431e9469f59ce75d799ba0	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 05:39:26 +0300	Fix incorrect Super-Linter slim image
+149f25f5cd1cfe1852aac0ef858986484f657d82	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 05:38:26 +0300	Use Slim edition of Super-Linter
+2399211f68bf868349d8a9700e40348afbe3ecff	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 05:35:33 +0300	Add source-code linter
+8d0b4cadb8e6e1d03c2afeeaf947f411701c821a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 05:18:51 +0300	Update variables for the automatic build during pull request
+8721167529f9e7efa30d9201024095fa375c146b	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 04:58:59 +0300	Update build_apk.yml
+2ff35a277f9b4baac9c693eae39b2ddff7b2338f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 04:54:34 +0300	Remove test comment from the Extensions page source-code
+a5aa576074856b0a20065f78e9bd5ee000af9018	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 04:53:50 +0300	Remove code that was used to test that the build system was functional
+44fd9ab3f83180136c3dfec50dfdabdd6aaab219	DUO Labs	dvdugo333@gmail.com	2021-08-10 21:36:07 -0400	Clear url in address bar in New Tab Page (#301)
+3b8b94032bdfe61b1d6f00743f67b882db1a6404	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 04:35:09 +0300	Update build_apk.yml
+6bcef9fc868bccd0bea1ee4b0e25d1f41b63c434	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 04:29:57 +0300	Trigger the release flow only if it's not a pull_request
+ba5e49d38e277c20ca8722c084f839594c8f089b	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 04:22:22 +0300	Trigger the build APK workflow on pull request
+f4d22694a9bfa06533771dc67f03268382a81592	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 04:15:01 +0300	Revert "Clear url in address bar in New Tab Page"
+3255c9d7f3675a8be17935d023afd19f9810ef55	DUO Labs	dvdugo333@gmail.com	2021-08-10 20:55:33 -0400	Clear url in address bar in New Tab Page
+f9c11087f1bc64e25cd9b6ba91cfe2ef9980a316	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 03:53:02 +0300	Testing if the build system takes changes into accout
+0e56399d090d1fc38ae4d4e8ae9ec69b7a184b6f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 02:33:07 +0300	Update PersonalizeResults.java
+8ad69bbe21ab47e75c06ccc0cc00335cb7d4c4ce	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 02:13:59 +0300	Testing if the build is properly updated with the correct source
+a61e83c98d97439ee36ecced488c32458f43764b	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 01:59:00 +0300	Update extensions.html
+d980d6d0d44d0e639b294d018829fc6dda7f42da	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 01:44:25 +0300	Update extensions.html
+3ec8072e9d3562432d960f9c9efdd93b86aa9d95	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 01:43:50 +0300	Update build_apk.yml
+f9791215de6088d04ffa34ee2472a5ce63ba4ab2	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-11 01:21:07 +0300	Update build_apk.yml
+c9416a9654278fbc0aff2c4fdff40f18084f77cf	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 22:27:54 +0300	Update extensions.html
+77affff1f4820a0b68154a49856976d17589e977	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 22:14:19 +0300	Update extensions.html
+e3fc4c7dcabb945fc2561099c100e2ef07e28e5d	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 22:08:45 +0300	Update extensions.html
+922c380ce3c7ba9fac2c2dbf5194bebd032af508	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 21:53:08 +0300	Update extensions.html
+d93f9103cb980ce4efacbaa34ea7f291761ae128	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 21:43:34 +0300	Update extensions.html
+7dfc823e1bcb71f7da3235bb9474ceed73e8bdda	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 21:36:58 +0300	Update extensions.html
+919973f06c630c0bac3803ba37394d1d9d3a6fa3	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 21:31:45 +0300	Update extensions.html
+d97aa39c2bc5277dae49bd6b8301d6446519929e	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 21:14:22 +0300	Update extensions.html
+f6bd676e946f5ac2e1e454b972fca6854023c3b5	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 20:50:30 +0300	Update build_apk.yml
+06719cfa2d944eeef55414308bf994f90e132e2c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 20:41:12 +0300	Update extensions.html
+dcafdd4012b4245eb9c7819995bea567bfa3cfdb	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 20:09:04 +0300	Update extensions.html
+e64a9ec9ad6fc38e74d361342296c6f2504a16cf	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 05:19:42 +0300	Update args.gn
+f2557c6fbecb7a8d6ffeb1ed3cfca5d474498ada	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 05:18:17 +0300	Update args.gn
+2efee8652e2818a1aafebfab472c30f38e763eae	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 05:17:36 +0300	Delete generate_ccache_build.sh
+1d3334248fd297113122fb7d751d97a9207791e0	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 05:15:33 +0300	Create generate_ccache_build.sh
+5a4b4c48b8ab73059927bae2c32dd86827a07911	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 04:19:39 +0300	Update build_apk.yml
+16ad97483dc13a8f52ea3f94f7f5662ec736c056	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 04:18:32 +0300	Update build_apk.yml
+59153589f8a92bd3f02f0fa58afb47b7525355e8	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 04:05:12 +0300	Update and rename build_and_sign_apk.yml to build_and_sign_release_apk.yml
+1354894de7a1f4ce4c5b1f6371e98784aa6f0a53	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 03:58:30 +0300	Update build_apk.yml
+f4ff450519e2ce583056632ad0ed4c376d17ce1c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 03:49:41 +0300	Update build_apk.yml
+510f7fef9e1806cec3c2e00e95fc07d73c875544	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 03:24:16 +0300	Update build_apk.yml
+bb61b8444c31018a09468e306836fc2600425a0c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 03:10:12 +0300	Update build_apk.yml
+d69be19fdfb23b90bcdd87e64422f89d6cd1c147	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-10 02:57:53 +0300	Update build_apk.yml
+1e1353a3657b88989945045f53759534966554dd	Arnaud GRANAL	arnaud@geometry.ee	2021-08-09 23:28:57 +0000	Add contributor builds logo
+4771cbcc8affe4b794509c0b24a7e7aa7206dd66	Arnaud GRANAL	arnaud@geometry.ee	2021-08-09 22:32:54 +0000	Add art assets (logo) from Kiwi Browser
+3744e4ab2502f65fb202573b43c08758513aa399	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-09 20:14:46 +0300	Update build_apk.yml
+0a198fdfb9de7d587e90cfc149949cc3e75b8d79	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-09 20:06:15 +0300	Update extensions.html
+7cc7dd1755208b999409f3c71b11c0ad2053db10	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-09 18:57:13 +0300	Update build_apk.yml
+983f296933091e57d61ace88860d8a77d28f440f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-09 15:59:20 +0300	Update extensions.html
+5dc672a5552246ef2d2ee2078f94ea9fa19feff1	kiwibrowser	kiwibrowser@users.noreply.github.com	2021-08-09 12:56:08 +0000	Update translation files from Crowdin
+48289858ca0b3dff6f36f7455e17e4808dab9c11	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-09 05:15:13 +0300	Update build_apk.yml
+c41f519e142a87af01cb3ff40714bb6108a3827e	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-09 05:12:31 +0300	Update build_apk.yml
+7ee9901025b12d89fefe8d337d735da4b99eda47	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-09 05:08:47 +0300	Update build_apk.yml
+9c49faf8230d1f4a7727f1473b54892e0db6fec1	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-09 05:08:11 +0300	Update extensions.html
+fa3914a471c139d3e24ca4f253d3555df682c439	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-09 01:02:39 +0300	Update build_apk.yml
+2daf818026ce381e5e4a1236cb0b125b297294ec	kiwibrowser	kiwibrowser@users.noreply.github.com	2021-08-08 19:50:14 +0000	Update translation files from Crowdin
+8f865e5c7c034b9e25885efc2734d1692ea7aff1	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-08 21:01:42 +0300	Update build_apk.yml
+b9ca3b93b4592d286eb19513fed0a1b36c6f2760	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-08 20:59:30 +0300	Update build_apk.yml
+bc99d2ae5c4ed44e55a796443759c0ff0f97fd6f	Delphox	smugleaf@live.com	2021-08-07 22:23:24 -0300	Fix empty Edge extension ID on href (#294)
+79e571f4da32ca5eea59f9d82eb4756e310ba3d3	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-08 04:10:41 +0300	MS Edge Web Store user-agent to follow current Kiwi version
+0f5e79bce63332d25b9a54b6a931736f65ca7514	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-08 04:00:27 +0300	Simplify PersonalizeResults user script injection
+e91fa99e0cdb0e1262f5441a6ebea25ad0ed512a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-08 03:53:37 +0300	Update user-agent for Web Store
+0bec84b9f5684b2128eacdb5aedcc7ed5fd0e88d	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-08 03:50:35 +0300	Let Web Store know that we are a Desktop-like platform
+9ef90729f88896fa4609ea968cd33e20b8f4b112	Delphox	smugleaf@live.com	2021-08-07 21:29:52 -0300	Remove Chrome Web Store spoof (shouldn't be necessary in Kiwi Next, add Whatsapp Web support
+a72a0defbd4b5b8a70135f58d1fa59136d4e787f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-08 02:54:50 +0300	Use Linux old-Firefox user-agent on Messenger
+3803db879624aa470589ccc915f0d456e8f676bb	Arnaud GRANAL	arnaud@geometry.ee	2021-08-07 23:19:55 +0000	Revert "Change default user-agent to Safari on Facebook"
+d8a2a63b6c3dd1a7147f2006fdc216c8979798f9	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-08 01:54:35 +0300	Change default user-agent to Safari on Facebook
+929323135583e02e583daab95b4e8c9de627438f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-08 01:16:53 +0300	Force Android 3.0 user-agent on FB Messenger
+c7c469022847ae27a47de90573d667b2ac251380	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-08 00:53:01 +0300	Remove incorrect semi-colon
+a93b987b5b46cedb5e411e718bf8dbb21c7c5dad	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-08 00:49:57 +0300	Make MS Edge Store Script more readable in PersonalizeResults
+e23ff8633a33280b68af95df87ff0347996a2fe6	Delphox	smugleaf@live.com	2021-08-07 17:18:59 -0300	fix missing closing brackets
+f766fdfb18e26f655e231325e5304bcc0ecf8246	Delphox	smugleaf@live.com	2021-08-07 01:37:27 -0300	Edge Store: Change 'Get' button from an 'onclick' event to an "a href"
+5f6180b5fc16907d3a1bbd7c74f86767cb08ff9a	Arnaud GRANAL	arnaud@geometry.ee	2021-08-07 03:05:13 +0000	Add search engines list loader from settings.kiwibrowser.com
+f98789a3ce74c18ee1c6d50346fa3b00982abb8d	Arnaud GRANAL	arnaud@geometry.ee	2021-08-07 02:24:53 +0000	Properly escape slashes when adjusting the user-agent for Edge Web Store
+2ed7799c60b385323f04b6009def744781c6ad75	Delphox	smugleaf@live.com	2021-08-06 22:51:57 -0300	Make Edge Store's "Edg" portion of UA follow chromium's version
+0cf35b35ca7917cb8b09287d690ef3ccf460041d	Arnaud GRANAL	arnaud@geometry.ee	2021-08-07 01:32:50 +0000	Add PersonalizeResults file (user scripts injected on page load)
+cebe52d6973bb1221bd14d30ee0df4fa9d3785e6	Arnaud GRANAL	arnaud@geometry.ee	2021-08-07 01:22:26 +0000	Add visuals for hand button in the toolbar
+42b5dc5be867311ec8dcbfddcfaa15af01c42017	Arnaud GRANAL	arnaud@geometry.ee	2021-08-07 01:20:21 +0000	Update home and reload icon
+f5583ff2d59bb6600c011c084c0c9e43849fd452	Arnaud GRANAL	arnaud@geometry.ee	2021-08-07 01:06:07 +0000	Add new tab page
+146abbfba9e971001770a601bab829d2b89f0ab8	Arnaud GRANAL	arnaud@geometry.ee	2021-08-07 01:01:56 +0000	Add assets from Kiwi Browser
+72736b6df9b4ad4340b72adb884b69096cfaa29c	Arnaud GRANAL	arnaud@geometry.ee	2021-08-07 00:34:07 +0000	Always disable can add to home screen for now
+c83f5f12c86f01ac54767c3fe2c1fe92894b53b6	Arnaud GRANAL	arnaud@geometry.ee	2021-08-07 00:22:10 +0000	Allow Google, Facebook and Disqus Iframes to open new windows
+58e1470d9f08a5b067ca1d21f4ff38e017b11274	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-07 00:11:52 +0300	Update build_apk.yml
+535f30befb46414b6f380b146e66cf288158f48d	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 23:03:59 +0300	Create build_apk.yml
+8e10ae784346d03efd15aff81e6eec2322768db7	Arnaud GRANAL	arnaud@geometry.ee	2021-08-06 18:49:12 +0000	Push initial files for Kiwi
+9895ad12ef6e37450b1e4c2643c956db96824a40	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 02:45:40 +0300	Add extensions to Main Menu
+fc4ba1de8e848300929808399bfec706bfeed9af	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 02:40:25 +0300	Adapt extensions HTML page to mobile viewport
+ac9c6a4b54c24df7d58415e41691f3b444cee755	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 02:33:46 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+01c05fa11d835c22d17a99a55123a86c742a4439	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 02:04:19 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+6b50f365dd911ae6d94ebbcacb07ab0c687494d6	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 01:53:46 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+318cb698d3baeda98486d5d03abf5dd7a0f56972	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 01:37:20 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+8aaece986e1792f608627d157eb86c2c22db6352	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 01:33:53 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+fbcfbf218398d1488f9b221394fe94b9484aa052	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 01:26:17 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+2970fabbe67ad20b6dd8f36ca75bf90644a07970	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 01:25:30 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+c941969109f50f8fb15ed7f295cddda336662a63	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 01:21:26 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+bff69af68f4e520a5eac74e94cb3d3d7c24644a1	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 01:15:30 +0300	Update download_translations_from_crowdin.yml
+0905a0eace2c729b7b4d399ffb5effad792343ad	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 01:04:07 +0300	Update rebase_kiwi_on_top_of_chromium.yml
+e5209f27948dd07d55cec0a112860fa8c529af07	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 01:01:20 +0300	Create rebase_kiwi_on_top_of_chromium.yml
+5b8a6f284a34906711da361e14c9945c975ea654	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 00:57:10 +0300	Update rename_directory.yml
+2f81702149854b6cff24fefb2da82720a9687e8f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 00:56:48 +0300	Update download_icon_from_fontawesome.yml
+a9423e9c3b3c312b36c9c4ea2ca570ce3fa08449	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 00:56:15 +0300	Update download_translations_from_crowdin.yml
+a299ae49b805c4f96b56caae44eec3b9bb1cdee9	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 00:55:51 +0300	Update build_and_sign_apk.yml
+64d798d1e5a6b0d7f09908d451e7bf873a160ed2	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 00:55:19 +0300	Update update_chromium_files.yml
+81279bf2c33b8985b536d0ee845f3dfaab283449	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 00:54:45 +0300	Update import_file_from_chromium.yml
+7608274f59c29ce4c7f60c1aad70c176705977c5	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 00:54:00 +0300	Update rename_directory.yml
+1872acff8d1217a884821153ca6cd95d6f7e212e	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 00:37:29 +0300	Update update_chromium_files.yml
+6af8d8030c355e1c1d3244b05eb09a1ae0d1564b	kiwibrowser	kiwibrowser@users.noreply.github.com	2021-08-05 21:36:53 +0000	Updated translation files from Crowdin
+c4ebb3a2acee12760bb67bef53af56668899d384	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-06 00:18:58 +0300	Update and rename download_new_version_of_chromium.yml to update_chromium_files.yml
+ad392f2ea44426b2395e53b12eeb5af9242c140a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 23:11:32 +0300	Update import_file_from_chromium.yml
+3338f237342674990c39eecadd23b486006dd87a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 23:09:12 +0300	Update import_file_from_chromium.yml
+4fff15d8740b0d840e43cd521ce5da094002bf58	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 23:05:06 +0300	Update import_file_from_chromium.yml
+134c147d6f7cc29864a4f23d5ae8df8bd09bd059	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 22:57:56 +0300	Update import_file_from_chromium.yml
+a5123c8dd5c74d2c3b5f6d3e7054b6cd7f5aac35	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 22:49:42 +0300	Update download_new_version_of_chromium.yml
+2bc539669e48779e849d73044d82af6e75bade8f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 22:39:25 +0300	Update download_new_version_of_chromium.yml
+2424cf51702552bb4562ce36fe3cab6010080c0f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 22:26:24 +0300	Update download_new_version_of_chromium.yml
+540055b34ec9af5769ecfe3545d9f0f23460a5e7	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 22:16:45 +0300	Update download_new_version_of_chromium.yml
+96e124d8828b61f145b25fb9dee4ab44a6870a36	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 22:11:40 +0300	Update download_new_version_of_chromium.yml
+55b6cd8960579f02082931bd64449a06437b69d2	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 21:25:47 +0300	Update download_new_version_of_chromium.yml
+9870aea15786485813fa0e5465c57b325c5b4d59	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 21:23:04 +0300	Update download_new_version_of_chromium.yml
+4b07695c4297bdd2a5d2607f8b914db0980f4fef	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 20:13:04 +0300	Update download_new_version_of_chromium.yml
+d664d29df8a9acdc903a656868c21061226b65f3	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 20:10:36 +0300	Update download_new_version_of_chromium.yml
+055e41f887096d77eb1c940399ef390f926d8b5c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 20:09:25 +0300	Update download_new_version_of_chromium.yml
+09e15be2bef8318dd404bc853fa41171fc9e7f95	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 20:05:02 +0300	Update download_new_version_of_chromium.yml
+f4db88fcd1e2de762ef51d93cca0888d02eee25e	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 20:02:07 +0300	Update download_new_version_of_chromium.yml
+43f1647952501f9e980c9bb5dc1a4bfda3a7e64a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 19:45:15 +0300	Update and rename rebase.yml to download_new_version_of_chromium.yml
+fa06f8e334f1bee54cc7f2cdeff9ab1958f23898	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 19:39:57 +0300	Update rebase.yml
+a0f32afffff9d9b9c5867fcc2b3447a3fdaf84f3	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 19:21:00 +0300	Update rebase.yml
+15b77643d9095f2b4c2e3e3b60ec63470f6258ba	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 17:16:15 +0300	Update rebase.yml
+c9be93cad4615ff4393496ce77c79e753bc0247b	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 08:24:32 +0300	Update rebase.yml
+a8af0482a99176524ccd611d3a74f91eb6538807	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 08:10:11 +0300	Update rebase.yml
+f00b26ab35ac057e042ab55ef61ef205c94771fe	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 08:07:53 +0300	Update rebase.yml
+50471e64ef70a160fe41ad128fe227eaa3276415	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 08:03:53 +0300	Update rebase.yml
+46540c7c6f76db252ddf0a8beff5c21be68594f0	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 08:02:15 +0300	Update import_file_from_chromium.yml
+a346739700f883ec089dc86f058c455e6a98da8a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 07:47:57 +0300	Update rebase.yml
+06dbbe9ee86bb29bdf55bd6073047520051e468c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 07:47:37 +0300	Update import_file_from_chromium.yml
+e8755a8421b207133679acc745772931ead39da5	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 07:46:36 +0300	Update rebase.yml
+7b5d7daf268873a681fb98890a151b3318a9e92f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 07:44:07 +0300	Update import_file_from_chromium.yml
+88faf3da9e65cc98f144361bf557eba2efd26ca8	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 07:43:10 +0300	Update import_file_from_chromium.yml
+2e4a3d3c96a1d8c56cde40ff7c094fa30c1001ec	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 07:39:39 +0300	Update import_file_from_chromium.yml
+7b5daefce1e0dc9593df7661b588193b90e24350	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-05 07:39:12 +0300	Update rebase.yml
+f1ee4b2609f0bb2b242ddf13664852d9f7aad60a	Arnaud GRANAL	arnaud@geometry.ee	2021-08-05 04:34:43 +0000	Restore work-in-progress version
+d5953b4da09ad522c2d3ad230f59f03b7368807a	Arnaud GRANAL	arnaud@geometry.ee	2021-08-05 04:16:28 +0000	Restore work-in-progress version
+8dcc5cfe11c85b85cc9eaeada526ab7a7fe80d1b	Arnaud GRANAL	arnaud@geometry.ee	2021-08-05 04:15:18 +0000	Restore work-in-progress version
+968b7795e43b7557c3dc2254e99654622f2e6aff	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-03 16:09:56 +0300	Update build_and_sign_apk.yml
+7f01eb5560cba61961019e1c18fe23f6e7ef0764	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-03 15:59:37 +0300	Update build_and_sign_apk.yml
+bcf03de74fbd482b71c7c7f1c6351369d8b3f48c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-03 15:57:32 +0300	Update build_and_sign_apk.yml
+94dbf57b73e983ac0368e63a0eb0532a5759a8b0	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-03 15:51:45 +0300	Update build_and_sign_apk.yml
+218660d9d331d65017dcc804f7857409ba0ddff3	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-03 15:34:35 +0300	Update build_and_sign_apk.yml
+24625d5b668bb019bedd139753788ca6e1d4ee16	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-03 15:07:30 +0300	Update build_and_sign_apk.yml
+f59240b354c0610b2a9d1015697db4afc54676f2	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 08:13:24 +0300	Update rebase.yml
+61af344902fc3ff9d0542146901ccf71f6ff39f1	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 08:06:25 +0300	Update rebase.yml
+02ab69368a0c15e31b352ce5da8e9fdb5e0aa940	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 07:50:27 +0300	Update rebase.yml
+ba19fab6f08da1d489104b1e9ab697fbe3fadfcb	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 07:12:58 +0300	Update rebase.yml
+bc8df328234dd3d08704399e4197ed4b3993fdd5	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 07:10:38 +0300	Update rebase.yml
+de5040bd1fd01b9c18f4fcbb196d13c077f0eb21	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 07:06:15 +0300	Update rebase.yml
+1ff8db9eaa4c613066b366b23069d9534ecd49bd	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 07:01:19 +0300	Update rebase.yml
+1e68f3177f3822dbcc524018129ad939571b4dca	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:51:24 +0300	Update rebase.yml
+630565d1b434f0742f3aa42c9bfffe7134ab0ca8	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:47:37 +0300	Update rebase.yml
+35fcaaf6f32f4528c0cfe42f602efb69a5d1559e	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:44:48 +0300	Update rebase.yml
+6dccc78d67fbeabb19cf8a80e97687cc908e5356	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:43:22 +0300	Update rebase.yml
+bc208a6b14749715f4ba5d1db41a6babf93d1fb7	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:40:49 +0300	Update rebase.yml
+d6f1ab24d2cdf41ba98607140d4424967f946995	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:38:18 +0300	Update rebase.yml
+0384655f9edd9458b0e638a66366d0005f35c015	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:35:50 +0300	Update rebase.yml
+3bf2173644042c2f57d275f03a1bf7bd3de14537	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:33:42 +0300	Update rebase.yml
+95d3d50165f9c15cf2b931cee9f94e337d871aed	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:29:17 +0300	Update rebase.yml
+8e0954b21b2c038262d56c6f9a43a39ef049be1a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:25:15 +0300	Update rebase.yml
+f56985e5fb841478ba65521b29eb466fc0052253	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:23:35 +0300	Update rebase.yml
+bfa5b64740eaee9efadf1b783d22aa714509ff55	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:21:56 +0300	Update rebase.yml
+ffb7a49f9e1dd6cb773ab233c2cac66349bdb600	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:20:39 +0300	Update rebase.yml
+33046783a2de39930ac56ae17e99fc228ad90645	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:16:58 +0300	Update rebase.yml
+64bf79786f146b6aa8bdb5fa89e036d7b13c27b2	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:13:40 +0300	Update rebase.yml
+189a8a61b864ba43c72f6b6470714e77ea0f025a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 06:03:08 +0300	Update rebase.yml
+b5057a0f9e059a51433cf41b86564e8df894f20d	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:48:32 +0300	Update rebase.yml
+19940cc4a8c034c4bcd0bc1f8a8089adb114781d	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:45:20 +0300	Update rebase.yml
+676f02248bf29e68504a30651b95ef87ba402b44	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:40:34 +0300	Update rebase.yml
+4631dcbdbf0bb6da38bf5a9895bb61f7a915d5cf	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:24:12 +0300	Update rebase.yml
+50a3aa0d5ce260d06d2fd7354b817e284c24c21f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:21:47 +0300	Update rebase.yml
+3297a70b8c095282642a6a8bf4afd767ca221dc4	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:20:52 +0300	Update rebase.yml
+f2c6e9639340f0d0ec6fe04320ddec69b17ffa0b	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:18:54 +0300	Update rebase.yml
+061cf6757618a2c03af1f706630cc22e5f981fe2	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:17:37 +0300	Update rebase.yml
+4dd99daf1876de1761d8b96cc1f8384fe0a4e9fd	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:13:28 +0300	Update rebase.yml
+d9e1831beb86be155cf494b139e11eba593b0020	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:12:37 +0300	Update rebase.yml
+3a016d63b5dcd7bb8edd047b12890b806a0e26fd	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:09:29 +0300	Update rebase.yml
+e4b9f8960397573d8701bdf922cd0ebc723bb71f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:08:17 +0300	Update rebase.yml
+e06c4ec688a6faeb54a91d8f528429af0ac9286c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:05:21 +0300	Update rebase.yml
+3e085979ab2cb8b333c93f8890e2fbe37ddfa528	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:03:42 +0300	Update rebase.yml
+bdb041d07329ff391c036da067b1b59437fdd43c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 05:02:13 +0300	Update rebase.yml
+be30654eecbac40bbe1976d0537f33ba9e1f3a37	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 04:58:48 +0300	Update rebase.yml
+e5c87044e6e571daf9bc42349ccb51629246c802	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 04:33:02 +0300	Update and rename rebase_and_build_apk.yml to rebase.yml
+fa988f324a9204970f5bae98d38d7912958bdca5	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 04:32:10 +0300	Rename build_apk_and_sign.yml to build_and_sign_apk.yml
+b76d93dbc52d8504d49f07ea734aec5a4fc05c51	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 04:31:53 +0300	Update and rename build_apk.yml to build_apk_and_sign.yml
+d8fe53f420d2c303ec7f929aa6e68e14de9a66d6	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 04:13:13 +0300	Update and rename .build/android_arm/args.gn to .build/production_build_reference/args.gn
+2fd8e656c7f21634d6e138a2b05ae54fca39c2fc	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 04:10:09 +0300	Update rebase_and_build_apk.yml
+4c3fbf74ad21e5fa61944751fea97427ab3c039d	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 04:09:13 +0300	Create VERSION
+c9f00d132536d8db27c2737d4c36866d2964eee7	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 04:06:39 +0300	Update download_translations_from_crowdin.php
+9c97ce7b5e9d7368cc9b8daf18cbe1e68615dc49	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 04:05:15 +0300	Update download_translations_from_crowdin.yml
+3e89006cfe37e7c7dc594e4cefcbba4e325d20d5	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 04:04:22 +0300	Remove potential error messages (to prevent leaking API key)
+ed5aa44a91230216cd61535442caf9f2d0cf993a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 04:01:59 +0300	Create download_translations_from_crowdin.php
+20142fce07be7facf3d3bcde605345895650de03	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 03:21:01 +0300	Update rename_directory.yml
+e6c157876b43e557fea6a5c3930a38065310e311	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 03:18:10 +0300	Update rename_directory.yml
+6b39c0c674b7ba624fbf1027cdd07c8db86c93fa	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 03:15:41 +0300	Rename rename_directory to rename_directory.yml
+7659e323f62bc7035719dd4841bc35863c27a819	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 03:15:34 +0300	Create rename_directory
+e8f12cbc3c0310965b301dbe255831b5054b6a35	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 03:10:03 +0300	Update rebase_and_build_apk.yml
+46b65e3be8a3b3336f4cd88464c060342b62e5e2	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 03:09:25 +0300	Rename rebase_and_build_apk to rebase_and_build_apk.yml
+5c51fe9e0829ac0c11a3adc301f891cb5bf08a3d	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 03:07:55 +0300	Create rebase_and_build_apk
+c40ff45f4f9cf6be952695b6dac23310a50b9dd3	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 02:11:41 +0300	Create download_translations_from_crowdin.yml
+d556459823acd9ff06495360d9db6e3ce5c60256	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 02:08:19 +0300	Update download_icon_from_fontawesome.yml
+cde4ef9be0581eebcb0908c32c5274795c26cfe5	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-08-02 02:06:19 +0300	Rename iconUpdateScript.sh to toolbox/icon_update_script.sh
+5237d114dd01f9872c8ac4477888399e7926be8f	Eduard Ursu	eduardursu78@gmail.com	2021-07-31 12:47:46 +0200	Update feature_request.md
+992669c0210ff5ee7d60051039b8495ac54515f8	Eduard Ursu	eduardursu78@gmail.com	2021-07-28 18:29:51 +0200	Update issue templates
+48a1eab7b700195ffa760965fc586d40edde3e5f	Eduard Ursu	eduardursu78@gmail.com	2021-07-22 14:18:30 +0200	Update download_icon_from_fontawesome.yml
+30b0fd789c7805fc3a6c54864f940f957a3e22e3	Eduard Ursu	eduardursu78@gmail.com	2021-07-22 12:57:25 +0200	Update download_icon_from_fontawesome.yml
+8676af40245b3d92dcb2676764cab8d91ece7ad4	Eduard Ursu	eduardursu78@gmail.com	2021-07-22 12:52:42 +0200	Create iconUpdateScript.sh
+a6581675339955032f7484629d066dff72bc6b90	Eduard Ursu	eduardursu78@gmail.com	2021-07-22 12:49:58 +0200	Create .gitignore
+615b59ddf1c418135f3938667e5ac7e0cd3f6f45	Eduard Ursu	eduardursu78@gmail.com	2021-07-21 01:35:31 +0200	Create download_icon_from_fontawesome.yml
+2d8e87a476f33f9b2953c307ce3f7a6bdb864cc8	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-20 19:49:07 +0300	Push APKs for Next (com.kiwibrowser.browser.dev)
+5fc50388015ae3644cda2c2cec8de31e5afebe2b	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-19 14:50:01 +0300	Use -github instead of -signed
+78519b5bcfe113bbf6c33b7c494c9acc102b844c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-19 02:30:27 +0300	Save space by removing mapping files
+519078de8527de98eca55b47ada9bf69e696ff2c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-18 23:47:54 +0300	Change package name
+597b4fa65d08957d1c602478f3f5e4fd17c7e9d1	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-18 20:11:43 +0300	Update build_apk.yml
+12919a3581a3d6112544695f99b470ab88095f9f	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-18 20:04:54 +0300	Publish AAB
+c6ce17ee8efeb18fb0985da579dafc37fd481d07	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-18 09:04:00 +0300	Rename mapping files to map
+ed1a1e9b7b1f669380966e687e09fa24f7643dd5	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-18 06:48:15 +0300	Switch to direct signature
+845715d672cc20801494fc4c594b94fe2b49f6b4	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-18 05:20:55 +0300	Update args.gn
+a3be803cb7fac6bf749010f003abdfa8f4703162	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-09 03:22:45 +0300	Update build_apk.yml
+9cb7a644d3c71399fac86f9674205b7f7b6612d9	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-01 07:17:25 +0300	Add additional retries while the signing server uploads the APK
+d50146c993cbb4b83f3dbff5553c5631e7dc7157	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-07-01 06:44:17 +0300	Update build_apk.yml
+488dbfbc526ab600c9b83ae8a3cf25265d3caa10	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 21:43:56 +0300	Update args.gn
+ab7a6fb87ba6533eb5ba54157ff47dfa36294fd7	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 20:45:27 +0300	Update build_apk.yml
+92245b01137cdeaeb8171391c3d54f181fdf7ac4	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 20:01:07 +0300	Update build_apk.yml
+fa80e97c6fc9df25f179b450eb2337fe3c73379c	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 19:58:01 +0300	Update build_apk.yml
+7b9df650a3010caa21cf311c0b59b0635ac9b9f0	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 19:52:44 +0300	Update build_apk.yml
+ee71d6585353a05f11c214aa4e2f49e08c58fa31	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 19:47:13 +0300	Update build_apk.yml
+e15085d46fb6a4cedabdabafadca81b8cc7aa2ee	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 19:26:47 +0300	Update build_apk.yml
+d319e1c117d5e1e4a39c8ed24ba794486c14dcf4	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 19:24:46 +0300	Update build_apk.yml
+c8963e913f9d7a5265b695e56b1b969149772128	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 19:22:02 +0300	Update build_apk.yml
+7b5c68e2f19e454083bfb9ad3b87fa0ba4161796	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 19:14:49 +0300	Update build_apk.yml
+b8f47d3ac2bdb394aee31e77e69bc4305299db94	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 06:06:51 +0300	Update args.gn
+cade229f25676a1146887aba73db6de04b3c9be7	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-26 03:26:15 +0300	Update args.gn
+63138a1bcd9cd784e7dbe3c0be827288d4da26b2	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 04:23:34 +0300	Update args.gn
+e0f81d070cc2ab5e92fc52933d277caeac4a06d4	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 03:53:12 +0300	Update build_apk.yml
+7f6f0a607ac126a0a50ac4113fbe5c30f6e2d2a0	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 03:42:03 +0300	Update build_apk.yml
+150f48169129d2c562139884d651f46d9442054a	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 03:36:46 +0300	Update build_apk.yml
+084039a0005b8a3d011f0a817f7692476b7458a4	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 03:34:24 +0300	Update build_apk.yml
+4b29b3f2b403e63ae31f6147b15a43b6b784ee43	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 03:27:45 +0300	Update build_apk.yml
+b0b241134324abe45ea7eaa40ca62be3aaf841e7	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 03:10:19 +0300	Update build_apk.yml
+104e475dd3a27b2488fd6f4c79a91b9c3f244aa0	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 03:06:36 +0300	Update build_apk.yml
+86dede7739d34a0865901321fcfcd6eee720ec63	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 03:05:36 +0300	Update build_apk.yml
+3a50879bd75133fc2e65a7a88a58b62a027446ad	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 03:02:17 +0300	Update build_apk.yml
+60d54f60603509bdba352311990c7a1e0baddd94	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 02:54:30 +0300	Update args.gn
+1de2bff6e7ea51e21b3725476e1707241faa51d9	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-06-22 02:49:06 +0300	Update build_apk.yml
+4a07e61ef64460b06806f1eec5603530b5e65236	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-02-14 17:10:22 +0200	Create build_apk.yml
+81ce9a6149d40cd5de0cf10421be33e305b94b45	Kiwi Browser	40272275+kiwibrowser@users.noreply.github.com	2021-02-14 17:08:48 +0200	Create args.gn
+b2a61e552c940b89d2ae504de720832780f4e7ea	github-actions[bot]	41898282+github-actions[bot]@users.noreply.github.com	2022-08-29 18:58:45 +0300	[Chromium] Update version 98.0.4745.25 to 105.0.5195.24 (#702)

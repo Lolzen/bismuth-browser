@@ -1,0 +1,57 @@
+From ade59a58717cffc8e0bcbca72f706010a90d44a3 Mon Sep 17 00:00:00 2001
+From: Delphox <smugleaf@live.com>
+Date: Sat, 12 Mar 2022 04:13:25 -0300
+Subject: [PATCH 479/506] Change FB useragent (#537)
+
+* Change FB useragent
+
+This one has the same usual android interface but still allows /messages without Messenger app (unless your account is disallowed to use it, which didn't work on KaiOS UA anyway). This fixes the issue of opening View Full Image leading to an error page.
+
+* removing unnecessary cursor type change
+
+since we're no longer using KaiOS UA
+
+* bump to chrome 99
+---
+ .../src/org/chromium/chrome/browser/PersonalizeResults.java | 3 ---
+ net/url_request/url_request_http_job.cc                     | 6 +++++-
+ 2 files changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+index fe65a219..d4d529d0 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+@@ -37,9 +37,6 @@ public class PersonalizeResults {
+        if (tab != null && tab.getUrl().getSpec().contains("messenger.com/")) {
+           tab.getWebContents().evaluateJavaScript(MESSENGER_VIEWPORT_SCRIPT, null);
+        }
+-       if (tab != null && tab.getUrl().getSpec().startsWith("https://m.facebook.com/")) {
+-          tab.getWebContents().evaluateJavaScript("(function(){ if (!document.location.href.includes('https://m.facebook.com/')) { return; } document.querySelector('body.touch').style = \"cursor:default\";})();", null);
+-       }
+        if (tab != null && tab.getUrl().getSpec().startsWith("https://translate.google.com/translate_c")) {
+           tab.getWebContents().evaluateJavaScript("(function(){ if (!document.location.href.includes('https://translate.google.com/translate_c')) { return; } var b=document.getElementById(\"gt-nvframe\");if(b){b.style.position='unset';document.body.style.top='0px'}else{var child=document.createElement('iframe');child.id='gt-nvframe';child.src=document.location.href.replace('/translate_c','/translate_nv');child.style.width='100%';child.style.height='93px';document.body.insertBefore(child,document.body.firstChild);var t=document.querySelector('meta[name=\"viewport\"]');if(!t){var metaTag=document.createElement('meta');metaTag.name='viewport';metaTag.content='width=device-width, initial-scale=1.0';document.body.appendChild(metaTag)}}})();", null);
+        }
+diff --git a/net/url_request/url_request_http_job.cc b/net/url_request/url_request_http_job.cc
+index 4ed7b1ac..46fae436 100644
+--- a/net/url_request/url_request_http_job.cc
++++ b/net/url_request/url_request_http_job.cc
+@@ -337,7 +337,7 @@ void URLRequestHttpJob::OnGotFirstPartySetMetadata(
+   }
+   else if (request_info_.url.host().find("web.whatsapp.com") != std::string::npos)
+   {
+-     request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (X11; Linux) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.25 Mobile Safari/537.36");
++     request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (X11; Linux) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.66 Mobile Safari/537.36");
+   }
+   else if (request_info_.url.host().find("messenger.com") != std::string::npos)
+   {
+@@ -350,6 +350,10 @@ void URLRequestHttpJob::OnGotFirstPartySetMetadata(
+      request_info_.extra_headers.SetHeader("Sec-CH-UA-Mobile", "?0");
+      request_info_.extra_headers.SetHeader("Sec-CH-UA-Platform", "Windows");
+   }
++  else if (request_info_.url.host().find("facebook.com") != std::string::npos)
++  {
++     request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (Linux; Android 3.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.66 Mobile Safari/537.36");
++  }
+   else if (request_info_.url.host().find("news.google.com") != std::string::npos && request_info_.url.path().find("CAAqJggKIiBDQkFTRWdvSUwyMHZNRFZxYUdjU0FtVnVHZ0pWVXlnQVAB") != std::string::npos)
+   {
+      request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (Linux; Android 9; ONEPLUS A6003) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.99 Mobile Safari/537.36");

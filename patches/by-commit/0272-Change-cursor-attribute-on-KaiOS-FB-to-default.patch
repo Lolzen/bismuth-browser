@@ -1,0 +1,24 @@
+From 38cce00d244443b69fd8f1655b40b5ef5679bacb Mon Sep 17 00:00:00 2001
+From: Delphox <smugleaf@live.com>
+Date: Wed, 11 Aug 2021 09:43:21 -0300
+Subject: [PATCH 272/506] Change cursor attribute on KaiOS FB to default
+
+For some reason it's always on pointer mode on KaiOS FB which causes Kiwi to show blue flashes whenever you tap on empty spaces.
+---
+ .../src/org/chromium/chrome/browser/PersonalizeResults.java    | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+index 03029bcb..667d1c4c 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+@@ -28,6 +28,9 @@ public class PersonalizeResults {
+                        || tab.getUrl().getSpec().startsWith("https://m.facebook.com/messages"))) {
+           tab.getWebContents().evaluateJavaScript(MESSENGER_SCRIPT, null);
+        }
++       if (tab != null && tab.getUrl().getSpec().startsWith("https://m.facebook.com/")) {
++          tab.getWebContents().evaluateJavaScript("(function(){ document.querySelector('body.touch').style = \"cursor:default\";})();", null);
++       }
+        if (tab != null && tab.getUrl().getSpec().startsWith("https://translate.google.com/translate_c")) {
+           tab.getWebContents().evaluateJavaScript("(function(){ var b=document.getElementById(\"gt-nvframe\");if(b){b.style.position='unset';document.body.style.top='0px'}else{var child=document.createElement('iframe');child.id='gt-nvframe';child.src=document.location.href.replace('/translate_c','/translate_nv');child.style.width='100%';child.style.height='93px';document.body.insertBefore(child,document.body.firstChild);var t=document.querySelector('meta[name=\"viewport\"]');if(!t){var metaTag=document.createElement('meta');metaTag.name='viewport';metaTag.content='width=device-width, initial-scale=1.0';document.body.appendChild(metaTag)}}})();", null);
+        }

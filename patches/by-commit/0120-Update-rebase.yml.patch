@@ -1,0 +1,22 @@
+From a346739700f883ec089dc86f058c455e6a98da8a Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 07:47:57 +0300
+Subject: [PATCH 120/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 886a7b23..d7f93078 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -77,7 +77,7 @@ jobs:
+       - name: Going back to master
+         run: git switch master
+ 
+-      - name: Going back to master
++      - name: Rebasing on top of Chromium
+         run: git rebase chromium
+ 
+       - name: Displaying Kiwi's variant file

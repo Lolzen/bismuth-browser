@@ -1,0 +1,42 @@
+From 836dc64d4657a3afe76df521c4166e2582493084 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:17:02 +0000
+Subject: [PATCH 448/506] Automatically reload the new tab page in case the
+ first initialization of the new tab page is failing (this issue is
+ technically resolved, but this is a fail-safe)
+
+---
+ chrome/browser/resources/new_tab_page_instant/local_ntp.js | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/chrome/browser/resources/new_tab_page_instant/local_ntp.js b/chrome/browser/resources/new_tab_page_instant/local_ntp.js
+index 0bea806a..bcce8e8f 100644
+--- a/chrome/browser/resources/new_tab_page_instant/local_ntp.js
++++ b/chrome/browser/resources/new_tab_page_instant/local_ntp.js
+@@ -998,7 +998,7 @@ function setup_grid()
+       console.log("Fetch tiles from most visited: " + err);
+     }
+     if (typeof localStorage.storedItems == "undefined")
+-      window.setTimeout(function () { if (typeof localStorage.storedItems == "undefined") { fetch_tiles_from_most_visited(); globalGrid.appendNew(); swap_if_ready(); } }, 10);
++      window.setTimeout(function () { if (typeof localStorage.storedItems == "undefined") { fetch_tiles_from_most_visited(); globalGrid.appendNew(); swap_if_ready(); if (localStorage.triedToLoadMostVisited < 10) { document.location.reload(); } } }, 10);
+     if (typeof localStorage.storedItems == "undefined")
+       window.setTimeout(function () { if (typeof localStorage.storedItems == "undefined") { fetch_tiles_from_most_visited(); globalGrid.appendNew(); swap_if_ready(); } }, 100);
+     if (typeof localStorage.storedItems == "undefined")
+@@ -1074,7 +1074,6 @@ function setup_grid()
+     document.areIdeasFetched = true;
+     document.getElementById('explore-section').style.display = 'none';
+     console.log("Fetching tiles ideas");
+-try {
+     fetch('https://tiles.kiwibrowser.org/ideas/?version=2&cachebuster=' + Math.random(), { method: 'GET' })
+         .then(function(response) {
+             console.log("We received tiles ideas");
+@@ -1095,9 +1094,6 @@ try {
+             window.setTimeout(function () { swap_if_ready(); }, 800);
+             window.setTimeout(function () { save_grid_snapshot(); }, 900);
+           });
+-} catch (err) {
+-  console.log("Fetching tiles failed (could be intentionally empty)");
+-}
+    }
+ }
+ 

@@ -1,0 +1,23 @@
+From c83f5f12c86f01ac54767c3fe2c1fe92894b53b6 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 7 Aug 2021 00:22:10 +0000
+Subject: [PATCH 172/506] Allow Google, Facebook and Disqus Iframes to open new
+ windows
+
+---
+ third_party/blink/renderer/core/page/create_window.cc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/third_party/blink/renderer/core/page/create_window.cc b/third_party/blink/renderer/core/page/create_window.cc
+index b22189a4..bc34d2b4 100644
+--- a/third_party/blink/renderer/core/page/create_window.cc
++++ b/third_party/blink/renderer/core/page/create_window.cc
+@@ -331,7 +331,7 @@ Frame* CreateNewWindow(LocalFrame& opener_frame,
+           network::mojom::blink::WebSandboxFlags::kPopups)) {
+     shouldBlockWindow = true;
+   }
+-  if (opener_window.IsCrossSiteSubframe())
++  if (opener_window.IsCrossSiteSubframe() && !(url.Host().Contains("google")) && !(url.Host().Contains("facebook")) && !(url.Host().Contains("disqus")))
+     shouldBlockWindow = true;
+   if (shouldBlockWindow) {
+     // FIXME: This message should be moved off the console once a solution to

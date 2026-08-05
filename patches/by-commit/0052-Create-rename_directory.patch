@@ -1,0 +1,35 @@
+From 7659e323f62bc7035719dd4841bc35863c27a819 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 03:15:34 +0300
+Subject: [PATCH 052/506] Create rename_directory
+
+---
+ .github/workflows/rename_directory | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+ create mode 100644 .github/workflows/rename_directory
+
+diff --git a/.github/workflows/rename_directory b/.github/workflows/rename_directory
+new file mode 100644
+index 00000000..1de4ce25
+--- /dev/null
++++ b/.github/workflows/rename_directory
+@@ -0,0 +1,19 @@
++name: Rename directory
++
++on:
++  workflow_dispatch:
++    inputs:
++      source_directory:
++        description: 'Source directory path'     
++        required: true
++      destination_directory:
++        description: 'Destination directory path'     
++        required: true
++
++jobs:
++  rename:
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/checkout@v2
++      - run: git mv ${{ github.event.inputs.source_directory }} ${{ github.event.inputs.destination_directory }}
++      - uses: EndBug/add-and-commit@v5.1.0

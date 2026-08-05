@@ -1,0 +1,124 @@
+From 037078189f0d568bd33363fc3e536c08a6a8dc2d Mon Sep 17 00:00:00 2001
+From: d3ward <d3ward@users.noreply.github.com>
+Date: Fri, 4 Mar 2022 10:49:56 +0000
+Subject: [PATCH 478/506] Update translation files from Crowdin
+
+---
+ chrome/android/java/res/values-ja/strings.xml |  2 +-
+ .../java/res/values-pt-rBR/strings.xml        | 12 +++++------
+ chrome/android/java/res/values-sr/strings.xml |  4 ++--
+ chrome/android/java/res/values-vi/strings.xml | 20 +++++++++----------
+ 4 files changed, 19 insertions(+), 19 deletions(-)
+
+diff --git a/chrome/android/java/res/values-ja/strings.xml b/chrome/android/java/res/values-ja/strings.xml
+index fcf1910f..89341440 100755
+--- a/chrome/android/java/res/values-ja/strings.xml
++++ b/chrome/android/java/res/values-ja/strings.xml
+@@ -48,7 +48,7 @@
+     <string name="preferences_privacy">プライバシー</string>
+     <string name="preferences_toolbar">ツールバー</string>
+     <string name="preferences_translator">翻訳</string>
+-    <string name="preferences_tabswitcher">タブ切り替え</string>
++    <string name="preferences_tabswitcher">タブの切り替え</string>
+     <string name="preferences_nightmode">夜間モード</string>
+     <string name="download_preferences_enable_external_download_manager_title">外部ダウンロードマネージャー</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Advanced Download Manager などの外部のダウンロードマネージャーを使用します</string>
+diff --git a/chrome/android/java/res/values-pt-rBR/strings.xml b/chrome/android/java/res/values-pt-rBR/strings.xml
+index 9de07c5c..1b75a523 100755
+--- a/chrome/android/java/res/values-pt-rBR/strings.xml
++++ b/chrome/android/java/res/values-pt-rBR/strings.xml
+@@ -20,8 +20,8 @@
+     <string name="accessibility_keep_toolbar_visible_summary">Manter a barra de endereço sempre na tela durante a rolagem</string>
+     <string name="accessibility_preferences_text_rewrap_title">Reajuste de texto / refluxo</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Ajustar o texto durante o zoom</string>
+-    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Função do toque longo no seletor the abas</string>
+-    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Segurar o botão do seletor de abas abre um menu em vez de abrir abrir uma nova aba</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Função do toque longo no seletor de abas</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Segurar o botão do seletor de abas abre um menu no lugar de abrir uma nova aba</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Preferir aplicativos nativos (habilitar aplicativos externos)</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Abrir links com aplicativos externos (Maps, YouTube, Vimeo), quando possível</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Tons de cinza do modo noturno</string>
+@@ -65,11 +65,11 @@
+     <string name="search_engines_preferences_howto_add">Você visitou recentemente\nPara adicionar um novo mecanismo de pesquisa, vá ao site de pesquisa desejado (ex. bing.com) e faça uma nova pesquisa. Após alguns segundos, o mecanismo de pesquisa daquele site será adicionado a essa lista.</string>
+     <string name="suggest_adblock">Clique para alternar a proteção contra anúncios e rastreamento</string>
+     <string name="website_settings_add_site_description_ads">Permitir exibir anúncios para um site específico</string>
+-    <string name="website_settings_desktop_mode">Modo para computador por padrão</string>
+-    <string name="website_settings_desktop_mode_enabled">Preferir modo computador de sites</string>
+-    <string name="website_settings_desktop_mode_disabled">Preferir versão otimizada para dispositivos móveis de sites</string>
++    <string name="website_settings_desktop_mode">Modo desktop por padrão</string>
++    <string name="website_settings_desktop_mode_enabled">Preferir modo desktop</string>
++    <string name="website_settings_desktop_mode_disabled">Preferir versão otimizada dos sites para dispositivos móveis</string>
+     <string name="main_menu_mobile_site">Site para dispositivo móvel</string>
+-    <string name="data_reduction_description_lite_mode_kiwi">Quando o Modo Lite estiver ativado, O Kiwi Browser tentará economizar dados, informando aos sites que eles devem oferecer uma versão mais leve. Neste modo, o Kiwi pode desativar certas imagens ou elementos na página para acelerar o carregamento. O tráfego vai diretamente para o site sem intermediários. Para economizar a quantidade máxima de dados, recomendamos marcar a opção \"Bloquear anúncios invasivos\" no menu principal. Anúncios bloqueados não contam para a estatística de economia de dados.</string>
++    <string name="data_reduction_description_lite_mode_kiwi">Quando o Modo Lite estiver ativado, o Kiwi Browser tentará economizar dados, informando aos sites que eles devem oferecer uma versão mais leve. Neste modo, o Kiwi pode desativar certas imagens ou elementos na página para acelerar o carregamento. O tráfego vai diretamente para o site sem intermediários. Para economizar uma quantidade máxima de dados, recomendamos marcar a opção \"Bloquear anúncios invasivos\" no menu principal. Anúncios bloqueados não contam para a estatística de economia de dados.</string>
+     <string name="accessibility_preferences_cws_mobile_friendly_title">Otimizar a Loja de Extensões</string>
+     <string name="accessibility_preferences_cws_mobile_friendly_summary">Aprimorar a aparência da Loja de Extensões</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-sr/strings.xml b/chrome/android/java/res/values-sr/strings.xml
+index 4123b24f..fbc0de95 100755
+--- a/chrome/android/java/res/values-sr/strings.xml
++++ b/chrome/android/java/res/values-sr/strings.xml
+@@ -3,8 +3,8 @@
+     <string name="main_menu_ads_and_trackers_blocked" tools:ignore="PluralsCandidate">"%1$d ads &amp; trackers blocked"</string>
+     <string name="main_menu_ads_blocked_since">"Since %1$s"</string>
+     <string name="main_menu_adblock">Hide annoying ads</string>
+-    <string name="main_menu_clear_data">Clear data</string>
+-    <string name="main_menu_translate">Translate</string>
++    <string name="main_menu_clear_data">Очисти податке</string>
++    <string name="main_menu_translate">Преводите</string>
+     <string name="main_menu_translate_undo">Stop translate</string>
+     <string name="main_menu_turn_on_night_mode">Вклучить ночној режим</string>
+     <string name="main_menu_turn_off_night_mode">Виклучить ночној режим</string>
+diff --git a/chrome/android/java/res/values-vi/strings.xml b/chrome/android/java/res/values-vi/strings.xml
+index 7c89de09..0fb20ce6 100755
+--- a/chrome/android/java/res/values-vi/strings.xml
++++ b/chrome/android/java/res/values-vi/strings.xml
+@@ -13,7 +13,7 @@
+     <string name="main_menu_disable_proxy">Tắt Proxy/VPN</string>
+     <string name="menu_import_bookmarks">Nhập dấu trang</string>
+     <string name="menu_export_bookmarks">Xuất dấu trang</string>
+-    <string name="main_menu_developer_tools">Công cụ dành cho nhà phát triển</string>
++    <string name="main_menu_developer_tools">Công cụ Nhà phát triển</string>
+     <string name="appearance_preferences">Giao diện</string>
+     <string name="appearance_preferences_themes">Gói giao diện</string>
+     <string name="accessibility_keep_toolbar_visible_title">Không ẩn thanh công cụ</string>
+@@ -21,7 +21,7 @@
+     <string name="accessibility_preferences_text_rewrap_title">Tự động chỉnh kí tự</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Căn chỉnh kí tự khi phóng to</string>
+     <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Duyệt menu cài đặt khi giữ ⋮</string>
+-    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Mở cửa sổ mới thay vì menu khi giữ nút chuyển cửa sổ</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Mở menu thay vì cửa sổ mới khi giữ nút chuyển cửa sổ</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Sử dụng ứng dụng bên ngoài</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Mở các liên kết bằng ứng dụng bên ngoài (Maps, YouTube, Vimeo) khi có thể</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Chế độ ban đêm màu xám</string>
+@@ -43,10 +43,10 @@
+     <string name="preferences_restart_is_needed">Các thay đổi sẽ có hiệu lực sau khi khởi động lại Kiwi</string>
+     <string name="preferences_restart_now">KHỞI ĐỘNG LẠI NGAY</string>
+     <string name="preferences_restart_later">Để sau</string>
+-    <string name="preferences_autofill">Autofill</string>
+-    <string name="preferences_developer_options">Developer options</string>
+-    <string name="preferences_privacy">Privacy</string>
+-    <string name="preferences_toolbar">Toolbar</string>
++    <string name="preferences_autofill">Tự động điền</string>
++    <string name="preferences_developer_options">Tuỳ chọn Nhà phát triển</string>
++    <string name="preferences_privacy">Quyền riêng tư và bảo mật</string>
++    <string name="preferences_toolbar">Thanh công cụ</string>
+     <string name="preferences_translator">Công cụ dịch thuật</string>
+     <string name="preferences_tabswitcher">Chuyển Tab</string>
+     <string name="preferences_nightmode">Chế độ tối</string>
+@@ -65,11 +65,11 @@
+     <string name="search_engines_preferences_howto_add">Các trang vừa xem\nĐể thêm một công cụ tìm kiếm mới, vào trang web của công cụ tìm kiếm (ví dụ: Bing.com) và thực hiện một tìm kiếm. Sau vài giây, công cụ tìm kiếm sẽ được thêm vào danh sách.</string>
+     <string name="suggest_adblock">Ấn để bật/ tắt chế độ chặn quảng cáo &amp; theo dõi</string>
+     <string name="website_settings_add_site_description_ads">Hiện quảng cáo với các trang cho trước</string>
+-    <string name="website_settings_desktop_mode">Desktop mode mặc định</string>
++    <string name="website_settings_desktop_mode">Chế độ Desktop theo mặc định</string>
+     <string name="website_settings_desktop_mode_enabled">Ưu tiên phiên bản dành cho máy tính của trang web</string>
+     <string name="website_settings_desktop_mode_disabled">Ưu tiên phiên bản dành cho điện thoại của trang web</string>
+-    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="main_menu_mobile_site">Trang di động</string>
+     <string name="data_reduction_description_lite_mode_kiwi">Khi Lite Mode được kích hoạt, Kiwi Browser sẽ cố tiết kiệm dữ liệu bằng việc yêu cầu trang web cung cấp phiên bản tối giản của chính nó. Lúc này, Kiwi có thể bỏ một số ảnh hoặc yếu tố của trang để tăng tốc. Bạn sẽ truy cập thẳng vào trang web và bỏ qua trung gian. Để tiết kiệm dữ liệu tối đa, bạn nên chọn \"Chặn quảng cáo phiền toái\" ở Menu (⋮). Bạn sẽ không mất dữ liệu cho cho các quảng cáo bị chặn.</string>
+-    <string name="accessibility_preferences_cws_mobile_friendly_title">Optimize Extensions Web Store</string>
+-    <string name="accessibility_preferences_cws_mobile_friendly_summary">Improve the appearance of Extensions Web Store</string>
++    <string name="accessibility_preferences_cws_mobile_friendly_title">Tối ưu hóa Extensions Web Store</string>
++    <string name="accessibility_preferences_cws_mobile_friendly_summary">Cải thiện giao diện của Cửa hàng trực tuyến tiện ích mở rộng</string>
+ </resources>

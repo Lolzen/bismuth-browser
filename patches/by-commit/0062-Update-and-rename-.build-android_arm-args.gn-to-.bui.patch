@@ -1,0 +1,30 @@
+From d8fe53f420d2c303ec7f929aa6e68e14de9a66d6 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 04:13:13 +0300
+Subject: [PATCH 062/506] Update and rename .build/android_arm/args.gn to
+ .build/production_build_reference/args.gn
+
+---
+ .build/{android_arm => production_build_reference}/args.gn | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename .build/{android_arm => production_build_reference}/args.gn (95%)
+
+diff --git a/.build/android_arm/args.gn b/.build/production_build_reference/args.gn
+similarity index 95%
+rename from .build/android_arm/args.gn
+rename to .build/production_build_reference/args.gn
+index 193d674a..70642b3d 100644
+--- a/.build/android_arm/args.gn
++++ b/.build/production_build_reference/args.gn
+@@ -1,9 +1,9 @@
+ target_os = "android"
+-target_cpu = "arm"
++target_cpu = "arm64"
+ is_debug = false
+ is_java_debug = false
+ 
+-android_channel = "default"
++android_channel = "dev"
+ is_official_build = true
+ is_component_build = false
+ is_chrome_branded = false

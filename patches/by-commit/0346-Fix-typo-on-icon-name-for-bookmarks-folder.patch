@@ -1,0 +1,22 @@
+From 8a83a3f8903afa30d89e8e4d5e6f6664fe8e7fa7 Mon Sep 17 00:00:00 2001
+From: Eduar Ursu <eduardursu78@gmail.com>
+Date: Thu, 12 Aug 2021 16:17:53 +0200
+Subject: [PATCH 346/506] Fix typo on icon name for bookmarks folder
+
+---
+ chrome/android/java/res/menu/main_menu.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chrome/android/java/res/menu/main_menu.xml b/chrome/android/java/res/menu/main_menu.xml
+index 4829160d..9a0c7eee 100644
+--- a/chrome/android/java/res/menu/main_menu.xml
++++ b/chrome/android/java/res/menu/main_menu.xml
+@@ -63,7 +63,7 @@
+             android:icon="@drawable/infobar_download_complete" />
+         <item android:id="@+id/all_bookmarks_menu_id"
+             android:title="@string/menu_bookmarks"
+-            android:icon="@drawable/ic_bookmakrs" />
++            android:icon="@drawable/ic_bookmarks" />
+         <item android:id="@+id/recent_tabs_menu_id"
+             android:title="@string/menu_recent_tabs"
+             android:icon="@drawable/devices_black_24dp" />

@@ -1,0 +1,22 @@
+From 7b5daefce1e0dc9593df7661b588193b90e24350 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 07:39:12 +0300
+Subject: [PATCH 114/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 605fa985..17a148bb 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -61,7 +61,7 @@ jobs:
+         run: cd /tmp/chromium_new && git read-tree -mu ${{ github.event.inputs.NEW_CHROMIUM_MAJOR }}.${{ github.event.inputs.NEW_CHROMIUM_MINOR }}.${{ github.event.inputs.NEW_CHROMIUM_BUILD }}.${{ github.event.inputs.NEW_CHROMIUM_PATCH }}
+ 
+       - name: Preparing local Chromium branch
+-        run: git switch -c chromium || git switch chromium
++        run: git switch -c chromium f5d797deec3b570e0e4a8b77caaf6d51520dfbfa || git switch chromium
+ 
+       - name: Copying files to local Chromium branch
+         run: rsync -avz --progress --exclude=".git" /tmp/chromium_new/* .

@@ -1,0 +1,47 @@
+From b09b84e589b36b8c6be755043553abe9d719db71 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 13 Aug 2021 17:00:33 +0300
+Subject: [PATCH 294/506] Update rebase_kiwi_on_top_of_chromium.yml
+
+---
+ .../rebase_kiwi_on_top_of_chromium.yml        | 22 ++++++++++++++-----
+ 1 file changed, 17 insertions(+), 5 deletions(-)
+
+diff --git a/.github/workflows/rebase_kiwi_on_top_of_chromium.yml b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+index 6631f1a7..9337f49f 100644
+--- a/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
++++ b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+@@ -18,16 +18,28 @@ jobs:
+           git config --global user.email "github@actions"
+           git config --global user.name "Repository manager"
+ 
++      - name: Adding kiwibrowser repository as upstream
++        run: git remote add upstream https://github.com/kiwibrowser/src.next.git
++
++      - name: Fetching kiwibrowser repository
++        run: git fetch upstream
++
++      - name: Switching to Chromium
++        run: git rebase upstream/chromium --committer-date-is-author-date
++
++      - name: Pushing Chromium branch
++        run: git push origin chromium
++
+       - name: Switching to Kiwi
+         run: git switch kiwi
+-        
+-      - name: Fetching Chromium branch
+-        run: git fetch origin chromium
++
++      - name: Fetching Kiwi branch
++        run: git fetch origin kiwi
+ 
+       - name: Rebasing on top of Chromium
+         run: git rebase origin/chromium --committer-date-is-author-date
+ 
+       # This is done on purpose
+       # See: https://redfin.engineering/git-rebasing-public-branches-works-much-better-than-youd-think-ecc9a115aea9
+-      - name: Pushing branch
+-        run: git push origin kiwi --force
++      - name: Pushing Kiwi branch
++        run: git push origin kiwi

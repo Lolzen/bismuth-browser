@@ -1,0 +1,26 @@
+From 3e89006cfe37e7c7dc594e4cefcbba4e325d20d5 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 04:04:22 +0300
+Subject: [PATCH 057/506] Remove potential error messages (to prevent leaking
+ API key)
+
+---
+ toolbox/download_translations_from_crowdin.php | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/toolbox/download_translations_from_crowdin.php b/toolbox/download_translations_from_crowdin.php
+index f4d06fdc..1b7977e9 100644
+--- a/toolbox/download_translations_from_crowdin.php
++++ b/toolbox/download_translations_from_crowdin.php
+@@ -9,9 +9,9 @@ function rglob($pattern, $flags = 0) {
+ }
+ 
+ $url = 'https://api.crowdin.com/api/project/kiwibrowser/export?key=' . $argv[1];
+-passthru('curl ' . escapeshellarg($url));
++passthru('curl -s ' . escapeshellarg($url));
+ $zip_url = 'https://api.crowdin.com/api/project/kiwibrowser/download/all.zip?key=' . $argv[1];
+-passthru('rm ../translations.zip ; wget ' . escapeshellarg($zip_url) . ' -O ../translations.zip');
++passthru('rm ../translations.zip ; wget -q ' . escapeshellarg($zip_url) . ' -O ../translations.zip');
+ passthru('rm -rf ../translations_tmp/*');
+ passthru('unzip -q -o -d ../translations_tmp/ ../translations.zip');
+ passthru('chmod -R 744 ../translations_tmp/');

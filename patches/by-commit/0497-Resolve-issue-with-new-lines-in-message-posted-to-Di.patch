@@ -1,0 +1,38 @@
+From 64f705f0f92204892c61ac769d12c21a60e327cf Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 13 Aug 2023 21:10:15 +0300
+Subject: [PATCH 497/506] Resolve issue with new lines in message posted to
+ Discord and Telegram
+
+---
+ .github/workflows/build_and_sign_release_apk.yml | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index 99cdf696..f91c9b39 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -354,8 +354,11 @@ jobs:
+         continue-on-error: true
+         if: contains(github.event.inputs.announceOnMessengers, 'yes')
+         run: |
+-          COMMIT_MSG=$(<./apk-arm/last_commits.txt)
+-          COMMIT_MSG="\n\n${COMMIT_MSG}\n"
++          echo "" > commit_message.txt
++          echo "" >> commit_message.txt
++          cat ./apk-arm/last_commits.txt >> commit_message.txt
++          echo "" >> commit_message.txt
++          COMMIT_MSG=$(<./commit_message.txt)
+           PAYLOAD=$(jq -n \
+                       --arg username "Kiwi Builder (Next)" \
+                       --arg content "A new build of Kiwi Browser Next (preview version) is available. This version will replace your currently installed Kiwi Browser (com.kiwibrowser.browser) <@&913196471787065344> - https://github.com/kiwibrowser/src.next/releases/tag/${{ github.run_id }} $COMMIT_MSG" \
+@@ -366,8 +369,7 @@ jobs:
+         continue-on-error: true
+         if: contains(github.event.inputs.announceOnMessengers, 'yes')
+         run: |
+-          COMMIT_MSG=$(<./apk-arm/last_commits.txt)
+-          COMMIT_MSG="\n\n${COMMIT_MSG}\n"
++          COMMIT_MSG=$(<./commit_message.txt)
+           PAYLOAD=$(jq -n \
+                       --arg text "A new build of Kiwi Browser Next (preview version) is available. Link: [${{ github.run_id }}](https://github.com/kiwibrowser/src.next/releases/tag/${{ github.run_id }}) $COMMIT_MSG" \
+                       --arg chat_id "@kiwibrowserbuilds" \

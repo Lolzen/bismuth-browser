@@ -1,0 +1,23 @@
+From 209058626ef146dee424a560a359a21a5ba75b62 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 13 Aug 2023 12:42:24 +0300
+Subject: [PATCH 493/506] Downgrade to previous syntax for GitHub Workflow
+
+---
+ .github/workflows/build_and_sign_release_apk.yml | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index 23c6bc28..b0c3fb76 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -184,8 +184,7 @@ jobs:
+       - name: Read last commits
+         id: read_commits
+         run: |
+-          COMMIT_MSG=$(cat ./apk-arm/last_commits.txt)
+-          echo "commits=$COMMIT_MSG" >> $GITHUB_OUTPUT
++          echo "::set-output name=commits::$(cat ./apk-arm/last_commits.txt)"
+ 
+       - name: Creating release
+         id: create_release

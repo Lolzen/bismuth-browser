@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/autocomplete/autocomplete_classifier_factory.cc b/chrome/browser/autocomplete/autocomplete_classifier_factory.cc
+index 16ccca10..70fb6f2f 100644
+--- a/chrome/browser/autocomplete/autocomplete_classifier_factory.cc
++++ b/chrome/browser/autocomplete/autocomplete_classifier_factory.cc
+@@ -52,6 +52,7 @@ AutocompleteClassifierFactory::AutocompleteClassifierFactory()
+         "AutocompleteClassifier",
+         BrowserContextDependencyManager::GetInstance()) {
+ #if BUILDFLAG(ENABLE_EXTENSIONS)
++if (extensions::ExtensionsBrowserClient::Get())
+   DependsOn(
+       extensions::ExtensionsBrowserClient::Get()->GetExtensionSystemFactory());
+ #endif

@@ -1,0 +1,30 @@
+From 95d3d50165f9c15cf2b931cee9f94e337d871aed Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 06:29:17 +0300
+Subject: [PATCH 089/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index bfcd0d37..65ab9cbe 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -35,11 +35,14 @@ jobs:
+       - name: Switching Chromium base branch
+         run: cd chromium && git read-tree -mu ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}
+ 
++      - name: Checking-out one file
++        run: cd chromium && git checkout -- chrome/browser/resources/extensions/extensions.html
++
+ #      - name: Showing history for one file
+ #        run: cd chromium && git --no-pager log --decorate=short --pretty=oneline -n1 chrome/browser/resources/extensions/extensions.html
+ 
+-#      - name: Displaying one file
+-#        run: cat chromium/chrome/browser/resources/extensions/extensions.html
++      - name: Displaying one file
++        run: cat chromium/chrome/browser/resources/extensions/extensions.html
+ 
+       - name: Listing files
+         run: ls -laR

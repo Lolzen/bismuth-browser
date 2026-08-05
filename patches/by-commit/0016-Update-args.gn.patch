@@ -1,0 +1,22 @@
+From b8f47d3ac2bdb394aee31e77e69bc4305299db94 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 26 Jun 2021 06:06:51 +0300
+Subject: [PATCH 016/506] Update args.gn
+
+---
+ .build/android_arm/args.gn | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.build/android_arm/args.gn b/.build/android_arm/args.gn
+index b4e62324..a3e3d910 100644
+--- a/.build/android_arm/args.gn
++++ b/.build/android_arm/args.gn
+@@ -30,7 +30,7 @@ use_official_google_api_keys = false
+ ffmpeg_branding = "Chrome"
+ proprietary_codecs = true
+ enable_nacl = false
+-enable_widevine = false
++enable_widevine = true
+ enable_mse_mpeg2ts_stream_parser = true
+ enable_remoting = false
+ rtc_use_h264 = false

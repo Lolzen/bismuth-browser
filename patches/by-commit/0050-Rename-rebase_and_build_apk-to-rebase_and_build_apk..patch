@@ -1,0 +1,15 @@
+From 46b65e3be8a3b3336f4cd88464c060342b62e5e2 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 03:09:25 +0300
+Subject: [PATCH 050/506] Rename rebase_and_build_apk to
+ rebase_and_build_apk.yml
+
+---
+ .../workflows/{rebase_and_build_apk => rebase_and_build_apk.yml}  | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename .github/workflows/{rebase_and_build_apk => rebase_and_build_apk.yml} (100%)
+
+diff --git a/.github/workflows/rebase_and_build_apk b/.github/workflows/rebase_and_build_apk.yml
+similarity index 100%
+rename from .github/workflows/rebase_and_build_apk
+rename to .github/workflows/rebase_and_build_apk.yml

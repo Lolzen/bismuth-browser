@@ -1,0 +1,41 @@
+From 15b77643d9095f2b4c2e3e3b60ec63470f6258ba Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 17:16:15 +0300
+Subject: [PATCH 126/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 4b1be780..575a3c55 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -74,12 +74,18 @@ jobs:
+       - name: Committing files to local Chromium branch
+         run: git commit --allow-empty -a -m '[Import] Importing files from ${{ github.event.inputs.NEW_CHROMIUM_MAJOR }}.${{ github.event.inputs.NEW_CHROMIUM_MINOR }}.${{ github.event.inputs.NEW_CHROMIUM_BUILD }}.${{ github.event.inputs.NEW_CHROMIUM_PATCH }}'
+ 
++      - name: Creating pull request
++        id: pullrequest
++        uses: peter-evans/create-pull-request@v3
++        
++      - name: Getting pull request URL
++        run: |
++          echo "Pull request number - ${{ steps.pullrequest.outputs.pull-request-number }}"
++          echo "Pull request URL - ${{ steps.pullrequest.outputs.pull-request-url }}"
++
+       - name: Going back to master
+         run: git switch master
+ 
+-      - name: Rebasing on top of Chromium
+-        run: git rebase chromium || cat chrome/browser/resources/extensions/extensions.html && false
+-
+       - name: Displaying Kiwi's variant file
+         run: cat chrome/browser/resources/extensions/extensions.html
+ 
+@@ -96,4 +102,4 @@ jobs:
+         run: git commit --allow-empty -a -m "[Rebase] Rebased from ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }} to ${{ github.event.inputs.NEW_CHROMIUM_MAJOR }}.${{ github.event.inputs.NEW_CHROMIUM_MINOR }}.${{ github.event.inputs.NEW_CHROMIUM_BUILD }}.${{ github.event.inputs.NEW_CHROMIUM_PATCH }}"
+ 
+       - name: Pushing repository
+-        run: git push --all --force
++        run: git push --all

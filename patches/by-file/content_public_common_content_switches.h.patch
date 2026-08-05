@@ -1,0 +1,13 @@
+diff --git a/content/public/common/content_switches.h b/content/public/common/content_switches.h
+index ccc81e32..e8e60e32 100644
+--- a/content/public/common/content_switches.h
++++ b/content/public/common/content_switches.h
+@@ -198,7 +198,7 @@ CONTENT_EXPORT extern const char kRendererProcessLimit[];
+ CONTENT_EXPORT extern const char kRendererStartupDialog[];
+ CONTENT_EXPORT extern const char kRunManualTestsFlag[];
+ extern const char kSandboxIPCProcess[];
+-#if !BUILDFLAG(IS_ANDROID)
++#if !BUILDFLAG(IS_ANDROID) || true
+ CONTENT_EXPORT extern const char kSharedArrayBufferUnrestrictedAccessAllowed[];
+ #endif
+ CONTENT_EXPORT extern const char kSharedFiles[];

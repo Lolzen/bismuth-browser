@@ -1,0 +1,21 @@
+From e6c157876b43e557fea6a5c3930a38065310e311 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 03:18:10 +0300
+Subject: [PATCH 054/506] Update rename_directory.yml
+
+---
+ .github/workflows/rename_directory.yml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/.github/workflows/rename_directory.yml b/.github/workflows/rename_directory.yml
+index 1de4ce25..8cf28356 100644
+--- a/.github/workflows/rename_directory.yml
++++ b/.github/workflows/rename_directory.yml
+@@ -15,5 +15,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v2
++      
+       - run: git mv ${{ github.event.inputs.source_directory }} ${{ github.event.inputs.destination_directory }}
++      
+       - uses: EndBug/add-and-commit@v5.1.0

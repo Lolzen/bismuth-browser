@@ -1,0 +1,22 @@
+From 06dbbe9ee86bb29bdf55bd6073047520051e468c Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 07:47:37 +0300
+Subject: [PATCH 119/506] Update import_file_from_chromium.yml
+
+---
+ .github/workflows/import_file_from_chromium.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/import_file_from_chromium.yml b/.github/workflows/import_file_from_chromium.yml
+index 90249dde..ab378271 100644
+--- a/.github/workflows/import_file_from_chromium.yml
++++ b/.github/workflows/import_file_from_chromium.yml
+@@ -54,7 +54,7 @@ jobs:
+       - name: Going back to master
+         run: git switch master
+ 
+-      - name: Going back to master
++      - name: Rebasing on top of Chromium
+         run: git rebase chromium
+ 
+       - name: Pushing repository

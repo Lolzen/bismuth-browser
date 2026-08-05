@@ -1,0 +1,31 @@
+From bc8df328234dd3d08704399e4197ed4b3993fdd5 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 07:10:38 +0300
+Subject: [PATCH 100/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 2e64105a..acc2f914 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -18,7 +18,7 @@ jobs:
+       - name: Disable Git auto-packing
+         run: git config --global gc.auto 0
+         
+-      - name: Set GitHub username
++      - name: Setting-up GitHub username
+         run: |
+           git config --global user.email "github@geometry.ee"
+           git config --global user.name "Repository manager"
+@@ -53,7 +53,7 @@ jobs:
+         run: cat chromium/chrome/browser/resources/extensions/extensions.html
+ 
+       - name: Committing change
+-        run: cd chromium && git commit -a -m "[Kiwi] [GitHub] Snapshotting ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}"
++        run: cd chromium && git commit -m "[Kiwi] [GitHub] Snapshotting ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}" chromium/chrome/browser/resources/extensions/extensions.html
+ 
+       - name: Rebasing
+         run: cd chromium && git rebase 93.0.4577.21

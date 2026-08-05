@@ -1,0 +1,21 @@
+From a99c5c9e6041ac6ff7425a5eef81e648c1949439 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:16:07 +0000
+Subject: [PATCH 447/506] Let the user use chrome://newtab if the user wants to
+
+---
+ .../src/org/chromium/chrome/browser/ChromeTabbedActivity.java    | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
+index 2373bde4..039a47a8 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
+@@ -1438,6 +1438,7 @@ public class ChromeTabbedActivity extends ChromeActivity<ChromeActivityComponent
+                 // Migrate legacy NTP URLs (chrome://newtab) to the newer format
+                 // (chrome-native://newtab)
+                 if (UrlUtilities.isNTPUrl(url)) {
++                    if (false)
+                     url = "chrome-search://local-ntp/local-ntp.html";
+                 }
+             }

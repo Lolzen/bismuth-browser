@@ -1,0 +1,23 @@
+From 88038c1a28d6ffea84e9976c22d4c88581e11744 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 15:39:49 +0300
+Subject: [PATCH 271/506] Test executing user scripts onPageLoad instead of
+ onUrlUpdated
+
+---
+ .../src/org/chromium/chrome/browser/app/ChromeActivity.java     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
+index 94250bd4..ca8023c2 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
+@@ -867,7 +867,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+             }
+ 
+             @Override
+-            public void onUrlUpdated(Tab tab){
++            public void onPageLoadStarted(Tab tab, GURL url){
+               FixDevToolsWindow.Execute(tab);
+               PersonalizeResults.Execute(tab);
+             }

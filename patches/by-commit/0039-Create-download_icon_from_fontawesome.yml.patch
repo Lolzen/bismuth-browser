@@ -1,0 +1,34 @@
+From 615b59ddf1c418135f3938667e5ac7e0cd3f6f45 Mon Sep 17 00:00:00 2001
+From: Eduard Ursu <eduardursu78@gmail.com>
+Date: Wed, 21 Jul 2021 01:35:31 +0200
+Subject: [PATCH 039/506] Create download_icon_from_fontawesome.yml
+
+---
+ .../download_icon_from_fontawesome.yml         | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ create mode 100644 .github/workflows/download_icon_from_fontawesome.yml
+
+diff --git a/.github/workflows/download_icon_from_fontawesome.yml b/.github/workflows/download_icon_from_fontawesome.yml
+new file mode 100644
+index 00000000..7611ab4e
+--- /dev/null
++++ b/.github/workflows/download_icon_from_fontawesome.yml
+@@ -0,0 +1,18 @@
++name: Download icon from fontawesome
++
++on:
++  workflow_dispatch:
++    inputs:
++      iconNameInFontawesome:
++        description: 'Name of the icon in Fontawesome'     
++        required: true
++      iconNameInChromium:
++        description: 'Name of the icon in Chromium'     
++        required: true
++jobs:
++  build:
++    runs-on: ubuntu-latest
++
++    steps:
++      - name: Initializing build
++        run: echo Initializing build for platform

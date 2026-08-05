@@ -1,0 +1,22 @@
+From 2fd8e656c7f21634d6e138a2b05ae54fca39c2fc Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 04:10:09 +0300
+Subject: [PATCH 061/506] Update rebase_and_build_apk.yml
+
+---
+ .github/workflows/rebase_and_build_apk.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase_and_build_apk.yml b/.github/workflows/rebase_and_build_apk.yml
+index f78cf0e8..a25f03dd 100644
+--- a/.github/workflows/rebase_and_build_apk.yml
++++ b/.github/workflows/rebase_and_build_apk.yml
+@@ -4,7 +4,7 @@ on:
+   workflow_dispatch:
+   push:
+     paths:
+-      - 'upstream'
++      - 'CHROMIUM_VERSION'
+ 
+ jobs:
+   build:

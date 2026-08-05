@@ -1,0 +1,21 @@
+diff --git a/chrome/android/java/res/xml/nightmode_preferences.xml b/chrome/android/java/res/xml/nightmode_preferences.xml
+new file mode 100644
+index 00000000..6237d926
+--- /dev/null
++++ b/chrome/android/java/res/xml/nightmode_preferences.xml
+@@ -0,0 +1,15 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!-- Copyright 2015 The Chromium Authors. All rights reserved.
++     Use of this source code is governed by a BSD-style license that can be
++     found in the LICENSE file. -->
++
++<PreferenceScreen
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto">
++
++    <org.chromium.chrome.browser.settings.RadioButtonGroupNightModePreference
++        android:key="nightmode_radio_group"
++        android:selectable="false"
++        app:allowDividerAbove="true"
++        app:allowDividerBelow="false" />
++</PreferenceScreen>

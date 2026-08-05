@@ -1,0 +1,24 @@
+From 645913ea1ea57821c9abf8350e6f60bc64934568 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:11:39 +0000
+Subject: [PATCH 441/506] Adjust keyboard accessory height in order to avoid a
+ gap when displaying the password helper toolbar next to the keyboard (56 - 48
+ corresponds to the height of the shadow that is normally there)
+
+---
+ chrome/android/java/res/values/dimens.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chrome/android/java/res/values/dimens.xml b/chrome/android/java/res/values/dimens.xml
+index 744fedf6..27715120 100644
+--- a/chrome/android/java/res/values/dimens.xml
++++ b/chrome/android/java/res/values/dimens.xml
+@@ -89,7 +89,7 @@
+     <dimen name="sheet_tab_toolbar_height">70dp</dimen>
+ 
+     <!-- Autofill keyboard accessory dimensions -->
+-    <dimen name="keyboard_accessory_height_with_shadow">56dp</dimen>
++    <dimen name="keyboard_accessory_height_with_shadow">48dp</dimen>
+     <dimen name="keyboard_accessory_sheet_height">330dp</dimen>
+ 
+     <!-- Password entry editor dimensions -->

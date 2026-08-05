@@ -1,0 +1,207 @@
+--- /home/gee/kiwi-rebase/reports/list-reference-138.0.7204.310/TabProperties.java	2026-08-04 16:49:28.370663890 +0200
++++ /home/gee/kiwi-rebase/reports/149-reference/TabProperties.java	2026-08-04 16:56:08.481396438 +0200
+@@ -5,6 +5,7 @@
+ package org.chromium.chrome.browser.tasks.tab_management;
+ 
+ import static org.chromium.chrome.browser.tasks.tab_management.TabListModel.CardProperties.CARD_ALPHA;
++import static org.chromium.chrome.browser.tasks.tab_management.TabListModel.CardProperties.CARD_ANIMATION_STATUS;
+ import static org.chromium.chrome.browser.tasks.tab_management.TabListModel.CardProperties.CARD_TYPE;
+ 
+ import android.util.Size;
+@@ -13,11 +14,12 @@
+ import androidx.annotation.IntDef;
+ 
+ import org.chromium.build.annotations.NullMarked;
++import org.chromium.chrome.browser.actor.ui.ActorUiTabController.UiTabState;
+ import org.chromium.chrome.browser.tab_ui.TabListFaviconProvider;
+ import org.chromium.chrome.browser.tasks.tab_management.TabListMediator.ShoppingPersistedTabDataFetcher;
+-import org.chromium.chrome.browser.tasks.tab_management.TabListMediator.TabActionButtonData;
+-import org.chromium.chrome.browser.tasks.tab_management.TabListMediator.TabActionListener;
++import org.chromium.components.browser_ui.util.TextResolver;
+ import org.chromium.components.browser_ui.widget.selectable_list.SelectionDelegate;
++import org.chromium.components.tab_groups.TabGroupColorId;
+ import org.chromium.ui.modelutil.PropertyKey;
+ import org.chromium.ui.modelutil.PropertyModel;
+ import org.chromium.ui.modelutil.PropertyModel.ReadableBooleanPropertyKey;
+@@ -25,29 +27,42 @@
+ import org.chromium.ui.modelutil.PropertyModel.WritableIntPropertyKey;
+ import org.chromium.ui.modelutil.PropertyModel.WritableObjectPropertyKey;
+ 
++import java.lang.annotation.ElementType;
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
++import java.lang.annotation.Target;
+ 
+ /** List of properties to designate information about a single tab. */
+ @NullMarked
+ public class TabProperties {
+     /** IDs for possible types of UI in the tab list. */
++    @Target(ElementType.TYPE_USE)
+     @IntDef({
+         UiType.TAB,
+         UiType.STRIP,
+-        UiType.MESSAGE,
+-        UiType.LARGE_MESSAGE,
+-        UiType.CUSTOM_MESSAGE,
+-        UiType.TAB_GROUP
++        UiType.TAB_GROUP,
++        UiType.PRICE_MESSAGE,
++        UiType.INCOGNITO_REAUTH_PROMO_MESSAGE,
++        UiType.ARCHIVED_TABS_IPH_MESSAGE,
++        UiType.ARCHIVED_TABS_MESSAGE,
++        UiType.TAB_GROUP_SUGGESTION_MESSAGE,
++        UiType.IPH_MESSAGE,
++        UiType.COLLABORATION_ACTIVITY_MESSAGE,
+     })
+     @Retention(RetentionPolicy.SOURCE)
+     public @interface UiType {
+         int TAB = 0;
+         int STRIP = 1;
+-        int MESSAGE = 2;
+-        int LARGE_MESSAGE = 3;
+-        int CUSTOM_MESSAGE = 4;
+-        int TAB_GROUP = 5;
++        int TAB_GROUP = 2;
++
++        // Message Cards
++        int PRICE_MESSAGE = 3;
++        int INCOGNITO_REAUTH_PROMO_MESSAGE = 4;
++        int ARCHIVED_TABS_MESSAGE = 5;
++        int ARCHIVED_TABS_IPH_MESSAGE = 6;
++        int TAB_GROUP_SUGGESTION_MESSAGE = 7;
++        int IPH_MESSAGE = 8;
++        int COLLABORATION_ACTIVITY_MESSAGE = 9;
+     }
+ 
+     /** IDs for possible tab action states. */
+@@ -59,6 +74,31 @@
+         int CLOSABLE = 2;
+     }
+ 
++    /**
++     * States for showing the tab card highlight. Used to prevent showing animations upon a tab card
++     * being recycled and rebound.
++     */
++    @Target(ElementType.TYPE_USE)
++    @IntDef({
++        TabCardHighlightState.TO_BE_HIGHLIGHTED,
++        TabCardHighlightState.HIGHLIGHTED,
++        TabCardHighlightState.NOT_HIGHLIGHTED
++    })
++    @Retention(RetentionPolicy.SOURCE)
++    public @interface TabCardHighlightState {
++        /** The card is not highlighted. Triggers a fade-out animation if previously highlighted. */
++        int NOT_HIGHLIGHTED = 0;
++
++        /**
++         * A transient state that triggers a fade-in animation. The state should be set to {@link
++         * TabCardHighlightState#HIGHLIGHTED} immediately after to represent the final state.
++         */
++        int TO_BE_HIGHLIGHTED = 1;
++
++        /** The card is statically highlighted without any animation. */
++        int HIGHLIGHTED = 2;
++    }
++
+     /** The {@link TabActionState} for the view, either CLOSABLE or SELECTABLE. */
+     public static final WritableIntPropertyKey TAB_ACTION_STATE = new WritableIntPropertyKey();
+ 
+@@ -73,6 +113,13 @@
+ 
+     public static final WritableObjectPropertyKey<TabActionListener> TAB_LONG_CLICK_LISTENER =
+             new WritableObjectPropertyKey<>();
++    public static final WritableObjectPropertyKey<TabActionListener> TAB_CONTEXT_CLICK_LISTENER =
++            new WritableObjectPropertyKey<>();
++
++    // This will be initialized to 0, which is TabCardHighlightState.NOT_HIGHLIGHTED.
++    public static final WritableIntPropertyKey HIGHLIGHT_STATE = new WritableIntPropertyKey();
++
++    public static final WritableBooleanPropertyKey IS_PINNED = new WritableBooleanPropertyKey();
+ 
+     public static final WritableObjectPropertyKey<TabActionButtonData> TAB_ACTION_BUTTON_DATA =
+             new WritableObjectPropertyKey<>();
+@@ -92,6 +139,9 @@
+     public static final WritableObjectPropertyKey<ThumbnailFetcher> THUMBNAIL_FETCHER =
+             new WritableObjectPropertyKey<>(true);
+ 
++    public static final WritableBooleanPropertyKey SHOW_THUMBNAIL_SPINNER =
++            new WritableBooleanPropertyKey();
++
+     public static final WritableObjectPropertyKey<Size> GRID_CARD_SIZE =
+             new WritableObjectPropertyKey<>();
+ 
+@@ -99,8 +149,6 @@
+ 
+     public static final WritableBooleanPropertyKey IS_SELECTED = new WritableBooleanPropertyKey();
+ 
+-    public static final WritableIntPropertyKey CARD_ANIMATION_STATUS = new WritableIntPropertyKey();
+-
+     public static final WritableObjectPropertyKey<SelectionDelegate<TabListEditorItemSelectionId>>
+             TAB_SELECTION_DELEGATE = new WritableObjectPropertyKey<>();
+ 
+@@ -139,6 +187,9 @@
+     public static final WritableObjectPropertyKey<TabGroupColorViewProvider>
+             TAB_GROUP_COLOR_VIEW_PROVIDER = new WritableObjectPropertyKey<>();
+ 
++    public static final PropertyModel.WritableObjectPropertyKey<@TabGroupColorId Integer>
++            TAB_GROUP_CARD_COLOR = new PropertyModel.WritableObjectPropertyKey<>();
++
+     // TODO(crbug.com/365973166): Move this to `TabStripProperties` when it is created.
+     public static final WritableBooleanPropertyKey HAS_NOTIFICATION_BUBBLE =
+             new WritableBooleanPropertyKey();
+@@ -154,17 +205,26 @@
+     public static final WritableObjectPropertyKey<String> TAB_GROUP_SYNC_ID =
+             new WritableObjectPropertyKey<>();
+ 
++    /** The {@link org.chromium.chrome.browser.tab.TabImpl.MediaState} indicator of the tab. */
++    public static final WritableIntPropertyKey MEDIA_INDICATOR = new WritableIntPropertyKey();
++
++    /** The {@link ActorUiTabController.UiTabState} indicator of the tab. */
++    public static final WritableObjectPropertyKey<UiTabState> ACTOR_UI_STATE =
++            new WritableObjectPropertyKey<>();
++
+     private static final PropertyKey[] COMMON_KEYS_TAB_AND_GROUP_GRID =
+             new PropertyKey[] {
+                 IS_INCOGNITO,
+                 IS_SELECTED,
+                 TAB_CLICK_LISTENER,
+                 TAB_LONG_CLICK_LISTENER,
++                TAB_CONTEXT_CLICK_LISTENER,
+                 TAB_ACTION_BUTTON_DATA,
+                 FAVICON_FETCHED,
+                 FAVICON_FETCHER,
+                 GRID_CARD_SIZE,
+                 THUMBNAIL_FETCHER,
++                SHOW_THUMBNAIL_SPINNER,
+                 TITLE,
+                 CARD_ALPHA,
+                 CARD_ANIMATION_STATUS,
+@@ -176,8 +236,10 @@
+                 ACTION_BUTTON_DESCRIPTION_TEXT_RESOLVER,
+                 QUICK_DELETE_ANIMATION_STATUS,
+                 TAB_GROUP_COLOR_VIEW_PROVIDER,
++                TAB_GROUP_CARD_COLOR,
+                 VISIBILITY,
+                 USE_SHRINK_CLOSE_ANIMATION,
++                ACTOR_UI_STATE
+             };
+ 
+     // TAB_ACTION_STATE must always be the first property as keys are iterated in order. TAB_ID must
+@@ -191,6 +253,9 @@
+                         SHOULD_SHOW_PRICE_DROP_TOOLTIP,
+                         HAS_NOTIFICATION_BUBBLE,
+                         TAB_CARD_LABEL_DATA,
++                        HIGHLIGHT_STATE,
++                        IS_PINNED,
++                        MEDIA_INDICATOR
+                     },
+                     COMMON_KEYS_TAB_AND_GROUP_GRID);
+ 
+@@ -220,6 +285,7 @@
+                 TAB_ACTION_BUTTON_DATA,
+                 TAB_CLICK_LISTENER,
+                 TAB_LONG_CLICK_LISTENER,
++                TAB_CONTEXT_CLICK_LISTENER,
+                 ACTION_BUTTON_DESCRIPTION_TEXT_RESOLVER,
+                 CONTENT_DESCRIPTION_TEXT_RESOLVER,
+             };

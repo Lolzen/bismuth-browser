@@ -1,0 +1,25 @@
+From 1bf8a221b384dab773c2b50d6fd05170ae04ccae Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 13 Aug 2021 17:33:18 +0300
+Subject: [PATCH 305/506] Update rebase_kiwi_on_top_of_chromium.yml
+
+---
+ .github/workflows/rebase_kiwi_on_top_of_chromium.yml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase_kiwi_on_top_of_chromium.yml b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+index 8eab14e1..490b945c 100644
+--- a/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
++++ b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+@@ -42,7 +42,10 @@ jobs:
+       - name: Rebasing on top of Chromium
+         run: git rebase origin/chromium --committer-date-is-author-date
+ 
++      - name: Preparing new branch
++        run: git checkout -b new_kiwi
++
+       # This is done on purpose
+       # See: https://redfin.engineering/git-rebasing-public-branches-works-much-better-than-youd-think-ecc9a115aea9
+       - name: Pushing Kiwi branch
+-        run: git push origin/kiwi HEAD:kiwi --force
++        run: git push origin new_kiwi:kiwi --force

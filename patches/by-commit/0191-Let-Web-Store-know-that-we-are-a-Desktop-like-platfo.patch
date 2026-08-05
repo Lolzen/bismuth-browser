@@ -1,0 +1,25 @@
+From 0bec84b9f5684b2128eacdb5aedcc7ed5fd0e88d Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 8 Aug 2021 03:50:35 +0300
+Subject: [PATCH 191/506] Let Web Store know that we are a Desktop-like
+ platform
+
+---
+ net/url_request/url_request_http_job.cc | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/net/url_request/url_request_http_job.cc b/net/url_request/url_request_http_job.cc
+index 1f0ecb3d..1c5127b5 100644
+--- a/net/url_request/url_request_http_job.cc
++++ b/net/url_request/url_request_http_job.cc
+@@ -331,6 +331,10 @@ void URLRequestHttpJob::OnGotFirstPartySetMetadata(
+   {
+      request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36 OPR/60.0.3255.27 (Edition developer)");
+   }
++  else if (request_info_.url.host().find("chrome.google.com") != std::string::npos)
++  {
++     request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.25 Safari/537.36");
++  }
+   else if (request_info_.url.host().find("web.whatsapp.com") != std::string::npos)
+   {
+      request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (X11; Linux) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.25 Mobile Safari/537.36");

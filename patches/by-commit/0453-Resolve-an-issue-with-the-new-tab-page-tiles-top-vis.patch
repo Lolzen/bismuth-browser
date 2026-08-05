@@ -1,0 +1,160 @@
+From 4fc2357cf4787359c3e788be2d088362b62fcf05 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:20:33 +0000
+Subject: [PATCH 453/506] Resolve an issue with the new tab page tiles (top
+ visited websites) not getting initialized properly
+
+---
+ chrome/browser/search/instant_service.cc         |  8 ++++----
+ chrome/browser/search/search.cc                  | 13 ++++++++++++-
+ chrome/renderer/searchbox/searchbox.cc           |  3 +++
+ chrome/renderer/searchbox/searchbox_extension.cc | 16 +++++++++++++++-
+ 4 files changed, 34 insertions(+), 6 deletions(-)
+
+diff --git a/chrome/browser/search/instant_service.cc b/chrome/browser/search/instant_service.cc
+index dca92f7a..3b0bf354 100644
+--- a/chrome/browser/search/instant_service.cc
++++ b/chrome/browser/search/instant_service.cc
+@@ -25,6 +25,7 @@
+ #include "chrome/browser/search/instant_service_factory.h"
+ #include "chrome/browser/search/instant_service_observer.h"
+ #include "chrome/browser/search/most_visited_iframe_source.h"
++#include "chrome/browser/search/new_tab_page_source.h"
+ #include "chrome/browser/search/search.h"
+ #include "chrome/browser/themes/theme_properties.h"
+ #include "chrome/browser/themes/theme_service.h"
+@@ -56,8 +57,6 @@
+ #include "ui/gfx/color_palette.h"
+ #include "ui/gfx/color_utils.h"
+ 
+-#include "chrome/browser/search/new_tab_page_source.h"
+-
+ InstantService::InstantService(Profile* profile)
+     : profile_(profile),
+       most_visited_info_(std::make_unique<InstantMostVisitedInfo>()),
+@@ -74,8 +73,8 @@ InstantService::InstantService(Profile* profile)
+                  content::NotificationService::AllSources());
+ 
+   most_visited_sites_ = ChromeMostVisitedSitesFactory::NewForProfile(profile_);
+-  LOG(INFO) << "[Kiwi] InstantService::InstantService: " << most_visited_sites_;
+   if (most_visited_sites_) {
++    most_visited_sites_->EnableCustomLinks(false);
+     most_visited_sites_->AddMostVisitedURLsObserver(
+         this, ntp_tiles::kMaxNumMostVisited);
+   }
+@@ -121,8 +120,9 @@ void InstantService::RemoveObserver(InstantServiceObserver* observer) {
+ }
+ 
+ void InstantService::OnNewTabPageOpened() {
+-  LOG(INFO) << "[Kiwi] InstantService::OnNewTabPageOpened: " << most_visited_sites_;
++  LOG(INFO) << "[Kiwi] InstantService::OnNewTabPageOpened";
+   if (most_visited_sites_) {
++    LOG(INFO) << "[Kiwi] InstantService::OnNewTabPageOpened - most_visited_sites_";
+     most_visited_sites_->Refresh();
+     most_visited_sites_->RefreshTiles();
+   }
+diff --git a/chrome/browser/search/search.cc b/chrome/browser/search/search.cc
+index 1971e793..1dc04082 100644
+--- a/chrome/browser/search/search.cc
++++ b/chrome/browser/search/search.cc
+@@ -292,6 +292,15 @@ bool IsInstantNTPURL(const GURL& url, Profile* profile) {
+   if (MatchesOrigin(url, GURL("chrome-search://local-ntp/")))
+     return true;
+ 
++  if (MatchesOrigin(url, GURL("chrome-search://local-ntp")))
++    return true;
++
++  if (MatchesOrigin(url, GURL("chrome-search://local-ntp/local-ntp.html")))
++    return true;
++
++  if (MatchesOrigin(url, GURL("chrome-search://local-ntp/new-ntp.html")))
++    return true;
++
+   std::string scheme = url.scheme();
+   if (scheme == chrome::kChromeSearchScheme)
+     return true;
+@@ -310,6 +319,8 @@ GURL GetNewTabPageURL(Profile* profile) {
+ #if !BUILDFLAG(IS_ANDROID)
+ 
+ bool ShouldAssignURLToInstantRenderer(const GURL& url, Profile* profile) {
++  if (url.SchemeIs(chrome::kChromeSearchScheme))
++    return true;
+   if (!url.is_valid() || !profile || !IsInstantExtendedAPIEnabled() ||
+       url.SchemeIs(content::kChromeUIScheme)) {
+     return false;
+@@ -322,7 +333,7 @@ bool ShouldAssignURLToInstantRenderer(const GURL& url, Profile* profile) {
+ bool ShouldUseProcessPerSiteForInstantSiteURL(const GURL& site_url,
+                                               Profile* profile) {
+   return ShouldAssignURLToInstantRenderer(site_url, profile) &&
+-         site_url.host_piece() == chrome::kChromeSearchRemoteNtpHost;
++         (site_url.host_piece() == chrome::kChromeSearchRemoteNtpHost || site_url.host_piece() == "local-ntp");
+ }
+ 
+ GURL GetEffectiveURLForInstant(const GURL& url, Profile* profile) {
+diff --git a/chrome/renderer/searchbox/searchbox.cc b/chrome/renderer/searchbox/searchbox.cc
+index e310694b..ea051f55 100644
+--- a/chrome/renderer/searchbox/searchbox.cc
++++ b/chrome/renderer/searchbox/searchbox.cc
+@@ -292,6 +292,7 @@ void SearchBox::FocusChanged(OmniboxFocusState new_focus_state,
+ 
+ void SearchBox::MostVisitedInfoChanged(
+     const InstantMostVisitedInfo& most_visited_info) {
++  LOG(INFO) << "[Kiwi] SearchBox::MostVisitedInfoChanged - Step 1";
+   has_received_most_visited_ = true;
+ 
+   std::vector<InstantMostVisitedItemIDPair> last_known_items;
+@@ -301,8 +302,10 @@ void SearchBox::MostVisitedInfoChanged(
+     return;  // Do not send duplicate onmostvisitedchange events.
+   }
+ 
++  LOG(INFO) << "[Kiwi] SearchBox::MostVisitedInfoChanged - Step 2";
+   most_visited_items_cache_.AddItems(most_visited_info.items);
+   if (can_run_js_in_renderframe_) {
++    LOG(INFO) << "[Kiwi] SearchBox::MostVisitedInfoChanged - Dispatching";
+     SearchBoxExtension::DispatchMostVisitedChanged(
+         render_frame()->GetWebFrame());
+   }
+diff --git a/chrome/renderer/searchbox/searchbox_extension.cc b/chrome/renderer/searchbox/searchbox_extension.cc
+index 93d7253a..bece1e4f 100644
+--- a/chrome/renderer/searchbox/searchbox_extension.cc
++++ b/chrome/renderer/searchbox/searchbox_extension.cc
+@@ -291,9 +291,12 @@ content::RenderFrame* GetMainRenderFrameForCurrentContext() {
+ }
+ 
+ SearchBox* GetSearchBoxForCurrentContext() {
++  LOG(INFO) << "[Kiwi] SearchBox* GetSearchBoxForCurrentContext";
+   content::RenderFrame* main_frame = GetMainRenderFrameForCurrentContext();
++  LOG(INFO) << "[Kiwi] SearchBox* GetSearchBoxForCurrentContext - main_frame: " << main_frame;
+   if (!main_frame)
+     return nullptr;
++  LOG(INFO) << "[Kiwi] SearchBox* GetSearchBoxForCurrentContext - searchbox: " << SearchBox::Get(main_frame);
+   return SearchBox::Get(main_frame);
+ }
+ 
+@@ -560,6 +563,10 @@ v8::Local<v8::Value> NewTabPageBindings::GetMostVisited(v8::Isolate* isolate) {
+ // static
+ bool NewTabPageBindings::GetMostVisitedAvailable(v8::Isolate* isolate) {
+   const SearchBox* search_box = GetSearchBoxForCurrentContext();
++  if (search_box)
++    LOG(INFO) << "[Kiwi] NewTabPageBindings::GetMostVisitedAvailable - search_box available";
++  else
++    LOG(INFO) << "[Kiwi] NewTabPageBindings::GetMostVisitedAvailable - search_box NOT available";
+   if (!search_box)
+     return false;
+ 
+@@ -623,7 +630,14 @@ v8::Local<v8::Value> NewTabPageBindings::GetMostVisitedItemData(
+     v8::Isolate* isolate,
+     int rid) {
+   const SearchBox* search_box = GetSearchBoxForCurrentContext();
+-  if (!search_box || (!HasOrigin(GURL(chrome::kChromeSearchMostVisitedUrl)) && !HasOrigin(GURL("chrome-search://local-ntp/"))))
++  if (!search_box || 
++(
++!HasOrigin(GURL(chrome::kChromeSearchMostVisitedUrl))
++&&
++!HasOrigin(GURL("chrome-search://local-ntp/"))
++)
++
++)
+     return v8::Null(isolate);
+ 
+   InstantMostVisitedItem item;

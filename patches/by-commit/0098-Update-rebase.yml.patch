@@ -1,0 +1,33 @@
+From 1ff8db9eaa4c613066b366b23069d9534ecd49bd Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 07:01:19 +0300
+Subject: [PATCH 098/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 428aac14..37b9b001 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -41,5 +41,17 @@ jobs:
+       - name: Displaying one file
+         run: cat chromium/chrome/browser/resources/extensions/extensions.html
+ 
+-      - name: Showing history for one file
+-        run: cd chromium && git --no-pager log --decorate=short --pretty=oneline -n1 chrome/browser/resources/extensions/extensions.html
++      - name: Updating one file
++        run: cp chrome/browser/resources/extensions/extensions.html chromium/chrome/browser/resources/extensions/extensions.html
++
++      - name: Displaying one file
++        run: cat chromium/chrome/browser/resources/extensions/extensions.html
++
++      - name: Committing change
++        run: cd chromium && git commit -a -m "[Kiwi] [GitHub] Snapshotting ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}"
++
++      - name: Rebasing
++        run: cd chromium && git rebase 93.0.4577.21
++
++      - name: Displaying one file
++        run: cat chromium/chrome/browser/resources/extensions/extensions.html

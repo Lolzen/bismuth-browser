@@ -1,0 +1,28 @@
+From a3be803cb7fac6bf749010f003abdfa8f4703162 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 9 Jul 2021 03:22:45 +0300
+Subject: [PATCH 029/506] Update build_apk.yml
+
+---
+ .github/workflows/build_apk.yml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index 45be5afc..3bdcc280 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -327,10 +327,10 @@ jobs:
+       - name: Downloading artifacts from storage
+         if: ${{ github.repository_owner == 'kiwibrowser' }}
+         run: |
+-          rclone copy --fast-list --transfers=128 --retries=50 cache:kiwibrowser-builds/${{ github.run_id }}/arm/ ./apk-arm 
+-          rclone copy --fast-list --transfers=128 --retries=50 cache:kiwibrowser-builds/${{ github.run_id }}/arm64/ ./apk-arm64
+-          rclone copy --fast-list --transfers=128 --retries=50 cache:kiwibrowser-builds/${{ github.run_id }}/x86/ ./apk-x86
+-          rclone copy --fast-list --transfers=128 --retries=50 cache:kiwibrowser-builds/${{ github.run_id }}/x64/ ./apk-x64
++          rclone copy --fast-list --transfers=128 --retries=100 cache:kiwibrowser-builds/${{ github.run_id }}/arm/ ./apk-arm 
++          rclone copy --fast-list --transfers=128 --retries=100 cache:kiwibrowser-builds/${{ github.run_id }}/arm64/ ./apk-arm64
++          rclone copy --fast-list --transfers=128 --retries=100 cache:kiwibrowser-builds/${{ github.run_id }}/x86/ ./apk-x86
++          rclone copy --fast-list --transfers=128 --retries=100 cache:kiwibrowser-builds/${{ github.run_id }}/x64/ ./apk-x64
+ 
+       - name: Uploading release asset (arm-signed)
+         if: ${{ github.repository_owner == 'kiwibrowser' }}

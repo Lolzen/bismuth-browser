@@ -1,0 +1,52 @@
+From 043d6dd1803b79350001f8ddb88953f64ae70f7c Mon Sep 17 00:00:00 2001
+From: Eduar Ursu <eduardursu78@gmail.com>
+Date: Wed, 11 Aug 2021 20:44:13 +0200
+Subject: [PATCH 312/506] Add extensions icon + edit main_menu.xml
+
+---
+ ..._friendly_grey600_24dp.png => ic_extensions.png} | Bin
+ ..._friendly_grey600_24dp.png => ic_extensions.png} | Bin
+ ..._friendly_grey600_24dp.png => ic_extensions.png} | Bin
+ ..._friendly_grey600_24dp.png => ic_extensions.png} | Bin
+ ..._friendly_grey600_24dp.png => ic_extensions.png} | Bin
+ chrome/android/java/res/menu/main_menu.xml          |   2 +-
+ 6 files changed, 1 insertion(+), 1 deletion(-)
+ rename chrome/android/java/res/drawable-hdpi/{ic_mobile_friendly_grey600_24dp.png => ic_extensions.png} (100%)
+ rename chrome/android/java/res/drawable-mdpi/{ic_mobile_friendly_grey600_24dp.png => ic_extensions.png} (100%)
+ rename chrome/android/java/res/drawable-xhdpi/{ic_mobile_friendly_grey600_24dp.png => ic_extensions.png} (100%)
+ rename chrome/android/java/res/drawable-xxhdpi/{ic_mobile_friendly_grey600_24dp.png => ic_extensions.png} (100%)
+ rename chrome/android/java/res/drawable-xxxhdpi/{ic_mobile_friendly_grey600_24dp.png => ic_extensions.png} (100%)
+
+diff --git a/chrome/android/java/res/drawable-hdpi/ic_mobile_friendly_grey600_24dp.png b/chrome/android/java/res/drawable-hdpi/ic_extensions.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-hdpi/ic_mobile_friendly_grey600_24dp.png
+rename to chrome/android/java/res/drawable-hdpi/ic_extensions.png
+diff --git a/chrome/android/java/res/drawable-mdpi/ic_mobile_friendly_grey600_24dp.png b/chrome/android/java/res/drawable-mdpi/ic_extensions.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-mdpi/ic_mobile_friendly_grey600_24dp.png
+rename to chrome/android/java/res/drawable-mdpi/ic_extensions.png
+diff --git a/chrome/android/java/res/drawable-xhdpi/ic_mobile_friendly_grey600_24dp.png b/chrome/android/java/res/drawable-xhdpi/ic_extensions.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xhdpi/ic_mobile_friendly_grey600_24dp.png
+rename to chrome/android/java/res/drawable-xhdpi/ic_extensions.png
+diff --git a/chrome/android/java/res/drawable-xxhdpi/ic_mobile_friendly_grey600_24dp.png b/chrome/android/java/res/drawable-xxhdpi/ic_extensions.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxhdpi/ic_mobile_friendly_grey600_24dp.png
+rename to chrome/android/java/res/drawable-xxhdpi/ic_extensions.png
+diff --git a/chrome/android/java/res/drawable-xxxhdpi/ic_mobile_friendly_grey600_24dp.png b/chrome/android/java/res/drawable-xxxhdpi/ic_extensions.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxxhdpi/ic_mobile_friendly_grey600_24dp.png
+rename to chrome/android/java/res/drawable-xxxhdpi/ic_extensions.png
+diff --git a/chrome/android/java/res/menu/main_menu.xml b/chrome/android/java/res/menu/main_menu.xml
+index 97eba19f..7ffff015 100644
+--- a/chrome/android/java/res/menu/main_menu.xml
++++ b/chrome/android/java/res/menu/main_menu.xml
+@@ -69,7 +69,7 @@
+             android:icon="@drawable/devices_black_24dp" />
+         <item android:id="@+id/extensions_id"
+             android:title="@string/main_menu_extensions"
+-            android:icon="@drawable/ic_mobile_friendly_grey600_24dp" />
++            android:icon="@drawable/ic_extensions" />
+         <item android:id="@id/divider_line_id"
+             android:title="@null" />
+         <item android:id="@+id/share_row_menu_id"

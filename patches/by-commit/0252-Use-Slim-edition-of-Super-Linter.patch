@@ -1,0 +1,59 @@
+From 149f25f5cd1cfe1852aac0ef858986484f657d82 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 05:38:26 +0300
+Subject: [PATCH 252/506] Use Slim edition of Super-Linter
+
+---
+ .github/workflows/linter.yml | 19 ++++---------------
+ 1 file changed, 4 insertions(+), 15 deletions(-)
+
+diff --git a/.github/workflows/linter.yml b/.github/workflows/linter.yml
+index 15ab3b8e..3a98c2da 100644
+--- a/.github/workflows/linter.yml
++++ b/.github/workflows/linter.yml
+@@ -1,16 +1,5 @@
+----
+-###########################
+-###########################
+-## Linter GitHub Actions ##
+-###########################
+-###########################
+ name: Lint codebase
+ 
+-#
+-# Documentation:
+-# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+-#
+-
+ #############################
+ # Start the job on all push #
+ #############################
+@@ -26,7 +15,7 @@ on:
+ jobs:
+   build:
+     # Name the Job
+-    name: Run Super-Linter
++    name: Run source-code linter
+     # Set the agent to run on
+     runs-on: ubuntu-latest
+ 
+@@ -37,7 +26,7 @@ jobs:
+       ##########################
+       # Checkout the code base #
+       ##########################
+-      - name: Checkout Code
++      - name: Checking-out code
+         uses: actions/checkout@v2
+         with:
+           # Full git history is needed to get a proper list of changed files within `super-linter`
+@@ -46,8 +35,8 @@ jobs:
+       ################################
+       # Run Linter against code base #
+       ################################
+-      - name: Lint code base
+-        uses: github/super-linter@v4
++      - name: Running Super-Linter
++        uses: github/super-linter:slim-v4
+         env:
+           VALIDATE_ALL_CODEBASE: false
+           DEFAULT_BRANCH: kiwi

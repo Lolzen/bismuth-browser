@@ -1,0 +1,1532 @@
+From 2daf818026ce381e5e4a1236cb0b125b297294ec Mon Sep 17 00:00:00 2001
+From: kiwibrowser <kiwibrowser@users.noreply.github.com>
+Date: Sun, 8 Aug 2021 19:50:14 +0000
+Subject: [PATCH 198/506] Update translation files from Crowdin
+
+---
+ chrome/android/java/res/values-ar/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-ca/strings.xml | 19 +++++++++++++++++--
+ chrome/android/java/res/values-cs/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-da/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-de/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-el/strings.xml | 15 +++++++++++++++
+ .../java/res/values-es-rES/strings.xml        | 15 +++++++++++++++
+ .../java/res/values-es-rUS/strings.xml        | 15 +++++++++++++++
+ chrome/android/java/res/values-fi/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-fr/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-hi/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-hr/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-hu/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-it/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-ja/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-ko/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-nl/strings.xml | 19 +++++++++++++++++--
+ chrome/android/java/res/values-pl/strings.xml | 15 +++++++++++++++
+ .../java/res/values-pt-rBR/strings.xml        | 15 +++++++++++++++
+ .../java/res/values-pt-rPT/strings.xml        | 19 +++++++++++++++++--
+ chrome/android/java/res/values-ro/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-ru/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-sr/strings.xml | 19 +++++++++++++++++--
+ .../java/res/values-sv-rSE/strings.xml        | 15 +++++++++++++++
+ chrome/android/java/res/values-tr/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-uk/strings.xml | 15 +++++++++++++++
+ chrome/android/java/res/values-vi/strings.xml | 15 +++++++++++++++
+ .../java/res/values-zh-rCN/strings.xml        | 15 +++++++++++++++
+ .../java/res/values-zh-rTW/strings.xml        | 15 +++++++++++++++
+ 29 files changed, 443 insertions(+), 8 deletions(-)
+
+diff --git a/chrome/android/java/res/values-ar/strings.xml b/chrome/android/java/res/values-ar/strings.xml
+index 86779b79..cf3591ee 100755
+--- a/chrome/android/java/res/values-ar/strings.xml
++++ b/chrome/android/java/res/values-ar/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">قُم بإيقاف الوضع الليلي</string>
+     <string name="main_menu_exit">الخروج</string>
+     <string name="main_menu_extensions">المُلحقات</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">قُم استيراد الإشارات المرجعية</string>
+     <string name="menu_export_bookmarks">قُم بتصدير الإشارات المرجعية</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">المظهر</string>
+     <string name="appearance_preferences_themes">السمات</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">إعادة إلتفاف النص / إعادة تدفق</string>
+     <string name="accessibility_preferences_text_rewrap_summary">احتواء النص اثناء التكبير</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">تفعيل التطبيقات الخارجية</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">قُم بفتح الروابط عن طريق البرامج الخارجية مثل(الخرائط، اليوتيوب، فيميو) عندما يكون ذلك مُتاحاً</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">الوضع الليلي الرمادي</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">قُم بتحريك شريط العنوان للأسفل</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">زر اليد (شريط الأدوات فقط)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">ضِف زر اليد لكي تصل إلى الجزء العُلوي من الشاشة</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">التمرير من الحافة</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">تفعيل إيماءات التمرير من يمين ويسار حافة الصفحة لكي تتنقل في تاريخ التصفح</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">اسحب للأعلى لكي تفتح نافذة التنقل بين التبويبات</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">قُم بإعادة التشغيل الآن</string>
+     <string name="preferences_restart_later">لاحقاً</string>
+     <string name="preferences_translator">ترجمة الصفحة</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">مدير التحميل الخارجي</string>
+     <string name="download_preferences_enable_external_download_manager_summary">استخدام مدير تحميلات خارجي (مثال: مدير التحميلات المتقدم)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">قبول ملفات تعريف الارتباط</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">مواقع تمت زيارُتها مؤخراً \n لكي تُضيف مُحرك بحثي جديد، إذهب إلى المُحرك البحثي (على سبيل المثال Bing.com) ثُم قُم بأي بحث. بعد بِضع ثوانِِ، المُحرك البحثي سوف يتم إضافته إلى القائمة.</string>
+     <string name="suggest_adblock">اضغط هنا لتفعيل الحماية ضد الإعلانات و التتبع</string>
+     <string name="website_settings_add_site_description_ads">السماح بإظهار الإعلانات لموقع معين</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-ca/strings.xml b/chrome/android/java/res/values-ca/strings.xml
+index be78fb06..7b5fe95f 100755
+--- a/chrome/android/java/res/values-ca/strings.xml
++++ b/chrome/android/java/res/values-ca/strings.xml
+@@ -10,14 +10,20 @@
+     <string name="main_menu_turn_off_night_mode">Turn off night mode</string>
+     <string name="main_menu_exit">Exit</string>
+     <string name="main_menu_extensions">Extensions</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Import bookmarks</string>
+     <string name="menu_export_bookmarks">Export bookmarks</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Appearance</string>
+     <string name="appearance_preferences_themes">Themes</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Text rewrap / reflow</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Fit the text while zooming</string>
+-    <string name="accessibility_preferences_open_in_external_application_title">Enable external applications</string>
+-    <string name="accessibility_preferences_open_in_external_application_summary">Open links with external applications (Maps, YouTube, Vimeo) when possible</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
++    <string name="accessibility_preferences_open_in_external_application_title">Prefer native applications (enable external applications)</string>
++    <string name="accessibility_preferences_open_in_external_application_summary">Prefer opening links using native or external applications (Maps, YouTube, Vimeo)</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Grayscale night mode</string>
+     <string name="accessibility_preferences_nightmode_grayscale_summary">Prefer grayscale version of night mode</string>
+     <string name="accessibility_preferences_night_scale">Night mode contrast (gray: 97, default: 99, black: 100)</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Move address bar to the bottom</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Hand button (bottom toolbar only)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Add a hand button to reach the top of the screen</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Edge swipe</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Enable swipe-left and swipe-right gestures on the edges of the page to navigate history</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Swipe-up to open tab switcher</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">RESTART NOW</string>
+     <string name="preferences_restart_later">Later</string>
+     <string name="preferences_translator">Translator</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">External download manager</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Use external download manager (ex: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Accept cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Recently visited\nTo add a new Search Engine, go to the Search Engine (ex: Bing.com) and make a Search. After few seconds, the Search Engine will be added to the list.</string>
+     <string name="suggest_adblock">Click here to toggle ad and tracking protection</string>
+     <string name="website_settings_add_site_description_ads">Allow displaying ads for a specific site</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-cs/strings.xml b/chrome/android/java/res/values-cs/strings.xml
+index 8a0cb9a5..95fa5e52 100755
+--- a/chrome/android/java/res/values-cs/strings.xml
++++ b/chrome/android/java/res/values-cs/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Vypnout noční režim</string>
+     <string name="main_menu_exit">Ukončit</string>
+     <string name="main_menu_extensions">Extensions</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Importovat záložky</string>
+     <string name="menu_export_bookmarks">Exportovat záložky</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Appearance</string>
+     <string name="appearance_preferences_themes">Themes</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Text rewrap / reflow</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Fit the text while zooming</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Povolit použití externích aplikací</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Otevírat odkazy v externích aplikacích (Mapy, YouTube, Vimeo) pokud je to možné</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Grayscale night mode</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Přesunout adresní řádek dolů</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Hand button (bottom toolbar only)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Add a hand button to reach the top of the screen</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Edge swipe</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Enable swipe-left and swipe-right gestures on the edges of the page to navigate history</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Swipe-up to open tab switcher</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">Restartovat nyní</string>
+     <string name="preferences_restart_later">Later</string>
+     <string name="preferences_translator">Translator</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">External download manager</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Use external download manager (ex: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Accept cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Recently visited\nTo add a new Search Engine, go to the Search Engine (ex: Bing.com) and make a Search. After few seconds, the Search Engine will be added to the list.</string>
+     <string name="suggest_adblock">Click here to toggle ad and tracking protection</string>
+     <string name="website_settings_add_site_description_ads">Allow displaying ads for a specific site</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-da/strings.xml b/chrome/android/java/res/values-da/strings.xml
+index dc5eda01..7314d728 100755
+--- a/chrome/android/java/res/values-da/strings.xml
++++ b/chrome/android/java/res/values-da/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Deaktiver nat-tilstand</string>
+     <string name="main_menu_exit">Afslut</string>
+     <string name="main_menu_extensions">Udvidelser</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Importer bogmærker</string>
+     <string name="menu_export_bookmarks">Eksporter bogmærker</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Udseende</string>
+     <string name="appearance_preferences_themes">Temaer</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Ompakning / genindflytning af tekst</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Tilpas teksten ved zoom</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Aktiver eksterne apps</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Åbn links med eksterne apps (Maps, YouTube, Vimeo) når det er muligt</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Gråskala nat-tilstand</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Flyt adresselinje til bunden</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Hånd-knap (kun med bund-værktøjslinje)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Tilføj en Hånd-knap, til at nå toppen af skærmen</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Stryg fra kant</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Aktivér stryg-venstre og stryg-højre bevægelser på kanten af siden for at navigere i historikken</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Stryg opad for at åbne faneskifter</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">GENSTART NU</string>
+     <string name="preferences_restart_later">Senere</string>
+     <string name="preferences_translator">Oversætter</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Ekstern download manager</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Brug en ekstern download manager (fx: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Accepter cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">For nylig besøgte\nFor at tilføje en ny søgemaskine, gå til søgemaskinen (f.eks.: Bing.com) og foretag en søgning. Efter få sekunder, vil søgemaskinen blive føjet til listen.</string>
+     <string name="suggest_adblock">Klik her for at slå annonce- og trackerbeskyttelse til/fra</string>
+     <string name="website_settings_add_site_description_ads">Tillad visning af annoncer på et bestemt websted</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-de/strings.xml b/chrome/android/java/res/values-de/strings.xml
+index cff2f840..d90a2a72 100755
+--- a/chrome/android/java/res/values-de/strings.xml
++++ b/chrome/android/java/res/values-de/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Nachtmodus deaktivieren</string>
+     <string name="main_menu_exit">Beenden</string>
+     <string name="main_menu_extensions">Erweiterungen</string>
++    <string name="main_menu_disable_proxy">Proxy / VPN deaktivieren</string>
+     <string name="menu_import_bookmarks">Lesezeichen importieren</string>
+     <string name="menu_export_bookmarks">Lesezeichen exportieren</string>
++    <string name="main_menu_developer_tools">Entwickler Werkzeuge</string>
+     <string name="appearance_preferences">Erscheinungsbild</string>
+     <string name="appearance_preferences_themes">Themes</string>
++    <string name="accessibility_keep_toolbar_visible_title">Adressleiste immer sichtbar</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Andressleiste sichtbar beim Scrollen</string>
+     <string name="accessibility_preferences_text_rewrap_title">Textumbruch</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Text beim Zoomen anpassen</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Langes Halten des neuer Tab Buttons öffnet Menü</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Durch langes Halten des neuer Tab Buttons öffnet sich ein Menü, anstelle eines neuen Tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Externe Anwendungen aktivieren</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Wenn möglich, Links mit externen Anwendungen (Maps, YouTube, Vimeo) öffnen</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Graustufen Nachtmodus</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Adressleiste nach unten verschieben</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Hand-Taste (nur untere Adressleiste)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Füge eine Hand-Taste hinzu, um den oberen Bildschirmrand zu erreichen</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Inhalt der Adressleiste nicht löschen</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Inhalt beim Fokussieren der Adressleiste behalten</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Randgeste</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Nach links und rechts wischen aktivieren, um durch den Verlauf zu navigieren</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Nach oben wischen, um den Tabwechsler zu öffnen</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">JETZT NEU STARTEN</string>
+     <string name="preferences_restart_later">Später</string>
+     <string name="preferences_translator">Übersetzer</string>
++    <string name="preferences_tabswitcher">Tab Wechsler</string>
++    <string name="preferences_nightmode">Nacht Modus</string>
+     <string name="download_preferences_enable_external_download_manager_title">Externer Download-Manager</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Externen Download-Manager benutzen (z.B. Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Cookies akzeptieren</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Kürzlich besucht\nUm eine neue Suchmaschine hinzuzufügen, gehen Sie zur Suchmaschine (z.B. Bing.com) und machen Sie eine Suche. Nach wenigen Sekunden wird die Suchmaschine in die Liste aufgenommen.</string>
+     <string name="suggest_adblock">Hier klicken, um den Schutz für Werbung und Tracking einzuschalten</string>
+     <string name="website_settings_add_site_description_ads">Werbung für bestimmte Seiten erlauben</string>
++    <string name="website_settings_desktop_mode">Desktop Modus als Standard</string>
++    <string name="website_settings_desktop_mode_enabled">Bevorzuge Desktop Version von Webseiten</string>
++    <string name="website_settings_desktop_mode_disabled">Mobile-Version von Webseiten bevorzugen</string>
++    <string name="main_menu_mobile_site">Mobile Webseite</string>
++    <string name="data_reduction_description_lite_mode_kiwi">Wenn Lite-Modus aktiviert ist versucht Kiwi Browser die Datenübertragung zu minimieren indem er die Webseiten wissen lässt, dass sie eine einfache Version der Website liefern sollen. In diesem Modus kann Kiwi bestimmte Bilder oder Elemente auf der Seite deaktivieren, um das Laden zu beschleunigen. Der Daten werden nicht über einen externen Dienst geleitet. Zum minimieren der Datenübertragung wird empfohlen, im Hauptmenü \"lästige Werbung ausblenden\" zu aktivieren. Blockierte Werbung wird nicht übertragen.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-el/strings.xml b/chrome/android/java/res/values-el/strings.xml
+index 19143bbf..100673de 100755
+--- a/chrome/android/java/res/values-el/strings.xml
++++ b/chrome/android/java/res/values-el/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Απενεργοποίηση νυχτερινής λειτουργίας</string>
+     <string name="main_menu_exit">Έξοδος</string>
+     <string name="main_menu_extensions">Πρόσθετα</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Εισαγωγή σελιδοδεικτών</string>
+     <string name="menu_export_bookmarks">Εξαγωγή σελιδοδεικτών</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Εμφάνιση</string>
+     <string name="appearance_preferences_themes">Θέματα</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Αναδίπλωση κειμένου / Επαναφορά</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Προσαρμογή κειμένου κατά τη μεγέθυνση</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Ενεργοποίηση εξωτερικών εφαρμογών</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Άνοιγμα συνδέσμων με εξωτερικές εφαρμογές (Maps, YouTube, Vimeo) όταν είναι δυνατόν</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Νυχτερινή λειτουργία κλίμακας του γκρι</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Μετακίνηση της γραμμής διευθύνσεων στο κάτω μέρος</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Κουμπί χεριού (μόνο στη κάτω γραμμή εργαλείων)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Προσθήκη ενός κουμπιού με χέρι για την έκταση στην κορυφή της οθόνης</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Ακραία σάρωση</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Ενεργοποίηση χειρονομιών σάρωσης προς τα αριστερά και δεξιά στις άκρες της σελίδας για την περιήγηση στο ιστορικό</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Σάρωση προς τα επάνω για εναλλαγή καρτελών</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">ΕΠΑΝΕΚΚΙΝΗΣΗ ΤΩΡΑ</string>
+     <string name="preferences_restart_later">Αργότερα</string>
+     <string name="preferences_translator">Μεταφραστής</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Εξωτερικός διαχειριστής λήψεων</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Χρησιμοποιήστε τον εξωτερικό διαχειριστή λήψεων (πρώην: Προηγμένος διαχειριστής λήψεων)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Αποδοχή cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Πρόσφατη επίσκεψη\nΓια να προσθέσετε μια νέα μηχανή αναζήτησης, μεταβείτε στη μηχανή αναζήτησης (π.χ: Bing.com) και κάντε μια αναζήτηση. Μετά από λίγα δευτερόλεπτα, η μηχανή αναζήτησης θα προστεθεί στη λίστα.</string>
+     <string name="suggest_adblock">Κάντε κλικ εδώ για να αλλάξετε την προστασία διαφημίσεων και παρακολούθησης</string>
+     <string name="website_settings_add_site_description_ads">Να επιτρέπεται η εμφάνιση διαφημίσεων για συγκεκριμένο ιστότοπο</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-es-rES/strings.xml b/chrome/android/java/res/values-es-rES/strings.xml
+index 57aac378..fb83aa28 100755
+--- a/chrome/android/java/res/values-es-rES/strings.xml
++++ b/chrome/android/java/res/values-es-rES/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Desactivar modo Nocturno</string>
+     <string name="main_menu_exit">Salir</string>
+     <string name="main_menu_extensions">Extensiones</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Importar marcadores</string>
+     <string name="menu_export_bookmarks">Exportar marcadores</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Apariencia</string>
+     <string name="appearance_preferences_themes">Temas</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Ajuste de texto y línea</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Ajustar el texto al hacer zoom</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Habilitar aplicaciones externas</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Abrir enlaces con aplicaciones externas (Maps, YouTube, Vimeo) cuando sea posible</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Escala de grises modo nocturno</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Mover la barra de direcciones a la parte inferior</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Botón Mano (Sólo en barra inferior)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Añada el botón Mano para alcanzar la parte superior de la página para trabajar con una sola mano</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Deslizamiento de Bordes</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Habilite los gestos de deslizamiento-izquierdo y deslizamiento-derecho en los bordes de la página web para navegar en el historial de la pestaña</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Deslizamiento hacia arriba</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">REINICIAR AHORA</string>
+     <string name="preferences_restart_later">Después</string>
+     <string name="preferences_translator">Traductor</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Administrador de descargas externo</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Usar un administrador de descargas externas (ej: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Aceptar cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Recientemente visitado\nPara añadir un nuevo motor de búsqueda, vaya al motor de búsqueda (ej: Bing.com) y hacer una búsqueda. Después de pocos segundos, el motor de búsqueda se añadirá a la lista.</string>
+     <string name="suggest_adblock">Haga clic aquí para cambiar la protección de rastreo y anuncios</string>
+     <string name="website_settings_add_site_description_ads">Permitir mostrar anuncios para un sitio específico</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-es-rUS/strings.xml b/chrome/android/java/res/values-es-rUS/strings.xml
+index 57aac378..fb83aa28 100755
+--- a/chrome/android/java/res/values-es-rUS/strings.xml
++++ b/chrome/android/java/res/values-es-rUS/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Desactivar modo Nocturno</string>
+     <string name="main_menu_exit">Salir</string>
+     <string name="main_menu_extensions">Extensiones</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Importar marcadores</string>
+     <string name="menu_export_bookmarks">Exportar marcadores</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Apariencia</string>
+     <string name="appearance_preferences_themes">Temas</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Ajuste de texto y línea</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Ajustar el texto al hacer zoom</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Habilitar aplicaciones externas</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Abrir enlaces con aplicaciones externas (Maps, YouTube, Vimeo) cuando sea posible</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Escala de grises modo nocturno</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Mover la barra de direcciones a la parte inferior</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Botón Mano (Sólo en barra inferior)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Añada el botón Mano para alcanzar la parte superior de la página para trabajar con una sola mano</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Deslizamiento de Bordes</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Habilite los gestos de deslizamiento-izquierdo y deslizamiento-derecho en los bordes de la página web para navegar en el historial de la pestaña</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Deslizamiento hacia arriba</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">REINICIAR AHORA</string>
+     <string name="preferences_restart_later">Después</string>
+     <string name="preferences_translator">Traductor</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Administrador de descargas externo</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Usar un administrador de descargas externas (ej: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Aceptar cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Recientemente visitado\nPara añadir un nuevo motor de búsqueda, vaya al motor de búsqueda (ej: Bing.com) y hacer una búsqueda. Después de pocos segundos, el motor de búsqueda se añadirá a la lista.</string>
+     <string name="suggest_adblock">Haga clic aquí para cambiar la protección de rastreo y anuncios</string>
+     <string name="website_settings_add_site_description_ads">Permitir mostrar anuncios para un sitio específico</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-fi/strings.xml b/chrome/android/java/res/values-fi/strings.xml
+index 90631f05..32b704d1 100755
+--- a/chrome/android/java/res/values-fi/strings.xml
++++ b/chrome/android/java/res/values-fi/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Kytke yötila pois päältä</string>
+     <string name="main_menu_exit">Poistu</string>
+     <string name="main_menu_extensions">Laajennukset</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Tuo kirjanmerkit</string>
+     <string name="menu_export_bookmarks">Vie kirjanmerkit</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Ulkoasu</string>
+     <string name="appearance_preferences_themes">Teemat</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Text rewrap / reflow</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Mahduta teksti zoomauksen aikana</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Salli ulkoiset sovellukset</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Avaa linkit ulkopuolisilla sovelluksilla (Maps, Youtube, Vimeo) mikäli mahdollista</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Harmaasävy yötila</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Siirrä osoiterivi alaosaan</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Käsi-painike (alareunan työkalurivillä)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Lisää käsi-painike päästäksesi näytön yläreunaan</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Reunapyyhkäisy</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Käytä vasemman ja oikean reunan pyyhkäisyä liikkuaksesi edellisille ja seuraaville sivuille</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Pyyhkäise ylös avataksesi välilehdet sivun</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">KÄYNNISTÄ UUDELLEEN NYT</string>
+     <string name="preferences_restart_later">Myöhemmin</string>
+     <string name="preferences_translator">Kääntäjä</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Ulkoinen lataushallinta</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Käytä ulkoista lataushallintaa (esim. Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Hyväksy evästeet</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Äskettäin vieraillut\nLisätäksesi uuden hakukoneen, mene hakukoneeseen (esim. Bing.com) ja tee haku. Muutaman sekunnin kuluttua hakukone lisätään listalle.</string>
+     <string name="suggest_adblock">Klikkaa tästä kytkeäksesi mainosten eston ja seurannan suojauksen</string>
+     <string name="website_settings_add_site_description_ads">Salli mainosten näyttäminen tietyillä sivustoilla</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-fr/strings.xml b/chrome/android/java/res/values-fr/strings.xml
+index c00dfab1..5e5ef0ae 100755
+--- a/chrome/android/java/res/values-fr/strings.xml
++++ b/chrome/android/java/res/values-fr/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Désactiver le mode nuit</string>
+     <string name="main_menu_exit">Quitter</string>
+     <string name="main_menu_extensions">Extensions</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Importer des favoris</string>
+     <string name="menu_export_bookmarks">Exporter les favoris</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Apparence</string>
+     <string name="appearance_preferences_themes">Thèmes</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Ajustement du texte</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Ajuster le texte pendant le zoom</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Ouvrir avec une application externe</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Ouvrir des liens avec des applications externes (Maps, YouTube, Vimeo) lorsque cela est possible</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Mode nuit en niveaux de gris</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Déplacer la barre d\'adresse en bas</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Bouton en forme de main (barre d\'outils inférieure uniquement)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Ajouter un bouton en forme de main pour aller tout en haut de l\'écran</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Activer les gestes en bordure de page</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Activer les gestes \"glisser vers la gauche\" et \"glisser vers la droite\" sur les bords de la page pour revenir en arrière ou avancer</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Glisser vers le haut pour afficher la liste des onglets</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">REDÉMARRER MAINTENANT</string>
+     <string name="preferences_restart_later">Plus tard</string>
+     <string name="preferences_translator">Traducteur</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Gestionnaire de téléchargement externe</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Utiliser le gestionnaire de téléchargement externe (ex: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Accepter les cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Récemment visité\nPour ajouter un nouveau moteur de recherche, aller sur le moteur de recherche (ex : Bing.com) et effectuez une recherche. Après quelques secondes, le moteur de recherche s\'ajoutera à la liste.</string>
+     <string name="suggest_adblock">Cliquez ici pour activer/désactiver la protection contre les publicités et le suivi</string>
+     <string name="website_settings_add_site_description_ads">Autoriser l\'affichage des publicités pour un site spécifique</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-hi/strings.xml b/chrome/android/java/res/values-hi/strings.xml
+index 57a3f1bb..0f81fd8a 100755
+--- a/chrome/android/java/res/values-hi/strings.xml
++++ b/chrome/android/java/res/values-hi/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">रात्रि मोड बंद करें</string>
+     <string name="main_menu_exit">बाहर निकलें</string>
+     <string name="main_menu_extensions">एक्सटेंशन</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">बुकमार्क आयात करें</string>
+     <string name="menu_export_bookmarks">बुकमार्क एक्सपोर्ट करें</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">रंगरूप</string>
+     <string name="appearance_preferences_themes">थीम्स</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Text rewrap / reflow</string>
+     <string name="accessibility_preferences_text_rewrap_summary">जूम करते समय शब्दों को फिट करें</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">बाह्य एप्लिकेशन का इस्तेमाल करें</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">जब संभव हो बाहरी एप्लिकेशन (maps, YouTube, vimeo) के साथ ओपन लिंक</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">ग्रेस्केल नाइट मोड</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">एड्रेसबार को नीचे ले जाएं</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">हाथ बटन (केवल निचला टूलबार)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">स्क्रीन के शीर्ष तक पहुँचने के लिए एक हाथ का बटन जोड़ें</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">किनारे से स्वाइप</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">इतिहास नेविगेट करने के लिए पेज के किनारों पर स्वाइप-बाएं और स्वाइप-दाय इशारे को सक्षम करें</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">टैब स्विचर खोलने के लिए स्वाइप-अप करें</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">अभी पुनरारंभ करें</string>
+     <string name="preferences_restart_later">बाद में</string>
+     <string name="preferences_translator">अनुवादक</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">बाहरी डाउनलोड संचालक</string>
+     <string name="download_preferences_enable_external_download_manager_summary">बाहरी डाउनलोड संचालक का उपयोग करें (उदाहरण: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">कुकीज़ स्वीकार करें</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">हाल ही में देखे गए \n एक नया सर्च इंजन जोड़ने के लिए, सर्च इंजन (उदा.: Bing.com) पर जाएं और सर्च करें । कुछ सेकंड के बाद, सर्च इंजन सूची में जोड़ दिया जाएगा ।</string>
+     <string name="suggest_adblock">विज्ञापन और ट्रैकिंग सुरक्षा को टॉगल करने के लिए यहां क्लिक करें</string>
+     <string name="website_settings_add_site_description_ads">किसी विशिष्ट साइट के लिए विज्ञापन प्रदर्शित करने की अनुमति दें</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-hr/strings.xml b/chrome/android/java/res/values-hr/strings.xml
+index 7664def4..6da78e75 100755
+--- a/chrome/android/java/res/values-hr/strings.xml
++++ b/chrome/android/java/res/values-hr/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Isključi noćni način</string>
+     <string name="main_menu_exit">Izlaz</string>
+     <string name="main_menu_extensions">Proširenja</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Uvezi oznake</string>
+     <string name="menu_export_bookmarks">Izvezi oznake</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Izgled</string>
+     <string name="appearance_preferences_themes">Teme</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Prelomljavanje teksta</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Prilagodite tekst tijekom zumiranja</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Omogući vanjske aplikacije</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Otvarajte poveznice sa vanjskim aplikacijama (Karte, YouTube, Vimeo) kada je to moguće</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Sivi tonovi u noćnom načinu</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Premjestite adresnu traku na dno zaslona</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Gumb ruke (samo kod alatne trake na dnu)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Dodajte gumb ruke kako bi dohvatili vrh ekrana</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Rubno klizanje</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Omogućite geste klizanja s lijevog ili desnog ruba stranice za navigaciju kroz povijest</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Povlačenje za otvaranje odabira kartica</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">ODMAH PONOVNO POKRENI</string>
+     <string name="preferences_restart_later">Kasnije</string>
+     <string name="preferences_translator">Prevoditelj</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Eksterni upravitelj preuzimanja</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Koristite eksterni upravitelj preuzimanja (npr: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Prihvati kolačiće</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Nedavno posjećeno\nKako bi dodali novi pretraživač, idite na Pretraživače (npr: Bing.com) i postavite ju kao pretraživač. Nakon par sekundi, pretraživač će biti dodan na popis.</string>
+     <string name="suggest_adblock">Dodirnite ovdje za omogućavanje zaštite od oglasa i praćenja</string>
+     <string name="website_settings_add_site_description_ads">Dopustite prikaz oglasa za specifične stranice</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-hu/strings.xml b/chrome/android/java/res/values-hu/strings.xml
+index fea24bdf..00737c53 100755
+--- a/chrome/android/java/res/values-hu/strings.xml
++++ b/chrome/android/java/res/values-hu/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Éjszakai mód kikapcsolása</string>
+     <string name="main_menu_exit">Kilépés</string>
+     <string name="main_menu_extensions">Bővítmények</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Könyvjelzők importálása</string>
+     <string name="menu_export_bookmarks">Könyvjelzők exportlása</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Kinézet</string>
+     <string name="appearance_preferences_themes">Témák</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Szöveg újraigazítása / újratördelése</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Szöveg igazítása a nagyításhoz</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Külső alkalmazások engedélyezése</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Linkek megnyitása külső alkalmazásokkal (Maps, YouTube, Vimeo) amikor lehetséges</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Szürkeárnyalatos éjszakai mód</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">A címsor mozgatása alulra</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Kéz gomb (csak alsó eszköztáron)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Hozzáad egy kéz gombot, hogy elérje a kijelző felső részét</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Edge navigálás</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Az előzmények közötti navigálást engedélyezi az ujjad balra és jobbra húzásával a kijelző szélén</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Felfelé húzás a lapváltó megnyitásához</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">ÚJRAINDÍTÁS MOST</string>
+     <string name="preferences_restart_later">Később</string>
+     <string name="preferences_translator">Fordító</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Külső letöltéskezelő</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Használj külső letöltéskezelőt (pl.: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Sütik elfogadása</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Nemrégiben látogatott\nÚj keresőmotor felvételéhez lépjen a Keresőmotorra (pl.: Bing.com), és készítsen egy keresést. Néhány másodperc múlva a keresőmotor felkerül a listára.</string>
+     <string name="suggest_adblock">Kattints ide a hirdetés és a követés elleni védelem átállításához</string>
+     <string name="website_settings_add_site_description_ads">Egy adott webhely hirdetéseinek engedélyezése</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-it/strings.xml b/chrome/android/java/res/values-it/strings.xml
+index 3d3597a3..322e6d1f 100755
+--- a/chrome/android/java/res/values-it/strings.xml
++++ b/chrome/android/java/res/values-it/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Disattiva la modalità notturna</string>
+     <string name="main_menu_exit">Esci</string>
+     <string name="main_menu_extensions">Estensioni</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Importa segnalibri</string>
+     <string name="menu_export_bookmarks">Esporta segnalibri</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Aspetto</string>
+     <string name="appearance_preferences_themes">Temi</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Testo riscritto / reflow</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Adatta il testo durante lo zoom</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Abilita le applicazioni esterne</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Aprire i link con applicazioni esterne (Maps, YouTube, Vimeo) quando possibile</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Modalità notturna in scala di grigi</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Sposta la barra degli indirizzi in basso</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Pulsante a mano (solo in basso nella barra degli strumenti)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Aggiungi un pulsante a mano per raggiungere la parte superiore dello schermo</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Scorri bordo</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Abilita i gesti a sinistra e a destra sui bordi della pagina per navigare nella cronologia</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Scorri verso l\'alto per aprire il selettore schede</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">RIAVVIA ORA</string>
+     <string name="preferences_restart_later">In seguito</string>
+     <string name="preferences_translator">Traduttore</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Gestore download esterno</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Usa il gestore di download esterno (es: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Accetta cookie</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Visitato di recente\nPer aggiungere un nuovo motore di ricerca, vai sul motore di ricerca (es: Bing.com) e fai una ricerca. Dopo alcuni secondi, il motore di ricerca sarà aggiunto alla lista.</string>
+     <string name="suggest_adblock">Clicca qui per attivare la protezione di pubblicità e tracciamento</string>
+     <string name="website_settings_add_site_description_ads">Permetti la visualizzazione degli annunci per un sito specifico</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-ja/strings.xml b/chrome/android/java/res/values-ja/strings.xml
+index a3a8d30b..fcb98790 100755
+--- a/chrome/android/java/res/values-ja/strings.xml
++++ b/chrome/android/java/res/values-ja/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Nightモードをオフ</string>
+     <string name="main_menu_exit">終了</string>
+     <string name="main_menu_extensions">拡張機能</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">ブックマークを読み込む</string>
+     <string name="menu_export_bookmarks">ブックマークを出力する</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">外観</string>
+     <string name="appearance_preferences_themes">テーマ</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">テキストを再度折り返し/回り込みする</string>
+     <string name="accessibility_preferences_text_rewrap_summary">ズーム中にテキストをフィットさせます</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">外部アプリを有効にする</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">可能であれば、外部アプリ (Maps, YouTube, Vimeo) を利用してリンクを開きます</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">グレースケール Nightモード</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">アドレスバーを画面下に移動します</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">ハンドボタン (ツールバーが下にある場合のみ)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">画面上部に届くようにハンドボタンを追加します</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">エッジスワイプ</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">ページの端で左右にスワイプして、履歴を移動するジェスチャーを有効にします</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">上にスワイプしてタブの切り替え画面を開く</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">今すぐ再起動</string>
+     <string name="preferences_restart_later">あとで</string>
+     <string name="preferences_translator">翻訳</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">外部ダウンロードマネージャー</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Advanced Download Manager などの外部のダウンロードマネージャーを使用します</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">クッキーの許可</string>
+@@ -52,4 +62,9 @@
+ 新しい検索エンジンを追加するには、検索エンジンのサイト (例: Bing.com) に行って検索してください。数秒後、検索エンジンがリストに追加されます。</string>
+     <string name="suggest_adblock">ここをタップで広告と追跡から保護します</string>
+     <string name="website_settings_add_site_description_ads">特定のサイトだけ広告の表示を許可</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-ko/strings.xml b/chrome/android/java/res/values-ko/strings.xml
+index b72e6a70..9faa2fcd 100755
+--- a/chrome/android/java/res/values-ko/strings.xml
++++ b/chrome/android/java/res/values-ko/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">야간 모드 끄기</string>
+     <string name="main_menu_exit">나가기</string>
+     <string name="main_menu_extensions">확장 프로그램</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">북마크 가져오기</string>
+     <string name="menu_export_bookmarks">북마크 내보내기</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">모양</string>
+     <string name="appearance_preferences_themes">테마</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">화면 너비에 맞춰 글자 정렬</string>
+     <string name="accessibility_preferences_text_rewrap_summary">확대하면서 텍스트 맞추기</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">다른 앱으로 열기 허용</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">가능하면 링크를 앱으로 열기 (지도, 유튜브 등)</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">다크 모드를 회색으로</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">주소표시줄과 툴바를 아래쪽으로 보냅니다.</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">맨 위를 끌어오기 버튼 (툴바를 아래로 했을 때만 가능)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">페이지 맨 위를 아래로 내려 한 손으로도 터치할 수 있게 하는 버튼을 추가합니다.</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">옆으로 밀기</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">왼쪽/오른쪽으로 밀기 제스처로 뒤로/앞으로 갈 수 있게 합니다.</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">위로 밀어 탭 모음 열기</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">재시작</string>
+     <string name="preferences_restart_later">나중에</string>
+     <string name="preferences_translator">번역기</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">다른 다운로드 관리자</string>
+     <string name="download_preferences_enable_external_download_manager_summary">다른 다운로더 쓰기 (Advanced Download Manager와 같은)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">쿠키 허용하기</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">최근 방문\n새로운 검색 엔진을 추가하려면 검색 엔진 (예: Bing.com) 으로 이동하여 검색하세요. 몇 초 후에 검색 엔진이 목록에 추가됩니다.</string>
+     <string name="suggest_adblock">광고 차단 및 추적 차단</string>
+     <string name="website_settings_add_site_description_ads">광고 차단 예외</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-nl/strings.xml b/chrome/android/java/res/values-nl/strings.xml
+index be78fb06..7b5fe95f 100755
+--- a/chrome/android/java/res/values-nl/strings.xml
++++ b/chrome/android/java/res/values-nl/strings.xml
+@@ -10,14 +10,20 @@
+     <string name="main_menu_turn_off_night_mode">Turn off night mode</string>
+     <string name="main_menu_exit">Exit</string>
+     <string name="main_menu_extensions">Extensions</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Import bookmarks</string>
+     <string name="menu_export_bookmarks">Export bookmarks</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Appearance</string>
+     <string name="appearance_preferences_themes">Themes</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Text rewrap / reflow</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Fit the text while zooming</string>
+-    <string name="accessibility_preferences_open_in_external_application_title">Enable external applications</string>
+-    <string name="accessibility_preferences_open_in_external_application_summary">Open links with external applications (Maps, YouTube, Vimeo) when possible</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
++    <string name="accessibility_preferences_open_in_external_application_title">Prefer native applications (enable external applications)</string>
++    <string name="accessibility_preferences_open_in_external_application_summary">Prefer opening links using native or external applications (Maps, YouTube, Vimeo)</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Grayscale night mode</string>
+     <string name="accessibility_preferences_nightmode_grayscale_summary">Prefer grayscale version of night mode</string>
+     <string name="accessibility_preferences_night_scale">Night mode contrast (gray: 97, default: 99, black: 100)</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Move address bar to the bottom</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Hand button (bottom toolbar only)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Add a hand button to reach the top of the screen</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Edge swipe</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Enable swipe-left and swipe-right gestures on the edges of the page to navigate history</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Swipe-up to open tab switcher</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">RESTART NOW</string>
+     <string name="preferences_restart_later">Later</string>
+     <string name="preferences_translator">Translator</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">External download manager</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Use external download manager (ex: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Accept cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Recently visited\nTo add a new Search Engine, go to the Search Engine (ex: Bing.com) and make a Search. After few seconds, the Search Engine will be added to the list.</string>
+     <string name="suggest_adblock">Click here to toggle ad and tracking protection</string>
+     <string name="website_settings_add_site_description_ads">Allow displaying ads for a specific site</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-pl/strings.xml b/chrome/android/java/res/values-pl/strings.xml
+index f18828ce..8d3dd6b2 100755
+--- a/chrome/android/java/res/values-pl/strings.xml
++++ b/chrome/android/java/res/values-pl/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Wyłącz tryb nocny</string>
+     <string name="main_menu_exit">Zamknij</string>
+     <string name="main_menu_extensions">Rozszerzenia</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Import zakładek</string>
+     <string name="menu_export_bookmarks">Eksport zakładek</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Wygląd</string>
+     <string name="appearance_preferences_themes">Motywy</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Dopasuj / zawijaj tekst</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Dopasuj tekst podczas powiększania</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Włącz aplikacje zewnętrzne</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Otwieraj linki w aplikacjach zewnętrznych (Mapy, YouTube, Vimeo), kiedy możliwe</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Skala szarości trybu nocnego</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Przenieś pasek adresu na dół</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Przycisk ręki (tylko dolny pasek narzędzi)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Dodaj przycisk ręki, aby dotrzeć do góry ekranu</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Krawędziowe przesuwanie</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Włącz gesty przesuwania w lewo i prawo na krawędziach strony, aby nawigować w historii</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Przesuń w górę, aby otworzyć przełącznik kart</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">Zrestartuj teraz</string>
+     <string name="preferences_restart_later">Później</string>
+     <string name="preferences_translator">Tłumacz</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Zewnętrzny menedżer pobierania</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Użyj zewnętrznego menedżera pobierania (np. Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Zezwól na pliki cookie</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Ostatnio odwiedzone\nAby dodać nową wyszukiwarkę, przejdź do wyszukiwarki (np. Bing.com) i utwórz wyszukiwanie. Po kilku sekundach wyszukiwarka zostanie dodana do listy.</string>
+     <string name="suggest_adblock">Kliknij tutaj, aby włączyć/wyłączyć blokadę reklam i ochronę przed śledzeniem</string>
+     <string name="website_settings_add_site_description_ads">Zezwalaj na wyświetlanie reklam dla konkretnej witryny</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-pt-rBR/strings.xml b/chrome/android/java/res/values-pt-rBR/strings.xml
+index cc87312a..5fda7003 100755
+--- a/chrome/android/java/res/values-pt-rBR/strings.xml
++++ b/chrome/android/java/res/values-pt-rBR/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Desativar o modo noturno</string>
+     <string name="main_menu_exit">Sair</string>
+     <string name="main_menu_extensions">Extensões</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Importar favoritos</string>
+     <string name="menu_export_bookmarks">Exportar favoritos</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Aparência</string>
+     <string name="appearance_preferences_themes">Temas</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Reajuste de texto / refluxo</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Ajustar o texto durante o zoom</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Permitir aplicativos externos</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Abrir links com aplicativos externos (Maps, YouTube, Vimeo), quando possível</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Tons de cinza do modo noturno</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Mover a barra de endereço para baixo</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Botão de mão (somente na barra de endereço inferior)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Adiciona um botão na barra de endereço para se chegar facilmente ao topo do site</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Navegação por gestos</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Habilita a navegação por gestos nas bordas da página - direita e esquerda - para avançar ou voltar pelo histórico</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Deslizar para cima para abrir o seletor de abas</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">REINICIAR AGORA</string>
+     <string name="preferences_restart_later">Mais tarde</string>
+     <string name="preferences_translator">Tradutor</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Gerenciador de downloads externo</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Usar gerenciador de download externo (ex: ADM, IDM)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Aceitar cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Você visitou recentemente\nPara adicionar um novo mecanismo de pesquisa, vá ao site de pesquisa desejado (ex. bing.com) e faça uma nova pesquisa. Após alguns segundos, o mecanismo de pesquisa daquele site será adicionado a essa lista.</string>
+     <string name="suggest_adblock">Clique para alternar a proteção contra anúncios e rastreamento</string>
+     <string name="website_settings_add_site_description_ads">Permitir exibir anúncios para um site específico</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-pt-rPT/strings.xml b/chrome/android/java/res/values-pt-rPT/strings.xml
+index be78fb06..7b5fe95f 100755
+--- a/chrome/android/java/res/values-pt-rPT/strings.xml
++++ b/chrome/android/java/res/values-pt-rPT/strings.xml
+@@ -10,14 +10,20 @@
+     <string name="main_menu_turn_off_night_mode">Turn off night mode</string>
+     <string name="main_menu_exit">Exit</string>
+     <string name="main_menu_extensions">Extensions</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Import bookmarks</string>
+     <string name="menu_export_bookmarks">Export bookmarks</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Appearance</string>
+     <string name="appearance_preferences_themes">Themes</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Text rewrap / reflow</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Fit the text while zooming</string>
+-    <string name="accessibility_preferences_open_in_external_application_title">Enable external applications</string>
+-    <string name="accessibility_preferences_open_in_external_application_summary">Open links with external applications (Maps, YouTube, Vimeo) when possible</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
++    <string name="accessibility_preferences_open_in_external_application_title">Prefer native applications (enable external applications)</string>
++    <string name="accessibility_preferences_open_in_external_application_summary">Prefer opening links using native or external applications (Maps, YouTube, Vimeo)</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Grayscale night mode</string>
+     <string name="accessibility_preferences_nightmode_grayscale_summary">Prefer grayscale version of night mode</string>
+     <string name="accessibility_preferences_night_scale">Night mode contrast (gray: 97, default: 99, black: 100)</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Move address bar to the bottom</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Hand button (bottom toolbar only)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Add a hand button to reach the top of the screen</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Edge swipe</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Enable swipe-left and swipe-right gestures on the edges of the page to navigate history</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Swipe-up to open tab switcher</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">RESTART NOW</string>
+     <string name="preferences_restart_later">Later</string>
+     <string name="preferences_translator">Translator</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">External download manager</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Use external download manager (ex: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Accept cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Recently visited\nTo add a new Search Engine, go to the Search Engine (ex: Bing.com) and make a Search. After few seconds, the Search Engine will be added to the list.</string>
+     <string name="suggest_adblock">Click here to toggle ad and tracking protection</string>
+     <string name="website_settings_add_site_description_ads">Allow displaying ads for a specific site</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-ro/strings.xml b/chrome/android/java/res/values-ro/strings.xml
+index f1821555..65560873 100755
+--- a/chrome/android/java/res/values-ro/strings.xml
++++ b/chrome/android/java/res/values-ro/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Dezactivați modul nocturn</string>
+     <string name="main_menu_exit">Ieşire</string>
+     <string name="main_menu_extensions">Extensii</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Importă favoritele din</string>
+     <string name="menu_export_bookmarks">Export marcaje</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Aspect</string>
+     <string name="appearance_preferences_themes">Teme</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Despărțirea / Aranjarea textului</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Ajustați textul când faceți zoom</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Deschide în aplicaţie externă</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Deschide link-uri cu aplicatii externe (Maps, YouTube, Vimeo) atunci când este posibil</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Tonuri de gri în modalitatea nocturnă</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Mutați bara de adrese in partea de jos</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Buton de mână (doar pe bara de instrumente de jos)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Adăugați un buton pentru a ajunge în partea de sus a ecranului</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Glisare pe margine</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Activați gesturile de glisare-stanga și glisare-dreapta pe marginile paginii pentru a naviga istoricul</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Glisați-l pentru a deschide comutatorul ferestrelor</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">REPORNIŢI ACUM</string>
+     <string name="preferences_restart_later">Mai târziu</string>
+     <string name="preferences_translator">Traducător</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Manager extern de descărcare</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Utilizați managerul extern de descărcări (ex: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Acceptă cookie-uri</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Vizitate recent\nPentru a adăuga un nou motor de căutare, accesați Motorul de căutare (ex: Bing.com) și efectuați o căutare. După câteva secunde, motorul de căutare va fi adăugat în listă.</string>
+     <string name="suggest_adblock">Faceți clic aici pentru a activa protecția și urmărirea</string>
+     <string name="website_settings_add_site_description_ads">Permiteți reclame pentru anumite site-uri</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-ru/strings.xml b/chrome/android/java/res/values-ru/strings.xml
+index c027006d..531d75e3 100755
+--- a/chrome/android/java/res/values-ru/strings.xml
++++ b/chrome/android/java/res/values-ru/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Выключить ночной режим</string>
+     <string name="main_menu_exit">Выход</string>
+     <string name="main_menu_extensions">Расширения</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Импорт закладок</string>
+     <string name="menu_export_bookmarks">Экспорт закладок</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Оформление</string>
+     <string name="appearance_preferences_themes">Темы</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Перекомпоновка/перенос текста</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Перекомпоновка текста при масштабировании</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Разрешить внешние приложения</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">По возможности открывать ссылки с помощью внешних приложений (Карты, YouTube, Vimeo)</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Градации серого в ночном режиме</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Переместить адресную строку вниз</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Кнопка \"Рука\" (только на нижней панели инструментов)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Добавить кнопку управления одной рукой</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Жесты по краям</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Включить жесты влево и вправо по краям страницы для навигации по истории</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Жест вверх, чтобы открыть переключатель вкладок</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">ПЕРЕЗАГРУЗИТЬ СЕЙЧАС</string>
+     <string name="preferences_restart_later">Позже</string>
+     <string name="preferences_translator">Переводчик</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Внешний менеджер загрузок</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Использовать внешний менеджер загрузок</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Принимать cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Недавно посещено\nЧтобы добавить новую поисковую систему, откройте веб-страницу поисковой системы (например: Bing.com) и выполните поиск. В течение нескольких секунд, поисковая система будет добавлена в список.</string>
+     <string name="suggest_adblock">Нажмите здесь, чтобы включить защиту от рекламы и отслеживания</string>
+     <string name="website_settings_add_site_description_ads">Разрешить показ рекламы для конкретного сайта</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-sr/strings.xml b/chrome/android/java/res/values-sr/strings.xml
+index be78fb06..7b5fe95f 100755
+--- a/chrome/android/java/res/values-sr/strings.xml
++++ b/chrome/android/java/res/values-sr/strings.xml
+@@ -10,14 +10,20 @@
+     <string name="main_menu_turn_off_night_mode">Turn off night mode</string>
+     <string name="main_menu_exit">Exit</string>
+     <string name="main_menu_extensions">Extensions</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Import bookmarks</string>
+     <string name="menu_export_bookmarks">Export bookmarks</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Appearance</string>
+     <string name="appearance_preferences_themes">Themes</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Text rewrap / reflow</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Fit the text while zooming</string>
+-    <string name="accessibility_preferences_open_in_external_application_title">Enable external applications</string>
+-    <string name="accessibility_preferences_open_in_external_application_summary">Open links with external applications (Maps, YouTube, Vimeo) when possible</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
++    <string name="accessibility_preferences_open_in_external_application_title">Prefer native applications (enable external applications)</string>
++    <string name="accessibility_preferences_open_in_external_application_summary">Prefer opening links using native or external applications (Maps, YouTube, Vimeo)</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Grayscale night mode</string>
+     <string name="accessibility_preferences_nightmode_grayscale_summary">Prefer grayscale version of night mode</string>
+     <string name="accessibility_preferences_night_scale">Night mode contrast (gray: 97, default: 99, black: 100)</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Move address bar to the bottom</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Hand button (bottom toolbar only)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Add a hand button to reach the top of the screen</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Edge swipe</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Enable swipe-left and swipe-right gestures on the edges of the page to navigate history</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Swipe-up to open tab switcher</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">RESTART NOW</string>
+     <string name="preferences_restart_later">Later</string>
+     <string name="preferences_translator">Translator</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">External download manager</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Use external download manager (ex: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Accept cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Recently visited\nTo add a new Search Engine, go to the Search Engine (ex: Bing.com) and make a Search. After few seconds, the Search Engine will be added to the list.</string>
+     <string name="suggest_adblock">Click here to toggle ad and tracking protection</string>
+     <string name="website_settings_add_site_description_ads">Allow displaying ads for a specific site</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-sv-rSE/strings.xml b/chrome/android/java/res/values-sv-rSE/strings.xml
+index cb76e2aa..497c9e0c 100755
+--- a/chrome/android/java/res/values-sv-rSE/strings.xml
++++ b/chrome/android/java/res/values-sv-rSE/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Avaktivera nattläge</string>
+     <string name="main_menu_exit">Avsluta</string>
+     <string name="main_menu_extensions">Tillägg</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Importera bokmärken</string>
+     <string name="menu_export_bookmarks">Exportera bokmärken</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Utseende</string>
+     <string name="appearance_preferences_themes">Teman</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Radbryt text</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Avpassa texten vid zoomning</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Aktivera externa program</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Öppna länkar med externa applikationer (Maps, YouTube, Vimeo) när möjligt</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Nattläge i gråskala</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Flytta adressfältet till botten</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Handknapp (bara för nedre verktygsfält)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Lägg till en handknapp för att nå toppen av skärmen</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Kantsvep</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Aktivera vänster- och högersvepgester för att navigera i historiken</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Svep upp för att öppna flikar</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">STARTA OM NU</string>
+     <string name="preferences_restart_later">Senare</string>
+     <string name="preferences_translator">Översättare</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Extern nerladdningshanterare</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Använd extern nerladdningshanterare (t.ex. Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Godta kakor</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Nyligen besökta\nFör att lägga till en ny sökmotor, gå till sökmotorn (t.ex. Bing.com) och gör en sökning. Efter några sekunder kommer sökmotorn att läggas till i listan.</string>
+     <string name="suggest_adblock">Klicka här för att aktivera/avaktivera skydd mot reklam och spårning</string>
+     <string name="website_settings_add_site_description_ads">Tillåt visning av annonser för en specifik sajt</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-tr/strings.xml b/chrome/android/java/res/values-tr/strings.xml
+index 04f4d505..a37a6eff 100755
+--- a/chrome/android/java/res/values-tr/strings.xml
++++ b/chrome/android/java/res/values-tr/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Gece modunu kapat</string>
+     <string name="main_menu_exit">Çıkış</string>
+     <string name="main_menu_extensions">Eklentiler</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Yer işaretlerini içe aktar</string>
+     <string name="menu_export_bookmarks">Yer işaretlerini dışa aktar</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Görünüş</string>
+     <string name="appearance_preferences_themes">Temalar</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Metnin yeniden konumlandırılması</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Yakınlaştırırken metni sığdır</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Harici uygulamaları etkinleştir</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Mümkün olduğunda harici uygulamalarla bağlantıları (Haritalar, YouTube, Vimeo) açın</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Gri tonlama gece modu</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Adres çubuğunu en alta taşı</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">El düğmesi (yalnızca alt araç çubuğu)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Ekranın üst kısmına yetişmek için bir el düğmesi ekleyin</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Kenar kaydırma</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Geriye gitmek için sayfanın kenarlarında sola ve sağa kaydırma hareketlerini etkinleştirir</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Sekme değiştiriciyi açmak için yukarı kaydırmayı etkinleştirir</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">ŞİMDİ YENİDEN BAŞLAT</string>
+     <string name="preferences_restart_later">Sonra</string>
+     <string name="preferences_translator">Çevirmen</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Harici indirme yöneticisi</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Harici indirme yöneticisini kullan (ör: Gelişmiş İndirme Yöneticisi)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Çerezleri kabul et</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Son ziyaret edilenler\nYeni bir Arama Motoru eklemek için Arama Motoruna (ör: Bing.com) gidin ve bir Arama yapın. Birkaç saniye sonra, Arama Motoru listeye eklenecektir.</string>
+     <string name="suggest_adblock">Reklamı ve izleme korumasını değiştirmek için burayı tıklayın</string>
+     <string name="website_settings_add_site_description_ads">Belirli bir site için reklam gösterilmesine izin ver</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-uk/strings.xml b/chrome/android/java/res/values-uk/strings.xml
+index 1c58c25c..9d9c3fd3 100755
+--- a/chrome/android/java/res/values-uk/strings.xml
++++ b/chrome/android/java/res/values-uk/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Вимкнути нічний режим</string>
+     <string name="main_menu_exit">Вихід</string>
+     <string name="main_menu_extensions">Розширення</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Імпорт закладок</string>
+     <string name="menu_export_bookmarks">Експортувати закладки</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Зовнішній вигляд</string>
+     <string name="appearance_preferences_themes">Теми</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Text rewrap / reflow</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Пристосовувати текст під час збільшення</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Дозволити зовнішні додатки</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Відкрити посилання з зовнішніх додатків (Maps, YouTube, Vimeo), коли це можливо</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Градація сірого в нічному режимі</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Перемістити адресний рядок вниз</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Рука кнопки (тільки нижня панель)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Додавання кнопки руку для досягнення верхньої частини екрану</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Свайп по краю</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Увімкнути свайпи ліворуч та праворуч на краях сторінки в історії</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Свайп догори, щоб відкрити перемикач вкладок</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">ПЕРЕЗАВАНТАЖИТИ ЗАРАЗ</string>
+     <string name="preferences_restart_later">Пізніше</string>
+     <string name="preferences_translator">Перекладач</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Зовнішня програма для звантаження</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Використовувати зовнішній менеджер завантажень (наприклад: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Дозволити файли cookie</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Нещодавно відвідані вами.\nДля додавання нової пошукової машини, перейдіть до пошукової системи (наприклад: Bing.com) і зробітьпошук. Через кілька секунд пошукова система буде додана до списку.</string>
+     <string name="suggest_adblock">Натисніть тут, щоб переключити захист від реклами і відстеження</string>
+     <string name="website_settings_add_site_description_ads">Дозволити показ оголошень для певного сайту</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-vi/strings.xml b/chrome/android/java/res/values-vi/strings.xml
+index 04a1e297..3caf5923 100755
+--- a/chrome/android/java/res/values-vi/strings.xml
++++ b/chrome/android/java/res/values-vi/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">Tắt chế độ ban đêm</string>
+     <string name="main_menu_exit">Thoát</string>
+     <string name="main_menu_extensions">Tiện ích mở rộng</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">Nhập dấu trang</string>
+     <string name="menu_export_bookmarks">Xuất dấu trang</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">Giao diện</string>
+     <string name="appearance_preferences_themes">Gói giao diện</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">Tự động chỉnh kí tự</string>
+     <string name="accessibility_preferences_text_rewrap_summary">Căn chỉnh kí tự khi phóng to</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">Sử dụng ứng dụng bên ngoài</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">Mở các liên kết bằng ứng dụng bên ngoài (Maps, YouTube, Vimeo) khi có thể</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">Chế độ ban đêm màu xám</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">Đặt thanh địa chỉ xuống dưới cùng</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">Nút bàn tay (khi thanh công cụ ở dưới)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">Add a hand button to reach the top of the screen</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">Thao tác với viền</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">Cho phép cử chỉ trượt ngang từ 2 cạnh bên để điều hướng theo lịch sử truy cập</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">Trượt lên để xem các thẻ đang lưu</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">KHỞI ĐỘNG LẠI NGAY</string>
+     <string name="preferences_restart_later">Để sau</string>
+     <string name="preferences_translator">Công cụ dịch thuật</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">Trình tải về bên ngoài</string>
+     <string name="download_preferences_enable_external_download_manager_summary">Tải về qua ứng dụng ngoài (ví dụ: Advanced Download Manager)</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">Cho phép cookie</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">Các trang vừa xem\nĐể thêm một công cụ tìm kiếm mới, vào trang web của công cụ tìm kiếm (ví dụ: Bing.com) và thực hiện một tìm kiếm. Sau vài giây, công cụ tìm kiếm sẽ được thêm vào danh sách.</string>
+     <string name="suggest_adblock">Ấn để bật/ tắt chế độ chặn quảng cáo &amp; theo dõi</string>
+     <string name="website_settings_add_site_description_ads">Hiện quảng cáo với các trang cho trước</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-zh-rCN/strings.xml b/chrome/android/java/res/values-zh-rCN/strings.xml
+index 24530fbf..b230fbb5 100755
+--- a/chrome/android/java/res/values-zh-rCN/strings.xml
++++ b/chrome/android/java/res/values-zh-rCN/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">关闭夜间模式</string>
+     <string name="main_menu_exit">退出</string>
+     <string name="main_menu_extensions">扩展程序</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">导入书签</string>
+     <string name="menu_export_bookmarks">导出书签</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">外观</string>
+     <string name="appearance_preferences_themes">主题</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">文本环绕 / 重整</string>
+     <string name="accessibility_preferences_text_rewrap_summary">缩放时适应文本</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">用外部程序打开</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">在可能的情况下用外部程序打开链接 (比如 Maps、Youtube 和 Vimeo)</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">灰色阅读模式</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">移动地址栏到底部</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">手形图标 (打开底部工具栏时生效)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">添加一个手形图标来返回页面顶部</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">边缘手势</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">启用左右滑动手势来切换历史页面</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">向上滑动以打开标签切换页</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">现在重启</string>
+     <string name="preferences_restart_later">稍后</string>
+     <string name="preferences_translator">翻译器</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">外部下载器</string>
+     <string name="download_preferences_enable_external_download_manager_summary">使用外部下载器 (如: ADM )</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">接受 Cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">最近访问\n若要添加新的搜索引擎，访问一个搜索引擎(比如 Bing.com)并搜索。几秒后，该搜索引擎将被添加到列表中。</string>
+     <string name="suggest_adblock">点击此处开启/关闭广告和跟踪保护</string>
+     <string name="website_settings_add_site_description_ads">允许特定站点显示广告</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>
+diff --git a/chrome/android/java/res/values-zh-rTW/strings.xml b/chrome/android/java/res/values-zh-rTW/strings.xml
+index fa7b3b3f..dcedf9cf 100755
+--- a/chrome/android/java/res/values-zh-rTW/strings.xml
++++ b/chrome/android/java/res/values-zh-rTW/strings.xml
+@@ -10,12 +10,18 @@
+     <string name="main_menu_turn_off_night_mode">關閉夜間模式</string>
+     <string name="main_menu_exit">結束</string>
+     <string name="main_menu_extensions">擴充功能</string>
++    <string name="main_menu_disable_proxy">Disable proxy / VPN</string>
+     <string name="menu_import_bookmarks">匯入書籤</string>
+     <string name="menu_export_bookmarks">匯出書籤</string>
++    <string name="main_menu_developer_tools">Developer tools</string>
+     <string name="appearance_preferences">外觀</string>
+     <string name="appearance_preferences_themes">主題</string>
++    <string name="accessibility_keep_toolbar_visible_title">Toolbar always on screen</string>
++    <string name="accessibility_keep_toolbar_visible_summary">Keep toolbar always on screen while scrolling</string>
+     <string name="accessibility_preferences_text_rewrap_title">文字環繞 / 自動重排</string>
+     <string name="accessibility_preferences_text_rewrap_summary">縮放頁面時將文字調整為適中大小</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_title">Tab switcher long click menu</string>
++    <string name="accessibility_preferences_holding_tabswitcher_opens_contextual_menu_summary">Holding tab switcher button opens a menu instead of opening a new tab</string>
+     <string name="accessibility_preferences_open_in_external_application_title">使用外部應用程式開啟連結</string>
+     <string name="accessibility_preferences_open_in_external_application_summary">在可能的情況下使用外部應用程式開啟連結(例如 Maps、 YouTube、 Vimeo)</string>
+     <string name="accessibility_preferences_nightmode_grayscale_title">灰階夜間模式</string>
+@@ -25,6 +31,8 @@
+     <string name="accessibility_preferences_enable_bottom_toolbar_summary">將網址列移動到底部</string>
+     <string name="accessibility_preferences_enable_overscroll_button_title">手形按鈕 (開啟底部工具列時生效)</string>
+     <string name="accessibility_preferences_enable_overscroll_button_summary">新增一個手形按鈕以前往畫面頂端</string>
++    <string name="accessibility_preferences_keep_address_bar_content_title">Do not delete address bar content</string>
++    <string name="accessibility_preferences_keep_address_bar_content_summary">Keep content when focusing the address bar</string>
+     <string name="accessibility_preferences_enable_side_swipe_title">邊緣滑動</string>
+     <string name="accessibility_preferences_enable_side_swipe_summary">在網頁邊緣啟用左/右滑的手勢以切換下/上一頁</string>
+     <string name="accessibility_preferences_enable_up_swipe_title">上滑以開啟分頁切換頁面</string>
+@@ -36,6 +44,8 @@
+     <string name="preferences_restart_now">現在重新啟動</string>
+     <string name="preferences_restart_later">稍後</string>
+     <string name="preferences_translator">翻譯工具</string>
++    <string name="preferences_tabswitcher">Tab switcher</string>
++    <string name="preferences_nightmode">Night mode</string>
+     <string name="download_preferences_enable_external_download_manager_title">外部下載工具</string>
+     <string name="download_preferences_enable_external_download_manager_summary">使用外部下載工具 (例如: ADM )</string>
+     <string name="privacy_preferences_accept_cookie_consent_title">接受 Cookies</string>
+@@ -51,4 +61,9 @@
+     <string name="search_engines_preferences_howto_add">最近造訪\n若要新增搜尋引擎, 請造訪該搜尋引擎並進行搜尋 (例如: bing.com) 。幾秒鐘後, 搜尋引擎將被新增至清單中。</string>
+     <string name="suggest_adblock">點選此處開啟/關閉廣告與追蹤保護</string>
+     <string name="website_settings_add_site_description_ads">允許特定網站顯示廣告</string>
++    <string name="website_settings_desktop_mode">Desktop mode by default</string>
++    <string name="website_settings_desktop_mode_enabled">Prefer desktop version of websites</string>
++    <string name="website_settings_desktop_mode_disabled">Prefer mobile-optimized version of websites</string>
++    <string name="main_menu_mobile_site">Mobile site</string>
++    <string name="data_reduction_description_lite_mode_kiwi">When Lite mode is activated, Kiwi Browser will try to save data by letting the websites know that they should serve a lighter version of the website. In this mode, Kiwi may disable certain pictures or elements on the page to speedup loading. The traffic goes directly to the website without intermediaries. To save the maximum amount of data, ticking \"Hide annoying ads\" in the main menu is recommended. Blocked ads do not count toward the data saving counter.</string>
+ </resources>

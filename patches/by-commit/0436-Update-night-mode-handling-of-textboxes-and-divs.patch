@@ -1,0 +1,95 @@
+From 62d8ffac4a00c5bf596de2260ec3ec3f922b25ae Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:08:29 +0000
+Subject: [PATCH 436/506] Update night mode handling of textboxes and divs
+
+---
+ third_party/blink/renderer/core/paint/box_painter.cc      | 6 +++---
+ third_party/blink/renderer/core/paint/box_painter_base.cc | 8 ++++----
+ .../blink/renderer/core/paint/text_painter_base.cc        | 2 +-
+ 3 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/third_party/blink/renderer/core/paint/box_painter.cc b/third_party/blink/renderer/core/paint/box_painter.cc
+index 64caf228..38a7d348 100644
+--- a/third_party/blink/renderer/core/paint/box_painter.cc
++++ b/third_party/blink/renderer/core/paint/box_painter.cc
+@@ -141,7 +141,7 @@ void BoxPainter::PaintBoxDecorationBackgroundWithRect(
+   // FIXME: Should eventually give the theme control over whether the box
+   // shadow should paint, since controls could have custom shadows of their
+   // own.
+-  if (box_decoration_data.ShouldPaintShadow() && !paint_info.context.IsDarkModeEnabled()) {
++  if (box_decoration_data.ShouldPaintShadow() && !style.DarkColorScheme()) {
+     BoxPainterBase::PaintNormalBoxShadow(
+         paint_info, paint_rect, style, PhysicalBoxSides(),
+         !box_decoration_data.ShouldPaintBackground());
+@@ -182,7 +182,7 @@ void BoxPainter::PaintBoxDecorationBackgroundWithRect(
+     }
+   }
+ 
+-  if (box_decoration_data.ShouldPaintShadow() && !paint_info.context.IsDarkModeEnabled()) {
++  if (box_decoration_data.ShouldPaintShadow() && !style.DarkColorScheme()) {
+     BoxPainterBase::PaintInsetBoxShadowWithBorderRect(paint_info, paint_rect,
+                                                       style);
+   }
+@@ -196,7 +196,7 @@ void BoxPainter::PaintBoxDecorationBackgroundWithRect(
+           !theme_painter.PaintBorderOnly(layout_box_.GetNode(), style,
+                                          paint_info, snapped_paint_rect);
+     }
+-    if (!theme_painted && !paint_info.context.IsDarkModeEnabled()) {
++    if (!theme_painted && !style.DarkColorScheme()) {
+       BoxPainterBase::PaintBorder(
+           layout_box_, layout_box_.GetDocument(), layout_box_.GeneratingNode(),
+           paint_info, paint_rect, style,
+diff --git a/third_party/blink/renderer/core/paint/box_painter_base.cc b/third_party/blink/renderer/core/paint/box_painter_base.cc
+index 67f99aba..d7899d97 100644
+--- a/third_party/blink/renderer/core/paint/box_painter_base.cc
++++ b/third_party/blink/renderer/core/paint/box_painter_base.cc
+@@ -139,7 +139,7 @@ void BoxPainterBase::PaintNormalBoxShadow(const PaintInfo& info,
+                                           const ComputedStyle& style,
+                                           PhysicalBoxSides sides_to_include,
+                                           bool background_is_skipped) {
+-  if (!style.BoxShadow() || info.context.IsDarkModeEnabled())
++  if (!style.BoxShadow() || style.DarkColorScheme())
+     return;
+   GraphicsContext& context = info.context;
+ 
+@@ -245,7 +245,7 @@ void BoxPainterBase::PaintInsetBoxShadowWithBorderRect(
+     const PhysicalRect& border_rect,
+     const ComputedStyle& style,
+     PhysicalBoxSides sides_to_include) {
+-  if (!style.BoxShadow() || info.context.IsDarkModeEnabled())
++  if (!style.BoxShadow() || style.DarkColorScheme())
+     return;
+   auto bounds = RoundedBorderGeometry::PixelSnappedRoundedInnerBorder(
+       style, border_rect, sides_to_include);
+@@ -256,7 +256,7 @@ void BoxPainterBase::PaintInsetBoxShadowWithInnerRect(
+     const PaintInfo& info,
+     const PhysicalRect& inner_rect,
+     const ComputedStyle& style) {
+-  if (!style.BoxShadow() || info.context.IsDarkModeEnabled())
++  if (!style.BoxShadow() || style.DarkColorScheme())
+     return;
+   auto bounds = RoundedBorderGeometry::PixelSnappedRoundedBorderWithOutsets(
+       style, inner_rect, LayoutRectOutsets());
+@@ -307,7 +307,7 @@ void BoxPainterBase::PaintInsetBoxShadow(const PaintInfo& info,
+                                          const FloatRoundedRect& bounds,
+                                          const ComputedStyle& style,
+                                          PhysicalBoxSides sides_to_include) {
+-  if (info.context.IsDarkModeEnabled())
++  if (style.DarkColorScheme())
+     return;
+   GraphicsContext& context = info.context;
+ 
+diff --git a/third_party/blink/renderer/core/paint/text_painter_base.cc b/third_party/blink/renderer/core/paint/text_painter_base.cc
+index 74e15f81..3310cf10 100644
+--- a/third_party/blink/renderer/core/paint/text_painter_base.cc
++++ b/third_party/blink/renderer/core/paint/text_painter_base.cc
+@@ -181,7 +181,7 @@ TextPaintStyle TextPainterBase::TextPaintingStyle(const Document& document,
+     }
+   }
+ 
+-  if (paint_info.context.IsDarkModeEnabled())
++  if (style.DarkColorScheme())
+     text_style.shadow = nullptr;
+ 
+   return text_style;

@@ -1,0 +1,48 @@
+From 3fee1acbe71a329b327ae7e87500521097be0e5f Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 13 Dec 2021 00:24:31 +0200
+Subject: [PATCH 471/506] Remove unused file
+
+---
+ .../android/java/res/layout/night_scale.xml   | 32 -------------------
+ 1 file changed, 32 deletions(-)
+ delete mode 100644 chrome/android/java/res/layout/night_scale.xml
+
+diff --git a/chrome/android/java/res/layout/night_scale.xml b/chrome/android/java/res/layout/night_scale.xml
+deleted file mode 100644
+index ad8e1ae6..00000000
+--- a/chrome/android/java/res/layout/night_scale.xml
++++ /dev/null
+@@ -1,32 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<!-- Copyright 2014 The Chromium Authors. All rights reserved.
+-     Use of this source code is governed by a BSD-style license that can be
+-     found in the LICENSE file. -->
+-
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:layout_width="match_parent"
+-    android:layout_height="wrap_content"
+-    android:orientation="vertical" >
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:gravity="center_vertical"
+-        android:orientation="horizontal" >
+-
+-        <TextView
+-            android:id="@+id/seekbar_amount"
+-            style="@style/PreferenceSummary"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:minWidth="40sp" />
+-
+-        <SeekBar
+-            android:id="@+id/seekbar"
+-            android:layout_width="0dp"
+-            android:layout_height="wrap_content"
+-            android:layout_weight="1" />
+-
+-    </LinearLayout>
+-
+-</LinearLayout>

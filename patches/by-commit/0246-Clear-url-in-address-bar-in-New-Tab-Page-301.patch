@@ -1,0 +1,25 @@
+From 44fd9ab3f83180136c3dfec50dfdabdd6aaab219 Mon Sep 17 00:00:00 2001
+From: DUO Labs <dvdugo333@gmail.com>
+Date: Tue, 10 Aug 2021 21:36:07 -0400
+Subject: [PATCH 246/506] Clear url in address bar in New Tab Page (#301)
+
+* Clear url in address bar in New Tab Page
+
+* Fixed "Clear url in address bar in New Tab Page "
+---
+ .../omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java
+index 0e1d0d1d..7cc51d59 100644
+--- a/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java
++++ b/chrome/browser/ui/android/omnibox/java/src/org/chromium/chrome/browser/omnibox/suggestions/editurl/EditUrlSuggestionProcessor.java
+@@ -88,7 +88,7 @@ public class EditUrlSuggestionProcessor extends BaseSuggestionViewProcessor {
+ 
+         if (!mHasClearedOmniboxForFocus) {
+             mHasClearedOmniboxForFocus = true;
+-            if (ContextUtils.getAppSharedPreferences().getBoolean("keep_address_bar_content", false)) {
++            if (ContextUtils.getAppSharedPreferences().getBoolean("keep_address_bar_content", false) && !activeTab.getUrl().getSpec().startsWith("chrome-search://")) {
+             UrlBarData parsedToolbar = UrlBarData.forUrlAndText(suggestion.getUrl().getSpec(), suggestion.getUrl().getSpec(), null);
+             mUrlBarDelegate.setOmniboxEditingText(parsedToolbar.getEditingOrDisplayText().toString());
+             } else {

@@ -1,0 +1,19 @@
+From ad392f2ea44426b2395e53b12eeb5af9242c140a Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 23:11:32 +0300
+Subject: [PATCH 145/506] Update import_file_from_chromium.yml
+
+---
+ .github/workflows/import_file_from_chromium.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/import_file_from_chromium.yml b/.github/workflows/import_file_from_chromium.yml
+index 45035479..098b908f 100644
+--- a/.github/workflows/import_file_from_chromium.yml
++++ b/.github/workflows/import_file_from_chromium.yml
+@@ -52,4 +52,4 @@ jobs:
+         run: git commit -a -m '[Chromium] Importing ${{ github.event.inputs.path }} from version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}'
+ 
+       - name: Pushing repository
+-        run: git push chromium
++        run: git push origin chromium

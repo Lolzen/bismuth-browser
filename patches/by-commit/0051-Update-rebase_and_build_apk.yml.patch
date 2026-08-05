@@ -1,0 +1,22 @@
+From e8f12cbc3c0310965b301dbe255831b5054b6a35 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 03:10:03 +0300
+Subject: [PATCH 051/506] Update rebase_and_build_apk.yml
+
+---
+ .github/workflows/rebase_and_build_apk.yml | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/.github/workflows/rebase_and_build_apk.yml b/.github/workflows/rebase_and_build_apk.yml
+index dfcb17c6..f78cf0e8 100644
+--- a/.github/workflows/rebase_and_build_apk.yml
++++ b/.github/workflows/rebase_and_build_apk.yml
+@@ -2,8 +2,6 @@ name: rebase and build APK
+ 
+ on:
+   workflow_dispatch:
+-
+-on:
+   push:
+     paths:
+       - 'upstream'

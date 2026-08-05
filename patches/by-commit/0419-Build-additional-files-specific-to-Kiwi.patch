@@ -1,0 +1,39 @@
+From bd6d39c2ca83a8f1b7396673dbc2b3496b734dfa Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 16 Aug 2021 02:15:18 +0300
+Subject: [PATCH 419/506] Build additional files specific to Kiwi
+
+---
+ chrome/android/chrome_java_sources.gni | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/chrome/android/chrome_java_sources.gni b/chrome/android/chrome_java_sources.gni
+index 95421482..b746fec1 100644
+--- a/chrome/android/chrome_java_sources.gni
++++ b/chrome/android/chrome_java_sources.gni
+@@ -3,6 +3,25 @@
+ # found in the LICENSE file.
+ 
+ kiwi_java_sources = [
++  "java/src/org/chromium/chrome/browser/AppMenuBridge.java",
++  "java/src/org/chromium/chrome/browser/PersonalizeResults.java",
++  "java/src/org/chromium/chrome/browser/FixDevToolsWindow.java",
++  "java/src/org/chromium/chrome/browser/accessibility/settings/NightScalePreference.java",
++  "java/src/org/chromium/chrome/browser/compositor/layouts/phone/StackLayout.java",
++  "java/src/org/chromium/chrome/browser/compositor/layouts/phone/StackLayoutBase.java",
++  "java/src/org/chromium/chrome/browser/compositor/layouts/phone/stack/NonOverlappingStack.java",
++  "java/src/org/chromium/chrome/browser/compositor/layouts/phone/stack/OverlappingStack.java",
++  "java/src/org/chromium/chrome/browser/compositor/layouts/phone/stack/Stack.java",
++  "java/src/org/chromium/chrome/browser/compositor/layouts/phone/stack/StackAnimation.java",
++  "java/src/org/chromium/chrome/browser/compositor/layouts/phone/stack/StackTab.java",
++  "java/src/org/chromium/chrome/browser/compositor/layouts/phone/stack/StackViewAnimation.java",
++  "java/src/org/chromium/chrome/browser/translate/settings/TranslateSettings.java",
++  "java/src/org/chromium/chrome/browser/translate/settings/RadioButtonGroupTranslatePreference.java",
++  "java/src/org/chromium/chrome/browser/settings/TabSwitcherSettings.java",
++  "java/src/org/chromium/chrome/browser/settings/RadioButtonGroupTabSwitcherPreference.java",
++  "java/src/org/chromium/chrome/browser/settings/NightModeSettings.java",
++  "java/src/org/chromium/chrome/browser/settings/RadioButtonGroupNightModePreference.java",
++  "java/src/org/chromium/chrome/browser/init/ChromeBrowserReferrer.java",
+ ]
+ 
+ chrome_java_sources = [

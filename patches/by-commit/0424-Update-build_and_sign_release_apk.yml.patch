@@ -1,0 +1,36 @@
+From 7adb9649b71bc33ceb4c410e710bc18681437c55 Mon Sep 17 00:00:00 2001
+From: Eduard Ursu <eduardursu78@gmail.com>
+Date: Fri, 20 Aug 2021 21:43:25 +0200
+Subject: [PATCH 424/506] Update build_and_sign_release_apk.yml
+
+- Put the announcement in one line
+- Add continue on error
+---
+ .github/workflows/build_and_sign_release_apk.yml | 11 +++--------
+ 1 file changed, 3 insertions(+), 8 deletions(-)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index f68430ec..bd0c3f1e 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -337,17 +337,12 @@ jobs:
+           asset_content_type: application/vnd.android.package-archive
+ 
+       - name: Send announcement on Discord
++        continue-on-error: true
+         run: |
+           curl -H 'Content-Type: application/json' -X POST -d '{"username": "Kiwi Builder (Next)", "content": "A new build of Kiwi Browser Next (preview version) is available. This version will replace your currently installed Kiwi Browser (com.kiwibrowser.browser) - https://github.com/kiwibrowser/src.next/releases/tag/${{ github.run_id }}"}' ${{ secrets.DISCORD_WEBHOOK }}
+       
+       - name: Send announcement on Telegram
++        continue-on-error: true
+         run: |
+-          curl -d '{"text":"A new build of Kiwi Browser Next (preview version) is available. \n Version :[${{ github.run_id }}](https://github.com/kiwibrowser/src.next/releases/tag/${{ github.run_id }})", "chat_id":${{ secrets.TELEGRAM_CHAT }}, \
+-          "parse_mode" : "markdown","reply_markup" : { \
+-          "inline_keyboard": [ \
+-            [{"text": "x86", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser-${{ github.run_id }}-x86-github.apk"},{"text": "x64", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser-${{ github.run_id }}-x64-github.apk"}], \
+-            [{"text": "arm", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser-${{ github.run_id }}-arm-github.apk"},{"text": "arm64", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser-${{ github.run_id }}-arm64-github.apk"}], \
+-            [{"text": ".DEV x86", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser.dev-${{ github.run_id }}-x86-github.apk"},{"text": ".DEV x64", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser.dev-${{ github.run_id }}-x64-github.apk"}], \
+-            [{"text": ".DEV arm", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser.dev-${{ github.run_id }}-arm-github.apk"},{"text": ".DEV arm64", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser.dev-${{ github.run_id }}-arm64-github.apk"}]]}}' \
+-            -H "Content-Type: application/json" -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage
++          curl -H "Content-Type: application/json" -X POST -d '{"text":"A new build of Kiwi Browser Next (preview version) is available. \n Version :[${{ github.run_id }}](https://github.com/kiwibrowser/src.next/releases/tag/${{ github.run_id }})", "chat_id":${{ secrets.TELEGRAM_CHAT }},"parse_mode" : "markdown","reply_markup" : {"inline_keyboard": [[{"text": "x86", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser-${{ github.run_id }}-x86-github.apk"},{"text": "x64", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser-${{ github.run_id }}-x64-github.apk"}],[{"text": "arm", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser-${{ github.run_id }}-arm-github.apk"},{"text": "arm64", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser-${{ github.run_id }}-arm64-github.apk"}],[{"text": ".DEV x86", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser.dev-${{ github.run_id }}-x86-github.apk"},{"text": ".DEV x64", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser.dev-${{ github.run_id }}-x64-github.apk"}],[{"text": ".DEV arm", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser.dev-${{ github.run_id }}-arm-github.apk"},{"text": ".DEV arm64", "url": "https://github.com/kiwibrowser/src.next/releases/download/${{ github.run_id }}/com.kiwibrowser.browser.dev-${{ github.run_id }}-arm64-github.apk"}]]}}' https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage
+ 

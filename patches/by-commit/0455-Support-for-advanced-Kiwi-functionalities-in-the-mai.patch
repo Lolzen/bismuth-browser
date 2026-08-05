@@ -1,0 +1,498 @@
+From c87978cc1ea2cbcd3d388b135fc85e6e6d5f2e44 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:28:42 +0000
+Subject: [PATCH 455/506] Support for advanced Kiwi functionalities in the main
+ menu (including extensions)
+
+---
+ .../chrome/browser/app/ChromeActivity.java    | 138 +++++++++++++++---
+ .../AppMenuPropertiesDelegateImpl.java        | 117 ++++++++++++++-
+ .../chrome/browser/ui/appmenu/AppMenu.java    |  16 +-
+ 3 files changed, 230 insertions(+), 41 deletions(-)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
+index 94250bd4..910b8f52 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/app/ChromeActivity.java
+@@ -36,9 +36,6 @@ import androidx.annotation.Nullable;
+ import androidx.annotation.RequiresApi;
+ import androidx.annotation.VisibleForTesting;
+ 
+-import org.chromium.chrome.browser.browsing_data.ClearBrowsingDataTabsFragment;
+-import org.chromium.chrome.browser.settings.SettingsLauncherImpl;
+-import org.chromium.components.browser_ui.settings.SettingsLauncher;
+ import org.chromium.base.ActivityState;
+ import org.chromium.base.ApplicationStatus;
+ import org.chromium.base.BundleUtils;
+@@ -60,7 +57,6 @@ import org.chromium.base.supplier.OneshotSupplier;
+ import org.chromium.base.supplier.OneshotSupplierImpl;
+ import org.chromium.base.supplier.Supplier;
+ import org.chromium.base.supplier.UnownedUserDataSupplier;
+-import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
+ import org.chromium.chrome.R;
+ import org.chromium.chrome.browser.ActivityTabProvider;
+ import org.chromium.chrome.browser.ActivityUtils;
+@@ -69,7 +65,6 @@ import org.chromium.chrome.browser.ChromeActivitySessionTracker;
+ import org.chromium.chrome.browser.ChromeApplicationImpl;
+ import org.chromium.chrome.browser.ChromeKeyboardVisibilityDelegate;
+ import org.chromium.chrome.browser.ChromeWindow;
+-import org.chromium.components.content_settings.ContentSettingValues;
+ import org.chromium.chrome.browser.DeferredStartupHandler;
+ import org.chromium.chrome.browser.IntentHandler;
+ import org.chromium.chrome.browser.IntentHandler.IntentHandlerDelegate;
+@@ -113,7 +108,6 @@ import org.chromium.chrome.browser.download.items.OfflineContentAggregatorNotifi
+ import org.chromium.chrome.browser.feature_engagement.TrackerFactory;
+ import org.chromium.chrome.browser.feedback.HelpAndFeedbackLauncherImpl;
+ import org.chromium.chrome.browser.firstrun.ForcedSigninProcessor;
+-import org.chromium.chrome.browser.ApplicationLifetime;
+ import org.chromium.chrome.browser.flags.ActivityType;
+ import org.chromium.chrome.browser.flags.CachedFeatureFlags;
+ import org.chromium.chrome.browser.flags.ChromeFeatureList;
+@@ -256,23 +250,26 @@ import org.chromium.ui.widget.Toast;
+ import org.chromium.url.GURL;
+ import org.chromium.webapk.lib.client.WebApkNavigationClient;
+ 
+-import org.chromium.chrome.browser.night_mode.ThemeType;
+-import org.chromium.components.content_settings.ContentSettingsType;
+-import org.chromium.components.browser_ui.site_settings.SiteSettingsCategory;
+-import org.chromium.components.browser_ui.site_settings.WebsitePreferenceBridge;
+-import org.chromium.components.browser_ui.site_settings.WebsitePreferenceBridgeJni;
+-import org.chromium.base.IntentUtils;
+-
+-import org.chromium.ui.widget.Toast;
+-import org.chromium.chrome.browser.AppMenuBridge;
+-
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.function.Consumer;
+ 
+-import org.chromium.chrome.browser.night_mode.WebContentsDarkModeController;
+ import org.chromium.base.ContextUtils;
++import org.chromium.chrome.browser.ApplicationLifetime;
++import org.chromium.chrome.browser.AppMenuBridge;
++import org.chromium.chrome.browser.browsing_data.ClearBrowsingDataTabsFragment;
++import org.chromium.chrome.browser.night_mode.WebContentsDarkModeController;
++import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
+ import org.chromium.chrome.browser.night_mode.ThemeType;
++import org.chromium.chrome.browser.settings.SettingsLauncherImpl;
++import org.chromium.components.browser_ui.settings.SettingsLauncher;
++import org.chromium.components.content_settings.ContentSettingValues;
++import org.chromium.components.content_settings.ContentSettingsType;
++import org.chromium.components.browser_ui.site_settings.WebsitePreferenceBridge;
++import org.chromium.components.browser_ui.site_settings.WebsitePreferenceBridgeJni;
++import org.chromium.ui.widget.Toast;
++
++import org.chromium.chrome.browser.AppMenuBridge;
+ 
+ /**
+  * A {@link AsyncInitializationActivity} that builds and manages a {@link CompositorViewHolder}
+@@ -373,6 +370,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+     @Nullable
+     private Bundle mMenuItemData;
+ 
++    private String mMenuTitleCondensed;
++
+     /**
+      * The current configuration, used to for diffing when the configuration is changed.
+      */
+@@ -504,6 +503,8 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+         // not go through ChromeLauncherActivity that would have normally triggered this.
+         mPartnerBrowserRefreshNeeded = !PartnerBrowserCustomizations.getInstance().isInitialized();
+ 
++        WebContentsDarkModeController.updateDarkModeStringSettings();
++
+         CommandLine commandLine = CommandLine.getInstance();
+         if (!commandLine.hasSwitch(ChromeSwitches.DISABLE_FULLSCREEN)) {
+             TypedValue threshold = new TypedValue();
+@@ -1701,9 +1702,6 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+         // multi-window mode. See crbug.com/602366.
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+             changeBackgroundColorForResizing();
+-            if (ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false) || ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0) == ThemeType.DARK)
+-              getWindow().setBackgroundDrawable(new ColorDrawable(ApiCompatibilityUtils.getColor(
+-                      getResources(), R.color.media_viewer_bg)));
+         } else {
+             // Post the removeWindowBackground() call as a separate task, as doing it synchronously
+             // here can cause redrawing glitches. See crbug.com/686662 for an example problem.
+@@ -1740,8 +1738,6 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+ 
+         super.finishNativeInitialization();
+ 
+-        AppMenuBridge.getRunningExtensions(Profile.getLastUsedRegularProfile(), null);
+-
+         mManualFillingComponentSupplier.get().initialize(getWindowAndroid(),
+                 mRootUiCoordinator.getBottomSheetController(),
+                 (ChromeKeyboardVisibilityDelegate) getWindowAndroid().getKeyboardDelegate(),
+@@ -1782,6 +1778,11 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+         return mNativeInitialized;
+     }
+ 
++    @Override
++    public void setLastItemTitle(String itemTitle) {
++        mMenuTitleCondensed = itemTitle;
++    }
++
+     @Override
+     public boolean onOptionsItemSelected(int itemId, @Nullable Bundle menuItemData) {
+         mMenuItemData = menuItemData;
+@@ -2415,6 +2416,27 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+         @BrowserProfileType
+         int type = Profile.getBrowserProfileTypeFromProfile(getCurrentTabModel().getProfile());
+ 
++        if (mMenuTitleCondensed != null && !mMenuTitleCondensed.equals("") && mMenuTitleCondensed.contains("Extension: ")) {
++            String[] extensionInfo = mMenuTitleCondensed.split(": ");
++            String extensionId = extensionInfo[1];
++            String extensionUrl = "";
++            if (extensionInfo.length > 2)
++                extensionUrl = extensionInfo[2];
++            Log.d("Kiwi", "Pressed extension menu: " + extensionId + " - url: " + extensionUrl);
++            Tab tab = getActivityTab();
++            if (tab != null) {
++                WebContents webContents = tab.getWebContents();
++                LaunchMetrics.commitLaunchMetrics(webContents);
++                AppMenuBridge.grantExtensionActiveTab(Profile.fromWebContents(webContents).getOriginalProfile(), webContents, extensionId);
++                if (!extensionUrl.equals(""))
++                  getCurrentTabCreator().launchUrl(extensionUrl, TabLaunchType.FROM_CHROME_UI);
++                else
++                  AppMenuBridge.callExtension(Profile.fromWebContents(webContents).getOriginalProfile(), webContents, extensionId);
++                return true;
++            }
++            return false;
++        }
++
+         if (id == R.id.preferences_id) {
+             SettingsLauncher settingsLauncher = new SettingsLauncherImpl();
+             settingsLauncher.launchSettingsActivity(this);
+@@ -2715,6 +2737,30 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+             return true;
+         }
+ 
++        if (id == R.id.adblock_id || id == R.id.adblock_check_id) {
++            boolean adBlockIsActive = (WebsitePreferenceBridgeJni.get().isContentSettingEnabled(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS) == false);
++            if (!adBlockIsActive) {
++              WebsitePreferenceBridgeJni.get().setContentSettingEnabled(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS, false); // BLOCK
++            } else {
++              int adblockSettingForThisSite = WebsitePreferenceBridgeJni.get().getPermissionSettingForOrigin(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS, currentTab.getUrl().getSpec(), currentTab.getUrl().getSpec());
++              if (adblockSettingForThisSite == ContentSettingValues.DEFAULT || adblockSettingForThisSite == ContentSettingValues.BLOCK)
++                WebsitePreferenceBridgeJni.get().setPermissionSettingForOrigin(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS, currentTab.getUrl().getSpec(), currentTab.getUrl().getSpec(), ContentSettingValues.ALLOW);
++              else
++                WebsitePreferenceBridgeJni.get().setPermissionSettingForOrigin(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS, currentTab.getUrl().getSpec(), currentTab.getUrl().getSpec(), ContentSettingValues.DEFAULT);
++            }
++            currentTab.stopLoading();
++            currentTab.reload();
++            RecordUserAction.record("MobileMenuSwitchAdblock");
++        }
++
++        if (id == R.id.developer_tools_id) {
++            AppMenuBridge.openDevTools(currentTab.getWebContents());
++        }
++
++        if (id == R.id.disable_proxy_id) {
++            AppMenuBridge.disableProxy(Profile.fromWebContents(currentTab.getWebContents()).getOriginalProfile());
++        }
++
+         if (id == R.id.auto_dark_web_contents_id || id == R.id.auto_dark_web_contents_check_id) {
+             // Get values needed to check/enable auto dark for the current site.
+             Profile profile = getCurrentTabModel().getProfile();
+@@ -2730,6 +2776,7 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+ 
+             // Show dialog informing user how to disable the feature globally and give feedback if
+             // disabling through the app menu for the nth time (determined by feature engagement).
++            if (false)
+             if (isEnabled) {
+                 WebContentsDarkModeMessageController.attemptToShowDialog(this, profile,
+                         url.getSpec(), getModalDialogManager(), new SettingsLauncherImpl(),
+@@ -2749,6 +2796,53 @@ public abstract class ChromeActivity<C extends ChromeActivityComponent>
+             return true;
+         }
+ 
++        if (id == R.id.night_mode_switcher_id) {
++            Log.d("Kiwi", "Initializing night mode with mode: " + ContextUtils.getAppSharedPreferences().getString("active_nightmode", "default"));
++            WebContentsDarkModeController.updateDarkModeStringSettings();
++            boolean isDarkModeEnabled = ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false);
++            if (!isDarkModeEnabled) {
++              getWindow().setBackgroundDrawable(new ColorDrawable(
++                          ApiCompatibilityUtils.getColor(getResources(),
++                          R.color.media_viewer_bg)));
++              int currentTheme = ContextUtils.getAppSharedPreferences().getInt("ui_theme_setting", 0);
++              SharedPreferencesManager.getInstance().writeBooleanSync("darken_websites_enabled", true);
++              SharedPreferencesManager.getInstance().writeIntUnchecked("previous_ui_theme_setting", currentTheme);
++              SharedPreferencesManager.getInstance().writeInt("ui_theme_setting", ThemeType.DARK);
++            } else {
++              getWindow().setBackgroundDrawable(new ColorDrawable(
++                          ApiCompatibilityUtils.getColor(getResources(),
++                          R.color.resizing_background_color)));
++              int previousTheme = ContextUtils.getAppSharedPreferences().getInt("previous_ui_theme_setting", 0);
++              SharedPreferencesManager.getInstance().writeBooleanSync("darken_websites_enabled", false);
++              SharedPreferencesManager.getInstance().writeInt("ui_theme_setting", previousTheme);
++            }
++            WebsitePreferenceBridge.setContentSettingEnabled(
++                    Profile.getLastUsedRegularProfile(), ContentSettingsType.AUTO_DARK_WEB_CONTENT, ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false));
++            currentTab.getWebContents().notifyRendererPreferenceUpdate();
++        }
++
++        if (id == R.id.extensions_id) {
++            RecordUserAction.record("MobileMenuExtensions");
++            TabCreator tabCreator = getTabCreator(currentTab.isIncognito());
++            if (currentTab != null && tabCreator != null) {
++              tabCreator.createNewTab(
++                      new LoadUrlParams("chrome://extensions", PageTransition.LINK),
++                      TabLaunchType.FROM_CHROME_UI, getActivityTab());
++            }
++        }
++
++        if (id == R.id.clear_data_menu_id) {
++            RecordUserAction.record("ClearBrowsingDataFromMainMenu");
++            SettingsLauncher settingsLauncher = new SettingsLauncherImpl();
++            settingsLauncher.launchSettingsActivity(this, ClearBrowsingDataTabsFragment.class);
++        }
++
++        if (id == R.id.exit_id) {
++            RecordUserAction.record("MobileMenuExit");
++            getTabModelSelector().closeAllTabs();
++            ApplicationLifetime.terminate(false);
++        }
++
+         return false;
+     }
+ 
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
+index dab11251..e4cea08e 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
+@@ -33,8 +33,6 @@ import org.chromium.base.metrics.RecordHistogram;
+ import org.chromium.base.supplier.ObservableSupplier;
+ import org.chromium.base.supplier.OneshotSupplier;
+ import org.chromium.chrome.R;
+-import org.chromium.components.content_settings.ContentSettingsType;
+-import org.chromium.components.content_settings.ContentSettingValues;
+ import org.chromium.chrome.browser.ActivityTabProvider;
+ import org.chromium.chrome.browser.banners.AppMenuVerbiage;
+ import org.chromium.chrome.browser.bookmarks.BookmarkBridge;
+@@ -100,11 +98,26 @@ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Map;
+ 
++import java.util.Hashtable;
++
++import android.graphics.Bitmap;
++import android.graphics.drawable.BitmapDrawable;
++import android.graphics.BitmapFactory;
++import android.util.Base64;
++import android.util.Base64InputStream;
++import androidx.appcompat.view.menu.MenuBuilder;
++import org.chromium.chrome.browser.AppMenuBridge;
++import org.chromium.chrome.browser.profiles.Profile;
++import org.chromium.content_public.browser.WebContents;
++
+ import org.chromium.components.browser_ui.site_settings.SiteSettingsCategory;
+ import org.chromium.components.browser_ui.site_settings.WebsitePreferenceBridge;
+ import org.chromium.components.browser_ui.site_settings.WebsitePreferenceBridgeJni;
++import org.chromium.components.content_settings.ContentSettingsType;
++import org.chromium.components.content_settings.ContentSettingValues;
+ 
+ import org.chromium.chrome.browser.AppMenuBridge;
++import org.chromium.base.Log;
+ 
+ /**
+  * Base implementation of {@link AppMenuPropertiesDelegate} that handles hiding and showing menu
+@@ -338,6 +351,45 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+ 
+         prepareMenu(menu, handler);
+ 
++        Tab currentTab = mActivityTabProvider.get();
++        WebContents webContents = null;
++
++        boolean canShowExtensions = false;
++
++        if (currentTab != null)
++          canShowExtensions = true;
++        webContents = currentTab != null ? currentTab.getWebContents() : null;
++
++        int numItems = menu.size();
++
++        if (canShowExtensions) {
++          int itemIndex = numItems++;
++          String extensions = AppMenuBridge.getRunningExtensions(Profile.fromWebContents(webContents).getOriginalProfile(), webContents);
++          if (!extensions.isEmpty()) {
++            String[] extensionsArray = extensions.split("\u001f");
++            for (String extension: extensionsArray) {
++              String[] extensionsInfo = extension.split("\u001e");
++              MenuItem newlyAdded = menu.add(999999, 999999 + itemIndex, Menu.NONE, extensionsInfo[0]);
++              if (extensionsInfo.length > 1) {
++                newlyAdded.setTitleCondensed("Extension: " + extensionsInfo[1]);
++              }
++
++              if (extensionsInfo.length > 2 && !extensionsInfo[2].equals("")) {
++                newlyAdded.setTitleCondensed("Extension: " + extensionsInfo[1] + ": " + extensionsInfo[2]);
++              }
++
++              if (extensionsInfo.length > 3) {
++                String cleanImage = extensionsInfo[3].replace("data:image/png;base64,", "").replace("data:image/jpeg;base64,","").replace("data:image/gif;base64,", "");
++                byte[] decodedString = Base64.decode(cleanImage, Base64.DEFAULT);
++                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
++
++                newlyAdded.setIcon(new BitmapDrawable(mContext.getResources(), decodedByte));
++              }
++              itemIndex++;
++           }
++         }
++       }
++
+         // TODO(crbug.com/1119550): Programmatically create menu item's PropertyModel instead of
+         // converting from MenuItems.
+         for (int i = 0; i < menu.size(); ++i) {
+@@ -362,7 +414,6 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+                     subList.add(new MVCListAdapter.ListItem(0, subModel));
+                     if (subitem.getItemId() == R.id.reload_menu_id) {
+                         mReloadPropertyModel = subModel;
+-                        Tab currentTab = mActivityTabProvider.get();
+                         loadingStateChanged(currentTab == null ? false : currentTab.isLoading());
+                     }
+                 }
+@@ -371,7 +422,8 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+             int menutype = AppMenuItemType.STANDARD;
+             if (item.getItemId() == R.id.request_desktop_site_row_menu_id
+                     || item.getItemId() == R.id.share_row_menu_id
+-                    || item.getItemId() == R.id.auto_dark_web_contents_row_menu_id) {
++                    || item.getItemId() == R.id.auto_dark_web_contents_row_menu_id
++                    || item.getItemId() == R.id.adblock_row_menu_id) {
+                 menutype = AppMenuItemType.TITLE_BUTTON;
+             } else if (item.getItemId() == R.id.icon_row_menu_id) {
+                 int viewCount = item.getSubMenu().size();
+@@ -538,6 +590,26 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+ 
+         updateAutoDarkMenuItem(menu, currentTab, isChromeScheme);
+ 
++        updateAdblockMenuItem(menu, currentTab, true /* can show */);
++        MenuItem nightModeMenu = menu.findItem(R.id.night_mode_switcher_id);
++        if (nightModeMenu != null) {
++               if (ContextUtils.getAppSharedPreferences().getBoolean("darken_websites_enabled", false)) {
++                   nightModeMenu.setTitle(R.string.main_menu_turn_off_night_mode);
++                   nightModeMenu.setIcon(R.drawable.ic_night_mode_off);
++               } else {
++                   nightModeMenu.setTitle(R.string.main_menu_turn_on_night_mode);
++                   nightModeMenu.setIcon(R.drawable.ic_night_mode_on);
++               }
++        }
++
++        MenuItem disableProxyMenu = menu.findItem(R.id.disable_proxy_id);
++        boolean isProxyEnabled = AppMenuBridge.isProxyEnabled(Profile.getLastUsedRegularProfile());
++        if (isProxyEnabled) {
++            disableProxyMenu.setVisible(true);
++        } else {
++            disableProxyMenu.setVisible(false);
++        }
++
+         // Only display reader mode settings menu option if the current page is in reader mode.
+         menu.findItem(R.id.reader_mode_prefs_id)
+                 .setVisible(isCurrentTabNotNull && shouldShowReaderModePrefs(currentTab));
+@@ -546,6 +618,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+         menu.findItem(R.id.enter_vr_id).setVisible(isCurrentTabNotNull && shouldShowEnterVr());
+ 
+         updateManagedByMenuItem(menu, currentTab);
++        menu.findItem(R.id.help_id).setVisible(false);
+     }
+ 
+     /**
+@@ -660,6 +733,41 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+         }
+     }
+ 
++    protected void updateAdblockMenuItem(
++            Menu menu, Tab currentTab, boolean canShowAdblockMenu) {
++        MenuItem adblockMenuRow = menu.findItem(R.id.adblock_row_menu_id);
++        MenuItem adblockMenuLabel = menu.findItem(R.id.adblock_id);
++        MenuItem adblockMenuCheck = menu.findItem(R.id.adblock_check_id);
++
++        String url = currentTab.getUrl().getSpec();
++        boolean isChromeScheme = url.startsWith(UrlConstants.CHROME_URL_PREFIX)
++                || url.startsWith(UrlConstants.CHROME_NATIVE_URL_PREFIX);
++        // Also hide adblock desktop site on Reader Mode.
++        boolean isDistilledPage = DomDistillerUrlUtils.isDistilledPage(url);
++
++        // adsEnabled means "adBlockingEnabled"
++        boolean itemVisible = canShowAdblockMenu
++                && !isChromeScheme && !currentTab.isNativePage() && !isDistilledPage;
++        adblockMenuRow.setVisible(itemVisible);
++        if (!itemVisible) return;
++
++        boolean adBlockIsActive = (WebsitePreferenceBridgeJni.get().isContentSettingEnabled(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS) == false);
++        if (!adBlockIsActive) {
++            adblockMenuCheck.setChecked(false);
++            adblockMenuLabel.setIcon(R.drawable.ic_adblock_off);
++        } else {
++            int adblockSettingForThisSite = WebsitePreferenceBridgeJni.get().getPermissionSettingForOrigin(Profile.getLastUsedRegularProfile(), ContentSettingsType.ADS, currentTab.getUrl().getSpec(), currentTab.getUrl().getSpec());
++            if (adblockSettingForThisSite == ContentSettingValues.DEFAULT || adblockSettingForThisSite == ContentSettingValues.BLOCK){
++                adblockMenuCheck.setChecked(true);
++                adblockMenuLabel.setIcon(R.drawable.ic_adblock_on);
++            }
++            else {
++                adblockMenuCheck.setChecked(false);
++                adblockMenuLabel.setIcon(R.drawable.ic_adblock_off);
++            }
++       }
++    }
++
+     /**
+      * @param currentTab The currentTab for which the app menu is showing.
+      * @return Whether the reader mode preferences menu item should be displayed.
+@@ -1290,6 +1398,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+         // Hide app menu item if on non-NTP chrome:// page or auto dark not enabled.
+         boolean isAutoDarkEnabled = isAutoDarkWebContentsEnabled();
+         boolean itemVisible = currentTab != null && !isChromeScheme && isAutoDarkEnabled;
++        itemVisible = false;
+         autoDarkMenuRow.setVisible(itemVisible);
+         if (!itemVisible) return;
+ 
+diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
+index 6ad5a451..c5f4991b 100644
+--- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
++++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
+@@ -65,13 +65,9 @@ import android.graphics.Color;
+ import android.app.Activity;
+ import java.util.Hashtable;
+ 
+-import androidx.appcompat.view.menu.MenuBuilder;
+-
+ import org.chromium.chrome.browser.app.ChromeActivity;
+ 
+ import org.chromium.base.annotations.NativeMethods;
+-import org.chromium.chrome.browser.tabmodel.TabCreator;
+-import org.chromium.content_public.browser.LoadUrlParams;
+ 
+ import org.chromium.chrome.browser.tab.Tab;
+ import org.chromium.ui.mojom.WindowOpenDisposition;
+@@ -82,12 +78,6 @@ import org.chromium.base.annotations.CalledByNative;
+ import org.chromium.chrome.browser.profiles.Profile;
+ import org.chromium.content_public.browser.WebContents;
+ 
+-import org.chromium.chrome.browser.AppMenuBridge;
+-import org.chromium.chrome.browser.tab.TabLaunchType;
+-import org.chromium.ui.base.PageTransition;
+-
+-import android.content.ContextWrapper;
+-
+ /**
+  * Shows a popup of menuitems anchored to a host view. When a item is selected we call
+  * AppMenuHandlerImpl.AppMenuDelegate.onOptionsItemSelected with the appropriate MenuItem.
+@@ -107,10 +97,6 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+     private final int mChipHighlightExtension;
+     private final int[] mTempLocation;
+ 
+-    private Hashtable<Integer, String> extensionsIds;
+-    private Hashtable<Integer, String> extensionsPopups;
+-    private Activity mActivity;
+-
+     private PopupWindow mPopup;
+     private ListView mListView;
+     private ModelListAdapter mAdapter;
+@@ -593,7 +579,7 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuClickHandler
+         int menuHeight = calculateHeightForItems(
+                 menuItemIds, heightList, groupDividerResourceId, availableScreenSpace);
+         menuHeight += footerHeight + headerHeight + padding.top + padding.bottom;
+-        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) && menuItems.size() >= 7)
++        if (ContextUtils.getAppSharedPreferences().getBoolean("enable_bottom_toolbar", false) && menuItemIds.size() >= 7)
+             menuHeight /= 1.45;
+         mPopup.setHeight(menuHeight);
+         return menuHeight;

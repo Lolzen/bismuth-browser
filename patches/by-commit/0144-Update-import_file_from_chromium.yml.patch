@@ -1,0 +1,29 @@
+From 3338f237342674990c39eecadd23b486006dd87a Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 23:09:12 +0300
+Subject: [PATCH 144/506] Update import_file_from_chromium.yml
+
+---
+ .github/workflows/import_file_from_chromium.yml | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
+
+diff --git a/.github/workflows/import_file_from_chromium.yml b/.github/workflows/import_file_from_chromium.yml
+index 3f888ac1..45035479 100644
+--- a/.github/workflows/import_file_from_chromium.yml
++++ b/.github/workflows/import_file_from_chromium.yml
+@@ -49,13 +49,7 @@ jobs:
+         run: git add ${{ github.event.inputs.path }}
+ 
+       - name: Committing file
+-        run: git commit -a -m '[Import] Importing ${{ github.event.inputs.path }} from ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}'
+-
+-      - name: Going back to master
+-        run: git switch master
+-
+-      - name: Rebasing on top of Chromium
+-        run: git rebase chromium
++        run: git commit -a -m '[Chromium] Importing ${{ github.event.inputs.path }} from version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}'
+ 
+       - name: Pushing repository
+-        run: git push --all --force
++        run: git push chromium

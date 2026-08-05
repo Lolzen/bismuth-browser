@@ -1,0 +1,85 @@
+From 519078de8527de98eca55b47ada9bf69e696ff2c Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 18 Jul 2021 23:47:54 +0300
+Subject: [PATCH 035/506] Change package name
+
+---
+ .github/workflows/build_apk.yml | 37 ++++-----------------------------
+ 1 file changed, 4 insertions(+), 33 deletions(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index afa5a2a5..b8a2738b 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -245,35 +245,6 @@ jobs:
+           asset_name: Kiwi-${{ github.run_id }}-arm.map
+           asset_content_type: application/vnd.android.package-archive
+ 
+-      - name: Uploading mapping file into GitHub release (arm64)
+-        uses: actions/upload-release-asset@v1
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        with:
+-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+-          asset_path: ./apk-arm64/ChromePublic.apk.mapping
+-          asset_name: Kiwi-${{ github.run_id }}-arm64.map
+-          asset_content_type: application/vnd.android.package-archive
+-
+-      - name: Uploading mapping file into GitHub release (x86)
+-        uses: actions/upload-release-asset@v1
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        with:
+-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+-          asset_path: ./apk-x86/ChromePublic.apk.mapping
+-          asset_name: Kiwi-${{ github.run_id }}-x86.map
+-          asset_content_type: application/vnd.android.package-archive
+-
+-      - name: Uploading mapping file into GitHub release (x64)
+-        uses: actions/upload-release-asset@v1
+-        env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-        with:
+-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+-          asset_path: ./apk-x64/ChromePublic.apk.mapping
+-          asset_name: Kiwi-${{ github.run_id }}-x64.map
+-          asset_content_type: application/vnd.android.package-archive
+ 
+       - name: Signing and uploading release to GitHub and send to the Play Store
+         if: ${{ github.repository_owner == 'kiwibrowser' && contains(github.event.inputs.prepareRelease, 'yes') }}
+@@ -296,7 +267,7 @@ jobs:
+         with:
+           upload_url: ${{ steps.create_release.outputs.upload_url }}
+           asset_path: ./apk-arm/ChromePublic-DevSigned.apk
+-          asset_name: Kiwi-${{ github.run_id }}-arm-signed.apk
++          asset_name: com.kiwibrowser.browser-${{ github.run_id }}-arm-signed.apk
+           asset_content_type: application/vnd.android.package-archive
+ 
+       - name: Uploading release asset (arm64-signed)
+@@ -307,7 +278,7 @@ jobs:
+         with:
+           upload_url: ${{ steps.create_release.outputs.upload_url }}
+           asset_path: ./apk-arm64/ChromePublic-DevSigned.apk
+-          asset_name: Kiwi-${{ github.run_id }}-arm64-signed.apk
++          asset_name: com.kiwibrowser.browser-${{ github.run_id }}-arm64-signed.apk
+           asset_content_type: application/vnd.android.package-archive
+ 
+       - name: Uploading release asset (x86-signed)
+@@ -318,7 +289,7 @@ jobs:
+         with:
+           upload_url: ${{ steps.create_release.outputs.upload_url }}
+           asset_path: ./apk-x86/ChromePublic-DevSigned.apk
+-          asset_name: Kiwi-${{ github.run_id }}-x86-signed.apk
++          asset_name: com.kiwibrowser.browser-${{ github.run_id }}-x86-signed.apk
+           asset_content_type: application/vnd.android.package-archive
+ 
+       - name: Uploading release asset (x64-signed)
+@@ -329,7 +300,7 @@ jobs:
+         with:
+           upload_url: ${{ steps.create_release.outputs.upload_url }}
+           asset_path: ./apk-x64/ChromePublic-DevSigned.apk
+-          asset_name: Kiwi-${{ github.run_id }}-x64-signed.apk
++          asset_name: com.kiwibrowser.browser-${{ github.run_id }}-x64-signed.apk
+           asset_content_type: application/vnd.android.package-archive
+ 
+       - name: Send announcement on Discord

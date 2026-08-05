@@ -1,0 +1,25 @@
+From fa06f8e334f1bee54cc7f2cdeff9ab1958f23898 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 19:39:57 +0300
+Subject: [PATCH 128/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index 8ef9590b..d4a758c1 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -78,8 +78,10 @@ jobs:
+         id: pullrequest
+         uses: peter-evans/create-pull-request@v3
+         with:
+-          branch: chromium
++          branch: chromium_${{ github.event.inputs.NEW_CHROMIUM_MAJOR }}.${{ github.event.inputs.NEW_CHROMIUM_MINOR }}.${{ github.event.inputs.NEW_CHROMIUM_BUILD }}.${{ github.event.inputs.NEW_CHROMIUM_PATCH }}
+           base: master
++          delete-branch: true
++          signoff: true
+         
+       - name: Getting pull request URL
+         run: |

@@ -1,0 +1,14 @@
+From 6b39c0c674b7ba624fbf1027cdd07c8db86c93fa Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 03:15:41 +0300
+Subject: [PATCH 053/506] Rename rename_directory to rename_directory.yml
+
+---
+ .github/workflows/{rename_directory => rename_directory.yml} | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename .github/workflows/{rename_directory => rename_directory.yml} (100%)
+
+diff --git a/.github/workflows/rename_directory b/.github/workflows/rename_directory.yml
+similarity index 100%
+rename from .github/workflows/rename_directory
+rename to .github/workflows/rename_directory.yml

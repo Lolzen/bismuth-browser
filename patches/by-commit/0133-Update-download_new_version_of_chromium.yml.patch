@@ -1,0 +1,22 @@
+From d664d29df8a9acdc903a656868c21061226b65f3 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 20:10:36 +0300
+Subject: [PATCH 133/506] Update download_new_version_of_chromium.yml
+
+---
+ .github/workflows/download_new_version_of_chromium.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/download_new_version_of_chromium.yml b/.github/workflows/download_new_version_of_chromium.yml
+index 496937c2..28438aee 100644
+--- a/.github/workflows/download_new_version_of_chromium.yml
++++ b/.github/workflows/download_new_version_of_chromium.yml
+@@ -44,7 +44,7 @@ jobs:
+ 
+       - name: Loading settings from CHROMIUM_VERSION
+         run: |
+-          source CHROMIUM_VERSION || true; export $(cut -d= -f1 CHROMIUM_VERSION | grep -vF '#')
++          if [ -f "CHROMIUM_VERSION" ]; then source CHROMIUM_VERSION; fi; export $(cut -d= -f1 CHROMIUM_VERSION | grep -vF '#')
+           env | grep -F CHROMIUM_ >> $GITHUB_ENV
+ 
+       - name: Listing source files

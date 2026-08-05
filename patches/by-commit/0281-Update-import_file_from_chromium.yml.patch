@@ -1,0 +1,22 @@
+From 552b7eea2bfb6a3713ad9ea6b547e61ccb5dd80d Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Wed, 11 Aug 2021 19:14:25 +0300
+Subject: [PATCH 281/506] Update import_file_from_chromium.yml
+
+---
+ .github/workflows/import_file_from_chromium.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/import_file_from_chromium.yml b/.github/workflows/import_file_from_chromium.yml
+index 6fe54115..79b4bc88 100644
+--- a/.github/workflows/import_file_from_chromium.yml
++++ b/.github/workflows/import_file_from_chromium.yml
+@@ -64,7 +64,7 @@ jobs:
+               adjacent_target_file=$(echo ${{ github.event.inputs.path }} | sed -E "s#(\-mdpi|\-hdpi|\-xhdpi|\-xxhdpi|\-xxxhdpi)/#-${resolution_folder}/#g")
+               rm -f /tmp/file.txt
+               wget "https://chromium.googlesource.com/chromium/src/+/refs/tags/${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}/${adjacent_target_file}?format=TEXT" -O /tmp/file.txt &&
+-              mkdir -p "$(dirname '${adjacent_target_file}')" &&
++              mkdir -p $(dirname "${adjacent_target_file}") &&
+               cat /tmp/file.txt | base64 --decode > ${adjacent_target_file} &&
+               git add ${adjacent_target_file} &&
+               git commit -a -m "[Chromium] Importing ${adjacent_target_file} from version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }} (automatic import because we imported ${{ github.event.inputs.path }})"

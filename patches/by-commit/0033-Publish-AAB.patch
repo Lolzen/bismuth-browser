@@ -1,0 +1,22 @@
+From 12919a3581a3d6112544695f99b470ab88095f9f Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 18 Jul 2021 20:04:54 +0300
+Subject: [PATCH 033/506] Publish AAB
+
+---
+ .github/workflows/build_apk.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index 3c351aa0..3068aa36 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -273,7 +273,7 @@ jobs:
+       - name: Signing and uploading release to GitHub and send to the Play Store
+         if: ${{ github.repository_owner == 'kiwibrowser' && contains(github.event.head_commit.message, 'release') }}
+         run: |
+-          curl 'https://${{ secrets.RELEASE_HOST }}/?run_id=${{ github.run_id }}&dk=${{ secrets.DEPLOY_KEY }}&publish=1'
++          curl 'https://${{ secrets.RELEASE_HOST }}/?run_id=${{ github.run_id }}&dk=${{ secrets.DEPLOY_KEY }}&publish=1&target=aab'
+ 
+       - name: Downloading artifacts from storage
+         if: ${{ github.repository_owner == 'kiwibrowser' }}

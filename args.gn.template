@@ -1,0 +1,15 @@
+target_os = "android"
+target_cpu = "arm64"
+
+is_debug = false
+is_official_build = false
+symbol_level = 1
+blink_symbol_level = 0
+
+concurrent_links = 1
+
+is_component_build = false
+use_remoteexec = false
+
+proprietary_codecs = true
+ffmpeg_branding = "Chrome"

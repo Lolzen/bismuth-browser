@@ -1,0 +1,25 @@
+From e1132d148bc34b89f2824316edc0b021590debf5 Mon Sep 17 00:00:00 2001
+From: Delphox <smugleaf@live.com>
+Date: Thu, 12 Aug 2021 14:11:47 -0300
+Subject: [PATCH 291/506] Change method back to indexOf
+
+Kiwi doesn't seem to have liked 'match'
+---
+ .../src/org/chromium/chrome/browser/PersonalizeResults.java   | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+index 62676de6..ba13742e 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/PersonalizeResults.java
+@@ -139,8 +139,8 @@ public class PersonalizeResults {
+ +"  document.querySelectorAll('span[aria-label=\"AMP logo\"]').forEach(function(a) {"
+ +"     a.style.display='none';"
+ +"  });"
+-+"  if (document.getElementsByClassName('amp-cantxt').length >= 1 && document.location.href.match(/\\/amp[\\/|\\.]/)) { document.location.replace(document.getElementsByClassName('amp-cantxt')[0].innerText); }"
+-+"  if (document.location.href.match(/\\/amp[\\/|\\.]/) && document.querySelector('head > link[rel=\"canonical\"]') != null && document.querySelector('head > link[rel=\"canonical\"]').href != document.location.href) { document.location.replace(document.querySelector('head > link[rel=\"canonical\"]').href); };"
+++"  if (document.getElementsByClassName('amp-cantxt').length >= 1 && (document.location.href.indexOf('/amp/') != -1 || document.location.href.indexOf('/amp.') != -1)) { document.location.replace(document.getElementsByClassName('amp-cantxt')[0].innerText); }"
+++"  if ((document.location.href.indexOf('/amp/') != -1 || document.location.href.indexOf('/amp.') != -1) && document.querySelector('head > link[rel=\"canonical\"]') != null && document.querySelector('head > link[rel=\"canonical\"]').href != document.location.href) { document.location.replace(document.querySelector('head > link[rel=\"canonical\"]').href); };"
+ +"}"
+ +""
+ +"document.addEventListener('DOMNodeInserted', _cleanupAmp);"

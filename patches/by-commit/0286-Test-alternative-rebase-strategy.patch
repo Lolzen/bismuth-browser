@@ -1,0 +1,71 @@
+From b3a2fccf99ede986dcef9780dfb5f22b9f6946d6 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 12 Aug 2021 01:50:54 +0300
+Subject: [PATCH 286/506] Test alternative rebase strategy
+
+---
+ .../rebase_kiwi_on_top_of_chromium.yml        | 50 +++++++++++++++----
+ 1 file changed, 41 insertions(+), 9 deletions(-)
+
+diff --git a/.github/workflows/rebase_kiwi_on_top_of_chromium.yml b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+index 7f5aeda6..d3e08e3f 100644
+--- a/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
++++ b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+@@ -22,16 +22,48 @@ jobs:
+           git config --global user.email "github@actions"
+           git config --global user.name "Repository manager"
+ 
+-      - name: Switching to Kiwi
+-        run: git switch kiwi
+-        
+       - name: Fetching Chromium branch
+         run: git fetch origin chromium
+ 
+-      - name: Rebasing on top of Chromium
+-        run: git rebase origin/chromium --committer-date-is-author-date
++      - name: Disabling Git pager (e.g. for git log)
++        run: git config --global core.pager 'cat'
++
++      - name: Preparing local Chromium branch
++        run: git switch chromium
++
++      - name: Loading settings from CHROMIUM_VERSION
++        run: |
++          if [ -f "CHROMIUM_VERSION" ]; then
++            source CHROMIUM_VERSION;
++            export $(cut -d= -f1 CHROMIUM_VERSION | grep -vF '#');
++            env | grep -F CHROMIUM_ >> $GITHUB_ENV
++          fi;
++
++      - name: Switching to Kiwi
++        run: git switch kiwi
++
++      - name: Generating Kiwi version
++        run: |
++          echo "# The version to use for Kiwi Browser" > KIWI_VERSION
++          echo "" >> KIWI_VERSION
++          echo "MAJOR=${{ env.CHROMIUM_MAJOR }}" >> KIWI_VERSION
++          echo "MINOR=${{ env.CHROMIUM_MINOR }}" >> KIWI_VERSION
++          echo "BUILD=${{ env.CHROMIUM_BUILD }}" >> KIWI_VERSION
++          echo "PATCH=${{ env.CHROMIUM_PATCH }}" >> KIWI_VERSION
+ 
+-      # This is done on purpose
+-      # See: https://redfin.engineering/git-rebasing-public-branches-works-much-better-than-youd-think-ecc9a115aea9
+-      - name: Pushing branch
+-        run: git push origin kiwi --force
++      - name: Creating pull request
++        id: pullrequest
++        uses: peter-evans/create-pull-request@v3
++        with:
++          branch: chromium
++          base: kiwi
++          delete-branch: false
++          signoff: true
++          title: "Rebase Kiwi to Chromium version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}"
++          commit-message: "Rebase Kiwi to Chromium version ${{ env.CHROMIUM_MAJOR }}.${{ env.CHROMIUM_MINOR }}.${{ env.CHROMIUM_BUILD }}.${{ env.CHROMIUM_PATCH }}"
++          body: Version update initiated by ${{ github.actor }}
++
++      - name: Getting pull request URL
++        run: |
++          echo "Pull request number - ${{ steps.pullrequest.outputs.pull-request-number }}"
++          echo "Pull request URL - ${{ steps.pullrequest.outputs.pull-request-url }}"

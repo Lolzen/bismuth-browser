@@ -1,0 +1,23 @@
+From 4bbc307c5ece5403784448f820c7d3ce842936ee Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 28 Jul 2023 13:11:46 +0300
+Subject: [PATCH 486/506] Switch rclone installation to http1.1 due to http2
+ issues on their server
+
+---
+ .github/workflows/build_and_sign_release_apk.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_and_sign_release_apk.yml b/.github/workflows/build_and_sign_release_apk.yml
+index 90d86a34..4aa4018c 100644
+--- a/.github/workflows/build_and_sign_release_apk.yml
++++ b/.github/workflows/build_and_sign_release_apk.yml
+@@ -149,7 +149,7 @@ jobs:
+ 
+     steps:
+       - name: Installing rclone
+-        run: curl https://rclone.org/install.sh | sudo bash
++        run: curl --http1.1 https://rclone.org/install.sh | sudo bash
+     
+       - name: Creating rclone config
+         run: |

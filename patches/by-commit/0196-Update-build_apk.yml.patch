@@ -1,0 +1,28 @@
+From b9ca3b93b4592d286eb19513fed0a1b36c6f2760 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sun, 8 Aug 2021 20:59:30 +0300
+Subject: [PATCH 196/506] Update build_apk.yml
+
+---
+ .github/workflows/build_apk.yml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index 916bee6a..0c65bc4c 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -5,6 +5,8 @@ name: 'Kiwi: Build test apk'
+ on:
+   workflow_dispatch:
+ 
++concurrency: build_test_apk
++
+ # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+ jobs:
+   build:
+@@ -16,4 +18,4 @@ jobs:
+         run: sudo apt-get update
+ 
+       - name: Building APK
+-        run: echo OK
++        run: curl ${{ secrets.BUILD_SERVER }}/build_apk.php?build_key=${{ secrets.BUILD_KEY }}

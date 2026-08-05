@@ -1,0 +1,24 @@
+From 44eff106edb45c1a8f5dafb7d85ddbdfd63af3a4 Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 11 Dec 2021 06:33:34 +0000
+Subject: [PATCH 460/506] Directly use the frame URL
+
+---
+ components/javascript_dialogs/app_modal_dialog_manager.cc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/components/javascript_dialogs/app_modal_dialog_manager.cc b/components/javascript_dialogs/app_modal_dialog_manager.cc
+index 7ea3f759..6e3f76e7 100644
+--- a/components/javascript_dialogs/app_modal_dialog_manager.cc
++++ b/components/javascript_dialogs/app_modal_dialog_manager.cc
+@@ -162,8 +162,8 @@ void AppModalDialogManager::RunJavaScriptDialog(
+     return;
+   }
+ 
+-  GURL unwrapped_parent_frame_url = UnwrapURL(web_contents->GetURL());
+-  GURL unwrapped_alerting_frame_url = UnwrapURL(render_frame_host->GetLastCommittedURL());
++  GURL unwrapped_parent_frame_url = web_contents->GetURL();
++  GURL unwrapped_alerting_frame_url = render_frame_host->GetLastCommittedURL();
+ 
+   if (unwrapped_parent_frame_url.SchemeIs("chrome-extension") || unwrapped_alerting_frame_url.SchemeIs("chrome-extension")) {
+     *did_suppress_message = true;

@@ -1,0 +1,28 @@
+From e06c4ec688a6faeb54a91d8f528429af0ac9286c Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 2 Aug 2021 05:05:21 +0300
+Subject: [PATCH 069/506] Update rebase.yml
+
+---
+ .github/workflows/rebase.yml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/.github/workflows/rebase.yml b/.github/workflows/rebase.yml
+index c74bfd4a..8b6d8ce5 100644
+--- a/.github/workflows/rebase.yml
++++ b/.github/workflows/rebase.yml
+@@ -14,11 +14,11 @@ jobs:
+     steps:
+       - uses: actions/checkout@v2
+ 
+-      - name: Rebasing
+-        run: echo Rebasing files
++      - name: Loading CHROMIUM_VERSION config file
++        run: source CHROMIUM_VERSION
+ 
+       - name: Downloading files
+-        run: wget 'https://chromium.googlesource.com/chromium/src/+/refs/tags/93.0.4577.20/chrome/browser/resources/extensions/extensions.html?format=TEXT' -O chrome/browser/resources/extensions/extensions.html
++        run: wget 'https://chromium.googlesource.com/chromium/src/+/refs/tags/$CHROMIUM_MAJOR.$CHROMIUM_MINOR.$CHROMIUM_BUILD.$CHROMIUM_PATCH/chrome/browser/resources/extensions/extensions.html?format=TEXT' -O chrome/browser/resources/extensions/extensions.html
+         
+       - name: Outputting file
+         run: cat chrome/browser/resources/extensions/extensions.html | base64 --decode

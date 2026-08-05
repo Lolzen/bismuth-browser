@@ -1,0 +1,39 @@
+From e5209f27948dd07d55cec0a112860fa8c529af07 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 6 Aug 2021 01:01:20 +0300
+Subject: [PATCH 156/506] Create rebase_kiwi_on_top_of_chromium.yml
+
+---
+ .../rebase_kiwi_on_top_of_chromium.yml        | 23 +++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+ create mode 100644 .github/workflows/rebase_kiwi_on_top_of_chromium.yml
+
+diff --git a/.github/workflows/rebase_kiwi_on_top_of_chromium.yml b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+new file mode 100644
+index 00000000..c962040b
+--- /dev/null
++++ b/.github/workflows/rebase_kiwi_on_top_of_chromium.yml
+@@ -0,0 +1,23 @@
++name: 'Kiwi: Rebase Kiwi on top of Chromium'
++
++on:
++  workflow_dispatch:
++
++jobs:
++  build:
++    # The type of runner that the job will run on
++    runs-on: ubuntu-latest
++
++    steps:
++      - uses: actions/checkout@v2
++        with:
++          fetch-depth: 0
++
++      # For some reasons Git thinks it is a good idea to compact the Chromium repository
++      - name: Disable Git auto-packing
++        run: git config --global gc.auto 0
++        
++      - name: Setting-up GitHub username
++        run: |
++          git config --global user.email "github@actions"
++          git config --global user.name "Repository manager"

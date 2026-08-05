@@ -1,0 +1,20 @@
+From 81279bf2c33b8985b536d0ee845f3dfaab283449 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Fri, 6 Aug 2021 00:54:45 +0300
+Subject: [PATCH 150/506] Update import_file_from_chromium.yml
+
+---
+ .github/workflows/import_file_from_chromium.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/import_file_from_chromium.yml b/.github/workflows/import_file_from_chromium.yml
+index 098b908f..58b7c10d 100644
+--- a/.github/workflows/import_file_from_chromium.yml
++++ b/.github/workflows/import_file_from_chromium.yml
+@@ -1,5 +1,5 @@
+ # Import a file from Chromium, relative path to https://source.chromium.org/chromium/chromium/src
+-name: Import file from Chromium
++name: 'Chromium: Import file'
+ 
+ on:
+   workflow_dispatch:

@@ -1,0 +1,22 @@
+From 8e2df5603bef97e553e614b8568d19efb22a2f68 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Mon, 16 Aug 2021 03:02:36 +0300
+Subject: [PATCH 421/506] Remove unused ToolbarSwipeSceneLayer.java
+
+---
+ chrome/android/chrome_java_sources.gni | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/chrome/android/chrome_java_sources.gni b/chrome/android/chrome_java_sources.gni
+index b746fec1..3f116368 100644
+--- a/chrome/android/chrome_java_sources.gni
++++ b/chrome/android/chrome_java_sources.gni
+@@ -381,7 +381,7 @@ chrome_java_sources = [
+   "java/src/org/chromium/chrome/browser/compositor/scene_layer/StaticTabSceneLayer.java",
+   "java/src/org/chromium/chrome/browser/compositor/scene_layer/TabListSceneLayer.java",
+   "java/src/org/chromium/chrome/browser/compositor/scene_layer/TabStripSceneLayer.java",
+-  "java/src/org/chromium/chrome/browser/compositor/scene_layer/ToolbarSwipeSceneLayer.java",
++#  "java/src/org/chromium/chrome/browser/compositor/scene_layer/ToolbarSwipeSceneLayer.java",
+   "java/src/org/chromium/chrome/browser/contacts_picker/ChromePickerAdapter.java",
+   "java/src/org/chromium/chrome/browser/content/ContentUtils.java",
+   "java/src/org/chromium/chrome/browser/content_capture/ContentCaptureHistoryDeletionObserver.java",

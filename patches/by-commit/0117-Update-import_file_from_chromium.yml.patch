@@ -1,0 +1,23 @@
+From 7b5d7daf268873a681fb98890a151b3318a9e92f Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Thu, 5 Aug 2021 07:44:07 +0300
+Subject: [PATCH 117/506] Update import_file_from_chromium.yml
+
+---
+ .github/workflows/import_file_from_chromium.yml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/.github/workflows/import_file_from_chromium.yml b/.github/workflows/import_file_from_chromium.yml
+index 8f2ff242..90249dde 100644
+--- a/.github/workflows/import_file_from_chromium.yml
++++ b/.github/workflows/import_file_from_chromium.yml
+@@ -16,7 +16,8 @@ jobs:
+ 
+     steps:
+       - uses: actions/checkout@v2
+-        fetch-depth: 0
++        with:
++          fetch-depth: 0
+ 
+       # For some reasons Git thinks it is a good idea to compact the Chromium repository
+       - name: Disable Git auto-packing

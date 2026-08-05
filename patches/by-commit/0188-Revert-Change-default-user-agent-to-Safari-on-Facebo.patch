@@ -1,0 +1,24 @@
+From 3803db879624aa470589ccc915f0d456e8f676bb Mon Sep 17 00:00:00 2001
+From: Arnaud GRANAL <arnaud@geometry.ee>
+Date: Sat, 7 Aug 2021 23:19:55 +0000
+Subject: [PATCH 188/506] Revert "Change default user-agent to Safari on
+ Facebook"
+
+This reverts commit bb268dfef4a4a8a3532964463ae52e359521b058.
+---
+ net/url_request/url_request_http_job.cc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/net/url_request/url_request_http_job.cc b/net/url_request/url_request_http_job.cc
+index cb302364..b8c4f53b 100644
+--- a/net/url_request/url_request_http_job.cc
++++ b/net/url_request/url_request_http_job.cc
+@@ -337,7 +337,7 @@ void URLRequestHttpJob::OnGotFirstPartySetMetadata(
+   }
+   else if (request_info_.url.host().find("facebook.com") != std::string::npos || request_info_.url.host().find("fbcdn") != std::string::npos || request_info_.url.host().find("fbcdn.net") != std::string::npos)
+   {
+-     request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15");
++     request_info_.extra_headers.SetHeader(HttpRequestHeaders::kUserAgent, "Mozilla/5.0 (Linux; Android 3.0; ONEPLUS A6003) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.25 Mobile Safari/537.36");
+   }
+   else if (request_info_.url.host().find("news.google.com") != std::string::npos && request_info_.url.path().find("CAAqJggKIiBDQkFTRWdvSUwyMHZNRFZxYUdjU0FtVnVHZ0pWVXlnQVAB") != std::string::npos)
+   {

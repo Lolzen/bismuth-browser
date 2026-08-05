@@ -1,0 +1,22 @@
+From c8963e913f9d7a5265b695e56b1b969149772128 Mon Sep 17 00:00:00 2001
+From: Kiwi Browser <40272275+kiwibrowser@users.noreply.github.com>
+Date: Sat, 26 Jun 2021 19:22:02 +0300
+Subject: [PATCH 018/506] Update build_apk.yml
+
+---
+ .github/workflows/build_apk.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.github/workflows/build_apk.yml b/.github/workflows/build_apk.yml
+index 467dd46d..ea3f5fb3 100644
+--- a/.github/workflows/build_apk.yml
++++ b/.github/workflows/build_apk.yml
+@@ -136,7 +136,7 @@ jobs:
+         uses: actions/upload-artifact@v1
+         with:
+           name: apk-${{ matrix.platform }}
+-          path: ./kiwibrowser-next-builds-${{ matrix.platform }}/
++          path: $HOME/kiwibrowser-next-builds-${{ matrix.platform }}/
+ 
+   sign_and_upload:
+     runs-on: ubuntu-latest
