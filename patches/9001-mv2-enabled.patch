@@ -1,0 +1,19 @@
+diff --git a/extensions/common/extension_features.cc b/extensions/common/extension_features.cc
+index 8c3c00819fc3e..301318e701873 100644
+--- a/extensions/common/extension_features.cc
++++ b/extensions/common/extension_features.cc
+@@ -114,12 +114,12 @@ BASE_FEATURE(kExtensionLocalizationGuid, base::FEATURE_ENABLED_BY_DEFAULT);
+ 
+ BASE_FEATURE(kExtensionIconVariants, base::FEATURE_DISABLED_BY_DEFAULT);
+ 
+-BASE_FEATURE(kExtensionManifestV2Unsupported, base::FEATURE_ENABLED_BY_DEFAULT);
++BASE_FEATURE(kExtensionManifestV2Unsupported, base::FEATURE_DISABLED_BY_DEFAULT);
+ 
+ BASE_FEATURE(kExtensionManifestV2ExceptionList,
+              base::FEATURE_DISABLED_BY_DEFAULT);
+ 
+-BASE_FEATURE(kExtensionManifestV2Disabled, base::FEATURE_ENABLED_BY_DEFAULT);
++BASE_FEATURE(kExtensionManifestV2Disabled, base::FEATURE_DISABLED_BY_DEFAULT);
+ 
+ BASE_FEATURE(kExtensionsBackgroundCompilation,
+              base::FEATURE_DISABLED_BY_DEFAULT);

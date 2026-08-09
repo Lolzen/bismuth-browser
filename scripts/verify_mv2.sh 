@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+S=/home/gee/kiwi-rebase/build/chromium/src
+export PATH="/home/gee/kiwi-rebase/build/depot_tools:$PATH"
+cd "$S" || exit 1
+
+echo "=== 1. Ist die Aenderung noch im Baum? ==="
+git diff HEAD --stat
+grep -n "kExtensionManifestV2Unsupported\|kExtensionManifestV2Disabled" extensions/common/extension_features.cc
+
+echo
+echo "=== 2. Wird extension_features.cc in out/Ext kompiliert? ==="
+gn refs out/Ext //extensions/common/extension_features.cc 2>&1 | head -10
+
+echo
+echo "=== 3. Objekt neuer als die Quelle? ==="
+find out/Ext -name "extension_features*.o" -newer extensions/common/extension_features.cc 2>/dev/null | head -3
+echo "(leer = nicht neu gebaut)"
+
+echo
+echo "=== 4. Absicherung des about_flags-Eintrags ==="
+grep -n -B25 "kExtensionManifestV2Unsupported" chrome/browser/about_flags.cc | grep -E "BUILDFLAG|#if|#endif|kExtensionManifestV2Unsupported"
+
+echo
+echo "=== 5. NOTREACHED im Experiment-Manager ==="
+grep -n -B4 "NOTREACHED" extensions/browser/manifest_v2_experiment_manager.cc
