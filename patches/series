@@ -1,3 +1,5 @@
-9001-android-extensions.patch
-9001-mv2-enabled.patch
-9001-android-extensions-mv2.patch
+9001-extensions-mv2.patch
+9002-classic-tabswitcher.patch
+9003-extension-copy-on-load.patch
+9004-webstore-desktop.patch
+9005-branding.patch

@@ -1,0 +1,917 @@
+diff --git a/base/files/file_enumerator_posix.cc b/base/files/file_enumerator_posix.cc
+index 7c5d83c917524..702a4490fc611 100644
+--- a/base/files/file_enumerator_posix.cc
++++ b/base/files/file_enumerator_posix.cc
+@@ -198,7 +198,11 @@ FilePath FileEnumerator::Next() {
+         for (auto& info : directory_entries_) {
+           info.subdirs_ = subdirs_;
+           if (info.IsDirectory()) {
+-            pending_paths_.push(info.content_uri_);
++            if (root_path_.IsVirtualDocumentPath()) {
++              pending_paths_.push(root_path_.Append(info.filename_));
++            } else {
++              pending_paths_.push(info.content_uri_);
++            }
+             pending_subdirs_.push(subdirs_);
+             pending_subdirs_.top().push_back(info.GetName().value());
+           }
+@@ -306,7 +310,7 @@ FilePath FileEnumerator::Next() {
+   }
+ 
+ #if BUILDFLAG(IS_ANDROID)
+-  if (root_path_.IsContentUri() || root_path_.IsVirtualDocumentPath()) {
++  if (root_path_.IsContentUri()) {
+     return directory_entries_[current_directory_entry_].content_uri_;
+   }
+ #endif
+diff --git a/chrome/android/features/tab_ui/BUILD.gn b/chrome/android/features/tab_ui/BUILD.gn
+index a2b6d47c42bfa..603a8ac88322e 100644
+--- a/chrome/android/features/tab_ui/BUILD.gn
++++ b/chrome/android/features/tab_ui/BUILD.gn
+@@ -95,6 +95,9 @@ android_resources("java_resources") {
+     "java/res/layout/strip_drag_shadow_view.xml",
+     "java/res/layout/tab_card_label_layout.xml",
+     "java/res/layout/tab_grid_card_item.xml",
++    "java/res/layout/tab_list_card_item.xml",
++    "java/res/drawable/selected_tab_background.xml",
++    "java/res/drawable/selected_tab_background_incognito.xml",
+     "java/res/layout/tab_grid_card_item_layout.xml",
+     "java/res/layout/tab_grid_dialog_layout.xml",
+     "java/res/layout/tab_grid_dialog_toolbar.xml",
+diff --git a/chrome/android/features/tab_ui/java/res/drawable/selected_tab_background.xml b/chrome/android/features/tab_ui/java/res/drawable/selected_tab_background.xml
+new file mode 100644
+index 0000000000000..5f8b8533e0434
+--- /dev/null
++++ b/chrome/android/features/tab_ui/java/res/drawable/selected_tab_background.xml
+@@ -0,0 +1,13 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++Copyright 2019 The Chromium Authors
++Use of this source code is governed by a BSD-style license that can be
++found in the LICENSE file.
++-->
++
++<shape xmlns:android="http://schemas.android.com/apk/res/android">
++    <stroke
++        android:width="2dp"
++        android:color="@macro/default_control_color_active" />
++    <corners android:radius="@dimen/tab_list_card_radius" />
++</shape>
+\ No newline at end of file
+diff --git a/chrome/android/features/tab_ui/java/res/drawable/selected_tab_background_incognito.xml b/chrome/android/features/tab_ui/java/res/drawable/selected_tab_background_incognito.xml
+new file mode 100644
+index 0000000000000..7cf5fdaed5c51
+--- /dev/null
++++ b/chrome/android/features/tab_ui/java/res/drawable/selected_tab_background_incognito.xml
+@@ -0,0 +1,13 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++Copyright 2019 The Chromium Authors
++Use of this source code is governed by a BSD-style license that can be
++found in the LICENSE file.
++-->
++
++<shape xmlns:android="http://schemas.android.com/apk/res/android">
++    <stroke
++        android:width="2dp"
++        android:color="@color/baseline_primary_80" />
++    <corners android:radius="@dimen/tab_list_card_radius" />
++</shape>
+\ No newline at end of file
+diff --git a/chrome/android/features/tab_ui/java/res/layout/tab_list_card_item.xml b/chrome/android/features/tab_ui/java/res/layout/tab_list_card_item.xml
+new file mode 100644
+index 0000000000000..730e424f0fec4
+--- /dev/null
++++ b/chrome/android/features/tab_ui/java/res/layout/tab_list_card_item.xml
+@@ -0,0 +1,33 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++Copyright 2019 The Chromium Authors
++Use of this source code is governed by a BSD-style license that can be
++found in the LICENSE file.
++-->
++<org.chromium.chrome.browser.tasks.tab_management.TabListView
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content">
++
++    <LinearLayout
++        android:id="@+id/content_view"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:orientation="horizontal"
++        android:background="@drawable/menu_bg_tinted">
++
++        <include layout="@layout/modern_list_item_view" />
++        <FrameLayout
++            android:id="@+id/after_title_container"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content" />
++        <FrameLayout
++            android:id="@+id/before_description_container"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content" />
++
++    </LinearLayout>
++
++</org.chromium.chrome.browser.tasks.tab_management.TabListView>
+diff --git a/chrome/android/features/tab_ui/java/res/values/dimens.xml b/chrome/android/features/tab_ui/java/res/values/dimens.xml
+index f65f7806d3084..b42fd3ad13c1f 100644
+--- a/chrome/android/features/tab_ui/java/res/values/dimens.xml
++++ b/chrome/android/features/tab_ui/java/res/values/dimens.xml
+@@ -201,4 +201,9 @@ found in the LICENSE file.
+     <dimen name="pinned_tabs_strip_row_coverage_height">85dp</dimen>
+     <!-- Height of the pinned tab strip 40dp item height + 2 * 16dp margin. -->
+     <dimen name="pinned_tab_strip_height">72dp</dimen>
++    <dimen name="selection_tab_list_toggle_button_lateral_inset">18dp</dimen>
++    <dimen name="selection_tab_list_toggle_button_vertical_inset">22dp</dimen>
++    <dimen name="tab_list_selected_inset_low_end">6dp</dimen>
++    <dimen name="tab_card_label_list_margin_end">9dp</dimen>
++    <dimen name="tab_list_card_radius">4dp</dimen>
+ </resources>
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java
+index e4b8ee005e97f..5d63a91e4d2fc 100644
+--- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListContainerViewBinder.java
+@@ -111,8 +111,11 @@ class TabListContainerViewBinder {
+             int index = model.get(INITIAL_SCROLL_INDEX);
+             int offset = computeOffset(recyclerView, model);
+             // RecyclerView#scrollToPosition(int) behaves incorrectly first time after cold start.
+-            assumeNonNull((LinearLayoutManager) recyclerView.getLayoutManager())
+-                    .scrollToPositionWithOffset(index, offset);
++            LinearLayoutManager initialScrollLayoutManager =
++                    (LinearLayoutManager) recyclerView.getLayoutManager();
++            if (initialScrollLayoutManager != null) {
++                initialScrollLayoutManager.scrollToPositionWithOffset(index, offset);
++            }
+         } else if (FOCUS_TAB_INDEX_FOR_ACCESSIBILITY == propertyKey) {
+             int index = model.get(FOCUS_TAB_INDEX_FOR_ACCESSIBILITY);
+             RecyclerView.ViewHolder selectedViewHolder =
+@@ -146,7 +149,7 @@ class TabListContainerViewBinder {
+                     () -> {
+                         LinearLayoutManager layoutManager =
+                                 (LinearLayoutManager) recyclerView.getLayoutManager();
+-                        assumeNonNull(layoutManager);
++                        if (layoutManager == null) return new Pair<>(0, 0);
+                         int start = layoutManager.findFirstCompletelyVisibleItemPosition();
+                         int end = layoutManager.findLastCompletelyVisibleItemPosition();
+                         return new Pair<>(start, end);
+@@ -306,7 +309,8 @@ class TabListContainerViewBinder {
+         if (width <= 0 || height <= 0) return 0;
+ 
+         LinearLayoutManager layoutManager = (LinearLayoutManager) view.getLayoutManager();
+-        assert model.get(MODE) == TabListMode.GRID;
++        // Only the grid mode centers cards via span count; list mode has no offset.
++        if (model.get(MODE) != TabListMode.GRID) return 0;
+         GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
+         assumeNonNull(gridLayoutManager);
+         int cardWidth = width / gridLayoutManager.getSpanCount();
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
+index 7f539bd9b3d25..11f0c174bed9d 100644
+--- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
+@@ -118,13 +118,18 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+      *
+      * <p>NOTE: STRIP and GRID modes will have height equal to that of the container view.
+      */
+-    @IntDef({TabListMode.GRID, TabListMode.STRIP, TabListMode.NUM_ENTRIES})
++    @IntDef({
++        TabListMode.GRID,
++        TabListMode.STRIP,
++        TabListMode.LIST,
++        TabListMode.NUM_ENTRIES
++    })
+     @Retention(RetentionPolicy.SOURCE)
+     public @interface TabListMode {
+         int GRID = 0;
+         int STRIP = 1;
+         // int CAROUSEL_DEPRECATED = 2;
+-        // int LIST_DEPRECATED = 3;
++        int LIST = 3;
+         int NUM_ENTRIES = 4;
+     }
+ 
+@@ -324,6 +329,21 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+                                         .inflate(R.layout.tab_strip_item, parentView, false);
+                     },
+                     TabStripViewBinder::bind);
++        } else if (mMode == TabListMode.LIST) {
++            mAdapter.registerType(
++                    UiType.TAB,
++                    parent -> {
++                        ViewLookupCachingFrameLayout group =
++                                (ViewLookupCachingFrameLayout)
++                                        LayoutInflater.from(activity)
++                                                .inflate(
++                                                        R.layout.tab_list_card_item,
++                                                        parentView,
++                                                        false);
++                        group.setClickable(true);
++                        return group;
++                    },
++                    TabListViewBinder::bindTab);
+         } else {
+             throw new IllegalArgumentException(
+                     "Attempting to create a tab list UI with invalid mode");
+@@ -412,9 +432,14 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+                 Rect frame = new Rect();
+                 mActivity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+                 updateGridCardLayout(frame.width());
+-            } else if (mMode == TabListMode.STRIP) {
++            } else if (mMode == TabListMode.STRIP || mMode == TabListMode.LIST) {
+                 LinearLayoutManager layoutManager =
+-                        new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false) {
++                        new LinearLayoutManager(
++                                activity,
++                                mMode == TabListMode.LIST
++                                        ? LinearLayoutManager.VERTICAL
++                                        : LinearLayoutManager.HORIZONTAL,
++                                false) {
+                             @Override
+                             public void onLayoutCompleted(RecyclerView.State state) {
+                                 super.onLayoutCompleted(state);
+@@ -633,7 +658,8 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+     }
+ 
+     private void configureRecyclerViewTouchHelpers() {
+-        boolean modeAllowsDragAndDrop = mMode == TabListMode.GRID;
++        boolean modeAllowsDragAndDrop =
++                mMode == TabListMode.GRID || mMode == TabListMode.LIST;
+         boolean actionStateAllowsDragAndDrop = mTabActionState != TabActionState.SELECTABLE;
+         if (mAllowDragAndDrop && modeAllowsDragAndDrop && actionStateAllowsDragAndDrop) {
+             if (mOnBeforeItemTouchHelperItemTouchListener == null
+@@ -742,6 +768,8 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+     }
+ 
+     private void updateGridCardLayout(int viewWidth) {
++        // Only the grid mode uses a GridLayoutManager; bail out otherwise.
++        if (mMode != TabListMode.GRID) return;
+         // Determine and set span count
+         final GridLayoutManager layoutManager =
+                 (GridLayoutManager) mRecyclerView.getLayoutManager();
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListRecyclerView.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListRecyclerView.java
+index e8afd0ebe8554..ef53de4378557 100644
+--- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListRecyclerView.java
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListRecyclerView.java
+@@ -292,9 +292,12 @@ public class TabListRecyclerView extends RecyclerView
+         if (position == -1) {
+             return actions;
+         }
+-        GridLayoutManager layoutManager = (GridLayoutManager) getLayoutManager();
+-        assumeNonNull(layoutManager);
+-        int spanCount = layoutManager.getSpanCount();
++        RecyclerView.LayoutManager tabListLayoutManager = getLayoutManager();
++        // List mode uses a LinearLayoutManager, which is a single column.
++        int spanCount =
++                tabListLayoutManager instanceof GridLayoutManager
++                        ? ((GridLayoutManager) tabListLayoutManager).getSpanCount()
++                        : 1;
+         Context context = getContext();
+ 
+         AccessibilityAction leftAction =
+@@ -360,9 +363,12 @@ public class TabListRecyclerView extends RecyclerView
+     @Override
+     public Pair<Integer, Integer> getPositionsOfReorderAction(View view, int action) {
+         int currentPosition = getChildAdapterPosition(view);
+-        GridLayoutManager layoutManager = (GridLayoutManager) getLayoutManager();
+-        assumeNonNull(layoutManager);
+-        int spanCount = layoutManager.getSpanCount();
++        RecyclerView.LayoutManager tabListLayoutManager = getLayoutManager();
++        // List mode uses a LinearLayoutManager, which is a single column.
++        int spanCount =
++                tabListLayoutManager instanceof GridLayoutManager
++                        ? ((GridLayoutManager) tabListLayoutManager).getSpanCount()
++                        : 1;
+         int targetPosition = -1;
+ 
+         if (action == R.id.move_tab_left) {
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListView.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListView.java
+new file mode 100644
+index 0000000000000..0fe7ce1aeea18
+--- /dev/null
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListView.java
+@@ -0,0 +1,123 @@
++// Copyright 2024 The Chromium Authors
++// Use of this source code is governed by a BSD-style license that can be
++// found in the LICENSE file.
++
++package org.chromium.chrome.browser.tasks.tab_management;
++
++import android.content.Context;
++import android.graphics.Bitmap;
++import android.graphics.BitmapFactory;
++import android.graphics.drawable.Drawable;
++import android.graphics.drawable.InsetDrawable;
++import android.util.AttributeSet;
++import android.view.View;
++import android.view.accessibility.AccessibilityNodeInfo;
++import android.widget.ImageView;
++
++import androidx.appcompat.content.res.AppCompatResources;
++import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
++
++import org.chromium.build.annotations.NullMarked;
++import org.chromium.chrome.browser.tasks.tab_management.TabProperties.TabActionState;
++import org.chromium.chrome.tab_ui.R;
++import org.chromium.components.browser_ui.widget.selectable_list.SelectableItemViewBase;
++
++// TODO(crbug.com/339038505): De-dupe logic in TabGridView.
++/** Holds the view for a tab list. */
++@NullMarked
++public class TabListView extends SelectableItemViewBase<TabListEditorItemSelectionId> {
++    private @TabActionState int mTabActionState = TabActionState.UNSET;
++    private ImageView mActionButton;
++
++    public TabListView(Context context, AttributeSet attrs) {
++        super(context, attrs);
++        setSelectionOnLongClick(false);
++    }
++
++    @Override
++    protected void onFinishInflate() {
++        super.onFinishInflate();
++        mActionButton = findViewById(R.id.end_button);
++    }
++
++    void setTabActionState(@TabActionState int tabActionState) {
++        if (mTabActionState == tabActionState) return;
++
++        mTabActionState = tabActionState;
++        int accessibilityMode = IMPORTANT_FOR_ACCESSIBILITY_YES;
++        if (mTabActionState == TabActionState.CLOSABLE) {
++            setTabActionButtonCloseDrawable();
++        } else if (mTabActionState == TabActionState.SELECTABLE) {
++            accessibilityMode = IMPORTANT_FOR_ACCESSIBILITY_NO;
++            setTabActionButtonSelectionDrawable();
++        }
++
++        mActionButton.setImportantForAccessibility(accessibilityMode);
++    }
++
++    private void setTabActionButtonCloseDrawable() {
++        assert mTabActionState != TabActionState.UNSET;
++        var resources = getResources();
++
++        mActionButton.setVisibility(View.VISIBLE);
++        int closeButtonSize = (int) resources.getDimension(R.dimen.tab_grid_close_button_size);
++        Bitmap bitmap = BitmapFactory.decodeResource(resources, R.drawable.btn_close);
++        Bitmap.createScaledBitmap(bitmap, closeButtonSize, closeButtonSize, true);
++        mActionButton.setImageBitmap(bitmap);
++        mActionButton.setBackground(null);
++    }
++
++    private void setTabActionButtonSelectionDrawable() {
++        assert mTabActionState != TabActionState.UNSET;
++        var resources = getResources();
++
++        Drawable selectionListIcon =
++                AppCompatResources.getDrawable(
++                        getContext(), R.drawable.tab_grid_selection_list_icon);
++        mActionButton.setVisibility(View.VISIBLE);
++        int lateralInset =
++                resources.getDimensionPixelSize(
++                        R.dimen.selection_tab_list_toggle_button_lateral_inset);
++        int verticalInset =
++                resources.getDimensionPixelSize(
++                        R.dimen.selection_tab_list_toggle_button_vertical_inset);
++        InsetDrawable drawable =
++                new InsetDrawable(
++                        selectionListIcon,
++                        lateralInset,
++                        verticalInset,
++                        lateralInset,
++                        verticalInset);
++        mActionButton.setBackground(drawable);
++        findViewById(R.id.start_icon).setBackground(null);
++        mActionButton
++                .getBackground()
++                .setLevel(resources.getInteger(R.integer.list_item_level_default));
++        mActionButton.setImageDrawable(
++                AnimatedVectorDrawableCompat.create(
++                        getContext(), R.drawable.ic_check_googblue_20dp_animated));
++    }
++
++    // SelectableItemViewBase implementation.
++
++    @Override
++    protected void updateView(boolean animate) {}
++
++    @Override
++    protected void handleNonSelectionClick() {}
++
++    // TODO(crbug.com/339038201): Consider capturing click events and discarding them while not in
++    // selection mode.
++
++    // View implementation.
++
++    @Override
++    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo info) {
++        super.onInitializeAccessibilityNodeInfo(info);
++
++        if (mTabActionState == TabActionState.SELECTABLE) {
++            info.setCheckable(true);
++            info.setChecked(isChecked());
++        }
++    }
++}
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListViewBinder.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListViewBinder.java
+new file mode 100644
+index 0000000000000..70a4af9f8c222
+--- /dev/null
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListViewBinder.java
+@@ -0,0 +1,354 @@
++// Copyright 2019 The Chromium Authors
++// Use of this source code is governed by a BSD-style license that can be
++// found in the LICENSE file.
++
++package org.chromium.chrome.browser.tasks.tab_management;
++
++import android.content.Context;
++import android.content.res.ColorStateList;
++import android.content.res.Resources;
++import android.graphics.Bitmap;
++import android.graphics.BitmapFactory;
++import android.graphics.drawable.Drawable;
++import android.graphics.drawable.InsetDrawable;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.FrameLayout;
++import android.widget.ImageView;
++import android.widget.TextView;
++
++import androidx.annotation.ColorInt;
++import androidx.annotation.DrawableRes;
++import org.chromium.build.annotations.NullMarked;
++import org.chromium.build.annotations.Nullable;
++import androidx.appcompat.content.res.AppCompatResources;
++import androidx.core.content.res.ResourcesCompat;
++import androidx.core.graphics.drawable.DrawableCompat;
++import androidx.core.view.ViewCompat;
++import androidx.core.widget.ImageViewCompat;
++import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
++
++import org.chromium.chrome.browser.tab_ui.TabListFaviconProvider;
++import org.chromium.chrome.browser.tab_ui.TabCardThemeUtil;
++import org.chromium.chrome.browser.tasks.tab_management.TabActionButtonData.TabActionButtonType;
++import org.chromium.chrome.browser.tasks.tab_management.TabProperties.TabActionState;
++import org.chromium.chrome.tab_ui.R;
++import org.chromium.components.browser_ui.styles.SemanticColorUtils;
++import org.chromium.components.browser_ui.util.TextResolver;
++import org.chromium.ui.modelutil.PropertyKey;
++import org.chromium.ui.modelutil.PropertyModel;
++import org.chromium.ui.widget.ViewLookupCachingFrameLayout;
++
++/** {@link org.chromium.ui.modelutil.SimpleRecyclerViewMcp.ViewBinder} for tab List. */
++@NullMarked
++class TabListViewBinder {
++    /**
++     * Main entrypoint for binding TabListView
++     *
++     * @param view The view to bind to.
++     * @param model The model to bind.
++     */
++    public static void bindTab(
++            PropertyModel model, ViewGroup view, @Nullable PropertyKey propertyKey) {
++        assert view instanceof ViewLookupCachingFrameLayout;
++        @TabActionState Integer tabActionState = model.get(TabProperties.TAB_ACTION_STATE);
++        if (tabActionState == null) {
++            assert false : "TAB_ACTION_STATE must be set before initial bindTab call.";
++            return;
++        }
++
++        ((TabListView) view).setTabActionState(tabActionState);
++        bindListTab(model, (ViewLookupCachingFrameLayout) view, propertyKey);
++        if (tabActionState == TabActionState.CLOSABLE) {
++            bindClosableListTab(model, (ViewLookupCachingFrameLayout) view, propertyKey);
++        } else if (tabActionState == TabActionState.SELECTABLE) {
++            bindSelectableListTab(model, (ViewLookupCachingFrameLayout) view, propertyKey);
++        } else {
++            assert false : "Unsupported TabActionState provided to bindTab.";
++        }
++    }
++
++    /**
++     * Handles any cleanup for recycled views that might be expensive to keep around in the pool.
++     *
++     * @param model The property model to possibly cleanup.
++     * @param view The view to possibly cleanup.
++     */
++    public static void onViewRecycled(PropertyModel model, View view) {
++        if (view instanceof TabListView tabListView) {
++            ImageView faviconView = tabListView.findViewById(R.id.start_icon);
++            faviconView.setImageDrawable(null);
++
++            FrameLayout colorContainer = tabListView.findViewById(R.id.after_title_container);
++            TabCardViewBinderUtils.detachTabGroupColorView(colorContainer);
++
++            FrameLayout labelContainer =
++                    tabListView.findViewById(R.id.before_description_container);
++            labelContainer.removeAllViews();
++        }
++    }
++
++    // TODO(crbug.com/40107066): Merge with TabGridViewBinder for shared properties.
++    private static void bindListTab(
++            PropertyModel model, ViewGroup view, @Nullable PropertyKey propertyKey) {
++        if (TabProperties.TITLE == propertyKey) {
++            String title = model.get(TabProperties.TITLE);
++            ((TextView) view.findViewById(R.id.title)).setText(title);
++        } else if (TabProperties.FAVICON_FETCHER == propertyKey) {
++            final TabListFaviconProvider.TabFaviconFetcher fetcher =
++                    model.get(TabProperties.FAVICON_FETCHER);
++            if (fetcher == null) {
++                setFavicon(view, null);
++                return;
++            }
++            fetcher.fetch(
++                    tabFavicon -> {
++                        if (fetcher != model.get(TabProperties.FAVICON_FETCHER)) return;
++
++                        setFavicon(view, tabFavicon.getDefaultDrawable());
++                    });
++        } else if (TabProperties.IS_SELECTED == propertyKey) {
++            boolean isSelected = model.get(TabProperties.IS_SELECTED);
++            boolean isIncognito = model.get(TabProperties.IS_INCOGNITO);
++            updateColors(view, isIncognito);
++
++            @DrawableRes
++            int selectedTabBackground =
++                    isIncognito
++                            ? R.drawable.selected_tab_background_incognito
++                            : R.drawable.selected_tab_background;
++            Resources res = view.getResources();
++            Resources.Theme theme = view.getContext().getTheme();
++            Drawable drawable =
++                    new InsetDrawable(
++                            ResourcesCompat.getDrawable(res, selectedTabBackground, theme),
++                            (int) res.getDimension(R.dimen.tab_list_selected_inset_low_end));
++            view.setForeground(isSelected ? drawable : null);
++        } else if (TabProperties.URL_DOMAIN == propertyKey) {
++            String domain = model.get(TabProperties.URL_DOMAIN);
++            ((TextView) view.findViewById(R.id.description)).setText(domain);
++        } else if (TabProperties.TAB_GROUP_COLOR_VIEW_PROVIDER == propertyKey) {
++            @Nullable
++            TabGroupColorViewProvider provider =
++                    model.get(TabProperties.TAB_GROUP_COLOR_VIEW_PROVIDER);
++            FrameLayout container = view.findViewById(R.id.after_title_container);
++            TabCardViewBinderUtils.updateTabGroupColorView(container, provider);
++        } else if (TabProperties.TAB_ACTION_BUTTON_DATA == propertyKey) {
++            @Nullable TabActionButtonData data = model.get(TabProperties.TAB_ACTION_BUTTON_DATA);
++            @Nullable
++            TabActionListener tabActionListener = data == null ? null : data.tabActionListener;
++            ImageView actionButton = view.findViewById(R.id.end_button);
++            TabGridViewBinder.setNullableClickListener(tabActionListener, actionButton, model);
++
++            if (data == null) return;
++
++            Resources res = view.getResources();
++            if (data.type == TabActionButtonType.OVERFLOW) {
++                actionButton.setImageDrawable(
++                        ResourcesCompat.getDrawable(
++                                res, R.drawable.ic_more_vert_24dp, view.getContext().getTheme()));
++            } else if (data.type == TabActionButtonType.CLOSE) {
++                int closeButtonSize = (int) res.getDimension(R.dimen.tab_grid_close_button_size);
++                Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.btn_close);
++                Bitmap.createScaledBitmap(bitmap, closeButtonSize, closeButtonSize, true);
++                actionButton.setImageBitmap(bitmap);
++            } else if (data.type == TabActionButtonType.SELECT) {
++                // Intentional no-op. Handled as part of setTabActionState.
++            } else {
++                assert false : "Not reached";
++            }
++        } else if (TabProperties.TAB_CLICK_LISTENER == propertyKey) {
++            TabGridViewBinder.setNullableClickListener(
++                    model.get(TabProperties.TAB_CLICK_LISTENER), view, model);
++        } else if (TabProperties.TAB_LONG_CLICK_LISTENER == propertyKey) {
++            TabGridViewBinder.setNullableLongClickListener(
++                    model.get(TabProperties.TAB_LONG_CLICK_LISTENER), view, model);
++        } else if (TabProperties.TAB_CARD_LABEL_DATA == propertyKey) {
++            // Ignore this data for tab card labels in selectable mode.
++            updateTabCardLabel(view, /* tabCardLabelData= */ null);
++        }
++    }
++
++    /**
++     * Bind a closable tab to view.
++     *
++     * @param model The model to bind.
++     * @param view The view to bind to.
++     * @param propertyKey The property that changed.
++     */
++    private static void bindClosableListTab(
++            PropertyModel model, ViewGroup view, @Nullable PropertyKey propertyKey) {
++        bindListTab(model, view, propertyKey);
++
++        if (TabProperties.IS_SELECTED == propertyKey
++                || TabProperties.TAB_ACTION_BUTTON_DATA == propertyKey) {
++            ImageView closeButton = view.findViewById(R.id.end_button);
++            ImageViewCompat.setImageTintList(
++                    closeButton,
++                    TabCardThemeUtil.getActionButtonTintList(
++                            view.getContext(),
++                            model.get(TabProperties.IS_INCOGNITO),
++                            /* isSelected= */ false, /* colorId= */ null));
++        } else if (TabProperties.ACTION_BUTTON_DESCRIPTION_TEXT_RESOLVER == propertyKey) {
++            TextResolver actionButtonDescriptionTextResolver =
++                    model.get(TabProperties.ACTION_BUTTON_DESCRIPTION_TEXT_RESOLVER);
++            CharSequence actionButtonDescriptionString =
++                    TabCardViewBinderUtils.resolveNullSafe(
++                            actionButtonDescriptionTextResolver, view.getContext());
++            view.findViewById(R.id.end_button).setContentDescription(actionButtonDescriptionString);
++        } else if (TabProperties.TAB_CARD_LABEL_DATA == propertyKey) {
++            updateTabCardLabel(view, model.get(TabProperties.TAB_CARD_LABEL_DATA));
++        }
++    }
++
++    /**
++     * Bind color updates.
++     *
++     * @param view The root view of the item (either Selectable/ClosableTabListView).
++     * @param isIncognito Whether the model is in incognito mode.
++     * @param isSelected Whether the item is selected.
++     */
++    private static void updateColors(ViewGroup view, boolean isIncognito) {
++        // TODO(crbug.com/40272756): isSelected is ignored as the selected row is only outlined not
++        // colored so it should use the unselected color. This will be addressed in a fixit.
++
++        // Shared by both classes, from tab_list_card_item.
++        View contentView = view.findViewById(R.id.content_view);
++        contentView.getBackground().mutate();
++        final @ColorInt int backgroundColor =
++                TabCardThemeUtil.getCardViewBackgroundColor(
++                        view.getContext(), isIncognito, /* isSelected= */ false, /* colorId= */ null);
++        ViewCompat.setBackgroundTintList(contentView, ColorStateList.valueOf(backgroundColor));
++
++        final @ColorInt int textColor =
++                TabCardThemeUtil.getTitleTextColor(
++                        view.getContext(), isIncognito, /* isSelected= */ false, /* colorId= */ null);
++        TextView titleView = view.findViewById(R.id.title);
++        TextView descriptionView = view.findViewById(R.id.description);
++        titleView.setTextColor(textColor);
++        descriptionView.setTextColor(textColor);
++
++        ImageView faviconView = view.findViewById(R.id.start_icon);
++        if (faviconView.getBackground() == null) {
++            faviconView.setBackgroundResource(R.drawable.list_item_icon_modern_bg);
++        }
++        faviconView.getBackground().mutate();
++        final @ColorInt int faviconBackgroundColor =
++                TabCardThemeUtil.getMiniThumbnailPlaceholderColor(
++                        view.getContext(), isIncognito, /* isSelected= */ false, /* colorId= */ null);
++        ViewCompat.setBackgroundTintList(
++                faviconView, ColorStateList.valueOf(faviconBackgroundColor));
++    }
++
++    /**
++     * Bind a selectable tab to view.
++     *
++     * @param model The model to bind.
++     * @param view The view to bind to.
++     * @param propertyKey The property that changed.
++     */
++    private static void bindSelectableListTab(
++            PropertyModel model, ViewGroup view, @Nullable PropertyKey propertyKey) {
++        bindListTab(model, view, propertyKey);
++
++        final int tabId = model.get(TabProperties.TAB_ID);
++        TabListView tabListView = (TabListView) view;
++        if (TabProperties.TAB_SELECTION_DELEGATE == propertyKey) {
++            tabListView.setSelectionDelegate(model.get(TabProperties.TAB_SELECTION_DELEGATE));
++            tabListView.setItem(TabListEditorItemSelectionId.createTabId(tabId));
++        } else if (TabProperties.IS_SELECTED == propertyKey
++                || TabProperties.TAB_ACTION_BUTTON_DATA == propertyKey) {
++            boolean isSelected = model.get(TabProperties.IS_SELECTED);
++            boolean isIncognito = model.get(TabProperties.IS_INCOGNITO);
++            ImageView actionButton = view.findViewById(R.id.end_button);
++
++            Context context = view.getContext();
++            Resources res = view.getResources();
++            int level = TabCardViewBinderUtils.getCheckmarkLevel(res, isSelected);
++            ColorStateList backgroundColorStateList =
++                    getBackgroundColorStateList(context, isSelected, isIncognito);
++
++            var background = actionButton.getBackground();
++            background.setLevel(level);
++            DrawableCompat.setTintList(background.mutate(), backgroundColorStateList);
++
++            // The check should be invisible if not selected.
++            actionButton.getDrawable().setAlpha(isSelected ? 255 : 0);
++            ImageViewCompat.setImageTintList(
++                    actionButton,
++                    isSelected ? getCheckedDrawableColorStateList(context, isIncognito) : null);
++            if (isSelected) ((AnimatedVectorDrawableCompat) actionButton.getDrawable()).start();
++        }
++    }
++
++    private static void setFavicon(View view, Drawable favicon) {
++        ImageView faviconView = view.findViewById(R.id.start_icon);
++        faviconView.setImageDrawable(favicon);
++    }
++
++    private static ColorStateList getCheckedDrawableColorStateList(
++            Context context, boolean isIncognito) {
++        return ColorStateList.valueOf(
++                isIncognito
++                        ? context.getColor(R.color.default_icon_color_dark)
++                        : SemanticColorUtils.getDefaultIconColorInverse(context));
++    }
++
++    private static ColorStateList getBackgroundColorStateList(
++            Context context, boolean isSelected, boolean isIncognito) {
++        if (isSelected) {
++            return ColorStateList.valueOf(
++                    isIncognito
++                            ? context.getColor(R.color.baseline_primary_80)
++                            : SemanticColorUtils.getDefaultControlColorActive(context));
++        } else {
++            return AppCompatResources.getColorStateList(
++                    context,
++                    isIncognito
++                            ? R.color.default_icon_color_light
++                            : R.color.default_icon_color_tint_list);
++        }
++    }
++
++    private static void updateTabCardLabel(
++            ViewGroup view, @Nullable TabCardLabelData tabCardLabelData) {
++        @Nullable
++        TabCardLabelView labelView = getOrSetupTabCardLabelView(view, tabCardLabelData == null);
++        if (labelView != null) {
++            labelView.setData(tabCardLabelData);
++        }
++    }
++
++    private static @Nullable TabCardLabelView getOrSetupTabCardLabelView(
++            ViewGroup view, boolean isDataNull) {
++        FrameLayout labelContainer = view.findViewById(R.id.before_description_container);
++        if (labelContainer.getChildCount() > 0) {
++            return (TabCardLabelView) labelContainer.getChildAt(0);
++        } else if (isDataNull) {
++            // Avoid eagerly creating the view in the event the data is null and it isn't already
++            // created.
++            return null;
++        }
++        Context context = labelContainer.getContext();
++        TabCardLabelView labelView =
++                (TabCardLabelView)
++                        LayoutInflater.from(context)
++                                .inflate(R.layout.tab_card_label_layout, labelContainer, false);
++        labelContainer.addView(labelView);
++
++        Resources res = context.getResources();
++        int marginEnd = res.getDimensionPixelSize(R.dimen.tab_card_label_list_margin_end);
++        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) labelView.getLayoutParams();
++        params.setMarginEnd(marginEnd);
++        labelView.setLayoutParams(params);
++
++        // TODO(crbug.com/362306803): This is technically supposed to have elevation. However,
++        // propagating clipToPadding=false and clipChildren=false all the way from
++        // title_and_description_layout up to tab_list_card_item to make it look right is not worth
++        // the complexity/risk of impacting other list UI when this UI is likely to be deprecated in
++        // 2025.
++        labelView.setElevation(0);
++        return labelView;
++    }
++}
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherPaneCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherPaneCoordinator.java
+index bf448c1de0508..b19624a4290c8 100644
+--- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherPaneCoordinator.java
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherPaneCoordinator.java
+@@ -489,26 +489,29 @@ public class TabSwitcherPaneCoordinator implements BackPressHandler {
+             // TODO(crbug.com/436614730): Inline the view construction once feature is launched.
+             // Create and set up the pinned tab strip, and add it as a sibling of the regular tab
+             // list. The pinned tab strip will be positioned above the regular tab list.
+-            mPinnedTabsCoordinator =
+-                    new PinnedTabStripCoordinator(
+-                            mActivity,
+-                            parentView,
+-                            tabListCoordinator,
+-                            mTabGroupModelFilterSupplier,
+-                            tabBookmarkerSupplier,
+-                            bottomSheetController,
+-                            modalDialogManager,
+-                            onTabGroupCreation);
+-
+-            mContainerViewModel.set(
+-                    TabListContainerProperties.IS_PINNED_TAB_STRIP_ANIMATING_SUPPLIER,
+-                    mPinnedTabsCoordinator.getIsVisibilityAnimationRunningSupplier());
+-
+-            TabListRecyclerView pinnedTabStripRecyclerView =
+-                    mPinnedTabsCoordinator.getPinnedTabsRecyclerView();
+-
+-            FrameLayout pinnedTabsContainer = layout.findViewById(R.id.pinned_tabs_container);
+-            pinnedTabsContainer.addView(pinnedTabStripRecyclerView);
++            if (mode == TabListMode.LIST) {
++                // The pinned tab strip assumes a GridLayoutManager, so skip it in list mode.
++                mPinnedTabsCoordinator = null;
++            } else {
++                mPinnedTabsCoordinator =
++                        new PinnedTabStripCoordinator(
++                                mActivity,
++                                parentView,
++                                tabListCoordinator,
++                                mTabGroupModelFilterSupplier,
++                                tabBookmarkerSupplier,
++                                bottomSheetController,
++                                modalDialogManager,
++                                onTabGroupCreation);
++                mContainerViewModel.set(
++                        TabListContainerProperties.IS_PINNED_TAB_STRIP_ANIMATING_SUPPLIER,
++                        mPinnedTabsCoordinator.getIsVisibilityAnimationRunningSupplier());
++                TabListRecyclerView pinnedTabStripRecyclerView =
++                        mPinnedTabsCoordinator.getPinnedTabsRecyclerView();
++                FrameLayout pinnedTabsContainer =
++                        layout.findViewById(R.id.pinned_tabs_container);
++                pinnedTabsContainer.addView(pinnedTabStripRecyclerView);
++            }
+ 
+             if (DeviceInfo.isXr()) {
+                 recyclerView.setVerticalFadingEdgeEnabled(true);
+@@ -545,8 +548,7 @@ public class TabSwitcherPaneCoordinator implements BackPressHandler {
+                             super.onScrollStateChanged(recyclerView, newState);
+ 
+                             if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+-                                assert mPinnedTabsCoordinator != null;
+-                                if (isAnyTabPinned()) {
++                                if (mPinnedTabsCoordinator != null && isAnyTabPinned()) {
+                                     mPinnedTabsCoordinator.onScrolled();
+                                 }
+                             }
+@@ -1195,7 +1197,7 @@ public class TabSwitcherPaneCoordinator implements BackPressHandler {
+     }
+ 
+     private void updatePinnedTabsStripOnScroll(boolean shouldShowSearchBox, boolean forced) {
+-        assert mPinnedTabsCoordinator != null;
++        if (mPinnedTabsCoordinator == null) return;
+         mPinnedTabsCoordinator.onScrolled();
+         if (shouldShowSearchBox || mPinnedTabsCoordinator.isPinnedTabsBarVisible()) {
+             mMediator.maybeTranslatePinnedStrip(shouldShowSearchBox, forced);
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherPaneCoordinatorFactory.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherPaneCoordinatorFactory.java
+index 34e213d0d0f07..c56cd235ead6e 100644
+--- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherPaneCoordinatorFactory.java
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherPaneCoordinatorFactory.java
+@@ -150,7 +150,7 @@ public class TabSwitcherPaneCoordinatorFactory {
+         mModalDialogManager = modalDialogManager;
+         mBottomSheetController = bottomSheetController;
+         mDataSharingTabManager = dataSharingTabManager;
+-        mMode = TabListCoordinator.TabListMode.GRID;
++        mMode = TabListCoordinator.TabListMode.LIST;  // TEST
+         mBackPressManager = backPressManager;
+         mDesktopWindowStateManager = desktopWindowStateManager;
+         mEdgeToEdgeSupplier = edgeToEdgeSupplier;
+diff --git a/chrome/android/features/tab_ui/tab_management_java_sources.gni b/chrome/android/features/tab_ui/tab_management_java_sources.gni
+index 60878c932f3b8..c2a02b1fde46e 100644
+--- a/chrome/android/features/tab_ui/tab_management_java_sources.gni
++++ b/chrome/android/features/tab_ui/tab_management_java_sources.gni
+@@ -190,6 +190,8 @@ internal_tab_management_java_sources = [
+   "//chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabStripReorderingHelper.java",
+   "//chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabStripSnapshotter.java",
+   "//chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabStripViewBinder.java",
++  "//chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListView.java",
++  "//chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListViewBinder.java",
+   "//chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherBackPressHandlerManager.java",
+   "//chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherConstants.java",
+   "//chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabSwitcherDragHandler.java",
+diff --git a/chrome/common/extensions/api/api_sources.gni b/chrome/common/extensions/api/api_sources.gni
+index f9edc69f4381c..288f2a118448d 100644
+--- a/chrome/common/extensions/api/api_sources.gni
++++ b/chrome/common/extensions/api/api_sources.gni
+@@ -171,6 +171,16 @@ if (enable_extensions) {
+   }
+ }
+ 
++# Desktop-Android: MV2 extensions declaring browser_action need the
++# browserAction schema at runtime, otherwise GetAPISchema() hits a FATAL in
++# the renderer. The desktop-only block above is skipped there.
++if (!enable_extensions) {
++  uncompiled_sources_ += [
++    "browser_action.json",
++    "page_action.json",
++  ]
++}
++
+ chrome_extensions_api_schema_sources = get_path_info(schema_sources_, "abspath")
+ 
+ chrome_extensions_types_only_schema_sources =
+diff --git a/extensions/common/extension_features.cc b/extensions/common/extension_features.cc
+index 8c3c00819fc3e..301318e701873 100644
+--- a/extensions/common/extension_features.cc
++++ b/extensions/common/extension_features.cc
+@@ -114,12 +114,12 @@ BASE_FEATURE(kExtensionLocalizationGuid, base::FEATURE_ENABLED_BY_DEFAULT);
+ 
+ BASE_FEATURE(kExtensionIconVariants, base::FEATURE_DISABLED_BY_DEFAULT);
+ 
+-BASE_FEATURE(kExtensionManifestV2Unsupported, base::FEATURE_ENABLED_BY_DEFAULT);
++BASE_FEATURE(kExtensionManifestV2Unsupported, base::FEATURE_DISABLED_BY_DEFAULT);
+ 
+ BASE_FEATURE(kExtensionManifestV2ExceptionList,
+              base::FEATURE_DISABLED_BY_DEFAULT);
+ 
+-BASE_FEATURE(kExtensionManifestV2Disabled, base::FEATURE_ENABLED_BY_DEFAULT);
++BASE_FEATURE(kExtensionManifestV2Disabled, base::FEATURE_DISABLED_BY_DEFAULT);
+ 
+ BASE_FEATURE(kExtensionsBackgroundCompilation,
+              base::FEATURE_DISABLED_BY_DEFAULT);

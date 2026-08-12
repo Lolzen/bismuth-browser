@@ -1,0 +1,54 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java
+index 8844a72f5adda..e34ab11c7c018 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java
+@@ -1435,7 +1435,9 @@ public class RootUiCoordinator
+             initIncognitoReauthController(originalProfile);
+         }
+ 
+-        if (DeviceFormFactor.isWindowOnTablet(mWindowAndroid)
++        // Desktop site must stay off by default; is_desktop_android otherwise
++        // makes every page render as desktop on a phone.
++        if (false
+                 && DesktopSiteUtils.maybeDefaultEnableGlobalSetting(
+                         getPrimaryDisplaySizeInInches(), originalProfile, mActivity)) {
+             // TODO(crbug.com/40856393): Remove this explicit load when this bug is addressed.
+@@ -1445,6 +1447,7 @@ public class RootUiCoordinator
+         }
+ 
+         DesktopSiteUtils.maybeDefaultEnableWindowSetting(mActivity, originalProfile);
++        DesktopSiteUtils.maybeSetWebStoreDesktopException(originalProfile);
+ 
+         initMerchantTrustSignals(originalProfile);
+     }
+diff --git a/chrome/browser/ui/android/desktop_site/java/src/org/chromium/chrome/browser/desktop_site/DesktopSiteUtils.java b/chrome/browser/ui/android/desktop_site/java/src/org/chromium/chrome/browser/desktop_site/DesktopSiteUtils.java
+index 4452fea97e726..71e023b956ba2 100644
+--- a/chrome/browser/ui/android/desktop_site/java/src/org/chromium/chrome/browser/desktop_site/DesktopSiteUtils.java
++++ b/chrome/browser/ui/android/desktop_site/java/src/org/chromium/chrome/browser/desktop_site/DesktopSiteUtils.java
+@@ -168,6 +168,26 @@ public class DesktopSiteUtils {
+      * @param context The current context.
+      * @return Whether the desktop site global setting was default-enabled.
+      */
++    /**
++     * The Chrome Web Store only serves its extension pages to desktop browsers. Set a one-time
++     * exception scoped to that exact host - not a domain wildcard, which would also cover Search.
++     *
++     * @param profile The current {@link Profile}.
++     */
++    public static void maybeSetWebStoreDesktopException(Profile profile) {
++        final String prefKey = "web_store_desktop_exception_v2";
++        if (ContextUtils.getAppSharedPreferences().getBoolean(prefKey, false)) {
++            return;
++        }
++        WebsitePreferenceBridge.setContentSettingCustomScope(
++                profile,
++                ContentSettingsType.REQUEST_DESKTOP_SITE,
++                "chromewebstore.google.com",
++                /* secondaryPattern= */ SITE_WILDCARD,
++                ContentSetting.ALLOW);
++        ContextUtils.getAppSharedPreferences().edit().putBoolean(prefKey, true).apply();
++    }
++
+     public static boolean maybeDefaultEnableGlobalSetting(
+             double displaySizeInInches, Profile profile, Context context) {
+         if (!shouldDefaultEnableGlobalSetting(displaySizeInInches, context)) {

@@ -1,3 +1,18 @@
-artifacts/
+# Chromium-Baum und Build-Ausgaben
 build/
+artifacts/
+probes/
+upstream/
+
+# enthaelt API-Keys - niemals einchecken
 args.gn
+args-ext.gn
+
+# Referenzmaterial aus fremden Chromium-Versionen
+reports/list-reference-*/
+reports/149-reference/
+
+# Sonstiges
+*.apk
+*.crx
+*.log

@@ -1,3 +1,5 @@
+# Vorlage - nach out/<dir>/args.gn kopieren und Platzhalter ersetzen.
+
 target_os = "android"
 target_cpu = "arm64"
 
@@ -6,10 +8,28 @@ is_official_build = false
 symbol_level = 1
 blink_symbol_level = 0
 
-concurrent_links = 1
-
 is_component_build = false
 use_remoteexec = false
 
+# Ohne dies laufen Debug-Assertions mit, die im offiziellen Chrome
+# wegkompiliert sind - fuehrt zu Abstuerzen im normalen Betrieb.
+dcheck_always_on = false
+enable_java_asserts = false
+treat_warnings_as_errors = false
+disable_android_lint = true
+
+# Aktiviert das Extensions-System auf Android.
+is_desktop_android = true
+enable_service_discovery = false
+
 proprietary_codecs = true
 ffmpeg_branding = "Chrome"
+
+cc_wrapper = "ccache"
+
+# Eigene Schluessel aus der Google Cloud Console eintragen.
+# Ohne sie fehlen Sync, Safe Browsing, Standortdienste und der Discover-Feed.
+google_api_key = "PLACEHOLDER"
+google_default_client_id = "PLACEHOLDER"
+google_default_client_secret = "PLACEHOLDER"
+use_official_google_api_keys = false

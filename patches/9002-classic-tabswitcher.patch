@@ -1,0 +1,131 @@
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
+index 7f539bd9b3d25..f1a5e041cfae2 100644
+--- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
+@@ -10,6 +10,8 @@ import static org.chromium.chrome.browser.tasks.tab_management.TabListModel.Card
+ import static org.chromium.chrome.browser.tasks.tab_management.TabListModel.CardProperties.ModelType.TAB;
+ import static org.chromium.chrome.browser.tasks.tab_management.TabProperties.TAB_ID;
+ 
++import org.chromium.base.ContextUtils;
++import android.content.res.Configuration;
+ import android.app.Activity;
+ import android.graphics.PointF;
+ import android.graphics.Rect;
+@@ -404,6 +406,10 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+                             }
+                         };
+                 mRecyclerView.setLayoutManager(gridLayoutManager);
++                if (ContextUtils.getAppSharedPreferences()
++                        .getBoolean("classic_tab_switcher_v2", true)) {
++                    mRecyclerView.addItemDecoration(new ClassicStyleItemDecoration());
++                }
+                 mMediator.registerOrientationListener(gridLayoutManager);
+                 mMediator.updateSpanCount(
+                         gridLayoutManager,
+@@ -741,6 +747,30 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+         }
+     }
+ 
++    /** Draws tab cards as an overlapping vertical stack, like the classic switcher. */
++    private static class ClassicStyleItemDecoration extends RecyclerView.ItemDecoration {
++        private static final int OVERLAP_DP = 75;
++
++        @Override
++        public void getItemOffsets(
++                Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
++            outRect.left = 0;
++            outRect.right = 0;
++            outRect.bottom = 0;
++            boolean isPortrait =
++                    parent.getContext().getResources().getConfiguration().orientation
++                            == Configuration.ORIENTATION_PORTRAIT;
++            boolean isFirst = parent.getChildAdapterPosition(view) == 0;
++            if (!isPortrait || isFirst) {
++                outRect.top = 0;
++                return;
++            }
++            outRect.top =
++                    -(int) Math.ceil(
++                            OVERLAP_DP * parent.getResources().getDisplayMetrics().density);
++        }
++    }
++
+     private void updateGridCardLayout(int viewWidth) {
+         // Determine and set span count
+         final GridLayoutManager layoutManager =
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
+index f411ce5631dc1..3d0b0b80ff489 100644
+--- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
+@@ -18,6 +18,7 @@ import static org.chromium.chrome.browser.tasks.tab_management.TabSwitcherMessag
+ import static org.chromium.chrome.browser.tasks.tab_management.UiTypeHelper.isLargeMessageCard;
+ import static org.chromium.chrome.browser.tasks.tab_management.UiTypeHelper.isMessageCard;
+ 
++import org.chromium.base.ContextUtils;
+ import android.animation.Animator;
+ import android.animation.AnimatorListenerAdapter;
+ import android.animation.ObjectAnimator;
+@@ -1916,7 +1917,12 @@ class TabListMediator implements TabListNotificationHandler {
+      */
+     boolean updateSpanCount(GridLayoutManager manager, int screenWidthDp) {
+         final int oldSpanCount = manager.getSpanCount();
+-        final int newSpanCount = getSpanCount(screenWidthDp);
++        // Classic tab switcher: a single column of full-width cards.
++        final int newSpanCount =
++                ContextUtils.getAppSharedPreferences()
++                                .getBoolean("classic_tab_switcher_v2", true)
++                        ? 1
++                        : getSpanCount(screenWidthDp);
+         manager.setSpanCount(newSpanCount);
+         manager.setSpanSizeLookup(
+                 new GridLayoutManager.SpanSizeLookup() {
+diff --git a/chrome/android/java/res/xml/appearance_preferences.xml b/chrome/android/java/res/xml/appearance_preferences.xml
+index 7f6ba7255b587..3ebf7f06b5b20 100644
+--- a/chrome/android/java/res/xml/appearance_preferences.xml
++++ b/chrome/android/java/res/xml/appearance_preferences.xml
+@@ -25,4 +25,10 @@ found in the LICENSE file.
+         android:title="@string/bookmark_bar_setting"
+         android:summary="@string/bookmark_bar_setting_subtitle" />
+ 
++    <org.chromium.components.browser_ui.settings.ChromeSwitchPreference
++        android:key="classic_tab_switcher_v2"
++        android:persistent="false"
++        android:order="3"
++        android:title="Classic tab switcher"
++        android:summary="Single overlapping column of tab cards" />
+ </PreferenceScreen>
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/appearance/settings/AppearanceSettingsFragment.java b/chrome/android/java/src/org/chromium/chrome/browser/appearance/settings/AppearanceSettingsFragment.java
+index a59d3e56647fd..ce06003d16b8d 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/appearance/settings/AppearanceSettingsFragment.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/appearance/settings/AppearanceSettingsFragment.java
+@@ -4,6 +4,7 @@
+ 
+ package org.chromium.chrome.browser.appearance.settings;
+ 
++import androidx.preference.TwoStatePreference;
+ import android.content.Context;
+ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+ import android.os.Bundle;
+@@ -62,6 +63,22 @@ public class AppearanceSettingsFragment extends ChromeBaseSettingsFragment
+         mPageTitle.set(getTitle(getContext()));
+         SettingsUtils.addPreferencesFromResource(this, R.xml.appearance_preferences);
+ 
++        TwoStatePreference classicPref = findPreference("classic_tab_switcher_v2");
++        if (classicPref != null) {
++            boolean current =
++                    ContextUtils.getAppSharedPreferences()
++                            .getBoolean("classic_tab_switcher_v2", true);
++            classicPref.setChecked(current);
++            classicPref.setOnPreferenceChangeListener(
++                    (pref, newValue) -> {
++                        ContextUtils.getAppSharedPreferences()
++                                .edit()
++                                .putBoolean("classic_tab_switcher_v2", (Boolean) newValue)
++                                .apply();
++                        return true;
++                    });
++        }
++
+         // This fragment may be used on Desktop or tablets. For Desktop we use the current Profile's
+         // UserPrefs. For tablets, we use the local device preference.
+         mUseProfileUserPrefs = DeviceInfo.isDesktop();
