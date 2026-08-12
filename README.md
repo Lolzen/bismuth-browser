@@ -124,7 +124,7 @@ scripts/               tooling, grouped by milestone
 Android from Linux.
 
 ```
-git clone https://github.com/<user>/bismuth-browser.git
+git clone https://github.com/Lolzen/bismuth-browser.git
 cd bismuth-browser
 ./bootstrap.sh ~/bismuth-build
 ```
