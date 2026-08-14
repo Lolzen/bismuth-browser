@@ -1,0 +1,42 @@
+diff --git a/chrome/browser/extensions/api/developer_private/extension_info_generator.cc b/chrome/browser/extensions/api/developer_private/extension_info_generator.cc
+index c896f1bc0ec40..78d675d652cfd 100644
+--- a/chrome/browser/extensions/api/developer_private/extension_info_generator.cc
++++ b/chrome/browser/extensions/api/developer_private/extension_info_generator.cc
+@@ -865,14 +865,10 @@ void ExtensionInfoGenerator::FillExtensionInfo(const Extension& extension,
+         toolbar_actions_model->IsActionPinned(extension.id());
+   }
+ 
+-  // MV2 deprecation.
+-  ManifestV2ExperimentManager* mv2_experiment_manager =
+-      ManifestV2ExperimentManager::Get(profile);
+-  CHECK(mv2_experiment_manager);
+-  info.is_affected_by_mv2_deprecation =
+-      mv2_experiment_manager->IsExtensionAffected(extension);
+-  info.did_acknowledge_mv2_deprecation_notice =
+-      mv2_experiment_manager->DidUserAcknowledgeNotice(extension.id());
++  // MV2 deprecation. Bismuth supports Manifest V2, so nothing is affected and
++  // the deprecation panel stays hidden.
++  info.is_affected_by_mv2_deprecation = false;
++  info.did_acknowledge_mv2_deprecation_notice = false;
+   if (info.web_store_url.length() > 0) {
+     info.recommendations_url =
+         extension_urls::GetNewWebstoreItemRecommendationsUrl(extension.id())
+diff --git a/extensions/common/extension.cc b/extensions/common/extension.cc
+index 8a8ab0a0e2c6e..ee190a3e0055f 100644
+--- a/extensions/common/extension.cc
++++ b/extensions/common/extension.cc
+@@ -103,13 +103,7 @@ bool IsManifestSupported(int manifest_version,
+   // Supported versions are always safe.
+   if (manifest_version >= kMinimumSupportedManifestVersion &&
+       manifest_version <= kMaximumSupportedManifestVersion) {
+-    // Emit a warning for unpacked extensions on Manifest V2 warning that
+-    // MV2 is deprecated.
+-    if (type == Manifest::Type::kExtension && manifest_version == 2 &&
+-        Manifest::IsUnpackedLocation(location) &&
+-        !g_silence_deprecated_manifest_version_warnings) {
+-      *warning = errors::kManifestV2IsDeprecatedWarning;
+-    }
++    // Bismuth keeps Manifest V2 supported, so no deprecation warning here.
+     return true;
+   }
+ 

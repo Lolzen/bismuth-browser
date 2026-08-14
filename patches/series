@@ -3,3 +3,5 @@
 9003-extension-copy-on-load.patch
 9004-webstore-desktop.patch
 9005-branding.patch
+9006-extensions-menu.patch
+9007-mv2-no-deprecation.patch

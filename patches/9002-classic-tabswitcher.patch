@@ -1,3 +1,17 @@
+diff --git a/chrome/android/features/tab_ui/java/res/xml/tabs_settings.xml b/chrome/android/features/tab_ui/java/res/xml/tabs_settings.xml
+index 636481c45cd5a..cbe90180d5d8a 100644
+--- a/chrome/android/features/tab_ui/java/res/xml/tabs_settings.xml
++++ b/chrome/android/features/tab_ui/java/res/xml/tabs_settings.xml
+@@ -25,4 +25,9 @@ found in the LICENSE file.
+         android:key="share_titles_and_urls_with_os_learn_more"
+         android:summary="@string/share_titles_and_urls_with_os_learn_more_setting_text"
+         app:allowDividerBelow="true"/>
++    <org.chromium.components.browser_ui.settings.ChromeSwitchPreference
++        android:key="classic_tab_switcher_v2"
++        android:persistent="false"
++        android:title="Classic tab switcher"
++        android:summary="Single overlapping column of tab cards"/>
+ </PreferenceScreen>
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
 index 7f539bd9b3d25..f1a5e041cfae2 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
@@ -79,43 +93,29 @@ index f411ce5631dc1..3d0b0b80ff489 100644
          manager.setSpanCount(newSpanCount);
          manager.setSpanSizeLookup(
                  new GridLayoutManager.SpanSizeLookup() {
-diff --git a/chrome/android/java/res/xml/appearance_preferences.xml b/chrome/android/java/res/xml/appearance_preferences.xml
-index 7f6ba7255b587..3ebf7f06b5b20 100644
---- a/chrome/android/java/res/xml/appearance_preferences.xml
-+++ b/chrome/android/java/res/xml/appearance_preferences.xml
-@@ -25,4 +25,10 @@ found in the LICENSE file.
-         android:title="@string/bookmark_bar_setting"
-         android:summary="@string/bookmark_bar_setting_subtitle" />
+diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabsSettings.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabsSettings.java
+index 9b95b8e5e60c3..41771b7e300a5 100644
+--- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabsSettings.java
++++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabsSettings.java
+@@ -6,6 +6,8 @@ package org.chromium.chrome.browser.tasks.tab_management;
  
-+    <org.chromium.components.browser_ui.settings.ChromeSwitchPreference
-+        android:key="classic_tab_switcher_v2"
-+        android:persistent="false"
-+        android:order="3"
-+        android:title="Classic tab switcher"
-+        android:summary="Single overlapping column of tab cards" />
- </PreferenceScreen>
-diff --git a/chrome/android/java/src/org/chromium/chrome/browser/appearance/settings/AppearanceSettingsFragment.java b/chrome/android/java/src/org/chromium/chrome/browser/appearance/settings/AppearanceSettingsFragment.java
-index a59d3e56647fd..ce06003d16b8d 100644
---- a/chrome/android/java/src/org/chromium/chrome/browser/appearance/settings/AppearanceSettingsFragment.java
-+++ b/chrome/android/java/src/org/chromium/chrome/browser/appearance/settings/AppearanceSettingsFragment.java
-@@ -4,6 +4,7 @@
+ import static org.chromium.build.NullUtil.assertNonNull;
  
- package org.chromium.chrome.browser.appearance.settings;
- 
++import org.chromium.base.ContextUtils;
 +import androidx.preference.TwoStatePreference;
  import android.content.Context;
- import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
  import android.os.Bundle;
-@@ -62,6 +63,22 @@ public class AppearanceSettingsFragment extends ChromeBaseSettingsFragment
-         mPageTitle.set(getTitle(getContext()));
-         SettingsUtils.addPreferencesFromResource(this, R.xml.appearance_preferences);
+ import android.view.View;
+@@ -71,6 +73,21 @@ public class TabsSettings extends ChromeBaseSettingsFragment {
  
+         configureAutoOpenSyncedTabGroupsSwitch();
+         configureShareTitlesAndUrlsWithOsSwitch();
++
 +        TwoStatePreference classicPref = findPreference("classic_tab_switcher_v2");
 +        if (classicPref != null) {
-+            boolean current =
++            classicPref.setChecked(
 +                    ContextUtils.getAppSharedPreferences()
-+                            .getBoolean("classic_tab_switcher_v2", true);
-+            classicPref.setChecked(current);
++                            .getBoolean("classic_tab_switcher_v2", true));
 +            classicPref.setOnPreferenceChangeListener(
 +                    (pref, newValue) -> {
 +                        ContextUtils.getAppSharedPreferences()
@@ -125,7 +125,6 @@ index a59d3e56647fd..ce06003d16b8d 100644
 +                        return true;
 +                    });
 +        }
-+
-         // This fragment may be used on Desktop or tablets. For Desktop we use the current Profile's
-         // UserPrefs. For tablets, we use the local device preference.
-         mUseProfileUserPrefs = DeviceInfo.isDesktop();
+     }
+ 
+     @Override

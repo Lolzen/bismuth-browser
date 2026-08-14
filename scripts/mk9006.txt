@@ -1,0 +1,4 @@
+mk 9006-extensions-menu \
+  chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java \
+  chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedAppMenuPropertiesDelegate.java \
+  chrome/browser/flags/android/chrome_feature_list.cc
