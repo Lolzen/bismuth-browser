@@ -31,7 +31,11 @@ mk 9004-webstore-desktop \
 mk 9005-branding \
   chrome/android/chrome_public_apk_tmpl.gni \
   chrome/android/java/res_base/drawable \
-  chrome/android/java/res_chromium_base
+  chrome/android/java/res_chromium_base \
+  chrome/app/theme/chromium/BRANDING \
+  chrome/app/chromium_strings.grd \
+  chrome/app/settings_chromium_strings.grdp \
+  components/components_chromium_strings.grd
 
 mk 9006-extensions-menu \
   chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java \
