@@ -10,7 +10,7 @@ rebuilt from scratch on a current Chromium base.
 
 ## Status
 
-**Work in progress**, but the core works and the build is usable day to day.
+**Work in progress**, but the core works and the build is used day to day.
 
 | | |
 |---|---|
@@ -21,10 +21,8 @@ rebuilt from scratch on a current Chromium base.
 | Tab switcher | classic single-column card stack, toggleable |
 | Startup with uBlock | ~3 s |
 | Build type | official (PGO + LTO) |
-| Branding | name chosen, icon pending |
+| Branding | complete |
 | Released builds | none yet |
-
-Total footprint: **11 changed files**. Kiwi carried 577.
 
 ---
 
@@ -35,9 +33,8 @@ radioactive — with a half-life a billion times the age of the universe.
 Officially decaying, effectively permanent.
 
 That seemed a reasonable name for a project whose purpose is keeping Manifest V2
-alive past its announced end.
-
-The crystal's stepped, iridescent hopper structure is where the logo comes from.
+alive past its announced end. The crystal's stepped, iridescent hopper structure
+is where the logo comes from.
 
 ---
 
@@ -66,6 +63,10 @@ Manifest V2 support.**
 | **9002** | Classic tab switcher — one overlapping column of cards, with a toggle |
 | **9003** | Copies unpacked extensions into app storage instead of running them over SAF |
 | **9004** | Serves the Chrome Web Store its desktop pages, for that host only |
+| **9005** | Branding — name, icons, package name, internal strings |
+| **9006** | Fixes the crashing extensions menu entry, enables app-menu submenus |
+| **9007** | Removes the Manifest V2 deprecation warning and notice |
+| **9009** | Progress dialog with a real percentage while an extension is copied |
 
 Details for each are in `docs/port-notes/`. Scope decisions — what was kept,
 deferred and dropped, and why — are in `docs/scope.md`.
@@ -98,7 +99,8 @@ carries. Keeping MV2 alive past 149 is an open-ended maintenance commitment, and
 its cost has not been measured yet.
 
 The Chrome Web Store no longer serves MV2 extensions at all, so loading an
-unpacked folder is the only route. Milestone 9003 exists because of that.
+unpacked folder is the only route. Milestones 9003 and 9009 exist because of
+that.
 
 ---
 
@@ -110,6 +112,7 @@ unpacked folder is the only route. Milestone 9003 exists because of that.
 CHROMIUM_TARGET        the exact Chromium tag this builds against
 args.gn.template       GN configuration, API keys redacted
 bootstrap.sh           fetches Chromium, applies patches
+branding/              icon sources
 patches/               the patch series, applied in `series` order
 docs/                  scope, build notes, one port note per milestone
 scripts/               tooling, grouped by milestone
@@ -139,8 +142,9 @@ autoninja -C out/Default chrome_public_apk
 
 `docs/build-notes.md` covers what no official guide mentions — pinning
 `protobuf` to 3.20.3, `dcheck_always_on`, non-Debian hosts, the `gclient` tag
-pitfall, and why `gclient runhooks` must not be skipped. Read it first; it will
-save you a four-hour failure.
+pitfall, why `gclient runhooks` must not be skipped, and why an official build
+needs `debuggable_apks = true` during development. Read it first; it will save
+you a four-hour failure.
 
 ### API keys
 
@@ -156,12 +160,13 @@ geolocation will not work — everything else will. Put them in your local
   variant, which does not compile the feed. Extensions and the feed are
   currently mutually exclusive; the trade-off will be revisited at the next
   version bump.
+- **Signing into a Google account crashes the browser.** Under investigation.
 - Loading an unpacked extension occasionally fails on the first attempt and
   needs a retry.
-- The extensions entry in the main menu crashes.
-- Copying a large extension takes about a minute with no progress indication.
 - The Web Store still shows its "install Chrome" banner. Cosmetic; installation
   works regardless.
+- Extensions loaded from a folder carry the standard "unpacked" source badge.
+  Since that is the only route for MV2, it is always present.
 
 ---
 
@@ -169,6 +174,9 @@ geolocation will not work — everything else will. Put them in your local
 
 Night mode, bottom toolbar and the new tab page were part of Kiwi. Chromium now
 provides all three natively.
+
+Ad blocking, popup blocking and user scripts were also part of Kiwi. All three
+are covered by extensions and were dropped.
 
 Kiwi's per-site user-agent spoofing targeted 2022 website behaviour and is not
 carried over.
