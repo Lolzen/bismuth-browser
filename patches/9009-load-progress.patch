@@ -1,0 +1,98 @@
+diff --git a/chrome/browser/resources/extensions/toolbar.css b/chrome/browser/resources/extensions/toolbar.css
+index 7e723e028457f..2f1aadc888f6e 100644
+--- a/chrome/browser/resources/extensions/toolbar.css
++++ b/chrome/browser/resources/extensions/toolbar.css
+@@ -79,3 +79,28 @@ cr-toolbar {
+   --cr-toolbar-field-width: 100%;
+   --cr-toolbar-header-white-space: nowrap;
+ }
++
++#loadProgressOverlay {
++  align-items: center;
++  background: rgba(0, 0, 0, 0.5);
++  display: flex;
++  inset: 0;
++  justify-content: center;
++  position: fixed;
++  z-index: 100;
++}
++
++#loadProgressCard {
++  background: var(--cr-card-background-color, #202124);
++  border-radius: 12px;
++  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
++  min-width: 240px;
++  padding: 20px 24px;
++}
++
++#loadProgressLabel {
++  color: var(--cr-primary-text-color);
++  font-size: 13px;
++  padding-top: 12px;
++  text-align: center;
++}
+diff --git a/chrome/browser/resources/extensions/toolbar.html.ts b/chrome/browser/resources/extensions/toolbar.html.ts
+index f064de9624d6f..19ea9a670fb32 100644
+--- a/chrome/browser/resources/extensions/toolbar.html.ts
++++ b/chrome/browser/resources/extensions/toolbar.html.ts
+@@ -53,6 +53,13 @@ ${this.showPackDialog_ ? html`
+     </cr-button>
+   </div>
+ </div>
++${this.isLoadingUnpacked_ ? html`
++  <div id="loadProgressOverlay">
++    <div id="loadProgressCard">
++      <cr-progress indeterminate></cr-progress>
++      <div id="loadProgressLabel">Copying extension into app storage...</div>
++    </div>
++  </div>` : ''}
+ <!--_html_template_end_-->`;
+   // clang-format on
+ }
+diff --git a/chrome/browser/resources/extensions/toolbar.ts b/chrome/browser/resources/extensions/toolbar.ts
+index 163d17606312e..3596404e5b94c 100644
+--- a/chrome/browser/resources/extensions/toolbar.ts
++++ b/chrome/browser/resources/extensions/toolbar.ts
+@@ -2,6 +2,7 @@
+ // Use of this source code is governed by a BSD-style license that can be
+ // found in the LICENSE file.
+ 
++import 'chrome://resources/cr_elements/cr_progress/cr_progress.js';
+ import 'chrome://resources/cr_elements/cr_button/cr_button.js';
+ import 'chrome://resources/cr_elements/cr_toggle/cr_toggle.js';
+ import 'chrome://resources/cr_elements/cr_toolbar/cr_toolbar.js';
+@@ -97,12 +98,14 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
+        * Prevents initiating update while update is in progress.
+        */
+       isUpdating_: {type: Boolean},
++      isLoadingUnpacked_: {type: Boolean},
+     };
+   }
+ 
+   accessor extensions: chrome.developerPrivate.ExtensionInfo[] = [];
+   accessor delegate: ToolbarDelegate = new DummyToolbarDelegate();
+   accessor inDevMode: boolean = false;
++  protected accessor isLoadingUnpacked_: boolean = false;
+   accessor devModeControlledByPolicy: boolean = false;
+   accessor isChildAccount: boolean = false;
+ 
+@@ -180,6 +183,9 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
+   }
+ 
+   protected onLoadUnpackedClick_() {
++    // Unpacked extensions are copied into app storage before loading, which
++    // can take a while for large extensions. Show progress until it settles.
++    this.isLoadingUnpacked_ = true;
+     this.delegate.loadUnpacked()
+         .then((success) => {
+           if (success) {
+@@ -190,6 +196,9 @@ export class ExtensionsToolbarElement extends ExtensionsToolbarElementBase {
+         })
+         .catch(loadError => {
+           this.fire('load-error', loadError);
++        })
++        .finally(() => {
++          this.isLoadingUnpacked_ = false;
+         });
+     chrome.metricsPrivate.recordUserAction('Options_LoadUnpackedExtension');
+   }

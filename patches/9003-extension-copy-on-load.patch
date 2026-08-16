@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
-index 792ab09ed3e38..7d946e7cd0d33 100644
+index 792ab09ed3e38..cf53180fce61f 100644
 --- a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
 +++ b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
-@@ -3,6 +3,14 @@
+@@ -3,6 +3,15 @@
  // found in the LICENSE file.
  
  #include "chrome/browser/extensions/api/developer_private/developer_private_functions.h"
@@ -13,11 +13,12 @@ index 792ab09ed3e38..7d946e7cd0d33 100644
 +#include "base/hash/hash.h"
 +#include "base/strings/string_number_conversions.h"
 +#include "base/task/thread_pool.h"
++#include "base/time/time.h"
 +#endif
  
  #include <stddef.h>
  
-@@ -951,19 +959,117 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelectionCanceled() {
+@@ -951,19 +960,157 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelectionCanceled() {
    Finish(Error(kFileSelectionCanceled));
  }
  
@@ -30,33 +31,33 @@ index 792ab09ed3e38..7d946e7cd0d33 100644
 +bool CopyVirtualDirectory(const base::FilePath& from,
 +                          const base::FilePath& to) {
 +  int copied = 0;
-+  LOG(ERROR) << "[COPYDBG] start " << from.value() << " -> " << to.value();
 +  // Copy into a staging directory and only swap it in on success, so a
 +  // failed attempt cannot destroy a previously working copy.
-+  const base::FilePath staging = to.AddExtensionASCII("staging");
-+  base::DeletePathRecursively(staging);
-+  if (!base::CreateDirectory(staging)) {
-+    LOG(ERROR) << "[COPYDBG] cannot create staging directory";
++  // Build the copy outside the extensions area and move it into place in one
++  // step, the way Chromium installs a CRX. Anything still under construction
++  // inside the profile's extension folders can be swept away mid-copy.
++  const base::FilePath temp =
++      to.DirName().DirName().AppendASCII("Temp").Append(to.BaseName());
++  base::DeletePathRecursively(temp);
++  if (!base::CreateDirectory(temp)) {
 +    return false;
 +  }
 +  base::FileEnumerator traversal(
 +      from, true,
 +      base::FileEnumerator::FILES | base::FileEnumerator::DIRECTORIES);
 +  for (base::FilePath p = traversal.Next(); !p.empty(); p = traversal.Next()) {
-+    base::FilePath target = staging;
++    base::FilePath target = temp;
 +    if (!from.AppendRelativePath(p, &target)) {
 +      continue;
 +    }
 +    if (traversal.GetInfo().IsDirectory()) {
 +      if (!base::CreateDirectory(target)) {
-+        LOG(ERROR) << "[COPYDBG] mkdir failed " << target.value();
 +        return false;
 +      }
 +      continue;
 +    }
 +    base::File in(p, base::File::FLAG_OPEN | base::File::FLAG_READ);
 +    if (!in.IsValid()) {
-+      LOG(ERROR) << "[COPYDBG] cannot open " << p.value();
 +      return false;
 +    }
 +    std::string data;
@@ -64,7 +65,6 @@ index 792ab09ed3e38..7d946e7cd0d33 100644
 +    while (true) {
 +      std::optional<size_t> n = in.ReadAtCurrentPos(base::span(buf));
 +      if (!n) {
-+        LOG(ERROR) << "[COPYDBG] read failed " << p.value();
 +        return false;
 +      }
 +      if (*n == 0) {
@@ -72,20 +72,56 @@ index 792ab09ed3e38..7d946e7cd0d33 100644
 +      }
 +      data.append(reinterpret_cast<const char*>(buf.data()), *n);
 +    }
-+    if (!base::WriteFile(target, data)) {
-+      LOG(ERROR) << "[COPYDBG] write failed " << target.value();
++    // The enumerator does not guarantee that a directory is reported before
++    // the files inside it, so make sure the parent exists.
++    if (!base::CreateDirectory(target.DirName())) {
 +      return false;
 +    }
-+    if (++copied % 100 == 0) {
-+      LOG(ERROR) << "[COPYDBG] " << copied << " files";
++    if (!base::WriteFile(target, data)) {
++      return false;
++    }
++    ++copied;
++  }
++  // Top-level files can vanish while the copy is still running, so write them
++  // once more at the very end, right before verifying the result.
++  base::FileEnumerator root(from, false, base::FileEnumerator::FILES);
++  int rewritten = 0;
++  for (base::FilePath p = root.Next(); !p.empty(); p = root.Next()) {
++    base::FilePath target = temp;
++    if (!from.AppendRelativePath(p, &target)) {
++      continue;
++    }
++    base::File in(p, base::File::FLAG_OPEN | base::File::FLAG_READ);
++    if (!in.IsValid()) {
++      continue;
++    }
++    std::string data;
++    std::vector<uint8_t> buf(65536);
++    while (true) {
++      std::optional<size_t> n = in.ReadAtCurrentPos(base::span(buf));
++      if (!n || *n == 0) {
++        break;
++      }
++      data.append(reinterpret_cast<const char*>(buf.data()), *n);
++    }
++    if (base::WriteFile(target, data)) {
++      ++rewritten;
 +    }
 +  }
-+  base::DeletePathRecursively(to);
-+  if (!base::Move(staging, to)) {
-+    LOG(ERROR) << "[COPYDBG] swap failed";
++
++  if (!base::PathExists(temp.AppendASCII("manifest.json"))) {
 +    return false;
 +  }
-+  LOG(ERROR) << "[COPYDBG] done, " << copied << " files";
++  base::DeletePathRecursively(to);
++  if (!base::CreateDirectory(to.DirName())) {
++    return false;
++  }
++  if (!base::Move(temp, to)) {
++    return false;
++  }
++  if (!base::PathExists(to.AppendASCII("manifest.json"))) {
++    return false;
++  }
 +  return true;
 +}
 +
@@ -109,8 +145,14 @@ index 792ab09ed3e38..7d946e7cd0d33 100644
 +  base::FilePath dest =
 +      browser_context()->GetPath()
 +          .AppendASCII("UnpackedExtensions")
-+          .AppendASCII(base::NumberToString(base::PersistentHash(
-+              source.value())));
++          .AppendASCII(
++              base::NumberToString(base::PersistentHash(source.value())) + "-" +
++              base::NumberToString(
++                  base::Time::Now().ToDeltaSinceWindowsEpoch().InMicroseconds()));
++  // Register the retry path before copying, so a failed copy still offers a
++  // working retry. Retrying re-runs the copy from the original SAF folder.
++  retry_guid_ = DeveloperPrivateAPI::Get(browser_context())
++                    ->AddUnpackedPath(GetSenderWebContents(), source);
 +  base::ThreadPool::PostTaskAndReplyWithResult(
 +      FROM_HERE, {base::MayBlock(), base::TaskPriority::USER_VISIBLE},
 +      base::BindOnce(&CopyVirtualDirectory, source, dest),
@@ -126,7 +168,6 @@ index 792ab09ed3e38..7d946e7cd0d33 100644
 +    base::FilePath dest,
 +    base::FilePath source,
 +    bool success) {
-+  LOG(ERROR) << "[COPYDBG] OnCopyComplete success=" << success;
 +  if (!success) {
 +    OnLoadComplete(nullptr, source, u"Failed to copy extension directory");
 +    return;
@@ -139,6 +180,19 @@ index 792ab09ed3e38..7d946e7cd0d33 100644
    scoped_refptr<UnpackedInstaller> installer(
        UnpackedInstaller::Create(browser_context()));
    installer->set_be_noisy_on_failure(!fail_quietly_);
+@@ -971,8 +1118,10 @@ void DeveloperPrivateLoadUnpackedFunction::StartFileLoad(
+       &DeveloperPrivateLoadUnpackedFunction::OnLoadComplete, this));
+   installer->Load(file_path);
+ 
+-  retry_guid_ = DeveloperPrivateAPI::Get(browser_context())
+-                    ->AddUnpackedPath(GetSenderWebContents(), file_path);
++  if (retry_guid_.empty()) {
++    retry_guid_ = DeveloperPrivateAPI::Get(browser_context())
++                      ->AddUnpackedPath(GetSenderWebContents(), file_path);
++  }
+ }
+ 
+ void DeveloperPrivateLoadUnpackedFunction::OnLoadComplete(
 diff --git a/chrome/browser/extensions/api/developer_private/developer_private_functions.h b/chrome/browser/extensions/api/developer_private/developer_private_functions.h
 index 75caa7701fc67..ff5a7b1b252ed 100644
 --- a/chrome/browser/extensions/api/developer_private/developer_private_functions.h

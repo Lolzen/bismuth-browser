@@ -46,6 +46,11 @@ mk 9007-mv2-no-deprecation \
   extensions/common/extension.cc \
   chrome/browser/extensions/api/developer_private/extension_info_generator.cc
 
+mk 9009-load-progress \
+  chrome/browser/resources/extensions/toolbar.ts \
+  chrome/browser/resources/extensions/toolbar.html.ts \
+  chrome/browser/resources/extensions/toolbar.css
+
 git reset -q
 
 cat > "$OUT/series" <<SERIES
@@ -56,6 +61,7 @@ cat > "$OUT/series" <<SERIES
 9005-branding.patch
 9006-extensions-menu.patch
 9007-mv2-no-deprecation.patch
+9009-load-progress.patch
 SERIES
 echo
 echo "series geschrieben"

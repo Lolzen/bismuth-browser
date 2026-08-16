@@ -1,0 +1,46 @@
+####149####
+Bugs:
+Sporadischer Fehlschlag beim Laden einer Erweiterung	instrumentiert, wartet auf Wiederauftreten
+COPYDBG-Logausgaben noch im Code	bleiben, bis der Fehler geklärt ist
+
+Kosmetische WiPs:
+Fortschrittsanzeige beim Kopieren	kosmetisch
+Warnhinweis am Erweiterungs-Icon	kosmetisch, zurückgestellt
+uBlock-Popup in der ~Symbolleiste~ Im Einstellungsmenu	ungeprüft
+
+Nicht SO wichtig:
+Weitere fehlende API-Schemata (contextMenus, pageAction)	je Fall ein Einzeiler
+Alltagstest auf Absturzarmut	läuft nebenbei
+Background heller?
+
+Rausschmeißen:
+Adblock und Popup-Blocker	vermutlich hinfällig
+User-Scripts	evtl. hinfällig durch Erweiterungen
+
+Ende:
+Patches erstellen, dokumentation finishen
+Push in Main & neuen 149er Branch
+
+####150####
+Discover-Feed gegen Extensions	beim Versionssprung ->>>>> BEIDES. Android_Desktop lassen, feed dennoch aktivieren
+Neuer Branch mit chromium version 150.xxxxxxxx
+Alle Patches Backporten/Anpassen
+
+####151####
+Alle Patches Backporten/Anpassen
+
+
+
+
+
+(base) gee srcgrep -n "COPYDBG" /tmp/cf6.log | grep -E "manifest=0" | head -3
+
+5395:08-15 18:34:43.028 E/chromium(23056): [ERROR:chrome/browser/extensions/api/developer_private/developer_private_functions.cc:1032] [COPYDBG] 375 files manifest=0 last=/data/user/0/org.bismuth.browser/app_chrome/Default/UnpackedExtensions/1785316032-13431285257622924/img/flags-of-the-world/tz.png
+5797:08-15 18:34:46.064 E/chromium(23056): [ERROR:chrome/browser/extensions/api/developer_private/developer_private_functions.cc:1032] [COPYDBG] 400 files manifest=0 last=/data/user/0/org.bismuth.browser/app_chrome/Default/UnpackedExtensions/1785316032-13431285257622924/img/flags-of-the-world/sh.png
+5896:08-15 18:34:49.092 E/chromium(23056): [ERROR:chrome/browser/extensions/api/developer_private/developer_private_functions.cc:1032] [COPYDBG] 425 files manifest=0 last=/data/user/0/org.bismuth.browser/app_chrome/Default/UnpackedExtensions/1785316032-13431285257622924/img/flags-of-the-world/ie.png
+
+
+
+Im gesamten log ist manifest 0.
+
+Vielleicht sollten wie die copyfuntion so machen das ERST das main verzeichnis und DANN die unterverzeichnise kopiert werden
