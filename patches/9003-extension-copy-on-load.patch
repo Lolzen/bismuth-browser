@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
-index 792ab09ed3e38..cf53180fce61f 100644
+index 792ab09ed3e38..c8d24b4595768 100644
 --- a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
 +++ b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
-@@ -3,6 +3,15 @@
+@@ -3,6 +3,16 @@
  // found in the LICENSE file.
  
  #include "chrome/browser/extensions/api/developer_private/developer_private_functions.h"
@@ -14,11 +14,12 @@ index 792ab09ed3e38..cf53180fce61f 100644
 +#include "base/strings/string_number_conversions.h"
 +#include "base/task/thread_pool.h"
 +#include "base/time/time.h"
++#include "base/task/bind_post_task.h"
 +#endif
  
  #include <stddef.h>
  
-@@ -951,19 +960,157 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelectionCanceled() {
+@@ -951,19 +961,192 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelectionCanceled() {
    Finish(Error(kFileSelectionCanceled));
  }
  
@@ -29,7 +30,23 @@ index 792ab09ed3e38..cf53180fce61f 100644
 +// extension straight off a document provider is unusably slow: every file
 +// access crosses a Binder IPC.
 +bool CopyVirtualDirectory(const base::FilePath& from,
-+                          const base::FilePath& to) {
++                          const base::FilePath& to,
++                          base::RepeatingCallback<void(int, int)> on_progress) {
++  int total = 0;
++  {
++    // Over SAF the requested type is passed through to the directory
++    // listing, so asking for FILES alone hides the subdirectories and the
++    // recursion never descends. Ask for both and skip directories here.
++    base::FileEnumerator counter(
++        from, true,
++        base::FileEnumerator::FILES | base::FileEnumerator::DIRECTORIES);
++    for (base::FilePath p = counter.Next(); !p.empty(); p = counter.Next()) {
++      if (!counter.GetInfo().IsDirectory()) {
++        ++total;
++      }
++    }
++  }
++  on_progress.Run(0, total);
 +  int copied = 0;
 +  // Copy into a staging directory and only swap it in on success, so a
 +  // failed attempt cannot destroy a previously working copy.
@@ -81,11 +98,13 @@ index 792ab09ed3e38..cf53180fce61f 100644
 +      return false;
 +    }
 +    ++copied;
++    if (copied % 10 == 0) {
++      on_progress.Run(copied, total);
++    }
 +  }
 +  // Top-level files can vanish while the copy is still running, so write them
 +  // once more at the very end, right before verifying the result.
 +  base::FileEnumerator root(from, false, base::FileEnumerator::FILES);
-+  int rewritten = 0;
 +  for (base::FilePath p = root.Next(); !p.empty(); p = root.Next()) {
 +    base::FilePath target = temp;
 +    if (!from.AppendRelativePath(p, &target)) {
@@ -104,9 +123,7 @@ index 792ab09ed3e38..cf53180fce61f 100644
 +      }
 +      data.append(reinterpret_cast<const char*>(buf.data()), *n);
 +    }
-+    if (base::WriteFile(target, data)) {
-+      ++rewritten;
-+    }
++    base::WriteFile(target, data);
 +  }
 +
 +  if (!base::PathExists(temp.AppendASCII("manifest.json"))) {
@@ -155,13 +172,32 @@ index 792ab09ed3e38..cf53180fce61f 100644
 +                    ->AddUnpackedPath(GetSenderWebContents(), source);
 +  base::ThreadPool::PostTaskAndReplyWithResult(
 +      FROM_HERE, {base::MayBlock(), base::TaskPriority::USER_VISIBLE},
-+      base::BindOnce(&CopyVirtualDirectory, source, dest),
++      base::BindOnce(
++          &CopyVirtualDirectory, source, dest,
++          base::BindPostTask(
++              content::GetUIThreadTaskRunner({}),
++              base::BindRepeating(
++                  &DeveloperPrivateLoadUnpackedFunction::OnCopyProgress,
++                  this))),
 +      base::BindOnce(&DeveloperPrivateLoadUnpackedFunction::OnCopyComplete,
 +                     this, dest, source));
 +  return;
 +#else
 +  ContinueFileLoad(std::move(file_path));
 +#endif
++}
++
++void DeveloperPrivateLoadUnpackedFunction::OnCopyProgress(int copied,
++                                                          int total) {
++  developer::CopyProgress progress;
++  progress.copied = copied;
++  progress.total = total;
++  base::ListValue args;
++  args.Append(progress.ToValue());
++  auto event = std::make_unique<Event>(
++      events::DEVELOPER_PRIVATE_ON_ITEM_STATE_CHANGED,
++      developer::OnCopyProgress::kEventName, std::move(args));
++  EventRouter::Get(browser_context())->BroadcastEvent(std::move(event));
 +}
 +
 +void DeveloperPrivateLoadUnpackedFunction::OnCopyComplete(
@@ -180,7 +216,7 @@ index 792ab09ed3e38..cf53180fce61f 100644
    scoped_refptr<UnpackedInstaller> installer(
        UnpackedInstaller::Create(browser_context()));
    installer->set_be_noisy_on_failure(!fail_quietly_);
-@@ -971,8 +1118,10 @@ void DeveloperPrivateLoadUnpackedFunction::StartFileLoad(
+@@ -971,8 +1154,10 @@ void DeveloperPrivateLoadUnpackedFunction::StartFileLoad(
        &DeveloperPrivateLoadUnpackedFunction::OnLoadComplete, this));
    installer->Load(file_path);
  
@@ -194,14 +230,15 @@ index 792ab09ed3e38..cf53180fce61f 100644
  
  void DeveloperPrivateLoadUnpackedFunction::OnLoadComplete(
 diff --git a/chrome/browser/extensions/api/developer_private/developer_private_functions.h b/chrome/browser/extensions/api/developer_private/developer_private_functions.h
-index 75caa7701fc67..ff5a7b1b252ed 100644
+index 75caa7701fc67..3aa6c9538114b 100644
 --- a/chrome/browser/extensions/api/developer_private/developer_private_functions.h
 +++ b/chrome/browser/extensions/api/developer_private/developer_private_functions.h
-@@ -330,6 +330,10 @@ class DeveloperPrivateLoadUnpackedFunction
+@@ -330,6 +330,11 @@ class DeveloperPrivateLoadUnpackedFunction
  
    // Starts loading the given `file_path`.
    void StartFileLoad(const base::FilePath file_path);
 +  void ContinueFileLoad(base::FilePath file_path);
++  void OnCopyProgress(int copied, int total);
 +  void OnCopyComplete(base::FilePath dest,
 +                      base::FilePath source,
 +                      bool success);

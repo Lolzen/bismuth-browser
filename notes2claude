@@ -28,19 +28,3 @@ Alle Patches Backporten/Anpassen
 
 ####151####
 Alle Patches Backporten/Anpassen
-
-
-
-
-
-(base) gee srcgrep -n "COPYDBG" /tmp/cf6.log | grep -E "manifest=0" | head -3
-
-5395:08-15 18:34:43.028 E/chromium(23056): [ERROR:chrome/browser/extensions/api/developer_private/developer_private_functions.cc:1032] [COPYDBG] 375 files manifest=0 last=/data/user/0/org.bismuth.browser/app_chrome/Default/UnpackedExtensions/1785316032-13431285257622924/img/flags-of-the-world/tz.png
-5797:08-15 18:34:46.064 E/chromium(23056): [ERROR:chrome/browser/extensions/api/developer_private/developer_private_functions.cc:1032] [COPYDBG] 400 files manifest=0 last=/data/user/0/org.bismuth.browser/app_chrome/Default/UnpackedExtensions/1785316032-13431285257622924/img/flags-of-the-world/sh.png
-5896:08-15 18:34:49.092 E/chromium(23056): [ERROR:chrome/browser/extensions/api/developer_private/developer_private_functions.cc:1032] [COPYDBG] 425 files manifest=0 last=/data/user/0/org.bismuth.browser/app_chrome/Default/UnpackedExtensions/1785316032-13431285257622924/img/flags-of-the-world/ie.png
-
-
-
-Im gesamten log ist manifest 0.
-
-Vielleicht sollten wie die copyfuntion so machen das ERST das main verzeichnis und DANN die unterverzeichnise kopiert werden

@@ -47,9 +47,9 @@ mk 9007-mv2-no-deprecation \
   chrome/browser/extensions/api/developer_private/extension_info_generator.cc
 
 mk 9009-load-progress \
-  chrome/browser/resources/extensions/toolbar.ts \
-  chrome/browser/resources/extensions/toolbar.html.ts \
-  chrome/browser/resources/extensions/toolbar.css
+  chrome/browser/resources/extensions \
+  chrome/common/extensions/api/developer_private.webidl \
+  tools/typescript/definitions/developer_private.d.ts
 
 git reset -q
 
