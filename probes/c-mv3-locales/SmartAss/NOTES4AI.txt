@@ -1,4 +1,0 @@
-extension funktioniert nicht in der profilansicht, hier müsste das fetchen angepasst werden.
-Vielleicht ist eine komplettüberarbeitung des codes anzuraten.
-popup css greift nicht.
-wenn timeline: new ausgewählt ist soll die sortierfuntion GAR NICHT erst aufgerufen werden.
