@@ -16,8 +16,6 @@ App-Speicher übernommen werden.
 
 ## Warum das nötig ist
 
-Zwei Gründe, und der zweite wog schwerer als erwartet.
-
 **Geschwindigkeit.** Jeder Dateizugriff über SAF kostet einen Binder-IPC an den
 Document Provider. uBlock Origin besteht aus 655 Dateien, und Chromium prüft
 entpackte Erweiterungen bei jedem Start.
@@ -46,8 +44,7 @@ Voraussetzung dafür, dass Erweiterungen überhaupt bestehen bleiben.
 
 `chrome/browser/extensions/api/developer_private/developer_private_functions.cc`
 
-`DeveloperPrivateLoadUnpackedFunction::StartFileLoad` wird in drei Teile
-zerlegt:
+`DeveloperPrivateLoadUnpackedFunction::StartFileLoad` wird in drei Teile zerlegt:
 
 ```
 StartFileLoad        loest die content-URI in einen /SAF/-Pfad auf, vergibt
@@ -60,7 +57,7 @@ Das Kopieren **darf nicht im UI-Thread laufen** — 655 Dateien über SAF hätte
 sonst einen ANR ausgelöst. Deshalb
 `base::ThreadPool::PostTaskAndReplyWithResult`.
 
-### Der entscheidende Teil: aufbauen wie ein CRX
+### Aufbauen wie ein CRX
 
 Der Kopiervorgang legt die Dateien **in `<Profil>/Temp/<name>` an** und setzt sie
 erst am Ende mit einem einzigen `base::Move` an ihren Platz unter
@@ -73,15 +70,32 @@ Zielbereichs aufbauen, dann mit einem Umbenennen einsetzen.
 **Warum das zwingend ist:** Wird direkt im Zielbereich aufgebaut, verschwinden
 Teile der Kopie noch während des Kopierens wieder. Der Zähler meldete 655
 geschriebene Dateien, im Ziel lagen anschließend vier Verzeichnisse. Eine
-Zwischenmeldung im Kopierlauf zeigte, dass `manifest.json` nach dem Schreiben
-zunächst existierte und im Verlauf verschwand — alles, was vor einem bestimmten
-Zeitpunkt geschrieben wurde, war weg, alles danach blieb.
+Zwischenmeldung zeigte, dass `manifest.json` nach dem Schreiben zunächst
+existierte und im Verlauf verschwand — alles vor einem bestimmten Zeitpunkt war
+weg, alles danach blieb.
 
 Reproduzierbar war das nur **direkt nach einem inkrementellen APK-Update**, also
 genau dann, wenn vorher eine Erweiterung entfernt und neu geladen wurde. Der
 Verursacher ließ sich im Protokoll nicht nachweisen; im fraglichen Zeitfenster
 stand keine einzige Chromium-Zeile. Mit dem Aufbau außerhalb des Zielbereichs
 tritt der Fehler nicht mehr auf.
+
+### Verwaiste Kopien aufräumen
+
+Chromium löscht das Verzeichnis einer entpackten Erweiterung beim Entfernen
+**nicht** — normalerweise gehört es dem Nutzer. Bei uns gehört es der App, und
+da jeder Ladevorgang einen eigenen Zeitstempel bekommt, sammelten sich die
+Verzeichnisse an. In einem Protokoll scheiterten beim Start bereits fünf
+Ladeversuche aus verwaisten Ordnern.
+
+Nach erfolgreichem Verschieben werden deshalb alle Geschwisterverzeichnisse
+gelöscht, deren Name mit demselben Hash beginnt. Das erfasst die wiederholten
+Zeitstempel-Varianten derselben Quelle, ohne Zugriff auf die
+Erweiterungsverwaltung zu brauchen.
+
+**Nicht erfasst:** Verzeichnisse von Erweiterungen, die ganz entfernt wurden.
+Dafür bräuchte es die Liste der installierten Erweiterungen, und die ist nur im
+UI-Thread erreichbar.
 
 ### Warum keine Standardfunktion
 
@@ -116,7 +130,8 @@ trotzdem eine unvollständige Kopie.
 
 **Eindeutiges Zielverzeichnis allein.** Der Zeitstempel im Namen verhindert
 Kollisionen mit einer nachlaufenden Löschung des Vorgängers — den Fehler behob er
-nicht. Er bleibt drin, weil er nichts kostet.
+nicht. Er bleibt drin, weil er nichts kostet und den Aufräumlauf erst möglich
+macht.
 
 **Zweiter Durchgang über die Wurzeldateien.** Eine Notlösung, die das Symptom
 milderte, aber nicht die Ursache traf. Nach dem CRX-Umbau entfernt.
@@ -125,10 +140,7 @@ milderte, aber nicht die Ursache traf. Nach dem CRX-Umbau entfernt.
 
 ## Offen
 
-- **Sporadischer Fehlschlag beim ersten Laden.** Eine Wiederholung behebt es.
-- **Verwaiste Kopien.** Chromium löscht die Verzeichnisse entpackter
-  Erweiterungen beim Entfernen nicht — bei uns gehören sie aber der App. Ein
-  Aufräumlauf fehlt noch.
+**Sporadischer Fehlschlag beim ersten Laden.** Eine Wiederholung behebt es.
 
 ---
 

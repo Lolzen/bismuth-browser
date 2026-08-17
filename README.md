@@ -18,6 +18,7 @@ rebuilt from scratch on a current Chromium base.
 | Target | Android, `arm64` |
 | Extensions | working |
 | Manifest V2 | working — uBlock Origin loads, runs and blocks |
+| Google account | working |
 | Tab switcher | classic single-column card stack, toggleable |
 | Startup with uBlock | ~3 s |
 | Build type | official (PGO + LTO) |
@@ -49,7 +50,8 @@ Rather than carry Kiwi's 2022 patches forward, Bismuth starts from a current
 Chromium and re-implements only what still matters.
 
 Much of it no longer does. Night mode, the bottom address bar and most of the
-extension UI that Kiwi built by hand are now part of Chromium itself. What
+extension UI that Kiwi built by hand are now part of Chromium itself. Ad
+blocking, popup blocking and user scripts are covered by extensions. What
 remains is the part nobody else provides: **extensions on Android, with
 Manifest V2 support.**
 
@@ -67,6 +69,7 @@ Manifest V2 support.**
 | **9006** | Fixes the crashing extensions menu entry, enables app-menu submenus |
 | **9007** | Removes the Manifest V2 deprecation warning and notice |
 | **9009** | Progress dialog with a real percentage while an extension is copied |
+| **9010** | Restores the account manager delegate, so signing in works |
 
 Details for each are in `docs/port-notes/`. Scope decisions — what was kept,
 deferred and dropped, and why — are in `docs/scope.md`.
@@ -101,6 +104,19 @@ its cost has not been measured yet.
 The Chrome Web Store no longer serves MV2 extensions at all, so loading an
 unpacked folder is the only route. Milestones 9003 and 9009 exist because of
 that.
+
+---
+
+## Signing in
+
+A public Chromium checkout ships only `NullAccountManagerDelegate`, a placeholder
+that throws on every write — so signing into a Google account crashed the
+browser. Milestone 9010 restores the real delegate from Chromium 132 and adapts
+it to the current interface.
+
+The Play Services client library needed for tokens and Gaia IDs turned out to be
+present in the checkout already; it only looked absent because nothing used it
+anymore.
 
 ---
 
@@ -160,9 +176,9 @@ geolocation will not work — everything else will. Put them in your local
   variant, which does not compile the feed. Extensions and the feed are
   currently mutually exclusive; the trade-off will be revisited at the next
   version bump.
-- **Signing into a Google account crashes the browser.** Under investigation.
 - Loading an unpacked extension occasionally fails on the first attempt and
   needs a retry.
+- Directories of extensions you remove entirely are not cleaned up.
 - The Web Store still shows its "install Chrome" banner. Cosmetic; installation
   works regardless.
 - Extensions loaded from a folder carry the standard "unpacked" source badge.
@@ -174,9 +190,6 @@ geolocation will not work — everything else will. Put them in your local
 
 Night mode, bottom toolbar and the new tab page were part of Kiwi. Chromium now
 provides all three natively.
-
-Ad blocking, popup blocking and user scripts were also part of Kiwi. All three
-are covered by extensions and were dropped.
 
 Kiwi's per-site user-agent spoofing targeted 2022 website behaviour and is not
 carried over.
