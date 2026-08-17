@@ -1,0 +1,205 @@
+diff --git a/components/signin/public/android/BUILD.gn b/components/signin/public/android/BUILD.gn
+index 2e84c3c09a690..58dba95a5d723 100644
+--- a/components/signin/public/android/BUILD.gn
++++ b/components/signin/public/android/BUILD.gn
+@@ -45,6 +45,7 @@ android_library("java") {
+     "java/src/org/chromium/components/signin/AuthException.java",
+     "java/src/org/chromium/components/signin/ConnectionRetry.java",
+     "java/src/org/chromium/components/signin/NullAccountManagerDelegate.java",
++    "java/src/org/chromium/components/signin/SystemAccountManagerDelegate.java",
+     "java/src/org/chromium/components/signin/PatternMatcher.java",
+     "java/src/org/chromium/components/signin/PlatformAccount.java",
+     "java/src/org/chromium/components/signin/SigninFeatureMap.java",
+diff --git a/components/signin/public/android/java/src/org/chromium/components/signin/SystemAccountManagerDelegate.java b/components/signin/public/android/java/src/org/chromium/components/signin/SystemAccountManagerDelegate.java
+new file mode 100644
+index 0000000000000..c8e04a4b218f0
+--- /dev/null
++++ b/components/signin/public/android/java/src/org/chromium/components/signin/SystemAccountManagerDelegate.java
+@@ -0,0 +1,186 @@
++// Copyright 2012 The Chromium Authors
++// Use of this source code is governed by a BSD-style license that can be
++// found in the LICENSE file.
++
++package org.chromium.components.signin;
++
++import android.accounts.Account;
++import android.accounts.AccountManager;
++import android.accounts.AccountManagerCallback;
++import android.accounts.AuthenticatorException;
++import android.accounts.OperationCanceledException;
++import android.annotation.SuppressLint;
++import android.app.Activity;
++import android.content.BroadcastReceiver;
++import android.content.Context;
++import android.content.Intent;
++import android.content.IntentFilter;
++import android.os.Bundle;
++import android.os.PatternMatcher;
++
++import com.google.android.gms.auth.GoogleAuthException;
++import com.google.android.gms.auth.GoogleAuthUtil;
++
++import org.chromium.base.Callback;
++import org.chromium.base.ContextUtils;
++import org.chromium.base.Log;
++import org.chromium.base.ThreadUtils;
++import org.chromium.build.annotations.NullMarked;
++import org.chromium.build.annotations.Nullable;
++import org.chromium.build.annotations.ServiceImpl;
++import org.chromium.google_apis.gaia.GaiaId;
++
++import java.io.IOException;
++
++/**
++ * Delegates account handling to the Android account manager, the way Chromium did before the
++ * implementation moved out of the public tree. Restored from 132 and adapted to the current
++ * interface.
++ */
++@NullMarked
++@ServiceImpl(AccountManagerDelegate.class)
++public class SystemAccountManagerDelegate implements AccountManagerDelegate {
++    private static final String TAG = "Auth";
++
++    private final AccountManager mAccountManager;
++    private @Nullable AccountsChangeObserver mObserver;
++
++    public SystemAccountManagerDelegate() {
++        mAccountManager = AccountManager.get(ContextUtils.getApplicationContext());
++        mObserver = null;
++    }
++
++    @Override
++    public void attachAccountsChangeObserver(AccountsChangeObserver observer) {
++        mObserver = observer;
++        Context context = ContextUtils.getApplicationContext();
++        BroadcastReceiver receiver =
++                new BroadcastReceiver() {
++                    @Override
++                    public void onReceive(final Context context, final Intent intent) {
++                        if (mObserver != null) {
++                            mObserver.onCoreAccountInfosChanged();
++                        }
++                    }
++                };
++        IntentFilter accountsChanged = new IntentFilter();
++        accountsChanged.addAction(AccountManager.LOGIN_ACCOUNTS_CHANGED_ACTION);
++        ContextUtils.registerProtectedBroadcastReceiver(context, receiver, accountsChanged);
++
++        IntentFilter gmsReplaced = new IntentFilter();
++        gmsReplaced.addAction(Intent.ACTION_PACKAGE_REPLACED);
++        gmsReplaced.addDataScheme("package");
++        gmsReplaced.addDataPath("com.google.android.gms", PatternMatcher.PATTERN_PREFIX);
++        ContextUtils.registerProtectedBroadcastReceiver(context, receiver, gmsReplaced);
++    }
++
++    @SuppressLint("MissingPermission")
++    @Override
++    public Account[] getAccountsSynchronous() throws AccountManagerDelegateException {
++        return mAccountManager.getAccountsByType(GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);
++    }
++
++    @Override
++    public AccessTokenData getAccessToken(Account account, String authTokenScope)
++            throws AuthException {
++        ThreadUtils.assertOnBackgroundThread();
++        try {
++            return new AccessTokenData(
++                    GoogleAuthUtil.getTokenWithNotification(
++                            ContextUtils.getApplicationContext(), account, authTokenScope, null));
++        } catch (GoogleAuthException ex) {
++            throw new AuthException(
++                    false, "Error while getting token for scope '" + authTokenScope + "'", ex);
++        } catch (IOException ex) {
++            throw new AuthException(true, ex);
++        }
++    }
++
++    @Override
++    public void invalidateAccessToken(String authToken) throws AuthException {
++        try {
++            GoogleAuthUtil.clearToken(ContextUtils.getApplicationContext(), authToken);
++        } catch (GoogleAuthException ex) {
++            throw new AuthException(false, ex);
++        } catch (IOException ex) {
++            throw new AuthException(true, ex);
++        }
++    }
++
++    @Override
++    public @CapabilityResponse int hasCapability(@Nullable Account account, String capability) {
++        return CapabilityResponse.EXCEPTION;
++    }
++
++    @SuppressLint("MissingPermission")
++    @Override
++    public void createAddAccountIntent(
++            @Nullable String prefilledEmail, Callback<@Nullable Intent> callback) {
++        AccountManagerCallback<Bundle> managerCallback =
++                future -> {
++                    try {
++                        Bundle bundle = future.getResult();
++                        callback.onResult(bundle.getParcelable(AccountManager.KEY_INTENT));
++                    } catch (OperationCanceledException | IOException | AuthenticatorException e) {
++                        Log.e(TAG, "Error while creating an intent to add an account: ", e);
++                        callback.onResult(null);
++                    }
++                };
++        mAccountManager.addAccount(
++                GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE, null, null, null, null, managerCallback, null);
++    }
++
++    @SuppressLint("MissingPermission")
++    @Override
++    public void updateCredentials(
++            Account account, Activity activity, final @Nullable Callback<Boolean> callback) {
++        ThreadUtils.assertOnUiThread();
++        AccountManagerCallback<Bundle> managerCallback =
++                future -> {
++                    Bundle bundle = null;
++                    try {
++                        bundle = future.getResult();
++                    } catch (AuthenticatorException | IOException e) {
++                        Log.e(TAG, "Error while updating credentials: ", e);
++                    } catch (OperationCanceledException e) {
++                        Log.w(TAG, "Updating credentials was cancelled.");
++                    }
++                    boolean success =
++                            bundle != null
++                                    && bundle.getString(AccountManager.KEY_ACCOUNT_TYPE) != null;
++                    if (callback != null) {
++                        callback.onResult(success);
++                    }
++                };
++        mAccountManager.updateCredentials(
++                account, "android", new Bundle(), activity, managerCallback, null);
++    }
++
++    @Override
++    public @Nullable GaiaId getAccountGaiaId(String accountEmail) {
++        try {
++            return new GaiaId(
++                    GoogleAuthUtil.getAccountId(
++                            ContextUtils.getApplicationContext(), accountEmail));
++        } catch (IOException | GoogleAuthException ex) {
++            Log.e(TAG, "SystemAccountManagerDelegate.getAccountGaiaId", ex);
++            return null;
++        }
++    }
++
++    @Override
++    public void confirmCredentials(
++            Account account, @Nullable Activity activity, Callback<@Nullable Bundle> callback) {
++        AccountManagerCallback<Bundle> managerCallback =
++                future -> {
++                    Bundle result = null;
++                    try {
++                        result = future.getResult();
++                    } catch (Exception e) {
++                        Log.e(TAG, "Error while confirming credentials: ", e);
++                    }
++                    callback.onResult(result);
++                };
++        mAccountManager.confirmCredentials(account, new Bundle(), activity, managerCallback, null);
++    }
++}
+\ No newline at end of file

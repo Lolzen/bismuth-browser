@@ -51,6 +51,9 @@ mk 9009-load-progress \
   chrome/common/extensions/api/developer_private.webidl \
   tools/typescript/definitions/developer_private.d.ts
 
+mk 9010-account-manager-delegate \
+  components/signin/public/android
+
 git reset -q
 
 cat > "$OUT/series" <<SERIES
@@ -62,6 +65,7 @@ cat > "$OUT/series" <<SERIES
 9006-extensions-menu.patch
 9007-mv2-no-deprecation.patch
 9009-load-progress.patch
+9010-account-manager-delegate.patch
 SERIES
 echo
 echo "series geschrieben"

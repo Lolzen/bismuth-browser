@@ -6,3 +6,4 @@
 9006-extensions-menu.patch
 9007-mv2-no-deprecation.patch
 9009-load-progress.patch
+9010-account-manager-delegate.patch
