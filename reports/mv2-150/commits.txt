@@ -1,0 +1,3 @@
+8403fb28b1bc2 [Extensions] Remove old MV2 phase handling in developerPrivate
+e768ae9db4940 [Extensions] Remove kExtensionManifestV2Disabled feature
+72af0053522f6 [Extensions] Include Manifest::TYPE_USER_SCRIPT in mv2 checker

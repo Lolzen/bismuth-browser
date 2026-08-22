@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/api/developer_private/extension_info_generator.cc b/chrome/browser/extensions/api/developer_private/extension_info_generator.cc
-index c896f1bc0ec40..78d675d652cfd 100644
+index 71c472aa201ad..0a3a6db2a0a4a 100644
 --- a/chrome/browser/extensions/api/developer_private/extension_info_generator.cc
 +++ b/chrome/browser/extensions/api/developer_private/extension_info_generator.cc
-@@ -865,14 +865,10 @@ void ExtensionInfoGenerator::FillExtensionInfo(const Extension& extension,
+@@ -865,12 +865,9 @@ void ExtensionInfoGenerator::FillExtensionInfo(const Extension& extension,
          toolbar_actions_model->IsActionPinned(extension.id());
    }
  
@@ -12,17 +12,14 @@ index c896f1bc0ec40..78d675d652cfd 100644
 -  CHECK(mv2_experiment_manager);
 -  info.is_affected_by_mv2_deprecation =
 -      mv2_experiment_manager->IsExtensionAffected(extension);
--  info.did_acknowledge_mv2_deprecation_notice =
--      mv2_experiment_manager->DidUserAcknowledgeNotice(extension.id());
 +  // MV2 deprecation. Bismuth supports Manifest V2, so nothing is affected and
 +  // the deprecation panel stays hidden.
 +  info.is_affected_by_mv2_deprecation = false;
-+  info.did_acknowledge_mv2_deprecation_notice = false;
    if (info.web_store_url.length() > 0) {
      info.recommendations_url =
          extension_urls::GetNewWebstoreItemRecommendationsUrl(extension.id())
 diff --git a/extensions/common/extension.cc b/extensions/common/extension.cc
-index 8a8ab0a0e2c6e..ee190a3e0055f 100644
+index 921ca8867e952..34b18538757d1 100644
 --- a/extensions/common/extension.cc
 +++ b/extensions/common/extension.cc
 @@ -103,13 +103,7 @@ bool IsManifestSupported(int manifest_version,

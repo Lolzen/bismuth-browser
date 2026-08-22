@@ -1,4 +1,4 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 S=/home/gee/kiwi-rebase/build/chromium/src
 REP=/home/gee/kiwi-rebase/reports
 FROM=149.0.7827.238
