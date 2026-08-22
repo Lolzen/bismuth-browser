@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
-index 792ab09ed3e38..30e72dcc9d082 100644
+index 5b3b62b1ee3ca..6d0d89d3924d5 100644
 --- a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
 +++ b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
 @@ -3,6 +3,16 @@
@@ -222,10 +222,10 @@ index 792ab09ed3e38..30e72dcc9d082 100644
  
  void DeveloperPrivateLoadUnpackedFunction::OnLoadComplete(
 diff --git a/chrome/browser/extensions/api/developer_private/developer_private_functions.h b/chrome/browser/extensions/api/developer_private/developer_private_functions.h
-index 75caa7701fc67..3aa6c9538114b 100644
+index 170607b9fc028..2c020fa7ed041 100644
 --- a/chrome/browser/extensions/api/developer_private/developer_private_functions.h
 +++ b/chrome/browser/extensions/api/developer_private/developer_private_functions.h
-@@ -330,6 +330,11 @@ class DeveloperPrivateLoadUnpackedFunction
+@@ -327,6 +327,11 @@ class DeveloperPrivateLoadUnpackedFunction
  
    // Starts loading the given `file_path`.
    void StartFileLoad(const base::FilePath file_path);

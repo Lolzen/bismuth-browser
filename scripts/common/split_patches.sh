@@ -15,6 +15,7 @@ mk() {
 mk 9001-extensions-mv2 \
   base/files/file_enumerator_posix.cc \
   extensions/common/extension_features.cc \
+  extensions/browser/manifest_v2_experiment_manager.cc \
   chrome/common/extensions/api/api_sources.gni
 
 mk 9002-classic-tabswitcher \

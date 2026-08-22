@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/resources/extensions/item.ts b/chrome/browser/resources/extensions/item.ts
-index e4f04ffc122cb..4c979e272d36e 100644
+index eec862658c052..ad7ff0c9c1110 100644
 --- a/chrome/browser/resources/extensions/item.ts
 +++ b/chrome/browser/resources/extensions/item.ts
-@@ -63,6 +63,8 @@ export interface ItemDelegate {
+@@ -62,6 +62,8 @@ export interface ItemDelegate {
    recordUserAction(metricName: string): void;
    getItemStateChangedTarget():
        ChromeEvent<(data: chrome.developerPrivate.EventData) => void>;
@@ -11,7 +11,7 @@ index e4f04ffc122cb..4c979e272d36e 100644
    showSiteSettings(id: string): void;
  }
  
-@@ -117,6 +119,10 @@ export class DummyItemDelegate {
+@@ -116,6 +118,10 @@ export class DummyItemDelegate {
    getItemStateChangedTarget() {
      return new FakeChromeEvent();
    }
@@ -84,7 +84,7 @@ index 1c4506dc4beaf..45b2e36c151b7 100644
    <extensions-install-warnings-dialog
        @close="${this.onInstallWarningsDialogClose_}"
 diff --git a/chrome/browser/resources/extensions/manager.ts b/chrome/browser/resources/extensions/manager.ts
-index f421f5b7c033e..4d731385170ae 100644
+index eccc0377d5f45..f13d70acecee5 100644
 --- a/chrome/browser/resources/extensions/manager.ts
 +++ b/chrome/browser/resources/extensions/manager.ts
 @@ -2,6 +2,7 @@
@@ -95,7 +95,7 @@ index f421f5b7c033e..4d731385170ae 100644
  import 'chrome://resources/cr_elements/cr_drawer/cr_drawer.js';
  import 'chrome://resources/cr_elements/cr_lazy_render/cr_lazy_render_lit.js';
  import 'chrome://resources/cr_elements/cr_toast/cr_toast_manager.js';
-@@ -74,6 +75,7 @@ function compareExtensions(
+@@ -75,6 +76,7 @@ function compareExtensions(
  declare global {
    interface HTMLElementEventMap {
      'load-error': CustomEvent<Error|chrome.developerPrivate.LoadError>;
@@ -103,7 +103,7 @@ index f421f5b7c033e..4d731385170ae 100644
    }
  }
  
-@@ -147,6 +149,9 @@ export class ExtensionsManagerElement extends ExtensionsManagerElementBase {
+@@ -148,6 +150,9 @@ export class ExtensionsManagerElement extends ExtensionsManagerElementBase {
  
        showDrawer_: {type: Boolean},
        showLoadErrorDialog_: {type: Boolean},
@@ -113,7 +113,7 @@ index f421f5b7c033e..4d731385170ae 100644
        showInstallWarningsDialog_: {type: Boolean},
        installWarnings_: {type: Array},
        showOptionsDialog_: {type: Boolean},
-@@ -184,6 +189,9 @@ export class ExtensionsManagerElement extends ExtensionsManagerElementBase {
+@@ -185,6 +190,9 @@ export class ExtensionsManagerElement extends ExtensionsManagerElementBase {
    protected accessor narrow_: boolean = false;
    protected accessor showDrawer_: boolean = false;
    protected accessor showLoadErrorDialog_: boolean = false;
@@ -123,7 +123,7 @@ index f421f5b7c033e..4d731385170ae 100644
    protected accessor showInstallWarningsDialog_: boolean = false;
    protected accessor installWarnings_: string[]|null = null;
    protected accessor showOptionsDialog_: boolean = false;
-@@ -230,6 +238,7 @@ export class ExtensionsManagerElement extends ExtensionsManagerElementBase {
+@@ -238,6 +246,7 @@ export class ExtensionsManagerElement extends ExtensionsManagerElementBase {
      super.firstUpdated(changedProperties);
  
      this.addEventListener('load-error', this.onLoadError_);
@@ -131,7 +131,7 @@ index f421f5b7c033e..4d731385170ae 100644
      this.addEventListener('view-enter-start', this.onViewEnterStart_);
      this.addEventListener('view-exit-start', this.onViewExitStart_);
      this.addEventListener('view-exit-finish', this.onViewExitFinish_);
-@@ -256,6 +265,8 @@ export class ExtensionsManagerElement extends ExtensionsManagerElementBase {
+@@ -264,6 +273,8 @@ export class ExtensionsManagerElement extends ExtensionsManagerElementBase {
  
        service.getItemStateChangedTarget().addListener(
            this.onItemStateChanged_.bind(this));
@@ -140,7 +140,7 @@ index f421f5b7c033e..4d731385170ae 100644
      });
    }
  
-@@ -686,6 +697,48 @@ export class ExtensionsManagerElement extends ExtensionsManagerElementBase {
+@@ -692,6 +703,48 @@ export class ExtensionsManagerElement extends ExtensionsManagerElementBase {
      this.showLoadErrorDialog_ = false;
    }
  
@@ -190,7 +190,7 @@ index f421f5b7c033e..4d731385170ae 100644
      this.showOptionsDialog_ = false;
      this.shadowRoot.querySelector(
 diff --git a/chrome/browser/resources/extensions/service.ts b/chrome/browser/resources/extensions/service.ts
-index 0fd05277dadb9..b8c28db79e274 100644
+index 848ddb82575bb..07d0e4be45e43 100644
 --- a/chrome/browser/resources/extensions/service.ts
 +++ b/chrome/browser/resources/extensions/service.ts
 @@ -54,6 +54,10 @@ export class Service implements ServiceInterface {
@@ -229,10 +229,10 @@ index 163d17606312e..b4cf0f13a34e0 100644
      chrome.metricsPrivate.recordUserAction('Options_LoadUnpackedExtension');
    }
 diff --git a/chrome/common/extensions/api/developer_private.webidl b/chrome/common/extensions/api/developer_private.webidl
-index 8c06cf0457edc..d7f5ae17aa567 100644
+index ed195d634e4ef..f656dde4adfcb 100644
 --- a/chrome/common/extensions/api/developer_private.webidl
 +++ b/chrome/common/extensions/api/developer_private.webidl
-@@ -574,6 +574,21 @@ dictionary DeleteExtensionErrorsProperties {
+@@ -573,6 +573,21 @@ dictionary DeleteExtensionErrorsProperties {
    ErrorType type;
  };
  
@@ -254,7 +254,7 @@ index 8c06cf0457edc..d7f5ae17aa567 100644
  // Listener callback for the onItemStateChanged event.
  callback OnItemStateChangedListener = undefined (EventData response);
  
-@@ -822,6 +837,8 @@ interface DeveloperPrivate {
+@@ -804,6 +819,8 @@ interface DeveloperPrivate {
    // Fired when a item state is changed.
    static attribute OnItemStateChangedEvent onItemStateChanged;
  
@@ -264,10 +264,10 @@ index 8c06cf0457edc..d7f5ae17aa567 100644
    static attribute OnProfileStateChangedEvent onProfileStateChanged;
  
 diff --git a/tools/typescript/definitions/developer_private.d.ts b/tools/typescript/definitions/developer_private.d.ts
-index 2e73d1133f1f3..396afe89bd6e2 100644
+index 26e54ca663880..d78de5c45c233 100644
 --- a/tools/typescript/definitions/developer_private.d.ts
 +++ b/tools/typescript/definitions/developer_private.d.ts
-@@ -497,7 +497,15 @@ declare global {
+@@ -494,7 +494,15 @@ declare global {
            Promise<boolean>;
        export function showSiteSettings(extensionId: string): Promise<void>;
  

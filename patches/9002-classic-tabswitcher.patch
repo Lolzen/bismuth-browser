@@ -13,7 +13,7 @@ index 636481c45cd5a..cbe90180d5d8a 100644
 +        android:summary="Single overlapping column of tab cards"/>
  </PreferenceScreen>
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
-index 7f539bd9b3d25..f1a5e041cfae2 100644
+index 8a1c755fc2855..66c5217df5c5b 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
 @@ -10,6 +10,8 @@ import static org.chromium.chrome.browser.tasks.tab_management.TabListModel.Card
@@ -25,7 +25,7 @@ index 7f539bd9b3d25..f1a5e041cfae2 100644
  import android.app.Activity;
  import android.graphics.PointF;
  import android.graphics.Rect;
-@@ -404,6 +406,10 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+@@ -415,6 +417,10 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
                              }
                          };
                  mRecyclerView.setLayoutManager(gridLayoutManager);
@@ -36,7 +36,7 @@ index 7f539bd9b3d25..f1a5e041cfae2 100644
                  mMediator.registerOrientationListener(gridLayoutManager);
                  mMediator.updateSpanCount(
                          gridLayoutManager,
-@@ -741,6 +747,30 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+@@ -698,6 +704,30 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
          }
      }
  
@@ -68,7 +68,7 @@ index 7f539bd9b3d25..f1a5e041cfae2 100644
          // Determine and set span count
          final GridLayoutManager layoutManager =
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
-index f411ce5631dc1..3d0b0b80ff489 100644
+index cb909ab75308c..b08059a2450ac 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
 @@ -18,6 +18,7 @@ import static org.chromium.chrome.browser.tasks.tab_management.TabSwitcherMessag
@@ -79,7 +79,7 @@ index f411ce5631dc1..3d0b0b80ff489 100644
  import android.animation.Animator;
  import android.animation.AnimatorListenerAdapter;
  import android.animation.ObjectAnimator;
-@@ -1916,7 +1917,12 @@ class TabListMediator implements TabListNotificationHandler {
+@@ -2029,7 +2030,12 @@ public class TabListMediator implements TabListNotificationHandler {
       */
      boolean updateSpanCount(GridLayoutManager manager, int screenWidthDp) {
          final int oldSpanCount = manager.getSpanCount();

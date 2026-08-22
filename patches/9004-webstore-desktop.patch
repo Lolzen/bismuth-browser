@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java
-index 8844a72f5adda..e34ab11c7c018 100644
+index 03b099c8a5a77..e631b49251593 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java
-@@ -1435,7 +1435,9 @@ public class RootUiCoordinator
+@@ -1541,7 +1541,9 @@ public class RootUiCoordinator
              initIncognitoReauthController(originalProfile);
          }
  
@@ -13,7 +13,7 @@ index 8844a72f5adda..e34ab11c7c018 100644
                  && DesktopSiteUtils.maybeDefaultEnableGlobalSetting(
                          getPrimaryDisplaySizeInInches(), originalProfile, mActivity)) {
              // TODO(crbug.com/40856393): Remove this explicit load when this bug is addressed.
-@@ -1445,6 +1447,7 @@ public class RootUiCoordinator
+@@ -1551,6 +1553,7 @@ public class RootUiCoordinator
          }
  
          DesktopSiteUtils.maybeDefaultEnableWindowSetting(mActivity, originalProfile);
