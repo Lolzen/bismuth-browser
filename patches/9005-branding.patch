@@ -1,5 +1,5 @@
 diff --git a/chrome/android/chrome_public_apk_tmpl.gni b/chrome/android/chrome_public_apk_tmpl.gni
-index 9bf07d2470457..0b926f24383ec 100644
+index a1aaf65079c51..35b9defda6e4d 100644
 --- a/chrome/android/chrome_public_apk_tmpl.gni
 +++ b/chrome/android/chrome_public_apk_tmpl.gni
 @@ -25,7 +25,7 @@ declare_args() {
@@ -12984,7 +12984,7 @@ index cc1f2a30cb3c5..1e6d3a09eaeb2 100644
 +    <string name="quick_action_search_widget_title" translatable="false">Bismuth quick action search</string>
  </resources>
 diff --git a/chrome/app/chromium_strings.grd b/chrome/app/chromium_strings.grd
-index a154b12dc4fa7..82ee626267e0a 100644
+index 12a62d6803668..2c4989d88a24e 100644
 --- a/chrome/app/chromium_strings.grd
 +++ b/chrome/app/chromium_strings.grd
 @@ -278,7 +278,7 @@ If you update this file, be sure also to update google_chrome_strings.grd. -->
@@ -13090,16 +13090,16 @@ index a154b12dc4fa7..82ee626267e0a 100644
  
  New bookmarks can’t be saved in your account until you delete some. If you sign out now, unsaved bookmarks will be deleted.
          </message>
-@@ -408,7 +408,7 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
-       <message name="IDS_RESET_PROFILE_SETTINGS_EXPLANATION_IN_BULLET_POINTS" desc="A label formatted with bullet points describing the consequences of the 'reset profile settings' feature">
-         This action will:
-         <ph name="LINE_BREAKS">&lt;br&gt;&lt;br&gt;</ph>
--          • Reset some Chromium settings and Chromium shortcuts
-+          • Reset some Bismuth settings and Bismuth shortcuts
-           <ph name="LINE_BREAK">&lt;br&gt;</ph>
-           • Disable extensions
-           <ph name="LINE_BREAK">&lt;br&gt;</ph>
-@@ -426,7 +426,7 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
+@@ -415,7 +415,7 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
+             <ph name="LINE_BREAK">&lt;br&gt;</ph>
+             • Delete cookies and other temporary site data
+             <ph name="LINE_BREAK">&lt;br&gt;</ph>
+-            • Reset Chromium shortcuts
++            • Reset Bismuth shortcuts
+             <ph name="LINE_BREAKS">&lt;br&gt;&lt;br&gt;</ph>
+             Bookmarks, history, and saved passwords won't be affected.
+         </message>
+@@ -443,7 +443,7 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
            </then>
            <else>
              <message name="IDS_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for titles displayed in tabs and popup windows">
@@ -13108,7 +13108,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
              </message>
            </else>
          </if>
-@@ -434,19 +434,19 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
+@@ -451,19 +451,19 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
        <if expr="is_chromeos">
          <!-- Browser Window Title Format -->
          <message name="IDS_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for titles displayed in tabbed browser windows">
@@ -13131,7 +13131,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
        </if>
        <if expr="is_macosx">
-@@ -465,18 +465,18 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
+@@ -482,18 +482,18 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
          </then>
          <else>
            <message name="IDS_ACCESSIBLE_BROWSER_WINDOW_TITLE_FORMAT" desc="The format for the accessible name of a tabbed browser window">
@@ -13154,7 +13154,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
        <if expr="_is_chrome_for_testing_branded">
          <then>
-@@ -497,14 +497,14 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
+@@ -514,14 +514,14 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
          </else>
        </if>
        <if expr="is_chromeos">
@@ -13172,7 +13172,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
        </if>
        <if expr="_is_chrome_for_testing_branded">
-@@ -515,123 +515,123 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
+@@ -532,123 +532,123 @@ New bookmarks can’t be saved in your account until you delete some. If you sig
          </then>
          <else>
            <message name="IDS_ABOUT_TERMS_OF_SERVICE" desc="The terms of service label in the About box." translateable="false">
@@ -13325,7 +13325,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
  
  <ph name="USER_DATA_DIRECTORY">$1<ex>C:\Documents and Settings\devint\Local Settings\Application Data\Google\Chrome</ex></ph>
        </message>
-@@ -641,9 +641,9 @@ Chromium cannot read and write to its data directory:
+@@ -658,9 +658,9 @@ Chromium cannot read and write to its data directory:
          </message>
        </if>
        <message name="IDS_PROFILE_TOO_NEW_ERROR" desc="Error displayed on startup when the profile is from a newer version of the product and can not be read">
@@ -13337,7 +13337,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
        <message name="IDS_PREFERENCES_UNREADABLE_ERROR" desc="Error displayed on startup when user preferences file can not be read">
  Your preferences can not be read.
-@@ -653,21 +653,21 @@ Some features may be unavailable and changes to preferences won't be saved.
+@@ -670,21 +670,21 @@ Some features may be unavailable and changes to preferences won't be saved.
        <message name="IDS_PREFERENCES_CORRUPT_ERROR" desc="Error displayed on startup when user preferences file can not be read">
  Your preferences file is corrupt or invalid.
  
@@ -13361,9 +13361,9 @@ index a154b12dc4fa7..82ee626267e0a 100644
 -        Chromium
 +        Bismuth
        </message>
-       <message name="IDS_PASSWORD_BUBBLES_PASSWORD_MANAGER_LINK_TEXT_SAVING_ON_DEVICE" desc="The text of the Google Password Manager links displayed on Password Manager bubbles footer when the credentials are stored only locally.">
+       <message name="IDS_PASSWORD_MANAGER_BRAND_NAME" desc="This string is used both as a standalone label and injected into sentences. Please translate this as a standalone noun in the Nominative case to ensure it looks correct in titles. Sentence structures surrounding it may read slightly awkwardly.">
          Password Manager
-@@ -680,81 +680,81 @@ Chromium is unable to recover your settings.
+@@ -697,81 +697,81 @@ Chromium is unable to recover your settings.
        </message>
        <if expr="is_macosx">
        <message name="IDS_PASSWORDS_AUTHENTICATION_PROMPT_PREFIX" desc="Text shown in the beginning of the OS-level user authentication prompt before performing a seneitive operation such as show passwords in plain text.">
@@ -13466,7 +13466,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
            Access the Internet
          </message>
          <message name="IDS_UNINSTALL_DELETE_PROFILE" desc="Text to show user to ask whether to delete all the profile data also during uninstallation.">
-@@ -763,228 +763,228 @@ Chromium is unable to recover your settings.
+@@ -780,218 +780,218 @@ Chromium is unable to recover your settings.
          <message name="IDS_UNINSTALL_BUTTON_TEXT" desc="Label for uninstall button on Uninstall confirmation dialog.">
            Uninstall
          </message>
@@ -13560,11 +13560,11 @@ index a154b12dc4fa7..82ee626267e0a 100644
 -          Get a quick overview of this document and ask questions with Gemini in Chromium
 +          Get a quick overview of this document and ask questions with Gemini in Bismuth
          </message>
-         <message name="IDS_PDF_GLIC_SUMMARIZE_IPH_TEXT_NEW" desc="Text of the In Product Help message shown for the button to summarize PDF." translateable="false">
+         <message name="IDS_PDF_GLIC_SUMMARIZE_IPH_TEXT_NEW" desc="Text of the In Product Help message shown for the button to summarize PDF.">
 -          Share this document with Gemini in Chromium to get a quick overview and ask follow-up questions
 +          Share this document with Gemini in Bismuth to get a quick overview and ask follow-up questions
          </message>
-         <message name="IDS_PDF_GLIC_SUMMARIZE_IPH_TEXT_NEW_SCREENREADER" desc="The screenreader text of the In Product Help message shown for the button to summarize PDF." translateable="false" is_accessibility_with_no_ui="true">
+         <message name="IDS_PDF_GLIC_SUMMARIZE_IPH_TEXT_NEW_SCREENREADER" desc="The screenreader text of the In Product Help message shown for the button to summarize PDF." is_accessibility_with_no_ui="true">
 -          Click the Summarize button to share this document with Gemini in Chromium to get a quick overview and ask follow-up questions
 +          Click the Summarize button to share this document with Gemini in Bismuth to get a quick overview and ask follow-up questions
          </message>
@@ -13726,19 +13726,6 @@ index a154b12dc4fa7..82ee626267e0a 100644
 -          Chromium found that these items contain malware:
 +          Bismuth found that these items contain malware:
          </message>
- 
-         <!-- Manifest V2 Deprecation dialog -->
-         <message name="IDS_EXTENSIONS_MANIFEST_V2_DEPRECATION_KEEP_DIALOG_DESCRIPTION" desc="The description of the dialog asking the user if they want to keep the extension installed, which is affected by the Manifest V2 deprecation">
--          This extension is no longer supported. Chromium recommends that you remove it instead.
-+          This extension is no longer supported. Bismuth recommends that you remove it instead.
-         </message>
-         <message name="IDS_EXTENSIONS_MANIFEST_V2_DEPRECATION_DISABLED_DIALOG_DESCRIPTION"  desc="The description of the dialog that appears when extensions were disabled due to the Manifest V2 deprecation">
-           {NUM_EXTENSIONS, plural,
--          =1 {This extension is no longer supported. Chromium recommends that you remove it.}
--          other {These extensions are no longer supported. Chromium recommends that you remove them.}}
-+          =1 {This extension is no longer supported. Bismuth recommends that you remove it.}
-+          other {These extensions are no longer supported. Bismuth recommends that you remove them.}}
-         </message>
          <message name="IDS_EXTENSIONS_MV2_DEPRECATION_MESSAGE_DISABLED_SUBTITLE" desc="Subtitle text displayed in the manifest v2 deprecation message for a specific extension during the disabled stage.">
 -          Chromium recommends that you remove it. <ph name="BEGIN_LINK">&lt;a href="$1" aria-description="$2" target="_blank"&gt;</ph>Learn more about supported extensions<ph name="END_LINK">&lt;/a&gt;</ph>
 +          Bismuth recommends that you remove it. <ph name="BEGIN_LINK">&lt;a href="$1" aria-description="$2" target="_blank"&gt;</ph>Learn more about supported extensions<ph name="END_LINK">&lt;/a&gt;</ph>
@@ -13761,7 +13748,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_OPEN_WEB_STORE_BUTTON_TEXT" desc="Text for the open Chrome Web Store button." formatter_data="android_java">
            Open Chrome Web Store
-@@ -993,58 +993,58 @@ Chromium is unable to recover your settings.
+@@ -1000,58 +1000,58 @@ Chromium is unable to recover your settings.
  
        <!-- Extension Safety Check Detail Page strings -->
        <message name="IDS_SAFETY_CHECK_EXTENSIONS_MALWARE" desc="The text explaining the reason for disabling extension. The extension in question contains malware.">
@@ -13838,7 +13825,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
        </if>
  
-@@ -1055,19 +1055,19 @@ Chromium is unable to recover your settings.
+@@ -1062,19 +1062,19 @@ Chromium is unable to recover your settings.
  
        <!-- Main Chrome menu -->
        <message name="IDS_APPMENU_TOOLTIP" desc="The tooltip to show for the browser menu">
@@ -13862,7 +13849,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
  
        <if expr="use_titlecase and not is_chromeos">
-@@ -1079,12 +1079,12 @@ Chromium is unable to recover your settings.
+@@ -1086,12 +1086,12 @@ Chromium is unable to recover your settings.
            </then>
            <else>
              <message name="IDS_ABOUT" desc="In Title Case: The text label of the About Chrome menu item">
@@ -13877,7 +13864,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
        </if>
        <if expr="not use_titlecase and not is_chromeos">
-@@ -1096,17 +1096,17 @@ Chromium is unable to recover your settings.
+@@ -1103,17 +1103,17 @@ Chromium is unable to recover your settings.
            </then>
            <else>
              <message name="IDS_ABOUT" desc="The text label of the About Chrome menu item">
@@ -13898,7 +13885,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_RELAUNCH_TO_UPDATE" desc="The text label of the relaunch to update ChromeOS menu item">
            Relaunch to update &amp;ChromiumOS
-@@ -1115,13 +1115,13 @@ Chromium is unable to recover your settings.
+@@ -1122,13 +1122,13 @@ Chromium is unable to recover your settings.
  
        <if expr="is_macosx">
          <message name="IDS_APP_MENU_PRODUCT_NAME" desc="The application's short name, used for the Mac's application menu, activity monitor, etc. This should be less than 16 characters. Example: Chrome, not Google Chrome." translateable="false">
@@ -13915,7 +13902,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
        </if>
  
-@@ -1130,24 +1130,24 @@ Chromium is unable to recover your settings.
+@@ -1137,24 +1137,24 @@ Chromium is unable to recover your settings.
          <if expr="use_titlecase">
            <then>
              <message name="IDS_CUSTOMIZE_CHROME" desc="In Title Case: The text label of the Customize Chrome menu item">
@@ -13946,7 +13933,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
              </message>
            </else>
          </if>
-@@ -1159,33 +1159,33 @@ Chromium is unable to recover your settings.
+@@ -1166,33 +1166,33 @@ Chromium is unable to recover your settings.
  
        <!-- Chrome sign-in page -->
        <message name="IDS_CHROME_SIGNIN_TITLE" desc="Title on the about:chrome-signin page" translateable="false">
@@ -13987,7 +13974,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
        <message name="IDS_SESSION_RESTORE_LINK" desc="Text for the link in the session restore infobar to open the Settings page.">
           Settings.
-@@ -1194,78 +1194,78 @@ Chromium is unable to recover your settings.
+@@ -1201,78 +1201,78 @@ Chromium is unable to recover your settings.
          Settings, opens in new tab.
        </message>
        <!-- Enterprise sign-in dialog -->
@@ -14087,7 +14074,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
        <if expr="_is_chrome_for_testing_branded">
          <then>
-@@ -1274,37 +1274,37 @@ Chromium is unable to recover your settings.
+@@ -1281,37 +1281,37 @@ Chromium is unable to recover your settings.
            </message>
          </then>
          <else>
@@ -14136,7 +14123,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
  
        <!-- Realbox Strings -->
-@@ -1318,135 +1318,135 @@ Chromium is unable to recover your settings.
+@@ -1325,135 +1325,135 @@ Chromium is unable to recover your settings.
        <!-- Signin Email Confirmation tab modal dialog -->
        <if expr="not is_chromeos">
          <message name="IDS_SIGNIN_EMAIL_CONFIRMATION_TITLE" desc="Title of the signin email confirmation tab modal dialog.">
@@ -14332,7 +14319,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
        </if>
  
-@@ -1459,7 +1459,7 @@ Chromium is unable to recover your settings.
+@@ -1466,7 +1466,7 @@ Chromium is unable to recover your settings.
            ChromiumOS could not sync your data because your account sign-in details are out of date.
          </message>
          <message name="IDS_SYNC_SIGN_IN_ERROR_BUBBLE_VIEW_MESSAGE_2" desc="Message in the sign-in error notification when the user's sign-in credentials are out of date.">
@@ -14341,7 +14328,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_SYNC_UNAVAILABLE_ERROR_BUBBLE_VIEW_MESSAGE" desc="Message in the sign-in error notification when sync is not available for their domain.">
            ChromiumOS could not sync your data because Sync is not available for your domain.
-@@ -1468,128 +1468,128 @@ Chromium is unable to recover your settings.
+@@ -1475,133 +1475,133 @@ Chromium is unable to recover your settings.
            ChromiumOS could not sync your data due to an error signing in.
          </message>
          <message name="IDS_SYNC_OTHER_SIGN_IN_ERROR_BUBBLE_VIEW_MESSAGE_2" desc="Message in the sign-in error notification when there's an error signing in.">
@@ -14425,6 +14412,12 @@ index a154b12dc4fa7..82ee626267e0a 100644
 +          Add Bismuth Profile
          </message>
        </if>
+ 
+       <!-- Sign in on your phone (QR code) strings  -->
+       <message name="IDS_QR_CODE_BUBBLE_SIGNIN_ON_PHONE_TITLE" desc="Title of the QR Code bubble showing a code for the user to sign in on their phone.">
+-        Sign in to Chromium on your phone
++        Sign in to Bismuth on your phone
+       </message>
  
        <!-- App list -->
        <if expr="is_chromeos">
@@ -14512,7 +14505,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
        </if>
  
-@@ -1597,40 +1597,40 @@ Chromium is unable to recover your settings.
+@@ -1609,40 +1609,40 @@ Chromium is unable to recover your settings.
        <if expr="not is_android and not is_chromeos">
          <!-- User pod remove sync warning text -->
          <message name="IDS_LOGIN_POD_USER_REMOVE_WARNING_SYNC" desc="Main text shown as a warning when attempting to remove an user.">
@@ -14563,7 +14556,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_TUTORIAL_PASSWORD_MANAGER_CLICK_PASSWORD_MANAGER" desc="The description of the 'click password manager' step in password manager tutorial">
            Click “Password Manager”
-@@ -1645,94 +1645,94 @@ Chromium is unable to recover your settings.
+@@ -1657,94 +1657,94 @@ Chromium is unable to recover your settings.
  
        <!-- Settings API bubble -->
        <message name="IDS_EXTENSIONS_SETTINGS_API_SECOND_LINE_START_PAGES" desc="Second line in the Settings API bubble. Only shown if the secondary change by the extension was just the start pages. The triple single quotes are needed to preserve the space before and after the sentence which is needed when the language (Chrome is being translated to) uses space as word separator. Please preserve them, unless the language being translated to does not use space as word separator.">
@@ -14684,7 +14677,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
            </message>
          </if>
        </if>
-@@ -1740,13 +1740,13 @@ Chromium is unable to recover your settings.
+@@ -1752,13 +1752,13 @@ Chromium is unable to recover your settings.
        <!-- Update Recommended dialog -->
        <if expr="not is_chromeos">
          <message name="IDS_UPDATE_RECOMMENDED_DIALOG_TITLE" desc="The window title for the Update Recommended dialog.">
@@ -14702,7 +14695,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_RELAUNCH_AND_UPDATE" desc="The button in the Update Recommended dialog which updates and relaunches Chrome.">
            Relaunch
-@@ -1766,71 +1766,71 @@ Chromium is unable to recover your settings.
+@@ -1778,71 +1778,71 @@ Chromium is unable to recover your settings.
  
        <if expr="is_win or is_macosx or is_linux">
          <message name="IDS_UPDATE_RECOMMENDED_DIALOG_TITLE_ALT" desc="Alternate window title for the Update Recommended dialog." translateable="false">
@@ -14791,7 +14784,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
        </if>
        <message name="IDS_RECOVERY_BUBBLE_TEXT" desc="Text for the chrome recovery bubble view full description.">
-@@ -1838,92 +1838,92 @@ Chromium is unable to recover your settings.
+@@ -1850,92 +1850,92 @@ Chromium is unable to recover your settings.
        </message>
  
        <!-- Critical Notification bubble -->
@@ -14913,7 +14906,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_LOCAL_NETWORK_ACCESS_PERMISSION_DESC" desc="Text shown in the macOS permission dialog, describing why Chrome needs the permission to access local network.">
            This will allow you to select from available devices and display content on them.
-@@ -1932,12 +1932,12 @@ Chromium is unable to recover your settings.
+@@ -1944,12 +1944,12 @@ Chromium is unable to recover your settings.
  
        <!-- Side panel strings -->
        <message name="IDS_SIDE_PANEL_CUSTOMIZE_CHROME_TITLE" desc="The name of the Customize Chrome feature in the side panel combo box.">
@@ -14928,7 +14921,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
  
        <!-- Lens Overlay Strings -->
-@@ -2296,7 +2296,7 @@ Chromium is unable to recover your settings.
+@@ -2324,7 +2324,7 @@ Chromium is unable to recover your settings.
          </message>
          <message name="IDS_LENS_PERMISSION_BUBBLE_DIALOG_LEARN_MORE_ABOUT_GOOGLE_LENS_LINK"
            desc="Accessibility label for text link that is shown to users to learn more about privacy in relation to Google Lens.">
@@ -14937,7 +14930,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_LENS_PERMISSION_BUBBLE_DIALOG_TITLE"
            desc="The title of the lens permission search bubble dialog, introducing Lens as a way to search what's on their screen.">
-@@ -2393,7 +2393,7 @@ Chromium is unable to recover your settings.
+@@ -2421,7 +2421,7 @@ Chromium is unable to recover your settings.
        <!-- OOBE -->
        <if expr="is_chromeos">
          <message name="IDS_INSTALLING_UPDATE" desc="Label shown on the updates installation screen during OOBE">
@@ -14946,7 +14939,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_EULA_SCREEN_ACCESSIBLE_TITLE" desc="Title to be spoken on opening the OOBE EULA screen">
            ChromiumOS terms
-@@ -2403,7 +2403,7 @@ Chromium is unable to recover your settings.
+@@ -2431,7 +2431,7 @@ Chromium is unable to recover your settings.
        <!-- Native notifications for Windows 10 -->
        <if expr="is_win">
          <message name="IDS_WIN_NOTIFICATION_SETTINGS_CONTEXT_MENU_ITEM_NAME" desc="The name of the button in Windows Notification Center which leads to Chrome notification settings.">
@@ -14955,7 +14948,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
        </if>
        <!-- Relaunch notification bubble and dialog. -->
-@@ -2411,115 +2411,115 @@ Chromium is unable to recover your settings.
+@@ -2439,115 +2439,115 @@ Chromium is unable to recover your settings.
          <if expr="not is_chromeos">
            <message name="IDS_RELAUNCH_RECOMMENDED_TITLE" desc="The title of a dialog that tells users that a browser relaunch is recommended for an update available for some number of days.">
              {0, plural,
@@ -15121,7 +15114,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
        </if>
  
-@@ -2533,128 +2533,128 @@ Chromium is unable to recover your settings.
+@@ -2561,128 +2561,128 @@ Chromium is unable to recover your settings.
        <!-- Chrome parent extension/app install blocking dialog. -->
        <if expr="enable_extensions_core">
          <message name="IDS_EXTENSION_PERMISSIONS_BLOCKED_BY_PARENT_PROMPT_MESSAGE" desc="Text for the dialog indicating that a parent has blocked extensions and apps.">
@@ -15294,9 +15287,27 @@ index a154b12dc4fa7..82ee626267e0a 100644
 +        <message name="IDS_SIGNOUT_DICE_WEB_INTERCEPT_BUBBLE_CHROME_SIGNOUT_IPH_TEXT_SCREENREADER" desc="Text announced by screenreaders related to the confirmation message is intended to help users to understand that signing out of a Google service (like Gmail) will not sign them out of Bismuth. It appears in a blue in-product help bubble, which points to the Bismuth Profile Menu; it appears after the user signs out of a Google service (like Gmail). The user can open the Profile Menu and sign out of Bismuth, if they wish to do so.">
 +          To remove your Google Account from Bismuth, sign out of Bismuth in the Settings page
          </message>
-       </if>
  
-@@ -2668,20 +2668,20 @@ Chromium is unable to recover your settings.
+         <!-- Feature Showcase - Password Manager -->
+@@ -2690,7 +2690,7 @@ Chromium is unable to recover your settings.
+           Stay safe with Password Manager
+         </message>
+         <message name="IDS_FEATURE_SHOWCASE_PASSWORD_MANAGER_SUBTITLE" desc="Description for the Password Manager page in the Feature Showcase.">
+-          Built into Chromium to help you create, save, and autofill strong passwords. Add the shortcut for easy access.
++          Built into Bismuth to help you create, save, and autofill strong passwords. Add the shortcut for easy access.
+         </message>
+ 
+         <!-- Feature Showcase - Lens -->
+@@ -2704,7 +2704,7 @@ Chromium is unable to recover your settings.
+ 
+       <!-- Feature Showcase - Lens Overlay -->
+       <message name="IDS_FEATURE_SHOWCASE_THEMES_TITLE" desc="This is the headline for a customization onboarding screen. It focuses on personalization and user choice. (CHAR LIMIT = 30)">
+-        Make Chromium yours
++        Make Bismuth yours
+       </message>
+ 
+       <!-- Notification quiet permission IPH -->
+@@ -2717,20 +2717,20 @@ Chromium is unable to recover your settings.
  
        <!-- ChromeLabs bubble -->
        <message name="IDS_CHROMELABS_RELAUNCH_FOOTER_MESSAGE" desc="Text that shows in the footer of the Chrome Labs bubble when relaunch is needed for changes to take effect.">
@@ -15321,7 +15332,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
        <message name="IDS_TAILORED_SECURITY_UNCONSENTED_PROMOTION_MESSAGE_DESCRIPTION" desc="Description shown in the message shown when a user changes their account-level tailored security setting encouraging them to enable Enhanced Safe Browsing">
          Enhanced protection does more to block phishing and malware
-@@ -2695,40 +2695,40 @@ Chromium is unable to recover your settings.
+@@ -2744,40 +2744,40 @@ Chromium is unable to recover your settings.
  
        <!--Launch On Startup-->
        <if expr="is_win">
@@ -15377,7 +15388,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_NO_UPDATE_RESPONSE" desc="Updater response for no updates when handling install result.">
            No update is available
-@@ -2737,7 +2737,7 @@ Chromium is unable to recover your settings.
+@@ -2786,7 +2786,7 @@ Chromium is unable to recover your settings.
            Installation failed. Please try again.
          </message>
          <message name="IDS_INSTALLER_DISPLAY_NAME" desc="Name for the updater metainstaller.">
@@ -15386,7 +15397,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_CLOSE_BUTTON" desc="Close button tooltip">
            Close
-@@ -2776,13 +2776,13 @@ Chromium is unable to recover your settings.
+@@ -2825,13 +2825,13 @@ Chromium is unable to recover your settings.
            Canceling...
          </message>
          <message name="IDS_TEXT_RESTART_BROWSER" desc="For when a browser must be restarted to complete the installation.">
@@ -15403,7 +15414,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_UPDATER_CLOSE" desc="For close button on the UI post install completion.">
            Close
-@@ -2842,7 +2842,7 @@ Chromium is unable to recover your settings.
+@@ -2891,7 +2891,7 @@ Chromium is unable to recover your settings.
          <!--Network errors.-->
          <message name="IDS_NO_NETWORK_PRESENT_ERROR"
                   desc="Error message displayed in the main dialog when the Updater is unable to connect to the network.">
@@ -15412,7 +15423,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          </message>
          <message name="IDS_ERROR_HTTPSTATUS_UNAUTHORIZED"
                   desc="Error message displayed in the main dialog when an update check or download fails due to unauthorized access, usually due to proxy problems.">
-@@ -2968,101 +2968,101 @@ Chromium is unable to recover your settings.
+@@ -3017,101 +3017,101 @@ Chromium is unable to recover your settings.
          <!--Windows service strings.-->
          <message name="IDS_UPDATER_SERVICE_DISPLAY_NAME"
                   desc="The name of the Windows service. Displayed in the Windows Services management console.">
@@ -15536,7 +15547,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
        <message name="IDS_GLIC_STATUS_ICON_TOOLTIP_CANARY" translateable="false" desc="This is the tooltip that is shown when the glic status icon is hovered and the Glic window is closed. It indicates that this is the Canary version of the browser.">
          Open Gemini (Canary)
-@@ -3074,7 +3074,7 @@ Chromium is unable to recover your settings.
+@@ -3123,7 +3123,7 @@ Chromium is unable to recover your settings.
          Open Gemini (Beta)
        </message>
        <message name="IDS_GLIC_STATUS_ICON_TOOLTIP_CLOSE" translateable="false" desc="This is the tooltip that is shown when the glic status icon is hovered and the Glic window is open.">
@@ -15545,7 +15556,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
        <message name="IDS_GLIC_STATUS_ICON_TOOLTIP_CLOSE_CANARY" translateable="false" desc="This is the tooltip that is shown when the glic status icon is hovered and the Glic window is open. It indicates that this is the Canary version of the browser.">
          Close Gemini (Canary)
-@@ -3086,7 +3086,7 @@ Chromium is unable to recover your settings.
+@@ -3135,7 +3135,7 @@ Chromium is unable to recover your settings.
          Close Gemini (Beta)
        </message>
        <message name="IDS_GLIC_STATUS_ICON_TOOLTIP_TOGGLE" translateable="false" desc="This is the tooltip that is shown when the glic status icon is hovered.">
@@ -15554,7 +15565,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
        <message name="IDS_GLIC_STATUS_ICON_TOOLTIP_TOGGLE_CANARY" translateable="false" desc="This is the tooltip that is shown when the glic status icon is hovered. It indicates that this is the Canary version of the browser.">
          Toggle Gemini (Canary)
-@@ -3098,97 +3098,97 @@ Chromium is unable to recover your settings.
+@@ -3147,97 +3147,97 @@ Chromium is unable to recover your settings.
          Toggle Gemini (Beta)
        </message>
        <message name="IDS_GLIC_STATUS_ICON_MENU_SHOW" translateable="false" desc="This is the menu item for showing the glic UI.">
@@ -15677,7 +15688,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
        <message name="IDS_DICE_MIGRATION_CONFIRMATION_TOAST_BUTTON" desc="The text on the button of the confirmation toast shown after the user clicks the accept button on the Dice Migration dialog, that allows the users to control the sync settings or sign out of Chrome.">
          Manage
-@@ -3198,12 +3198,12 @@ Chromium is unable to recover your settings.
+@@ -3247,12 +3247,12 @@ Chromium is unable to recover your settings.
        <if expr="not is_android">
          <if expr="use_titlecase">
            <message name="IDS_PROFILE_MENU_ACCOUNT_SETTINGS_BUTTON" desc="Button in the avatar menu bubble view for opening Chrome account settings.">
@@ -15692,7 +15703,20 @@ index a154b12dc4fa7..82ee626267e0a 100644
            </message>
          </if>
        </if>
-@@ -3211,67 +3211,67 @@ Chromium is unable to recover your settings.
+@@ -3266,10 +3266,10 @@ Chromium is unable to recover your settings.
+         </message>
+ 
+         <message name="IDS_DICTATION_ONBOARDING_TITLE" desc="The title string in the onboarding dialog for the dictation feature." translateable="false">
+-          Turn your spoken thoughts into polished text with Chromium
++          Turn your spoken thoughts into polished text with Bismuth
+         </message>
+         <message name="IDS_DICTATION_ONBOARDING_BULLET_MICROPHONE" desc="The first paragraph in the onboarding dialog describing how the microphone is used." translateable="false">
+-          Chromium will use your microphone to capture your voice and fill in text fields with cleaned up text.
++          Bismuth will use your microphone to capture your voice and fill in text fields with cleaned up text.
+         </message>
+         <message name="IDS_DICTATION_ONBOARDING_BULLET_DISCLAIMER" desc="The disclaimer text in the onboarding dialog describing the use of AI and potential for mistakes and providing a link for more details." translateable="false">
+           Dictation uses AI and can make mistakes. <ph name="LEARN_MORE_LINK">$1<ex>Learn more</ex></ph>
+@@ -3279,151 +3279,151 @@ Chromium is unable to recover your settings.
        <!--Desktop to iOS promo strings-->
        <if expr="not is_android">
          <message name="IDS_IOS_DESKTOP_ESB_PROMO_BUBBLE_DESCRIPTION_REMINDER" desc="The description for the iOS desktop ESB promo bubble with a reminder button.">
@@ -15751,6 +15775,10 @@ index a154b12dc4fa7..82ee626267e0a 100644
 -          Download Chromium on your phone to track prices and get alerts when the price drops on any site
 +          Download Bismuth on your phone to track prices and get alerts when the price drops on any site
          </message>
+         <message name="IDS_IOS_DESKTOP_PRICE_TRACKING_PROMO_BUBBLE_TITLE_QR" desc="The title for the iOS desktop Price Tracking promo bubble with a QR Code.">
+-          Get price tracking alerts with Chromium on your phone
++          Get price tracking alerts with Bismuth on your phone
+         </message>
          <message name="IDS_IOS_DESKTOP_PRICE_TRACKING_REMINDER_CONFIRMATION" desc="Body text of the promo bubble that appears after the user chooses to be reminded of price tracking on their iOS device.">
 -          Next time you open Chromium on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>, you’ll see a prompt to enable price tracking alerts.
 +          Next time you open Bismuth on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>, you’ll see a prompt to enable price tracking alerts.
@@ -15762,6 +15790,112 @@ index a154b12dc4fa7..82ee626267e0a 100644
          <message name="IDS_IOS_DESKTOP_TAB_GROUPS_REMINDER_CONFIRMATION" desc="Body text of the promo bubble that appears after the user chooses to be reminded of tab groups on their iOS device.">
 -          Next time you open Chromium on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>, you’ll see a prompt to use tab groups.
 +          Next time you open Bismuth on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>, you’ll see a prompt to use tab groups.
+         </message>
+         <message name="IDS_IOS_DESKTOP_AI_PROMO_BUBBLE_DESCRIPTION_QR" desc="The description for the iOS desktop AI promo bubble with a QR code.">
+-          Scan the QR code with your phone to download Chromium and sign in to your Google Account.
++          Scan the QR code with your phone to download Bismuth and sign in to your Google Account.
+         </message>
+         <message name="IDS_IOS_DESKTOP_AI_PROMO_BUBBLE_TITLE_QR" desc="The title for the iOS desktop AI promo bubble with a QR code.">
+-          Use Google's best AI tools with the Chromium app on your phone
++          Use Google's best AI tools with the Bismuth app on your phone
+         </message>
+         <message name="IDS_IOS_DESKTOP_AI_PROMO_BUBBLE_DESCRIPTION_REMINDER" desc="The description for the iOS desktop AI promo bubble with a reminder.">
+-          Take your favorite Google AI tools on the go with Chromium on iOS.
++          Take your favorite Google AI tools on the go with Bismuth on iOS.
+         </message>
+         <message name="IDS_IOS_DESKTOP_AI_PROMO_BUBBLE_TITLE_REMINDER" desc="The title for the iOS desktop AI promo bubble with a reminder.">
+-          Get the power of AI when you use the Chromium app on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
++          Get the power of AI when you use the Bismuth app on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
+         </message>
+         <message name="IDS_IOS_DESKTOP_AI_PROMO_NOTIFICATION_BODY" desc="The body for the iOS desktop AI promo notification.">
+-          Use the Chromium app to take the best AI tools on the go
++          Use the Bismuth app to take the best AI tools on the go
+         </message>
+         <message name="IDS_IOS_DESKTOP_BEST_OF_GOOGLE_PROMO_BUBBLE_DESCRIPTION_QR" desc="The description for the iOS desktop Best of Google promo bubble with a QR code.">
+-          Scan the QR code with your phone to download Chromium and sign in to your Google Account.
++          Scan the QR code with your phone to download Bismuth and sign in to your Google Account.
+         </message>
+         <message name="IDS_IOS_DESKTOP_BEST_OF_GOOGLE_PROMO_BUBBLE_TITLE_QR" desc="The title for the iOS desktop Best of Google promo bubble with a QR code.">
+-          Get the best of Google with the Chromium app on your phone
++          Get the best of Google with the Bismuth app on your phone
+         </message>
+         <message name="IDS_IOS_DESKTOP_BEST_OF_GOOGLE_PROMO_BUBBLE_DESCRIPTION_REMINDER" desc="The description for the iOS desktop Best of Google promo bubble with a reminder.">
+-          Seamlessly work with your favorite apps like Google Drive and YouTube on the go with Chromium.
++          Seamlessly work with your favorite apps like Google Drive and YouTube on the go with Bismuth.
+         </message>
+         <message name="IDS_IOS_DESKTOP_BEST_OF_GOOGLE_PROMO_BUBBLE_TITLE_REMINDER" desc="The title for the iOS desktop Best of Google promo bubble with a reminder.">
+-          Get the best of Google with the Chromium app on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
++          Get the best of Google with the Bismuth app on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
+         </message>
+         <message name="IDS_IOS_DESKTOP_BEST_OF_GOOGLE_PROMO_NOTIFICATION_BODY" desc="The body for the iOS desktop Best of Google promo notification.">
+-          Access all of your Google favorites with Chromium on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
++          Access all of your Google favorites with Bismuth on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
+         </message>
+         <message name="IDS_IOS_DESKTOP_BEST_OF_GOOGLE_PROMO_NOTIFICATION_TITLE" desc="The title for the iOS desktop Best of Google promo notification.">
+           Reminder: The best of Google in your pocket
+         </message>
+         <message name="IDS_IOS_DESKTOP_SAFETY_PROMO_BUBBLE_DESCRIPTION_QR" desc="The description for the iOS desktop Safety promo bubble with a QR code.">
+-          Scan the QR code with your phone to download Chromium and sign in to your Google Account.
++          Scan the QR code with your phone to download Bismuth and sign in to your Google Account.
+         </message>
+         <message name="IDS_IOS_DESKTOP_SAFETY_PROMO_BUBBLE_TITLE_QR" desc="The title for the iOS desktop Safety promo bubble with a QR code.">
+-          Get Google's best safety features on the go, with the Chromium app on your phone
++          Get Google's best safety features on the go, with the Bismuth app on your phone
+         </message>
+         <message name="IDS_IOS_DESKTOP_SAFETY_PROMO_BUBBLE_DESCRIPTION_REMINDER" desc="The description for the iOS desktop Safety promo bubble with a reminder.">
+-          Get Google’s best safety features on the go with Chromium.
++          Get Google’s best safety features on the go with Bismuth.
+         </message>
+         <message name="IDS_IOS_DESKTOP_SAFETY_PROMO_BUBBLE_TITLE_REMINDER" desc="The title for the iOS desktop Safety promo bubble with a reminder.">
+-          Take the safety of Google on the go with the Chromium app on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
++          Take the safety of Google on the go with the Bismuth app on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
+         </message>
+         <message name="IDS_IOS_DESKTOP_SAFETY_PROMO_NOTIFICATION_BODY" desc="The body for the iOS desktop Safety promo notification.">
+-          Use the Chromium app to take the safety of Google on the go
++          Use the Bismuth app to take the safety of Google on the go
+         </message>
+         <message name="IDS_IOS_DESKTOP_SAFETY_PROMO_NOTIFICATION_TITLE" desc="The title for the iOS desktop Safety promo notification.">
+           Reminder: Google’s best safety features in your pocket
+         </message>
+         <message name="IDS_IOS_DESKTOP_SHOPPING_PROMO_BUBBLE_DESCRIPTION_QR" desc="The description for the iOS desktop Shopping promo bubble with a QR code.">
+-          Scan the QR code with your phone to download Chromium and sign in to your Google Account.
++          Scan the QR code with your phone to download Bismuth and sign in to your Google Account.
+         </message>
+         <message name="IDS_IOS_DESKTOP_SHOPPING_PROMO_BUBBLE_TITLE_QR" desc="The title for the iOS desktop Shopping promo bubble with a QR code.">
+-          Get price drop alerts on items you're interested in with the Chromium app on your phone
++          Get price drop alerts on items you're interested in with the Bismuth app on your phone
+         </message>
+         <message name="IDS_IOS_DESKTOP_SHOPPING_PROMO_BUBBLE_DESCRIPTION_REMINDER" desc="The description for the iOS desktop Shopping promo bubble with a reminder.">
+-          Discover products with your camera, track price drops and more on the go with Chromium on iOS.
++          Discover products with your camera, track price drops and more on the go with Bismuth on iOS.
+         </message>
+         <message name="IDS_IOS_DESKTOP_SHOPPING_PROMO_BUBBLE_TITLE_REMINDER" desc="The title for the iOS desktop Shopping promo bubble with a reminder.">
+-          Get more out of online shopping when you use the Chromium app on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
++          Get more out of online shopping when you use the Bismuth app on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
+         </message>
+         <message name="IDS_IOS_DESKTOP_SHOPPING_PROMO_NOTIFICATION_BODY" desc="The body for the iOS desktop Shopping promo notification.">
+-          Use the Chromium app to take the best shopping tools on the go
++          Use the Bismuth app to take the best shopping tools on the go
+         </message>
+         <message name="IDS_IOS_DESKTOP_YOUR_CHROME_PROMO_BUBBLE_DESCRIPTION_QR" desc="The description for the iOS desktop Your Chrome promo bubble with a QR code.">
+-          Scan the QR code with your phone to download Chromium and sign in to your Google Account.
++          Scan the QR code with your phone to download Bismuth and sign in to your Google Account.
+         </message>
+         <message name="IDS_IOS_DESKTOP_YOUR_CHROME_PROMO_BUBBLE_TITLE_QR" desc="The title for the iOS desktop Your Chrome promo bubble with a QR code.">
+-          Take your passwords, tabs and more on the go with the Chromium app on your phone
++          Take your passwords, tabs and more on the go with the Bismuth app on your phone
+         </message>
+         <message name="IDS_IOS_DESKTOP_YOUR_CHROME_PROMO_BUBBLE_DESCRIPTION_REMINDER" desc="The description for the iOS desktop Your Chrome promo bubble with a reminder.">
+-          Pick up right where you left off with Chromium on iOS.
++          Pick up right where you left off with Bismuth on iOS.
+         </message>
+         <message name="IDS_IOS_DESKTOP_YOUR_CHROME_PROMO_BUBBLE_TITLE_REMINDER" desc="The title for the iOS desktop Your Chrome promo bubble with a reminder.">
+-          Take your passwords, tabs and more on the go with the Chromium app on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
++          Take your passwords, tabs and more on the go with the Bismuth app on your <ph name="DEVICE_TYPE">$1<ex>iPhone</ex></ph>
+         </message>
+         <message name="IDS_IOS_DESKTOP_YOUR_CHROME_PROMO_NOTIFICATION_BODY" desc="The body for the iOS desktop Your Chrome promo notification.">
+-          Use the Chromium app to keep browsing on the go
++          Use the Bismuth app to keep browsing on the go
          </message>
        </if>
  
@@ -15779,7 +15913,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
        </message>
        <message name="IDS_DEFAULT_SEARCH_ENGINE_RESET_NOTIFICATION_GOT_IT_BUTTON"
           desc="Label for the 'Got it' button in the default search engine reset notification, which dismisses the UI.">
-@@ -3287,10 +3287,10 @@ Chromium is unable to recover your settings.
+@@ -3439,10 +3439,10 @@ Chromium is unable to recover your settings.
        </message>
  
        <!--Report-unsafe-site Dialog (accessed from Help menu)-->
@@ -15792,7 +15926,7 @@ index a154b12dc4fa7..82ee626267e0a 100644
          Improve online safety for everyone when you report a site you think is harmful.
        </message>
        <message name="IDS_REPORT_UNSAFE_SITE_DIALOG_FOOTER" desc="Explanatory text in dialog footer describing what other information is sent as part of the unsafe-site-report.">
-@@ -3299,15 +3299,15 @@ Chromium is unable to recover your settings.
+@@ -3451,23 +3451,23 @@ Chromium is unable to recover your settings.
  
        <!-- JS optimizations bubble -->
        <message name="IDS_JS_OPTIMIZATION_BUBBLE_BODY_NON_POLICY_BODY" desc="Body text for the JavaScript optimization bubble when disabled for other reasons.">
@@ -15809,10 +15943,20 @@ index a154b12dc4fa7..82ee626267e0a 100644
 -        Sign in to Chromium
 +        Sign in to Bismuth
        </message>
+ 
+       <!-- Enterprise device signals disclaimer -->
+       <message name="IDS_ENTERPRISE_DEVICE_SIGNALS_DISCLAIMER_TITLE" desc="Title of an enterprise device signals collection disclaimer modal dialog. The dialog is shown on Chrome startup to managed Chrome users who have not previously acknowledged device signals collection.">
+-        Your work secured on Chromium
++        Your work secured on Bismuth
+       </message>
+       <message name="IDS_ENTERPRISE_DEVICE_SIGNALS_DISCLAIMER_SUBTITLE" desc="Subtitle of an enterprise device signals collection disclaimer modal dialog. The dialog is shown on Chrome startup to managed Chrome users who have not previously acknowledged device signals collection.">
+-        To secure your work on Chromium, your organization will be able to view or manage certain information
++        To secure your work on Bismuth, your organization will be able to view or manage certain information
+       </message>
      </messages>
    </release>
 diff --git a/chrome/app/settings_chromium_strings.grdp b/chrome/app/settings_chromium_strings.grdp
-index e3e87a2cf081d..da61e9ab23741 100644
+index 4fd90b7ebf09a..8231999f70c27 100644
 --- a/chrome/app/settings_chromium_strings.grdp
 +++ b/chrome/app/settings_chromium_strings.grdp
 @@ -4,7 +4,7 @@
@@ -15923,7 +16067,7 @@ index e3e87a2cf081d..da61e9ab23741 100644
          </message>
        </else>
      </if>
-@@ -97,342 +97,342 @@
+@@ -97,355 +97,355 @@
  
    <!-- Preloading Page-->
    <message name="IDS_SETTINGS_PRELOAD_PAGES_STANDARD_PRELOADING_WHEN_ON_BULLET_TWO" desc="Bullet point in the standard preloading and when on column. Informs the user about what the standard preloading setting does.">
@@ -16372,6 +16516,23 @@ index e3e87a2cf081d..da61e9ab23741 100644
    <message name="IDS_SETTINGS_HTTPS_FIRST_MODE_DISABLED_SUBLABEL" desc="Sublabel for radio button to disable HTTPS-First Mode">
 -    When HTTPS isn't available, Chromium will use an insecure connection without warning you
 +    When HTTPS isn't available, Bismuth will use an insecure connection without warning you
+   </message>
+   <!-- Skills Settings Page -->
+   <message name="IDS_SETTINGS_SKILLS_SETTING_LABEL" desc="Label for the Skills setting entry point in Settings > AI page.">
+-    Skills in Chromium
++    Skills in Bismuth
+   </message>
+   <message name="IDS_SETTINGS_SKILLS_TOGGLE_LABEL" desc="Label for the toggle button on the Skills settings subpage.">
+-    Enable Skills in Chromium
++    Enable Skills in Bismuth
+   </message>
+   <message name="IDS_SETTINGS_SYNC_SKILLS_SEPARATE_INFORMATION" desc="Info text on the Sync page explaining that skills are managed separately from sync.">
+-    AI innovations like skills are saved to your Google Account and managed separately from Chromium sync
++    AI innovations like skills are saved to your Google Account and managed separately from Bismuth sync
+   </message>
+   <message name="IDS_SETTINGS_SKILLS_WHEN_ON_BULLET_TWO" desc="Second bullet point under the 'When on' column in the Skills settings page.">
+-    Use them alongside other Gemini features in Chromium
++    Use them alongside other Gemini features in Bismuth
    </message>
  </grit-part>
 diff --git a/chrome/app/theme/chromium/BRANDING b/chrome/app/theme/chromium/BRANDING

@@ -23,14 +23,13 @@ index eec862658c052..ad7ff0c9c1110 100644
  }
  
 diff --git a/chrome/browser/resources/extensions/manager.css b/chrome/browser/resources/extensions/manager.css
-index 18cf43dd6c300..d5d2f26462e22 100644
+index e13459ca14e7e..63424bb3f5590 100644
 --- a/chrome/browser/resources/extensions/manager.css
 +++ b/chrome/browser/resources/extensions/manager.css
-@@ -73,3 +73,33 @@ extensions-item {
- #right {
-   flex: 1 1 0;
+@@ -87,3 +87,32 @@ picture[slot='header-icon'] img {
+   width: 100%;
  }
-+
+ 
 +#loadProgressOverlay {
 +  align-items: center;
 +  background: rgba(0, 0, 0, 0.5);

@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
-index 5b3b62b1ee3ca..6d0d89d3924d5 100644
+index 7cd5cac0f14a2..7e07dcf726346 100644
 --- a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
 +++ b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
 @@ -3,6 +3,16 @@
@@ -19,7 +19,7 @@ index 5b3b62b1ee3ca..6d0d89d3924d5 100644
  
  #include <stddef.h>
  
-@@ -951,19 +961,184 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelectionCanceled() {
+@@ -949,19 +959,189 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelectionCanceled() {
    Finish(Error(kFileSelectionCanceled));
  }
  
@@ -152,8 +152,13 @@ index 5b3b62b1ee3ca..6d0d89d3924d5 100644
 -#endif  // BUILDFLAG(IS_ANDROID)
 +  base::FilePath source = *vp;
 +  base::FilePath dest =
++      // One level above the profile. Copies kept inside the profile kept
++      // vanishing without any Chromium log entry, from 149 onwards; the
++      // profile is Chromium's own territory and it tidies up what it does
++      // not recognise. This sits next to the component directories instead.
 +      browser_context()->GetPath()
-+          .AppendASCII("UnpackedExtensions")
++          .DirName()
++          .AppendASCII("BismuthExtensions")
 +          .AppendASCII(
 +              base::NumberToString(base::PersistentHash(source.value())) + "-" +
 +              base::NumberToString(
@@ -208,7 +213,7 @@ index 5b3b62b1ee3ca..6d0d89d3924d5 100644
    scoped_refptr<UnpackedInstaller> installer(
        UnpackedInstaller::Create(browser_context()));
    installer->set_be_noisy_on_failure(!fail_quietly_);
-@@ -971,8 +1146,10 @@ void DeveloperPrivateLoadUnpackedFunction::StartFileLoad(
+@@ -969,8 +1149,10 @@ void DeveloperPrivateLoadUnpackedFunction::StartFileLoad(
        &DeveloperPrivateLoadUnpackedFunction::OnLoadComplete, this));
    installer->Load(file_path);
  
