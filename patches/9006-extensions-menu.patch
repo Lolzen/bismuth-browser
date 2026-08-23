@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-index 28cae2eb64535..d4f29ab89acd4 100644
+index 977f05360fe1e..28f62c206be60 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-@@ -4288,8 +4288,12 @@ public class ChromeTabbedActivity extends ChromeActivity implements PreAttachInt
+@@ -4406,8 +4406,12 @@ public class ChromeTabbedActivity extends ChromeActivity implements PreAttachInt
          } else if (id == R.id.extensions_menu_menu_id) {
              ExtensionsToolbarCoordinator coordinator =
                      getToolbarManager().getExtensionsToolbarCoordinator();
@@ -18,30 +18,30 @@ index 28cae2eb64535..d4f29ab89acd4 100644
              LoadUrlParams params =
                      new LoadUrlParams(
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedAppMenuPropertiesDelegate.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedAppMenuPropertiesDelegate.java
-index 4bc3bf5a65ad5..10667ffdb1f92 100644
+index e248048c4b702..5c6bf1163ca3e 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedAppMenuPropertiesDelegate.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedAppMenuPropertiesDelegate.java
-@@ -1324,7 +1324,9 @@ public class TabbedAppMenuPropertiesDelegate extends AppMenuPropertiesDelegateIm
+@@ -1884,7 +1884,9 @@ public class TabbedAppMenuPropertiesDelegate extends AppMenuPropertiesDelegateIm
          assert shouldShowExtensionsItem();
  
          List<ListItem> submenuItems = new ArrayList<>();
--        submenuItems.add(buildExtensionsMenuItem());
+-        submenuItems.add(buildExtensionsMenuItem(/* showIcon= */ false));
 +        // Opens the toolbar's puzzle-icon menu, which only exists on
 +        // tablet-sized layouts. Omitted here.
-+        // submenuItems.add(buildExtensionsMenuItem());
++        // submenuItems.add(buildExtensionsMenuItem(/* showIcon= */ false));
          submenuItems.add(buildManageExtensionsItem());
          submenuItems.add(buildChromeWebstoreItem());
  
 diff --git a/chrome/browser/flags/android/chrome_feature_list.cc b/chrome/browser/flags/android/chrome_feature_list.cc
-index 447315e3f39d3..fb1dfccee1222 100644
+index 2db936ee43dcb..8fb5fba5e255f 100644
 --- a/chrome/browser/flags/android/chrome_feature_list.cc
 +++ b/chrome/browser/flags/android/chrome_feature_list.cc
-@@ -817,7 +817,7 @@ BASE_FEATURE(kShowCloseAllIncognitoTabsButton, base::FEATURE_DISABLED_BY_DEFAULT
+@@ -831,7 +831,7 @@ BASE_FEATURE(kShowCloseAllIncognitoTabsButton, base::FEATURE_DISABLED_BY_DEFAULT
  BASE_FEATURE(kShowTabListAnimations, base::FEATURE_DISABLED_BY_DEFAULT);
  BASE_FEATURE(kSmallerTabStripTitleLimit, base::FEATURE_ENABLED_BY_DEFAULT);
  BASE_FEATURE(kStartSurfaceReturnTime, base::FEATURE_ENABLED_BY_DEFAULT);
 -BASE_FEATURE(kSubmenusInAppMenu, base::FEATURE_DISABLED_BY_DEFAULT);
 +BASE_FEATURE(kSubmenusInAppMenu, base::FEATURE_ENABLED_BY_DEFAULT);
- BASE_FEATURE(kSuppressToolbarCapturesAtGestureEnd, base::FEATURE_ENABLED_BY_DEFAULT);
  BASE_FEATURE(kTabBottomSheet, base::FEATURE_DISABLED_BY_DEFAULT);
  BASE_FEATURE(kTabBottomSheetResizeWebview, base::FEATURE_DISABLED_BY_DEFAULT);
+ BASE_FEATURE(kTabClosureMethodRefactor, base::FEATURE_DISABLED_BY_DEFAULT);

@@ -1,3 +1,13 @@
+60195124a0d9b [Extensions] Clean up comment references to MV2 experiments
+19db5067773b8 [Extensions] Rename ManifestV2ExperimentManager to ManifestV2Handler
+595a52cd57a48 [Extensions] Include component extensions in MV2 records
+f47611a3749e3 [Extensions] Clean up ManifestV2ExperimentManager
+df12ca035ced7 [Extensions] Remove kAllowLegacyMV2Extensions base::Feature
+e1eba1f6d43ca [Extensions] Remove MV2DisabledDialog and associated usages
+51cc24ccc3d65 [Extensions] Remove kExtensionManifestV2ExceptionList
+993e57a3e1af7 [Extensions] Remove handling for ExtensionManifestV2Availability
+dd11f12d82d24 [Extensions] Remove kExtensionManifestV2Unsupported feature
+063342690261b [Extensions] Remove unneeded MV2 deprecation dialogs
 8403fb28b1bc2 [Extensions] Remove old MV2 phase handling in developerPrivate
 e768ae9db4940 [Extensions] Remove kExtensionManifestV2Disabled feature
 72af0053522f6 [Extensions] Include Manifest::TYPE_USER_SCRIPT in mv2 checker
