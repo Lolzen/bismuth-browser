@@ -1,0 +1,46 @@
+commit 5dbeb7ff56de6bdc7a425fd84d5f70ce90b1b980
+Author: Eduar Ursu <eduardursu78@gmail.com>
+Date:   Thu Aug 12 16:51:52 2021 +0200
+
+    Add adblock icon files + edit AppMenuProperties*.java
+
+diff --git a/chrome/android/java/res/drawable-hdpi/ic_adblock_off.png b/chrome/android/java/res/drawable-hdpi/ic_adblock_off.png
+new file mode 100644
+index 00000000..4be22430
+Binary files /dev/null and b/chrome/android/java/res/drawable-hdpi/ic_adblock_off.png differ
+diff --git a/chrome/android/java/res/drawable-hdpi/ic_adblock_on.png b/chrome/android/java/res/drawable-hdpi/ic_adblock_on.png
+new file mode 100644
+index 00000000..4be22430
+Binary files /dev/null and b/chrome/android/java/res/drawable-hdpi/ic_adblock_on.png differ
+diff --git a/chrome/android/java/res/drawable-mdpi/ic_adblock_off.png b/chrome/android/java/res/drawable-mdpi/ic_adblock_off.png
+new file mode 100644
+index 00000000..9843ab03
+Binary files /dev/null and b/chrome/android/java/res/drawable-mdpi/ic_adblock_off.png differ
+diff --git a/chrome/android/java/res/drawable-mdpi/ic_adblock_on.png b/chrome/android/java/res/drawable-mdpi/ic_adblock_on.png
+new file mode 100644
+index 00000000..9843ab03
+Binary files /dev/null and b/chrome/android/java/res/drawable-mdpi/ic_adblock_on.png differ
+diff --git a/chrome/android/java/res/drawable-xhdpi/ic_adblock_off.png b/chrome/android/java/res/drawable-xhdpi/ic_adblock_off.png
+new file mode 100644
+index 00000000..1e2a0b95
+Binary files /dev/null and b/chrome/android/java/res/drawable-xhdpi/ic_adblock_off.png differ
+diff --git a/chrome/android/java/res/drawable-xhdpi/ic_adblock_on.png b/chrome/android/java/res/drawable-xhdpi/ic_adblock_on.png
+new file mode 100644
+index 00000000..1e2a0b95
+Binary files /dev/null and b/chrome/android/java/res/drawable-xhdpi/ic_adblock_on.png differ
+diff --git a/chrome/android/java/res/drawable-xxhdpi/ic_adblock_off.png b/chrome/android/java/res/drawable-xxhdpi/ic_adblock_off.png
+new file mode 100644
+index 00000000..2ac4144b
+Binary files /dev/null and b/chrome/android/java/res/drawable-xxhdpi/ic_adblock_off.png differ
+diff --git a/chrome/android/java/res/drawable-xxhdpi/ic_adblock_on.png b/chrome/android/java/res/drawable-xxhdpi/ic_adblock_on.png
+new file mode 100644
+index 00000000..2ac4144b
+Binary files /dev/null and b/chrome/android/java/res/drawable-xxhdpi/ic_adblock_on.png differ
+diff --git a/chrome/android/java/res/drawable-xxxhdpi/ic_adblock_off.png b/chrome/android/java/res/drawable-xxxhdpi/ic_adblock_off.png
+new file mode 100644
+index 00000000..72358cd5
+Binary files /dev/null and b/chrome/android/java/res/drawable-xxxhdpi/ic_adblock_off.png differ
+diff --git a/chrome/android/java/res/drawable-xxxhdpi/ic_adblock_on.png b/chrome/android/java/res/drawable-xxxhdpi/ic_adblock_on.png
+new file mode 100644
+index 00000000..72358cd5
+Binary files /dev/null and b/chrome/android/java/res/drawable-xxxhdpi/ic_adblock_on.png differ

@@ -54,6 +54,10 @@ mk 9009-load-progress \
 mk 9010-account-manager-delegate \
   components/signin/public/android
 
+mk 9011-extensions-toolbar \
+  chrome/browser/ui/android/toolbar/java/res/layout/toolbar_phone.xml \
+  chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java
+
 git reset -q
 
 cat > "$OUT/series" <<SERIES
@@ -66,6 +70,7 @@ cat > "$OUT/series" <<SERIES
 9007-mv2-no-deprecation.patch
 9009-load-progress.patch
 9010-account-manager-delegate.patch
+9011-extensions-toolbar.patch
 SERIES
 echo
 echo "series geschrieben"

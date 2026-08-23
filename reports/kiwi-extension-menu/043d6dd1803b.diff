@@ -1,0 +1,39 @@
+commit 043d6dd1803b79350001f8ddb88953f64ae70f7c
+Author: Eduar Ursu <eduardursu78@gmail.com>
+Date:   Wed Aug 11 20:44:13 2021 +0200
+
+    Add extensions icon + edit main_menu.xml
+
+diff --git a/chrome/android/java/res/drawable-hdpi/ic_mobile_friendly_grey600_24dp.png b/chrome/android/java/res/drawable-hdpi/ic_extensions.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-hdpi/ic_mobile_friendly_grey600_24dp.png
+rename to chrome/android/java/res/drawable-hdpi/ic_extensions.png
+diff --git a/chrome/android/java/res/drawable-mdpi/ic_mobile_friendly_grey600_24dp.png b/chrome/android/java/res/drawable-mdpi/ic_extensions.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-mdpi/ic_mobile_friendly_grey600_24dp.png
+rename to chrome/android/java/res/drawable-mdpi/ic_extensions.png
+diff --git a/chrome/android/java/res/drawable-xhdpi/ic_mobile_friendly_grey600_24dp.png b/chrome/android/java/res/drawable-xhdpi/ic_extensions.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xhdpi/ic_mobile_friendly_grey600_24dp.png
+rename to chrome/android/java/res/drawable-xhdpi/ic_extensions.png
+diff --git a/chrome/android/java/res/drawable-xxhdpi/ic_mobile_friendly_grey600_24dp.png b/chrome/android/java/res/drawable-xxhdpi/ic_extensions.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxhdpi/ic_mobile_friendly_grey600_24dp.png
+rename to chrome/android/java/res/drawable-xxhdpi/ic_extensions.png
+diff --git a/chrome/android/java/res/drawable-xxxhdpi/ic_mobile_friendly_grey600_24dp.png b/chrome/android/java/res/drawable-xxxhdpi/ic_extensions.png
+similarity index 100%
+rename from chrome/android/java/res/drawable-xxxhdpi/ic_mobile_friendly_grey600_24dp.png
+rename to chrome/android/java/res/drawable-xxxhdpi/ic_extensions.png
+diff --git a/chrome/android/java/res/menu/main_menu.xml b/chrome/android/java/res/menu/main_menu.xml
+index 97eba19f..7ffff015 100644
+--- a/chrome/android/java/res/menu/main_menu.xml
++++ b/chrome/android/java/res/menu/main_menu.xml
+@@ -69,7 +69,7 @@
+             android:icon="@drawable/devices_black_24dp" />
+         <item android:id="@+id/extensions_id"
+             android:title="@string/main_menu_extensions"
+-            android:icon="@drawable/ic_mobile_friendly_grey600_24dp" />
++            android:icon="@drawable/ic_extensions" />
+         <item android:id="@id/divider_line_id"
+             android:title="@null" />
+         <item android:id="@+id/share_row_menu_id"

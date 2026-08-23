@@ -16,7 +16,7 @@ rebuilt from scratch on a current Chromium base.
 |---|---|
 | Chromium base | 151.0.7922.176 |
 | Target | Android, `arm64` |
-| Extensions | working |
+| Extensions | working, with the full toolbar UI |
 | Manifest V2 | working — uBlock Origin loads, runs and blocks |
 | Google account | sign-in works, sync does not |
 | Tab switcher | classic single-column card stack, toggleable |
@@ -72,6 +72,7 @@ Manifest V2 support.**
 | **9007** | Removes the Manifest V2 deprecation warning and notice |
 | **9009** | Progress dialog with a real percentage while an extension is copied |
 | **9010** | Restores the account manager delegate, so signing in works |
+| **9011** | Brings Chromium's extensions toolbar to phones |
 
 Details for each are in `docs/port-notes/`, including one note per version bump.
 Scope decisions are in `docs/scope.md`.
@@ -85,6 +86,10 @@ Google's own comment calls that branch *"very much in-development, non-stable,
 and likely to crash at any given moment."* That is a fair warning and it applies
 here too. It is still the better foundation: what breaks there gets fixed
 upstream, while a private fork drifts further apart with every milestone.
+
+Milestone 9011 is the clearest illustration. Chromium already contains the whole
+extensions toolbar — puzzle button, menu, popups, per-site access, pinning. It
+was simply never wired up for phone-sized layouts. Two lines connect it.
 
 ---
 
@@ -115,9 +120,7 @@ browser. Milestone 9010 restores the real delegate from Chromium 132 and adapts
 it to the current interface.
 
 Signing in and listing device accounts works. **Sync does not** — the account
-confirmation step never completes. The same happens in other Chromium
-derivatives such as SlimJet, so this is not specific to Bismuth; it affects
-builds Google has not signed.
+confirmation step never completes. The cause is not established.
 
 ---
 
@@ -174,13 +177,11 @@ git-ignored for exactly this reason.
 ## Known limitations
 
 - **Sync does not work.** Signing in does; the confirmation step does not
-  complete. Shared with other unsigned Chromium builds.
-- **No Discover feed.** `is_desktop_android` selects the desktop product
-  variant, which does not compile the feed. Extensions and the feed are
-  currently mutually exclusive.
-- Loading an unpacked extension occasionally fails on the first attempt and
-  needs a retry.
-- Directories of extensions you remove entirely are not cleaned up.
+  complete.
+- **No Discover feed content.** The feed area appears on the new tab page but
+  never loads. Its renderer is Google's closed **XSurface** library, which ships
+  as an on-demand module in official Chrome and has never been part of the
+  public tree. No Chromium derivative can show the feed.
 - The Web Store still shows its "install Chrome" banner. Cosmetic; installation
   works regardless.
 - Extensions loaded from a folder carry the standard "unpacked" source badge.
