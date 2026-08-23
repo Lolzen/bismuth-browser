@@ -3,8 +3,9 @@
 An Android browser built from Chromium, with **extension support** — including
 **Manifest V2**.
 
-A spiritual successor to [Kiwi Browser](https://github.com/kiwibrowser/src.next),
-rebuilt from scratch on a current Chromium base.
+A **Chromium fork**, built from a current Chromium base. Kiwi Browser was the
+inspiration and the reference for what such a browser needs to do; none of its
+code is used here.
 
 ---
 
@@ -48,11 +49,13 @@ last real Chromium base was **105.0.5195.24**, frozen in August 2022; later
 releases bumped the version string but not the engine. The project has since
 been discontinued.
 
-Rather than carry Kiwi's 2022 patches forward, Bismuth starts from a current
-Chromium and re-implements only what still matters.
+Bismuth does not continue that codebase. It starts from a current Chromium and
+implements what is actually still missing. Kiwi's patch series was read
+carefully — as documentation of which problems arise and where — but every patch
+here was written against today's tree.
 
-Much of it no longer does. Night mode, the bottom address bar and most of the
-extension UI that Kiwi built by hand are now part of Chromium itself. Ad
+Most of what Kiwi added no longer needs adding. Night mode, the bottom address
+bar and most of the extension UI it built by hand are part of Chromium now. Ad
 blocking, popup blocking and user scripts are covered by extensions. What
 remains is the part nobody else provides: **extensions on Android, with
 Manifest V2 support.**
@@ -182,8 +185,11 @@ git-ignored for exactly this reason.
   never loads. Its renderer is Google's closed **XSurface** library, which ships
   as an on-demand module in official Chrome and has never been part of the
   public tree. No Chromium derivative can show the feed.
-- The Web Store still shows its "install Chrome" banner. Cosmetic; installation
-  works regardless.
+- **The Web Store shows an "install Chrome" banner.** Not a user-agent problem —
+  in desktop mode the browser reports Chrome 151 on Chrome OS, and forcing
+  Linux instead changes nothing. Whatever the store recognises, chasing it would
+  mean impersonating another platform more aggressively than Chromium already
+  does. Installation works regardless.
 - Extensions loaded from a folder carry the standard "unpacked" source badge.
   Since that is the only route for MV2, it is always present.
 
@@ -191,29 +197,28 @@ git-ignored for exactly this reason.
 
 ## Not included
 
-Night mode, bottom toolbar and the new tab page were part of Kiwi. Chromium now
-provides all three natively.
+Night mode, bottom toolbar and the new tab page were features Kiwi added.
+Chromium now provides all three natively.
 
 Kiwi's per-site user-agent spoofing targeted 2022 website behaviour and is not
-carried over.
+reproduced here.
 
 Kiwi's search engine loader fetched its configuration from
 `settings.kiwibrowser.com` on every network change. With that project
-discontinued, a browser trusting that domain is a hijacking risk. Removed
-without replacement.
+discontinued, a browser trusting that domain is a hijacking risk. Not
+reproduced, and no replacement.
 
 ---
 
 ## Credits
 
-A fork of [Kiwi Browser](https://github.com/kiwibrowser/src.next) by
-**Arnaud GRANAL** and contributors, itself a fork of
-[Chromium](https://www.chromium.org/).
+Built from [Chromium](https://www.chromium.org/).
 
-Kiwi solved the hard problem first: getting extensions to run on Android at all,
-years before Chromium had any path for it. Bismuth would not exist without that
-work, and Kiwi's patch series remains the best available documentation of what
-that entails.
+[Kiwi Browser](https://github.com/kiwibrowser/src.next) by **Arnaud GRANAL** and
+contributors solved the hard problem first: getting extensions to run on Android
+at all, years before Chromium had any path for it. Its patch series remains the
+best available documentation of what that entails, and reading it shaped what
+this project set out to do. No Kiwi code is used here.
 
 ---
 
@@ -221,8 +226,7 @@ that entails.
 
 Chromium is distributed under a
 [BSD 3-Clause license](https://chromium.googlesource.com/chromium/src/+/main/LICENSE).
-Kiwi Browser's additions carry their own copyright headers, which are preserved.
-Patches and tooling here follow the same terms.
+Patches and tooling in this repository follow the same terms.
 
 ---
 
