@@ -1,0 +1,50 @@
+diff --git a/chrome/browser/signin/chrome_signin_helper.cc b/chrome/browser/signin/chrome_signin_helper.cc
+index 83564a8fa8246..dc2d562821c6f 100644
+--- a/chrome/browser/signin/chrome_signin_helper.cc
++++ b/chrome/browser/signin/chrome_signin_helper.cc
+@@ -24,12 +24,14 @@
+ #include "chrome/browser/ui/webui/signin/signin_url_utils.h"
+ #include "components/google/core/common/google_util.h"
+ #include "components/policy/core/common/policy_pref_names.h"
++#include "components/prefs/pref_service.h"
+ #include "components/signin/core/browser/account_reconcilor.h"
+ #include "components/signin/core/browser/dice_header_helper.h"
+ #include "components/signin/public/base/account_consistency_method.h"
+ #include "components/signin/public/base/consent_level.h"
+ #include "components/signin/public/base/signin_buildflags.h"
+ #include "components/signin/public/base/signin_metrics.h"
++#include "components/signin/public/base/signin_pref_names.h"
+ #include "components/signin/public/base/signin_switches.h"
+ #include "components/signin/public/identity_manager/account_info.h"
+ #include "components/signin/public/identity_manager/accounts_cookie_mutator.h"
+@@ -359,6 +361,14 @@ void ProcessMirrorHeader(
+   return;
+ 
+ #elif BUILDFLAG(IS_ANDROID)
++  // Bismuth has no account manager: the public tree only ships
++  // NullAccountManagerDelegate, which throws on every write. With browser
++  // sign-in off, leave Google's pages to their own web sign-in instead of
++  // opening native account UI, which would crash on the first write.
++  if (!profile->GetPrefs()->GetBoolean(::prefs::kSigninAllowed)) {
++    return;
++  }
++
+   GURL continue_url = GURL(manage_accounts_params.continue_url.empty()
+                                ? chrome::kChromeUINativeNewTabURL
+                                : manage_accounts_params.continue_url);
+diff --git a/components/signin/internal/identity_manager/primary_account_manager.cc b/components/signin/internal/identity_manager/primary_account_manager.cc
+index e6ef4ee147774..1f3ce7d41618f 100644
+--- a/components/signin/internal/identity_manager/primary_account_manager.cc
++++ b/components/signin/internal/identity_manager/primary_account_manager.cc
+@@ -368,7 +368,10 @@ void PrimaryAccountManager::RegisterProfilePrefs(PrefRegistrySimple* registry) {
+       prefs::kGoogleServicesSyncingUsernameMigratedToSignedIn, std::string());
+   registry->RegisterIntegerPref(prefs::kGoogleServicesSyncingUserMigrationType,
+                                 /*SyncToSigninMigrationType::kUnknown=*/0);
+-  registry->RegisterBooleanPref(prefs::kSigninAllowed, true);
++  // Bismuth: browser sign-in off by default on Android. Chrome Sync is not
++  // available to Chromium builds, and the public tree has no working account
++  // manager there - NullAccountManagerDelegate throws on every write.
++  registry->RegisterBooleanPref(prefs::kSigninAllowed, !BUILDFLAG(IS_ANDROID));
+   registry->RegisterBooleanPref(prefs::kSignedInWithCredentialProvider, false);
+   registry->RegisterBooleanPref(prefs::kExplicitBrowserSignin, false);
+   registry->RegisterBooleanPref(

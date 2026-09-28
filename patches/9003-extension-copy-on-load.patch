@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
-index 7cd5cac0f14a2..7e07dcf726346 100644
+index 7cd5cac0f14a2..463456bad2def 100644
 --- a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
 +++ b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
-@@ -3,6 +3,16 @@
+@@ -3,11 +3,24 @@
  // found in the LICENSE file.
  
  #include "chrome/browser/extensions/api/developer_private/developer_private_functions.h"
@@ -10,6 +10,8 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
 +#include "base/files/file.h"
 +#include "base/files/file_enumerator.h"
 +#include "base/files/file_util.h"
++#include "base/functional/bind.h"
++#include "base/functional/callback_helpers.h"
 +#include "base/hash/hash.h"
 +#include "base/strings/string_number_conversions.h"
 +#include "base/task/thread_pool.h"
@@ -19,18 +21,50 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
  
  #include <stddef.h>
  
-@@ -949,19 +959,189 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelectionCanceled() {
+ #include <algorithm>
+ #include <memory>
++#include <set>
+ #include <string>
+ #include <tuple>
+ #include <utility>
+@@ -949,19 +962,253 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelectionCanceled() {
    Finish(Error(kFileSelectionCanceled));
  }
  
 +#if BUILDFLAG(IS_ANDROID)
 +namespace {
 +
++// Where copies of unpacked extensions live: one level above the profile.
++// Copies kept inside the profile kept vanishing without any Chromium log
++// entry, from 149 onwards; the profile is Chromium's own territory and it
++// tidies up what it does not recognise. This sits next to the component
++// directories instead.
++constexpr char kBismuthExtensionsDir[] = "BismuthExtensions";
++
++// A folder under kBismuthExtensionsDir that no installed extension points to
++// is only removed once it is this old. A load running in parallel may have
++// just moved its copy into place without having registered it yet.
++constexpr base::TimeDelta kOrphanMinAge = base::Hours(1);
++
++int64_t NowForFileName() {
++  return base::Time::Now().ToDeltaSinceWindowsEpoch().InMicroseconds();
++}
++
 +// Copies a SAF-backed directory tree into app storage. Running an unpacked
 +// extension straight off a document provider is unusably slow: every file
 +// access crosses a Binder IPC.
++//
++// `to` is the same for every load of the same source folder. An unpacked
++// extension's ID is derived from its path, so this keeps the ID - and with it
++// the extension's settings and storage - across reloads. The previous copy is
++// replaced in place.
++//
++// `in_use` holds the folder names under kBismuthExtensionsDir that installed
++// extensions point to. Everything else there is left over from removed
++// extensions and is deleted afterwards.
 +bool CopyVirtualDirectory(const base::FilePath& from,
 +                          const base::FilePath& to,
++                          const std::set<std::string>& in_use,
 +                          base::RepeatingCallback<void(int, int)> on_progress) {
 +  int total = 0;
 +  {
@@ -48,14 +82,22 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
 +  }
 +  on_progress.Run(0, total);
 +  int copied = 0;
-+  // Copy into a staging directory and only swap it in on success, so a
-+  // failed attempt cannot destroy a previously working copy.
 +  // Build the copy outside the extensions area and move it into place in one
-+  // step, the way Chromium installs a CRX. Anything still under construction
-+  // inside the profile's extension folders can be swept away mid-copy.
-+  const base::FilePath temp =
-+      to.DirName().DirName().AppendASCII("Temp").Append(to.BaseName());
-+  base::DeletePathRecursively(temp);
++  // step, the way Chromium installs a CRX. A failed attempt therefore cannot
++  // destroy a previously working copy. Each attempt gets its own name, so two
++  // loads of the same folder cannot write into each other.
++  const base::FilePath temp_root = to.DirName().DirName().AppendASCII("Temp");
++  const base::FilePath temp = temp_root.AppendASCII(
++      to.BaseName().value() + "-" + base::NumberToString(NowForFileName()));
++  const base::FilePath previous = temp.AddExtensionASCII("previous");
++  // Every early return below would otherwise leave a partial copy behind.
++  // After a successful swap both are gone and this is a no-op.
++  base::ScopedClosureRunner remove_temp(base::BindOnce(
++      [](const base::FilePath& a, const base::FilePath& b) {
++        base::DeletePathRecursively(a);
++        base::DeletePathRecursively(b);
++      },
++      temp, previous));
 +  if (!base::CreateDirectory(temp)) {
 +    return false;
 +  }
@@ -102,33 +144,44 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
 +      on_progress.Run(copied, total);
 +    }
 +  }
++  on_progress.Run(copied, total);
 +
 +  if (!base::PathExists(temp.AppendASCII("manifest.json"))) {
 +    return false;
 +  }
-+  base::DeletePathRecursively(to);
++
++  // Swap the new copy in. The old one is moved aside first and put back if
++  // the swap fails, so an installed extension never loses its files.
 +  if (!base::CreateDirectory(to.DirName())) {
 +    return false;
 +  }
-+  if (!base::Move(temp, to)) {
++  const bool had_previous = base::PathExists(to);
++  if (had_previous && !base::Move(to, previous)) {
 +    return false;
 +  }
-+  if (!base::PathExists(to.AppendASCII("manifest.json"))) {
++  if (!base::Move(temp, to) ||
++      !base::PathExists(to.AppendASCII("manifest.json"))) {
++    if (had_previous) {
++      base::DeletePathRecursively(to);
++      base::Move(previous, to);
++    }
 +    return false;
 +  }
 +
-+  // Remove earlier copies of the same source folder. Chromium never deletes
-+  // the directory of an unpacked extension, and every load creates a new one,
-+  // so without this they pile up.
-+  const std::string current = to.BaseName().value();
-+  const std::string prefix = current.substr(0, current.find('-'));
-+  base::FileEnumerator siblings(
-+      to.DirName(), false, base::FileEnumerator::DIRECTORIES);
++  // Chromium never deletes the directory of an unpacked extension, not even
++  // on removal. Sweep folders no installed extension points to anymore. A
++  // folder that is still registered is never touched: deleting it would leave
++  // the extension installed but broken.
++  const base::Time cutoff = base::Time::Now() - kOrphanMinAge;
++  base::FileEnumerator siblings(to.DirName(), false,
++                                base::FileEnumerator::DIRECTORIES);
 +  for (base::FilePath p = siblings.Next(); !p.empty(); p = siblings.Next()) {
 +    const std::string name = p.BaseName().value();
-+    if (name != current && name.compare(0, prefix.size(), prefix) == 0) {
-+      base::DeletePathRecursively(p);
++    if (name == to.BaseName().value() || in_use.contains(name) ||
++        siblings.GetInfo().GetLastModifiedTime() > cutoff) {
++      continue;
 +    }
++    base::DeletePathRecursively(p);
 +  }
 +
 +  return true;
@@ -151,18 +204,37 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
 -  file_path = *vp;
 -#endif  // BUILDFLAG(IS_ANDROID)
 +  base::FilePath source = *vp;
-+  base::FilePath dest =
-+      // One level above the profile. Copies kept inside the profile kept
-+      // vanishing without any Chromium log entry, from 149 onwards; the
-+      // profile is Chromium's own territory and it tidies up what it does
-+      // not recognise. This sits next to the component directories instead.
-+      browser_context()->GetPath()
-+          .DirName()
-+          .AppendASCII("BismuthExtensions")
-+          .AppendASCII(
-+              base::NumberToString(base::PersistentHash(source.value())) + "-" +
-+              base::NumberToString(
-+                  base::Time::Now().ToDeltaSinceWindowsEpoch().InMicroseconds()));
++  const std::string stem =
++      base::NumberToString(base::PersistentHash(source.value()));
++
++  // Collect the folders installed extensions live in. Extension prefs rather
++  // than the registry, so extensions that are disabled or failed to load
++  // count as well.
++  //
++  // Up to 151 every load got its own "<stem>-<timestamp>" folder and thus a
++  // new ID. If this source was loaded that way before, keep using the newest
++  // such folder: it keeps the ID the user already has.
++  std::set<std::string> in_use;
++  std::string legacy;
++  for (const ExtensionInfo& info :
++       ExtensionPrefs::Get(browser_context())->GetInstalledExtensionsInfo()) {
++    const base::FilePath& path = info.extension_path;
++    if (path.DirName().BaseName().value() != kBismuthExtensionsDir) {
++      continue;
++    }
++    const std::string name = path.BaseName().value();
++    in_use.insert(name);
++    if (name.starts_with(stem + "-") && name > legacy) {
++      legacy = name;
++    }
++  }
++  const std::string folder =
++      in_use.contains(stem) || legacy.empty() ? stem : legacy;
++  base::FilePath dest = browser_context()
++                            ->GetPath()
++                            .DirName()
++                            .AppendASCII(kBismuthExtensionsDir)
++                            .AppendASCII(folder);
 +  // Register the retry path before copying, so a failed copy still offers a
 +  // working retry. Retrying re-runs the copy from the original SAF folder.
 +  retry_guid_ = DeveloperPrivateAPI::Get(browser_context())
@@ -170,7 +242,7 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
 +  base::ThreadPool::PostTaskAndReplyWithResult(
 +      FROM_HERE, {base::MayBlock(), base::TaskPriority::USER_VISIBLE},
 +      base::BindOnce(
-+          &CopyVirtualDirectory, source, dest,
++          &CopyVirtualDirectory, source, dest, std::move(in_use),
 +          base::BindPostTask(
 +              content::GetUIThreadTaskRunner({}),
 +              base::BindRepeating(
@@ -213,7 +285,7 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
    scoped_refptr<UnpackedInstaller> installer(
        UnpackedInstaller::Create(browser_context()));
    installer->set_be_noisy_on_failure(!fail_quietly_);
-@@ -969,8 +1149,10 @@ void DeveloperPrivateLoadUnpackedFunction::StartFileLoad(
+@@ -969,8 +1216,10 @@ void DeveloperPrivateLoadUnpackedFunction::StartFileLoad(
        &DeveloperPrivateLoadUnpackedFunction::OnLoadComplete, this));
    installer->Load(file_path);
  

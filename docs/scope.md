@@ -24,7 +24,7 @@ davon 15 Bilddateien fürs Icon.
 | Erweiterungen-Menü repariert | 9006 |
 | Keine MV2-Deprecation | 9007 |
 | Fortschrittsanzeige beim Laden | 9009 |
-| Kontenverwaltung und Anmeldung | 9010 |
+| Browser-Anmeldung abgeschaltet | 9010 |
 | **Erweiterungs-Symbolleiste auf dem Telefon** | **9011** |
 
 Die Nummer 9008 blieb frei — die internen Texte wurden Teil von 9005.
@@ -59,7 +59,14 @@ verworfen. Liegt als `patches/archive/9002-tabswitcher-list-archiv.patch`.
 
 **DICE auf Android.** Der webbasierte Anmeldeweg des Desktops lässt sich nicht
 einschalten: `enable_dice_support` zieht die Desktop-Profilverwaltung mit herein,
-die an der Views-Oberfläche hängt. Details in der Notiz zu 9010.
+die an der Views-Oberfläche hängt. Details in der alten Notiz zu 9010
+(`docs/port-notes/old_moot/`).
+
+**Kontenverwaltung aus 132.** Der `SystemAccountManagerDelegate` machte die
+Anmeldung möglich, Sync aber nie: Google hat Chromium-Builds im März 2021 von
+Chrome Sync ausgeschlossen. Übrig blieben Fehler in den Anmeldeabläufen. Liegt
+als `patches/archive/9010-account-manager-delegate.patch`; 9010 schaltet die
+Browser-Anmeldung jetzt ab.
 
 **Discover-Feed.** Drei Annahmen erwiesen sich als falsch: Der Feed wird sehr
 wohl kompiliert, er ist auf der Neuer-Tab-Seite auch sichtbar, und er schließt
@@ -88,7 +95,6 @@ Profil**. Beide führten dazu, dass Kopien verschwanden. Gelöst durch Aufbau in
 
 | Punkt | Einordnung |
 |---|---|
-| Sync schließt die Bestätigung nicht ab | Ursache unbekannt |
 | Google-Passwortmanager meldet, er funktioniere nicht | vermutlich dieselbe Klasse |
 | Web Store zeigt das Chrome-Banner | kosmetisch |
 

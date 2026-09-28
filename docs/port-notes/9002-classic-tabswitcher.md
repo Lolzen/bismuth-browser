@@ -40,11 +40,13 @@ Die verworfene Arbeit liegt als `patches/9002-tabswitcher-list-archiv.patch` und
 
 ```java
 final int newSpanCount =
-        ContextUtils.getAppSharedPreferences()
-                        .getBoolean("classic_tab_switcher_v2", true)
+        TabListCoordinator.isClassicTabSwitcherEnabled()
                 ? 1
                 : getSpanCount(screenWidthDp);
 ```
+
+Der Schlüssel steht einmal als `TabListCoordinator.CLASSIC_TAB_SWITCHER_PREF`;
+Mediator und Einstellungen lesen ihn über `isClassicTabSwitcherEnabled()`.
 
 In `updateSpanCount`, weil dieselbe Methode auch bei Orientierungswechseln durchläuft. Im Konstruktor allein zu ändern hätte beim Drehen wieder zwei Spalten ergeben.
 
@@ -63,6 +65,16 @@ Der Wert 75dp stammt aus Kiwi und sitzt in 149 unverändert gut.
 ### Schalter — `appearance_preferences.xml` und `AppearanceSettingsFragment.java`
 
 Ein `ChromeSwitchPreference` mit `android:persistent="false"`, dessen Zustand das Fragment selbst aus `ContextUtils.getAppSharedPreferences()` liest und dorthin zurückschreibt.
+
+### Sofort wirksam
+
+`TabListCoordinator` meldet im GRID-Modus einen
+`OnSharedPreferenceChangeListener` an. Ändert sich der Schlüssel, nimmt er die
+Dekoration ab, hängt sie bei Bedarf wieder an und ruft `updateGridCardLayout`
+auf. Das setzt Spaltenzahl und Kartengröße neu, wie beim Aufbau.
+
+`SharedPreferences` hält Listener nur schwach, deshalb liegt der Listener in
+einem Feld. Abgemeldet wird er in `onDestroy`.
 
 ---
 
@@ -84,5 +96,4 @@ Drei Log-Zeilen im Fragment — `findPreference`, Anfangswert, Listener — habe
 
 ## Offen
 
-- Der Umschalter wirkt erst beim Neuaufbau des Switchers, nicht sofort. Für eine Einstellung, die man einmal setzt, verschmerzbar.
 - Titel und Beschreibung stehen als Literale im XML statt als Strings in der `.grd`. Möglich, weil `disable_android_lint = true` gesetzt ist; beim Branding nachzuziehen.

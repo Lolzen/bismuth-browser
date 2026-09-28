@@ -64,6 +64,10 @@ Icon, das nur aus dem Hintergrund besteht.
 In Bismuth verweisen beide XML auf dieselben Ebenen: Kristall im Vordergrund,
 Marineblau im Hintergrund.
 
+Der Lizenzkopf der beiden XML-Dateien bleibt stehen. Die BSD-Lizenz verlangt,
+dass Urheberrechtshinweise in weitergegebenem Quelltext erhalten bleiben — das
+gilt auch für eine Datei, deren Inhalt fast vollständig ersetzt ist.
+
 **Größen:** Vordergrund und Hintergrund 108 / 162 / 216 / 324 / 432 px, Legacy
 48 / 72 / 96 / 144 / 192 px. Das Motiv muss in den inneren zwei Dritteln der
 Kantenlänge sitzen, sonst beschneidet die Maske es.

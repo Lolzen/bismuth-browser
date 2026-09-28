@@ -13,33 +13,88 @@ index 636481c45cd5a..cbe90180d5d8a 100644
 +        android:summary="Single overlapping column of tab cards"/>
  </PreferenceScreen>
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
-index 61f0cb58ab7ce..0569e1c24472f 100644
+index 61f0cb58ab7ce..bed63d6ab5ea1 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListCoordinator.java
-@@ -9,6 +9,8 @@ import static org.chromium.chrome.browser.tasks.tab_management.RecyclerViewScrol
- import static org.chromium.chrome.browser.tasks.tab_management.TabListModel.CardProperties.CARD_TYPE;
+@@ -10,6 +10,8 @@ import static org.chromium.chrome.browser.tasks.tab_management.TabListModel.Card
  import static org.chromium.chrome.browser.tasks.tab_management.TabProperties.TAB_ID;
  
-+import org.chromium.base.ContextUtils;
-+import android.content.res.Configuration;
  import android.app.Activity;
++import android.content.SharedPreferences;
++import android.content.res.Configuration;
  import android.graphics.PointF;
  import android.graphics.Rect;
-@@ -401,6 +403,10 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+ import android.util.Size;
+@@ -31,6 +33,7 @@ import androidx.recyclerview.widget.RecyclerView.ItemAnimator.ItemAnimatorFinish
+ import androidx.recyclerview.widget.RecyclerView.OnItemTouchListener;
+ 
+ import org.chromium.base.Callback;
++import org.chromium.base.ContextUtils;
+ import org.chromium.base.Log;
+ import org.chromium.base.ObserverList;
+ import org.chromium.base.Token;
+@@ -117,6 +120,9 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+     static final int MAX_SCREEN_WIDTH_MEDIUM_DP = 800;
+     static final float PERCENTAGE_AREA_OVERLAP_MERGE_THRESHOLD = 0.5f;
+ 
++    /** App preference behind the classic tab switcher toggle in the tabs settings. */
++    static final String CLASSIC_TAB_SWITCHER_PREF = "classic_tab_switcher_v2";
++
+     private final ObserverList<TabListItemSizeChangedObserver> mTabListItemSizeChangedObserverList =
+             new ObserverList<>();
+     private final TabListFaviconProvider mTabListFaviconProvider;
+@@ -139,6 +145,10 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+     private final TabListHighlighter mTabListHighlighter;
+     private final TabListMergeAnimationManager mTabListMergeAnimationManager;
+ 
++    private final ClassicStyleItemDecoration mClassicDecoration =
++            new ClassicStyleItemDecoration();
++    // SharedPreferences only holds its listeners weakly, so keep a reference.
++    private SharedPreferences.@Nullable OnSharedPreferenceChangeListener mClassicPrefListener;
+     private boolean mIsInitialized;
+     private @Nullable OnLayoutChangeListener mListLayoutListener;
+     private boolean mLayoutListenerRegistered;
+@@ -401,6 +411,19 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
                              }
                          };
                  mRecyclerView.setLayoutManager(gridLayoutManager);
-+                if (ContextUtils.getAppSharedPreferences()
-+                        .getBoolean("classic_tab_switcher_v2", true)) {
-+                    mRecyclerView.addItemDecoration(new ClassicStyleItemDecoration());
++                if (isClassicTabSwitcherEnabled()) {
++                    mRecyclerView.addItemDecoration(mClassicDecoration);
 +                }
++                // Apply the settings toggle right away rather than on the next start.
++                SharedPreferences.OnSharedPreferenceChangeListener classicPrefListener =
++                        (prefs, key) -> {
++                            if (CLASSIC_TAB_SWITCHER_PREF.equals(key)) {
++                                applyClassicTabSwitcherSetting();
++                            }
++                        };
++                mClassicPrefListener = classicPrefListener;
++                ContextUtils.getAppSharedPreferences()
++                        .registerOnSharedPreferenceChangeListener(classicPrefListener);
                  mMediator.registerOrientationListener(gridLayoutManager);
                  mMediator.updateSpanCount(
                          gridLayoutManager,
-@@ -684,6 +690,30 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+@@ -684,6 +707,47 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
          }
      }
  
++    /** Whether the classic tab switcher is on. It is by default. */
++    static boolean isClassicTabSwitcherEnabled() {
++        return ContextUtils.getAppSharedPreferences().getBoolean(CLASSIC_TAB_SWITCHER_PREF, true);
++    }
++
++    /** Switches between the classic stack and the regular grid without a restart. */
++    private void applyClassicTabSwitcherSetting() {
++        mRecyclerView.removeItemDecoration(mClassicDecoration);
++        if (isClassicTabSwitcherEnabled()) {
++            mRecyclerView.addItemDecoration(mClassicDecoration);
++        }
++        // Recomputes span count and card size, the same way as on setup.
++        Rect frame = new Rect();
++        mActivity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
++        updateGridCardLayout(frame.width());
++    }
++
 +    /** Draws tab cards as an overlapping vertical stack, like the classic switcher. */
 +    private static class ClassicStyleItemDecoration extends RecyclerView.ItemDecoration {
 +        private static final int OVERLAP_DP = 75;
@@ -67,60 +122,67 @@ index 61f0cb58ab7ce..0569e1c24472f 100644
      private void updateGridCardLayout(int viewWidth) {
          // Determine and set span count
          final GridLayoutManager layoutManager =
+@@ -843,6 +907,13 @@ public class TabListCoordinator implements PriceWelcomeMessageProvider, DestroyO
+             mRecyclerView.removeOnLayoutChangeListener(mListLayoutListener);
+             mLayoutListenerRegistered = false;
+         }
++        SharedPreferences.@Nullable OnSharedPreferenceChangeListener classicPrefListener =
++                mClassicPrefListener;
++        if (classicPrefListener != null) {
++            ContextUtils.getAppSharedPreferences()
++                    .unregisterOnSharedPreferenceChangeListener(classicPrefListener);
++            mClassicPrefListener = null;
++        }
+         mRecyclerView.setRecyclerListener(null);
+         if (mTabStripSnapshotter != null) {
+             mTabStripSnapshotter.destroy();
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
-index 32fe80a906eb5..20c6114e2116e 100644
+index 32fe80a906eb5..7b67f545946e9 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabListMediator.java
-@@ -18,6 +18,7 @@ import static org.chromium.chrome.browser.tasks.tab_management.TabSwitcherMessag
- import static org.chromium.chrome.browser.tasks.tab_management.UiTypeHelper.isLargeMessageCard;
- import static org.chromium.chrome.browser.tasks.tab_management.UiTypeHelper.isMessageCard;
- 
-+import org.chromium.base.ContextUtils;
- import android.animation.Animator;
- import android.animation.AnimatorListenerAdapter;
- import android.animation.ObjectAnimator;
-@@ -2519,7 +2520,12 @@ public class TabListMediator implements TabListNotificationHandler {
+@@ -2519,7 +2519,11 @@ public class TabListMediator implements TabListNotificationHandler {
       */
      boolean updateSpanCount(GridLayoutManager manager, int screenWidthDp) {
          final int oldSpanCount = manager.getSpanCount();
 -        final int newSpanCount = getSpanCount(screenWidthDp);
 +        // Classic tab switcher: a single column of full-width cards.
 +        final int newSpanCount =
-+                ContextUtils.getAppSharedPreferences()
-+                                .getBoolean("classic_tab_switcher_v2", true)
++                TabListCoordinator.isClassicTabSwitcherEnabled()
 +                        ? 1
 +                        : getSpanCount(screenWidthDp);
          manager.setSpanCount(newSpanCount);
          manager.setSpanSizeLookup(
                  new GridLayoutManager.SpanSizeLookup() {
 diff --git a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabsSettings.java b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabsSettings.java
-index 9b95b8e5e60c3..41771b7e300a5 100644
+index 9b95b8e5e60c3..97f12d06304fd 100644
 --- a/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabsSettings.java
 +++ b/chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabsSettings.java
-@@ -6,6 +6,8 @@ package org.chromium.chrome.browser.tasks.tab_management;
+@@ -12,7 +12,9 @@ import android.view.View;
  
- import static org.chromium.build.NullUtil.assertNonNull;
+ import androidx.annotation.VisibleForTesting;
+ import androidx.preference.Preference;
++import androidx.preference.TwoStatePreference;
  
 +import org.chromium.base.ContextUtils;
-+import androidx.preference.TwoStatePreference;
- import android.content.Context;
- import android.os.Bundle;
- import android.view.View;
-@@ -71,6 +73,21 @@ public class TabsSettings extends ChromeBaseSettingsFragment {
+ import org.chromium.base.metrics.RecordHistogram;
+ import org.chromium.base.supplier.MonotonicObservableSupplier;
+ import org.chromium.base.supplier.ObservableSuppliers;
+@@ -71,6 +73,22 @@ public class TabsSettings extends ChromeBaseSettingsFragment {
  
          configureAutoOpenSyncedTabGroupsSwitch();
          configureShareTitlesAndUrlsWithOsSwitch();
 +
-+        TwoStatePreference classicPref = findPreference("classic_tab_switcher_v2");
++        TwoStatePreference classicPref =
++                findPreference(TabListCoordinator.CLASSIC_TAB_SWITCHER_PREF);
 +        if (classicPref != null) {
-+            classicPref.setChecked(
-+                    ContextUtils.getAppSharedPreferences()
-+                            .getBoolean("classic_tab_switcher_v2", true));
++            classicPref.setChecked(TabListCoordinator.isClassicTabSwitcherEnabled());
 +            classicPref.setOnPreferenceChangeListener(
 +                    (pref, newValue) -> {
 +                        ContextUtils.getAppSharedPreferences()
 +                                .edit()
-+                                .putBoolean("classic_tab_switcher_v2", (Boolean) newValue)
++                                .putBoolean(
++                                        TabListCoordinator.CLASSIC_TAB_SWITCHER_PREF,
++                                        (Boolean) newValue)
 +                                .apply();
 +                        return true;
 +                    });

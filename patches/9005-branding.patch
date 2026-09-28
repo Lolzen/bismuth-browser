@@ -12,45 +12,30 @@ index a1aaf65079c51..35b9defda6e4d 100644
      chrome_public_manifest_package += ".stable"
    } else if (android_channel != "default") {
 diff --git a/chrome/android/java/res_base/drawable/ic_launcher.xml b/chrome/android/java/res_base/drawable/ic_launcher.xml
-index e5a868e458b5e..89166857c01e0 100644
+index e5a868e458b5e..daa6055b6aa27 100644
 --- a/chrome/android/java/res_base/drawable/ic_launcher.xml
 +++ b/chrome/android/java/res_base/drawable/ic_launcher.xml
-@@ -1,12 +1,6 @@
- <?xml version="1.0" encoding="utf-8"?>
--<!--
--Copyright 2022 The Chromium Authors
--Use of this source code is governed by a BSD-style license that can be
--found in the LICENSE file.
---->
--
+@@ -6,7 +6,7 @@ found in the LICENSE file.
+ -->
+ 
  <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android" >
 -    <background android:drawable="@android:color/white"/>
 +    <background android:drawable="@mipmap/layered_app_icon_background"/>
      <foreground android:drawable="@mipmap/layered_app_icon"/>
      <monochrome android:drawable="@drawable/themed_app_icon"/>
--</adaptive-icon>
-+</adaptive-icon>
-\ No newline at end of file
+ </adaptive-icon>
 diff --git a/chrome/android/java/res_base/drawable/ic_launcher_round.xml b/chrome/android/java/res_base/drawable/ic_launcher_round.xml
-index 2159da0bd9866..89166857c01e0 100644
+index 2159da0bd9866..daa6055b6aa27 100644
 --- a/chrome/android/java/res_base/drawable/ic_launcher_round.xml
 +++ b/chrome/android/java/res_base/drawable/ic_launcher_round.xml
-@@ -1,12 +1,6 @@
- <?xml version="1.0" encoding="utf-8"?>
--<!--
--Copyright 2022 The Chromium Authors
--Use of this source code is governed by a BSD-style license that can be
--found in the LICENSE file.
---->
--
+@@ -7,6 +7,6 @@ found in the LICENSE file.
+ 
  <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android" >
      <background android:drawable="@mipmap/layered_app_icon_background"/>
 -    <foreground android:drawable="@mipmap/layered_app_icon_foreground"/>
 +    <foreground android:drawable="@mipmap/layered_app_icon"/>
      <monochrome android:drawable="@drawable/themed_app_icon"/>
--</adaptive-icon>
-+</adaptive-icon>
-\ No newline at end of file
+ </adaptive-icon>
 diff --git a/chrome/android/java/res_chromium_base/drawable/themed_app_icon.xml b/chrome/android/java/res_chromium_base/drawable/themed_app_icon.xml
 index 32a95bc6ee4d5..e4a4ba9618d5e 100644
 --- a/chrome/android/java/res_chromium_base/drawable/themed_app_icon.xml

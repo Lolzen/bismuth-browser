@@ -36,8 +36,11 @@ Store MV2 nicht mehr ausliefert, ist der lokale Ladeweg der einzige.
 ## Wohin kopiert wird
 
 ```
-app_chrome/BismuthExtensions/<hash>-<zeitstempel>
+app_chrome/BismuthExtensions/<hash>
 ```
+
+`<hash>` ist `base::PersistentHash` des Quellpfads. Derselbe Ordner landet also
+bei jedem Laden am selben Ort.
 
 **Eine Ebene über dem Profil**, neben Chromiums eigenen Komponentenverzeichnissen
 wie `OriginTrials` und `OptimizationHints`.
@@ -56,10 +59,46 @@ Registrierungen. Erweiterungen müssen danach einmal neu geladen werden.
 
 ---
 
+## Feste Kennung
+
+Die Kennung einer entpackten Erweiterung ohne `key` im Manifest ist ein Hash
+ihres absoluten Pfads (`crx_file::id_util::GenerateIdForPath`). An der Kennung
+hängen Einstellungen und Speicher der Erweiterung.
+
+Bis 151 bekam jeder Ladevorgang ein eigenes Verzeichnis `<hash>-<zeitstempel>`
+und damit eine neue Kennung. Wer uBlock ein zweites Mal aus demselben Ordner
+lud, bekam eine zweite Installation ohne seine Filterlisten. Die alte blieb
+registriert, der Aufräumlauf löschte aber ihr Verzeichnis — beim nächsten Start
+schlug sie fehl.
+
+Jetzt ist das Ziel pro Quellordner fest. Ein erneutes Laden ersetzt die Dateien
+an Ort und Stelle, `UnpackedInstaller` erkennt dieselbe Kennung und behandelt es
+als Aktualisierung — wie „Entpackte Erweiterung laden" auf dem Desktop.
+
+**Übergang:** Ist die Quelle noch unter einem alten `<hash>-<zeitstempel>`
+registriert, wird das neueste dieser Verzeichnisse weiterverwendet. So behalten
+bestehende Installationen ihre Kennung.
+
+**Grenze:** Ein anderer Quellordner ergibt eine andere Kennung, auch wenn darin
+dieselbe Erweiterung liegt — etwa eine neue Version in einem frisch entpackten
+Ordner. Für ein Update dieselbe Quelle überschreiben und neu laden.
+
+---
+
 ## Aufbauen wie ein CRX
 
-Der Kopiervorgang legt die Dateien in `<Profil>/Temp/<name>` an und setzt sie erst
-am Ende mit einem einzigen `base::Move` an ihren Platz.
+Der Kopiervorgang legt die Dateien in `app_chrome/Temp/<name>` an und setzt sie
+erst am Ende mit einem einzigen `base::Move` an ihren Platz. (Solange das Ziel im
+Profil lag, war das `<Profil>/Temp/<name>` — der Pfad wird aus dem Ziel
+abgeleitet und ist mit ihm eine Ebene nach oben gewandert.)
+
+Jeder Versuch bekommt ein eigenes Zwischenverzeichnis
+`Temp/<ordner>-<zeitstempel>`, damit sich zwei Ladevorgänge nicht in die Quere
+kommen. Scheitert der Kopiervorgang, wird es wieder entfernt.
+
+Beim Einsetzen wird die bisherige Kopie erst beiseitegeschoben
+(`….previous`) und nur bei Erfolg gelöscht. Scheitert das Verschieben, kommt sie
+zurück — eine installierte Erweiterung steht nie ohne Dateien da.
 
 Das ist der Ablauf, den Chromium beim Installieren eines CRX verwendet
 (`extensions/common/file_util.cc`, `InstallExtension`): außerhalb des
@@ -98,15 +137,23 @@ aufgerufen, weil der Aufzähler keine Reihenfolge garantiert.
 ## Verwaiste Kopien aufräumen
 
 Chromium löscht das Verzeichnis einer entpackten Erweiterung beim Entfernen
-nicht. Da jeder Ladevorgang einen eigenen Zeitstempel bekommt, sammelten sich die
-Verzeichnisse an — in einem Protokoll scheiterten beim Start fünf Ladeversuche
-aus verwaisten Ordnern.
+nicht.
 
-Nach erfolgreichem Verschieben werden deshalb Geschwisterverzeichnisse mit
-demselben Hash entfernt.
+Maßgeblich ist, **worauf eine installierte Erweiterung zeigt**, nicht der Name.
+`StartFileLoad` liest im UI-Thread aus `ExtensionPrefs::GetInstalledExtensionsInfo`
+alle Pfade unter `BismuthExtensions` — die Prefs, nicht die Registry, damit auch
+deaktivierte und beim Start gescheiterte Erweiterungen zählen. Nach erfolgreichem
+Einsetzen wird jedes Verzeichnis gelöscht, das in dieser Liste fehlt und älter
+als eine Stunde ist. Die Stunde schützt einen parallelen Ladevorgang, der sein
+Verzeichnis schon eingesetzt, aber noch nicht registriert hat.
 
-**Nicht erfasst:** Verzeichnisse von Erweiterungen, die ganz entfernt wurden.
-Dafür bräuchte es die Liste der installierten Erweiterungen aus dem UI-Thread.
+Ein registriertes Verzeichnis wird nie angefasst. Die frühere Regel „gleicher
+Hash, anderer Zeitstempel" löschte genau solche Verzeichnisse und hinterließ
+installierte, aber kaputte Erweiterungen. Sie verglich zudem ohne Bindestrich:
+`123` traf auch `1234-…` einer anderen Erweiterung.
+
+Damit sind jetzt auch Verzeichnisse ganz entfernter Erweiterungen erfasst — sie
+verschwinden beim nächsten Laden.
 
 ---
 
@@ -129,9 +176,9 @@ gezählt werden nur die Dateien der obersten Ebene. Der Fehler ist still.
 `<hash>.staging` neben dem Ziel, danach `base::Move`. Lag im selben gefährdeten
 Bereich; das Umbenennen meldete Erfolg und hinterließ eine unvollständige Kopie.
 
-**Eindeutiges Zielverzeichnis allein.** Der Zeitstempel verhindert Kollisionen —
-den Fehler behob er nicht. Er bleibt, weil er nichts kostet und den Aufräumlauf
-erst möglich macht.
+**Eindeutiges Zielverzeichnis allein.** Der Zeitstempel verhinderte Kollisionen —
+den Fehler behob er nicht. Er kostete jedes Mal die Kennung der Erweiterung und
+ist deshalb wieder entfallen; siehe „Feste Kennung".
 
 **Zweiter Durchgang über die Wurzeldateien.** Notlösung, die das Symptom milderte
 und nicht die Ursache traf. Entfernt.
