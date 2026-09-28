@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
-index 7cd5cac0f14a2..7e07dcf726346 100644
+index 7cd5cac0f14a2..600bcbc20db0f 100644
 --- a/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
 +++ b/chrome/browser/extensions/api/developer_private/developer_private_functions.cc
-@@ -3,6 +3,16 @@
+@@ -3,6 +3,18 @@
  // found in the LICENSE file.
  
  #include "chrome/browser/extensions/api/developer_private/developer_private_functions.h"
@@ -10,6 +10,8 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
 +#include "base/files/file.h"
 +#include "base/files/file_enumerator.h"
 +#include "base/files/file_util.h"
++#include "base/functional/bind.h"
++#include "base/functional/callback_helpers.h"
 +#include "base/hash/hash.h"
 +#include "base/strings/string_number_conversions.h"
 +#include "base/task/thread_pool.h"
@@ -19,7 +21,7 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
  
  #include <stddef.h>
  
-@@ -949,19 +959,189 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelectionCanceled() {
+@@ -949,19 +961,200 @@ void DeveloperPrivateLoadUnpackedFunction::FileSelectionCanceled() {
    Finish(Error(kFileSelectionCanceled));
  }
  
@@ -56,6 +58,12 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
 +  const base::FilePath temp =
 +      to.DirName().DirName().AppendASCII("Temp").Append(to.BaseName());
 +  base::DeletePathRecursively(temp);
++  // Every early return below would otherwise leave a partial copy behind.
++  // Each attempt gets its own name, so nothing else would ever remove it.
++  // After a successful move the directory is gone and this is a no-op.
++  base::ScopedClosureRunner remove_temp(base::BindOnce(
++      [](const base::FilePath& path) { base::DeletePathRecursively(path); },
++      temp));
 +  if (!base::CreateDirectory(temp)) {
 +    return false;
 +  }
@@ -120,14 +128,19 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
 +  // Remove earlier copies of the same source folder. Chromium never deletes
 +  // the directory of an unpacked extension, and every load creates a new one,
 +  // so without this they pile up.
++  // The prefix includes the '-': the hash is a decimal number of varying
++  // length, so "123" alone would also match another folder's "1234-...".
 +  const std::string current = to.BaseName().value();
-+  const std::string prefix = current.substr(0, current.find('-'));
-+  base::FileEnumerator siblings(
-+      to.DirName(), false, base::FileEnumerator::DIRECTORIES);
-+  for (base::FilePath p = siblings.Next(); !p.empty(); p = siblings.Next()) {
-+    const std::string name = p.BaseName().value();
-+    if (name != current && name.compare(0, prefix.size(), prefix) == 0) {
-+      base::DeletePathRecursively(p);
++  const size_t dash = current.find('-');
++  if (dash != std::string::npos) {
++    const std::string prefix = current.substr(0, dash + 1);
++    base::FileEnumerator siblings(to.DirName(), false,
++                                  base::FileEnumerator::DIRECTORIES);
++    for (base::FilePath p = siblings.Next(); !p.empty(); p = siblings.Next()) {
++      const std::string name = p.BaseName().value();
++      if (name != current && name.starts_with(prefix)) {
++        base::DeletePathRecursively(p);
++      }
 +    }
 +  }
 +
@@ -213,7 +226,7 @@ index 7cd5cac0f14a2..7e07dcf726346 100644
    scoped_refptr<UnpackedInstaller> installer(
        UnpackedInstaller::Create(browser_context()));
    installer->set_be_noisy_on_failure(!fail_quietly_);
-@@ -969,8 +1149,10 @@ void DeveloperPrivateLoadUnpackedFunction::StartFileLoad(
+@@ -969,8 +1162,10 @@ void DeveloperPrivateLoadUnpackedFunction::StartFileLoad(
        &DeveloperPrivateLoadUnpackedFunction::OnLoadComplete, this));
    installer->Load(file_path);
  

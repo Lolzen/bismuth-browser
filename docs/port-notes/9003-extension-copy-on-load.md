@@ -58,8 +58,14 @@ Registrierungen. Erweiterungen müssen danach einmal neu geladen werden.
 
 ## Aufbauen wie ein CRX
 
-Der Kopiervorgang legt die Dateien in `<Profil>/Temp/<name>` an und setzt sie erst
-am Ende mit einem einzigen `base::Move` an ihren Platz.
+Der Kopiervorgang legt die Dateien in `app_chrome/Temp/<name>` an und setzt sie
+erst am Ende mit einem einzigen `base::Move` an ihren Platz. (Solange das Ziel im
+Profil lag, war das `<Profil>/Temp/<name>` — der Pfad wird aus dem Ziel
+abgeleitet und ist mit ihm eine Ebene nach oben gewandert.)
+
+Scheitert der Kopiervorgang, wird das Zwischenverzeichnis wieder entfernt. Jeder
+Versuch bekommt einen eigenen Namen; ohne das Aufräumen bliebe jede abgebrochene
+Kopie für immer liegen.
 
 Das ist der Ablauf, den Chromium beim Installieren eines CRX verwendet
 (`extensions/common/file_util.cc`, `InstallExtension`): außerhalb des
@@ -104,6 +110,10 @@ aus verwaisten Ordnern.
 
 Nach erfolgreichem Verschieben werden deshalb Geschwisterverzeichnisse mit
 demselben Hash entfernt.
+
+Verglichen wird mit `<hash>-`, **einschließlich des Bindestrichs**. Der Hash ist
+eine Dezimalzahl unterschiedlicher Länge; ohne den Bindestrich hätte `123-…`
+auch das Verzeichnis `1234-…` einer ganz anderen Erweiterung gelöscht.
 
 **Nicht erfasst:** Verzeichnisse von Erweiterungen, die ganz entfernt wurden.
 Dafür bräuchte es die Liste der installierten Erweiterungen aus dem UI-Thread.

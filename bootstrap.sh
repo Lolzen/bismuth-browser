@@ -49,6 +49,12 @@ cd src
 echo "== Patches =="
 while read -r p; do
   [ -z "$p" ] && continue
+  # Bei einem zweiten Lauf sind die Patches schon drin - ein erneutes
+  # Anwenden scheitert und bricht das Skript wegen set -e ab.
+  if git apply --reverse --check "$REPO/patches/$p" 2>/dev/null; then
+    echo "-- $p (bereits angewendet)"
+    continue
+  fi
   echo "-- $p"
   git apply --3way "$REPO/patches/$p"
 done < "$REPO/patches/series"

@@ -22,13 +22,13 @@ index 0a5f7aab3ec4d..4334a4f1b6718 100644
          initMerchantTrustSignals(originalProfile);
      }
 diff --git a/chrome/browser/ui/android/desktop_site/java/src/org/chromium/chrome/browser/desktop_site/DesktopSiteUtils.java b/chrome/browser/ui/android/desktop_site/java/src/org/chromium/chrome/browser/desktop_site/DesktopSiteUtils.java
-index 4452fea97e726..71e023b956ba2 100644
+index 4452fea97e726..44957605a81e3 100644
 --- a/chrome/browser/ui/android/desktop_site/java/src/org/chromium/chrome/browser/desktop_site/DesktopSiteUtils.java
 +++ b/chrome/browser/ui/android/desktop_site/java/src/org/chromium/chrome/browser/desktop_site/DesktopSiteUtils.java
-@@ -168,6 +168,26 @@ public class DesktopSiteUtils {
-      * @param context The current context.
-      * @return Whether the desktop site global setting was default-enabled.
-      */
+@@ -159,6 +159,26 @@ public class DesktopSiteUtils {
+         return !previouslyDefaultEnabled && !previouslyUpdatedByUser;
+     }
+ 
 +    /**
 +     * The Chrome Web Store only serves its extension pages to desktop browsers. Set a one-time
 +     * exception scoped to that exact host - not a domain wildcard, which would also cover Search.
@@ -49,6 +49,6 @@ index 4452fea97e726..71e023b956ba2 100644
 +        ContextUtils.getAppSharedPreferences().edit().putBoolean(prefKey, true).apply();
 +    }
 +
-     public static boolean maybeDefaultEnableGlobalSetting(
-             double displaySizeInInches, Profile profile, Context context) {
-         if (!shouldDefaultEnableGlobalSetting(displaySizeInInches, context)) {
+     /**
+      * Default-enables the desktop site global setting if {@code shouldDefaultEnableGlobalSetting}
+      * returns true.
