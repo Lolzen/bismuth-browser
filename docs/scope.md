@@ -24,10 +24,10 @@ davon 15 Bilddateien fürs Icon.
 | Erweiterungen-Menü repariert | 9006 |
 | Keine MV2-Deprecation | 9007 |
 | Fortschrittsanzeige beim Laden | 9009 |
-| Browser-Anmeldung abgeschaltet | 9010 |
 | **Erweiterungs-Symbolleiste auf dem Telefon** | **9011** |
 
-Die Nummer 9008 blieb frei — die internen Texte wurden Teil von 9005.
+Die Nummer 9008 blieb frei — die internen Texte wurden Teil von 9005. 9010 ist
+frei, seit beide Anmelde-Patches verworfen sind.
 
 ---
 
@@ -60,13 +60,19 @@ verworfen. Liegt als `patches/archive/9002-tabswitcher-list-archiv.patch`.
 **DICE auf Android.** Der webbasierte Anmeldeweg des Desktops lässt sich nicht
 einschalten: `enable_dice_support` zieht die Desktop-Profilverwaltung mit herein,
 die an der Views-Oberfläche hängt. Details in der alten Notiz zu 9010
-(`docs/port-notes/old_moot/`).
+(`docs/port-notes/old_moot/9010-account-manager-delegate.md`).
 
 **Kontenverwaltung aus 132.** Der `SystemAccountManagerDelegate` machte die
 Anmeldung möglich, Sync aber nie: Google hat Chromium-Builds im März 2021 von
 Chrome Sync ausgeschlossen. Übrig blieben Fehler in den Anmeldeabläufen. Liegt
-als `patches/archive/9010-account-manager-delegate.patch`; 9010 schaltet die
-Browser-Anmeldung jetzt ab.
+als `patches/archive/9010-account-manager-delegate.patch`.
+
+**Browser-Anmeldung abschalten.** Der Nachfolger setzte `kSigninAllowed`
+standardmäßig auf `false` und ließ `ProcessMirrorHeader` keine native
+Kontenoberfläche mehr öffnen. Ebenfalls verworfen — Bismuth patcht die Anmeldung
+nicht mehr. Liegt als `patches/archive/9010-disable-browser-signin.patch`.
+Ohne ihn führen Chromiums eigene Anmeldeeinträge in die Ausnahme von
+`NullAccountManagerDelegate`.
 
 **Discover-Feed.** Drei Annahmen erwiesen sich als falsch: Der Feed wird sehr
 wohl kompiliert, er ist auf der Neuer-Tab-Seite auch sichtbar, und er schließt
