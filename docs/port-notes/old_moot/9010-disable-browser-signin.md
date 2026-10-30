@@ -1,7 +1,7 @@
 # 9010 — Browser-Anmeldung abschalten
 
-**Status:** fertig, ungetestet auf dem Gerät
-**Patch:** `patches/9010-disable-browser-signin.patch`
+**Status:** verworfen — Bismuth patcht die Anmeldung nicht mehr
+**Patch:** `patches/archive/9010-disable-browser-signin.patch` (nicht in der Serie)
 **Umfang:** 2 Dateien, 2 wirksame Stellen
 
 ---

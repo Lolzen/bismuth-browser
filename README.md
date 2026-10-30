@@ -19,7 +19,7 @@ code is used here.
 | Target | Android, `arm64` |
 | Extensions | working, with the full toolbar UI |
 | Manifest V2 | working — uBlock Origin loads, runs and blocks |
-| Google account | no browser sign-in; Google sites work with normal web login |
+| Google account | not patched — no sync; Google sites use normal web login |
 | Tab switcher | classic single-column card stack, toggleable |
 | Startup with uBlock | ~3 s |
 | Build type | official (PGO + LTO) |
@@ -74,7 +74,6 @@ Manifest V2 support.**
 | **9006** | Fixes the crashing extensions menu entry, enables app-menu submenus |
 | **9007** | Removes the Manifest V2 deprecation warning and notice |
 | **9009** | Progress dialog with a real percentage while an extension is copied |
-| **9010** | Turns browser sign-in off, so no account flow can crash |
 | **9011** | Brings Chromium's extensions toolbar to phones |
 
 Details for each are in `docs/port-notes/`, including one note per version bump.
@@ -117,20 +116,22 @@ that.
 
 ## Signing in
 
-**Bismuth has no browser sign-in and no sync.** Logging into Google websites —
-Gmail, YouTube, the Web Store — works the way it does in any other browser.
+**Bismuth does not patch sign-in at all.** What remains is upstream Chromium's
+behaviour. Logging into Google websites — Gmail, YouTube, the Web Store — goes
+through their normal web login.
 
 Google cut third-party Chromium builds off from Chrome Sync in March 2021. The
 restriction was announced in advance and applies to every Chromium derivative;
-Brave and Edge run sync services of their own. On top of that, a public Chromium
-checkout ships only `NullAccountManagerDelegate`, a placeholder that throws on
-every write, so any browser sign-in flow crashed.
+Brave and Edge run sync services of their own.
 
-An earlier 9010 restored the account manager delegate from Chromium 132. Signing
-in then worked, but sync could never complete and the login flows kept running
-into errors. It is archived under `patches/archive/`. The current 9010 switches
-browser sign-in off instead and keeps Google's pages from opening native account
-UI, so they fall back to their own web login.
+A public Chromium checkout ships only `NullAccountManagerDelegate`, a placeholder
+that throws on every write. Chromium's own **browser** sign-in entries — on first
+run, in settings and in sign-in prompts — therefore end in a crash. Skip them.
+
+Two earlier attempts are archived under `patches/archive/`, with their notes in
+`docs/port-notes/old_moot/`: one restored the account manager delegate from
+Chromium 132 (sign-in worked, sync never did); the other switched browser
+sign-in off.
 
 ---
 
@@ -186,8 +187,9 @@ git-ignored for exactly this reason.
 
 ## Known limitations
 
-- **No browser sign-in, no sync.** Google does not allow Chromium builds to use
-  Chrome Sync. Web logins to Google sites are unaffected.
+- **No sync, and browser sign-in crashes.** Google does not allow Chromium
+  builds to use Chrome Sync, and the public tree has no working account manager.
+  Web logins to Google sites are unaffected.
 - **No Discover feed content.** The feed area appears on the new tab page but
   never loads. Its renderer is Google's closed **XSurface** library, which ships
   as an on-demand module in official Chrome and has never been part of the
